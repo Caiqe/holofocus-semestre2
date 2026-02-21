@@ -13,6 +13,8 @@ html {
 }
 
 body {
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
     background-color: black;
@@ -28,7 +30,7 @@ header {
     justify-content: space-around;
 }
 
-.logo {
+.logoHeader {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,29 +53,40 @@ header {
 }
 
 ul {
+    list-style: none;
+    padding: 0;
+    width: 70%;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-li a {
-    font-size: 28px;
-    color: var(--texto-lilas);
+li {
+    & a {
+        text-decoration: none;
+        font-size: 28px;
+        color: var(--texto-lilas);
+    }
 }
 
-.botao {
-    font-size: 25px;
-    margin: 24px 14px;
+.botaoHeader {
+    padding: 14px 24px;
+    border: 2px solid var(--texto-lilas);
     border-radius: 53px;
+
+    & a {
+        font-size: 25px;
+    }
 }
 
-.botao .login {
-    border-color: var(--texto-lilas);
-}
-
-.botao .cadastro {
-    color: black;
+.botaoHeader.cadastrar {
     background-color: var(--texto-lilas);
+    border-radius: 53px;
+    padding: 10px 20px;
+    
+    & a {
+        color: black;
+    }
 }
 
 /* FIM CSS HEADER */
