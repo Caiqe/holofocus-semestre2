@@ -124,7 +124,7 @@ input[type="number"] {
 }
 
 .email {
-    width: 53%;
+    width: 57%;
 }
 
 .celular {
@@ -158,3 +158,16 @@ input[type="number"] {
 button {
     cursor: pointer;
 }
+
+span {
+    display: flex;
+    align-items: center;
+
+    & button {
+        color:#EFD38D;
+        font-size: 15px;
+        background: none;
+        border: 1px solid #EFD38D;
+        border-radius: 20px;
+    }
+} 

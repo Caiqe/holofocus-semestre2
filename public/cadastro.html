@@ -35,11 +35,11 @@
                     <div class="linha">
                         <div class="grupoInput cnpj">
                             <span>CNPJ</span>
-                            <input placeholder="XX.XXX.XXX/0001-YY" type="text" id="inptCNPJ">
+                            <input placeholder="XX.XXX.XXX/0001-YY" type="text" id="inptCNPJ" maxlength="14">
                         </div>
                         <div class="grupoInput cep">
                             <span>CEP</span>
-                            <input placeholder="00000-000" type="text" id="inptCEP">
+                            <input placeholder="00000-000" type="text" id="inptCEP" maxlength="8">
                         </div>
                     </div>
                     <div class="grupoInput">
@@ -63,7 +63,10 @@
                 </div>
             </div>
             <div id="divParte2">
-                <span>Falta pouco!</span>
+                <span>
+                    <button onclick="voltar()">Voltar</button>
+                    Falta pouco!
+                </span>
                 <div class="inputs">
                     <div class="grupoInput">
                         <span>Nome para contato</span>
@@ -76,7 +79,7 @@
                         </div>
                         <div class="grupoInput celular">
                             <span>Celular</span>
-                            <input placeholder="(99) 99999-9999" type="number" id="inptCelular">
+                            <input placeholder="(99) 99999-9999" type="text" maxlength="11" id="inptCelular">
                         </div>
                     </div>
                     <div class="grupoInput">
@@ -85,7 +88,7 @@
                     </div>
                     <div class="grupoInput">
                         <span>Confirme a senha</span>
-                        <input placeholder="Confirmar a senha" type="text" id="inptSenha">
+                        <input placeholder="Confirmar a senha" type="text" id="inptConfirmaSenha">
                     </div>
                 </div>
                 <div class="conjuntoBotao">
@@ -95,5 +98,7 @@
         </div>
     </div>
 </body>
+
+<script src="./js/cadastro.js"></script>
 
 </html>
