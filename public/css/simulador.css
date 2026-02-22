@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poiret+One&display=swap');
+
+
+:root {
+    --texto-verde: #93BCA5;
+    --texto-amarelo: #F0D48D;
+    --texto-laranja: #FF6E03;
+    --texto-azul: #667887;
+    --texto-lilas: #DA9EF7;
+    --texto-rosa: #ff17ba;
+}
+
+*{
+    color: #F0D48D;
+    font-family: 'archivo', sans-serif;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.section-1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    & h1{
+        font-size: 80px;
+        margin-bottom: 40px;
+    }
+    & h2{
+        font-size: 33px;
+        font-weight: 200;
+        border-bottom: 2px solid var(--texto-rosa);
+        margin-bottom: 15px;
+    }
+    & img{
+        width: 40%;
+    }
+}
+.buttom-section-1{
+    background-color: var(--texto-rosa);
+    border: 2px solid var(--texto-amarelo);
+    width: 360px;
+    height: 70px;
+    font-size: 33px;
+    border-radius: 80px;
+    margin-top: 40px;
+}
+.buttom-section-1:hover{
+    cursor: pointer;
+    scale: 97%;
+    transition: 0.3s;
+}
+
+
+.divisor{
+    height: 80px;
+    width: 100%;
+    background-color: var(--texto-amarelo);
+    margin: 20px 0px;
+}
+
+.section-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 80px;
+    width: 96%;
+    padding: 100px;
+    background-image: url("../assets/imgs/pexels-phreewil-2020432.jpg");
+    border-radius: 80px;
+    margin-bottom: 20px;
+    & .top-section-2{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+     & .infos-forms{
+        display: flex;
+        flex-direction: column;
+        background-color: black;
+        border-radius: 80px;
+        width: 40%;
+        padding: 30px;
+        gap: 20px;
+        & h2{
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+        }
+        & p{
+            font-size: 40px;
+            font-weight: 200;
+        }
+     }
+    & .formulario{
+        display: flex;
+        flex-direction: column;
+        background-color: black;
+        border-radius: 80px;
+        width: 40%;
+        padding: 30px;
+        gap: 50px;
+        & h2{
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+        }
+        & .campo-input{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+             & label{
+                color: white;
+                font-size: 25px;
+                font-weight: 200;
+             }
+             & input{
+                background-color: #1C1C1C;
+                width: 100%;
+                height: 75px;
+                border: none;
+                border-radius: 20px;
+                font-size: 30px;
+                color: white;
+                padding-left: 25px;
+             }
+        }
+        & button{
+            background-color: var(--texto-amarelo);
+            color: black;
+            border: none;
+            width: 360px;
+            height: 70px;
+            font-size: 33px;
+            border-radius: 80px;
+            align-self: center;
+        }
+        & button:hover{
+            cursor: pointer;
+            scale: 97%;
+            transition: 0.3s;
+        }
+    } 
+    & .resultado_simulacao{
+        display: flex;
+        flex-direction: column;
+        border-radius: 80px;
+        background-color: black;
+        padding: 20px 0px;
+        & .call-to-action{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            & h2{
+                font-size: 40px;
+                margin-bottom: 20px;
+            }
+            & p{
+                font-size: 40px;
+                width: 65%;
+                font-weight: 200;
+            }
+        }
+        & .cards-artistas{
+            display: flex;
+            justify-content: space-around;
+            & .card-artista{
+                margin-top: 30px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #1C1C1C;
+                border-radius: 20px;
+                width: 30%;
+                padding: 20px 5px;
+                gap: 10px;
+                & .icon-card-artista{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: var(--texto-rosa);
+                    border-radius: 50%;
+                    width: 150px;
+                    height: 150px;
+                }
+                & h2{
+                    text-decoration: underline;
+                }
+                & p{
+                    width: 70%;
+                }
+
+                & tr,td,th{
+                    border:2px solid var(--texto-rosa);
+                    border-radius: 4px;
+                    font-size: 18px;
+                    text-align: center;
+                    padding: 2px;
+                }
+            }
+        }
+    }
+}
+
+#error_forms{
+    color: red;
+    font-size: 20px;
+    text-align: center;
+}
+
+@media (max-width:1080px){
+    .section-1{
+        & h1{
+        font-size: 50px;
+        }
+        & h2{
+        font-size: 18px;
+        border-bottom: 2px solid var(--texto-rosa);
+        margin-bottom: 15px;
+        }
+        & img{
+        display: none;
+        }
+    }
+    .text-section-1 {
+        display: flex;
+        flex-direction: column;
+        width: 98%;
+        & a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        & .buttom-section-1{
+            margin-top: 20px;
+            width: 80%;
+            height: 40px;  
+        }
+    }
+    .divisor{
+        height: 50px;
+    }
+    .section-2{
+        padding: 0;
+        align-items: center;
+        & .top-section-2{
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 90%;
+            & h2{
+                font-size: 28px;
+            }
+            & p{
+                font-size: 18px;
+            }
+            & .infos-forms, .formulario{
+                padding: 0;
+                width: 98%;
+                & label{
+                    font-size: 20px;
+                }
+                & input{
+                    height: 40px;
+                    width: 98%;
+                }
+                & button{
+                    width: 95%;
+                    height: 40px;
+                }
+            }
+        }
+        & .resultado_simulacao{
+            padding: 20px 0px;
+            width: 100%;
+            border-radius: 80px;
+            & .call-to-action{
+                & h2{
+                    font-size: 28px;
+                }
+                & p{
+                    font-size: 18px;
+                }
+            }
+            & .cards-artistas{
+                flex-direction: column;
+                align-items: center;
+                & .card-artista{
+                    width: 98%;
+                }
+            }
+        }
+    }
+}
