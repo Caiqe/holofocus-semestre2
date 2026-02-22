@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
     --texto-verde: #93BCA5;
     --texto-amarelo: #F0D48D;
@@ -5,6 +7,7 @@
     --texto-azul: #667887;
     --texto-lilas: #DA9EF7;
     --texto-rosa: #FF17BA;
+    font-family: "Archivo", sans-serif;
 }
 
 html {
@@ -24,10 +27,11 @@ body {
 
 header {
     width: 100%;
-    height: 143px;
+    height: 123px;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    font-weight: 900;
 }
 
 .logoHeader {

@@ -7,17 +7,18 @@
     <title>Cadastro</title>
 
     <link rel="stylesheet" href="./css/elementosPadrao.css" />
-    <link rel="stylesheet" href="./css/cadastro.css" />
+    <link rel="stylesheet" href="./css/login.css" />
     <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
 </head>
 <header>
-    <div class="logo"><a href="./index.html"><img src="./assets/icon/holofocus-06 1.png" alt="logo HoloFocus"></a></div>
+    <div class="logoHeader"><a href="./index.html"><img src="./assets/icon/holofocus-06 1.png" alt="logo HoloFocus"></a>
+    </div>
     <ul>
         <li><a href="./a-plataforma.html">A PLATAFORMA</a></li>
         <li><a href="./sobre-nos.html">SOBRE NÓS</a></li>
         <li><a href="./contate-nos.html">CONTATE-NOS</a></li>
-        <li class="botao"><a href="./login.html">LOGIN</a></li>
-        <li class="botao"><a href="./cadastro.html">CADASTRE-SE</a></li>
+        <li class="botaoHeader"><a href="./login.html">LOGIN</a></li>
+        <li class="botaoHeader cadastrar"><a href="./cadastro.html">CADASTRE-SE</a></li>
     </ul>
 </header>
 
@@ -25,13 +26,15 @@
     <div class="fundo">
         <div class="container">
             <span>Que bom ter você de volta!</span>
-            <div class="grupoInput">
-                <span>Login</span>
-                <input placeholder="Digite seu e-mail" type="text" id="inptEmail">
-            </div>
-            <div class="grupoInput">
-                <span>Senha</span>
-                <input placeholder="Digite sua senha" type="text" id="inptSenha">
+            <div class="inputs">
+                <div class="grupoInput">
+                    <span>Login</span>
+                    <input placeholder="Digite seu e-mail" type="text" id="inptEmail">
+                </div>
+                <div class="grupoInput">
+                    <span>Senha</span>
+                    <input placeholder="Digite sua senha" type="text" id="inptSenha">
+                </div>
             </div>
             <div class="conjuntoBotao">
                 <button onclick="login()" class="botao formulario">Entrar</button>
