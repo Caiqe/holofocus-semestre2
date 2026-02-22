@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+    --texto-verde: #93BCA5;
+    --texto-amarelo: #F0D48D;
+    --texto-laranja: #FF6E03;
+    --texto-azul: #667887;
+    --texto-lilas: #DA9EF7;
+    --texto-rosa: #FF17BA;
+    font-family: "Archivo", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fundo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 82%;
+    width: 95%;
+    background-image: url('../assets/imgs/pexels-phreewil-2020432\ 1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 80px;
+}
+
+.container {
+    background-color: black;
+    border-radius: 80px;
+    color: #EFD38D;
+    padding: 19px 43px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+}
+
+#divParte1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+#divParte2 {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 900;
+
+    & .inputs {
+        margin: 30px 0;
+    }
+}
+
+.grupoInput {
+    font-family: "Lato", sans-serif;
+    color: white;
+    font-size: 25px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+    & span {
+        margin-left: 20px;
+    }
+}
+
+.linha {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+
+input {
+    font-family: "Lato", sans-serif;
+    background-color: #1c1c1c;
+    height: 66px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    font-size: 25px;
+    padding-left: 7px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.cnpj {
+    width: 58%;
+}
+
+.cep {
+    width: 30%;
+}
+
+.numero {
+    width: 27%;
+}
+
+.complemento {
+    width: 70%;
+}
+
+.email {
+    width: 57%;
+}
+
+.celular {
+    width: 40%;
+}
+
+.conjuntoBotao {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    font-size: 25px;
+
+    & a {
+        color: white;
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: 400;
+    }
+}
+
+.botao.formulario {
+    color: black;
+    background-color: #EFD38D;
+    border-radius: 50px;
+    border: none;
+    height: 66px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+button {
+    cursor: pointer;
+}
+
+span {
+    display: flex;
+    align-items: center;
+
+    & button {
+        color:#EFD38D;
+        font-size: 15px;
+        background: none;
+        border: 1px solid #EFD38D;
+        border-radius: 20px;
+    }
+} 

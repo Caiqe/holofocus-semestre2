@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+    --texto-verde: #93BCA5;
+    --texto-amarelo: #F0D48D;
+    --texto-laranja: #FF6E03;
+    --texto-azul: #667887;
+    --texto-lilas: #DA9EF7;
+    --texto-rosa: #FF17BA;
+    font-family: "Archivo", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fundo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 82%;
+    width: 95%;
+    background-image: url('../assets/imgs/pexels-phreewil-2020432\ 1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 80px;
+}
+
+.container {
+    background-color: black;
+    border-radius: 80px;
+    color: #EFD38D;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 15px;
+}
+
+span {
+    text-align: center;
+    font-weight: 900;
+    font-size: 40px;
+    width: 60%;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    width: 90%;
+}
+
+.grupoInput {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 5px 0;
+
+    & span {
+        text-align: left;
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        font-size: 25px;
+        margin-left: 20px;
+    }
+}
+
+.linha {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+
+input {
+    font-family: "Lato", sans-serif;
+    background-color: #1c1c1c;
+    height: 66px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    font-size: 25px;
+    padding-left: 7px;
+}
+
+.conjuntoBotao {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 55%;
+    font-size: 25px;
+
+    & a:first-of-type {
+        color: #EFD38D;
+    }
+
+    & a {
+        color: white;
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: 400;
+    }
+}
+
+.botao.formulario {
+    color: black;
+    background-color: #EFD38D;
+    border-radius: 50px;
+    border: none;
+    height: 66px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+button {
+    cursor: pointer;
+}

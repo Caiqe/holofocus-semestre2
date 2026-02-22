@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
 
-    <link rel="stylesheet" href="./css/elementosPadrao.css"/>
-    <link rel="stylesheet" href="./css/cadastro.css"/>
-    <link rel="icon" href="./assets/icon/holofocus.ico"/>
+    <link rel="stylesheet" href="./css/elementosPadrao.css" />
+    <link rel="stylesheet" href="./css/cadastro.css" />
+    <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
 </head>
 <header>
-    <div class="logo"><a href="./index.html"><img src="./assets/icon/holofocus-06 1.png" alt="logo HoloFocus"></a></div>
+    <div class="logoHeader"><a href="./index.html"><img src="./assets/icon/holofocus-06 1.png" alt="logo HoloFocus"></a>
+    </div>
     <ul>
         <li><a href="./a-plataforma.html">A PLATAFORMA</a></li>
         <li><a href="./sobre-nos.html">SOBRE NÓS</a></li>
         <li><a href="./contate-nos.html">CONTATE-NOS</a></li>
-        <li><a href="./login.html" class="botao login"></a>LOGIN</li>
-        <li><a href="./cadastro.html" class="botao cadastro"></a>CADASTRE-SE</li>
+        <li class="botaoHeader"><a href="./login.html">LOGIN</a></li>
+        <li class="botaoHeader cadastrar"><a href="./cadastro.html">CADASTRE-SE</a></li>
     </ul>
 </header>
 
@@ -26,32 +27,34 @@
         <div class="container">
             <div id="divParte1">
                 <span>Que bom ter você conosco!</span>
-                <div class="grupoInput">
-                    <span>Razão Social</span>
-                    <input placeholder="Razão social da sua empresa" type="text" id="inptRazaoSocial">
-                </div>
-                <div class="linha">
+                <div class="inputs">
                     <div class="grupoInput">
-                        <span>CNPJ</span>
-                        <input placeholder="XX.XXX.XXX/0001-YY" type="text" id="inptCNPJ">
+                        <span>Razão Social</span>
+                        <input placeholder="Razão social da sua empresa" type="text" id="inptRazaoSocial">
+                    </div>
+                    <div class="linha">
+                        <div class="grupoInput cnpj">
+                            <span>CNPJ</span>
+                            <input placeholder="XX.XXX.XXX/0001-YY" type="text" id="inptCNPJ" maxlength="14">
+                        </div>
+                        <div class="grupoInput cep">
+                            <span>CEP</span>
+                            <input placeholder="00000-000" type="text" id="inptCEP" maxlength="8">
+                        </div>
                     </div>
                     <div class="grupoInput">
-                        <span>CEP</span>
-                        <input placeholder="00000-000" type="text" id="inptCEP">
+                        <span>Endereço</span>
+                        <input placeholder="Digite seu endereço" type="text" id="inptEndereco">
                     </div>
-                </div>
-                <div class="grupoInput">
-                    <span>Endereço</span>
-                    <input placeholder="Digite seu endereço" type="text" id="inptEndereco">
-                </div>
-                <div class="linha">
-                    <div class="grupoInput">
-                        <span>Número</span>
-                        <input placeholder="12345" type="number" id="inptNumero">
-                    </div>
-                    <div class="grupoInput">
-                        <span>Complemento</span>
-                        <input placeholder="Complemento se houver" type="text" id="inptComplemento">
+                    <div class="linha">
+                        <div class="grupoInput numero">
+                            <span>Número</span>
+                            <input placeholder="12345" type="number" id="inptNumero">
+                        </div>
+                        <div class="grupoInput complemento">
+                            <span>Complemento</span>
+                            <input placeholder="Complemento se houver" type="text" id="inptComplemento">
+                        </div>
                     </div>
                 </div>
                 <div class="conjuntoBotao">
@@ -60,28 +63,33 @@
                 </div>
             </div>
             <div id="divParte2">
-                <span>Falta pouco!</span>
-                <div class="grupoInput">
-                    <span>Nome para contato</span>
-                    <input placeholder="Digite seu nome" type="text" id="inptNome">
-                </div>
-                <div class="linha">
+                <span>
+                    <button onclick="voltar()">Voltar</button>
+                    Falta pouco!
+                </span>
+                <div class="inputs">
                     <div class="grupoInput">
-                        <span>E-mail</span>
-                        <input placeholder="meu.email@email.com" type="text" id="inptEmail">
+                        <span>Nome para contato</span>
+                        <input placeholder="Digite seu nome" type="text" id="inptNome">
+                    </div>
+                    <div class="linha">
+                        <div class="grupoInput email">
+                            <span>E-mail</span>
+                            <input placeholder="meu.email@email.com" type="text" id="inptEmail">
+                        </div>
+                        <div class="grupoInput celular">
+                            <span>Celular</span>
+                            <input placeholder="(99) 99999-9999" type="text" maxlength="11" id="inptCelular">
+                        </div>
                     </div>
                     <div class="grupoInput">
-                        <span>Celular</span>
-                        <input placeholder="(99) 99999-9999" type="number" id="inptCelular">
+                        <span>Senha</span>
+                        <input placeholder="Digite sua senha" type="text" id="inptSenha">
                     </div>
-                </div>
-                <div class="grupoInput">
-                    <span>Senha</span>
-                    <input placeholder="Digite sua senha" type="text" id="inptSenha">
-                </div>
-                <div class="grupoInput">
-                    <span>Confirme a senha</span>
-                    <input placeholder="Confirmar a senha" type="text" id="inptSenha">
+                    <div class="grupoInput">
+                        <span>Confirme a senha</span>
+                        <input placeholder="Confirmar a senha" type="text" id="inptConfirmaSenha">
+                    </div>
                 </div>
                 <div class="conjuntoBotao">
                     <button onclick="cadastrar()" class="botao formulario">Cadastrar</button>
@@ -90,5 +98,7 @@
         </div>
     </div>
 </body>
+
+<script src="./js/cadastro.js"></script>
 
 </html>
