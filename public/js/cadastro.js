@@ -9,31 +9,47 @@ let inpEndereco = document.getElementById('inptEndereco')
 let inpNumero = document.getElementById('inptNumero')
 let inpComplemento = document.getElementById('inptComplemento')
 
+let razaoVar
+let cnpjVar
+let cepVar
+let enderecoVar
+let numeroVar
+let complementoVar
+let nomeVar
+let emailVar
+let celularVar
+let senhaVar
+
 function proximo() {
     inpRazao = document.getElementById('inptRazaoSocial')
+    razaoVar = inpRazao.value
     inpCnpj = document.getElementById('inptCNPJ')
+    cnpjVar = inpCnpj.value
     inpCep = document.getElementById('inptCEP')
     inpEndereco = document.getElementById('inptEndereco')
+    enderecoVar = inpEndereco.value
     inpNumero = document.getElementById('inptNumero')
+    numeroVar = inpNumero.value
     inpComplemento = document.getElementById('inptComplemento')
+    complementoVar = inpComplemento.value
 
-    let cnpj = inpCnpj.value.replaceAll('.','')
-    cnpj = cnpj.replaceAll('/','')
-    cnpj = cnpj.replaceAll('-','')
+    let cnpj = inpCnpj.value.replaceAll('.', '')
+    cnpj = cnpj.replaceAll('/', '')
+    cnpjVar = cnpj.replaceAll('-', '')
 
-    let cep = inpCep.value.replaceAll('-','')
+    let cepVar = inpCep.value.replaceAll('-', '')
 
-    if (inpRazao.value.trim() != "" && cnpj.trim().length == 14 && cep.trim().length == 8 && inpEndereco.value.trim() != "" && inpNumero.value.trim() != "") {
+    if (razaoVar.trim() != "" && cnpjVar.trim().length == 14 && cepVar.trim().length == 8 && inpEndereco.value.trim() != "" && inpNumero.value.trim() != "") {
         if (!buscarPorCnpj(inpCnpj.value)) {
             pt1.style.display = 'none'
             pt2.style.display = 'flex'
             return
         } else {
-            'cnpj já cadastrado'
+            erro("4000", 'CNPJ já cadastrado')
             return
         }
     }
-    erro()
+    erro("2000", 'Por favor revise os campos e preencha os dados corretamente')
 }
 
 function voltar() {
@@ -47,15 +63,40 @@ let inpCelular = document.getElementById('inptCelular')
 let inpSenha = document.getElementById('inptSenha')
 let inpConfirma = document.getElementById('inptConfirmaSenha')
 
-function cadastrar() {
+async function cadastrar() {
     inpNome = document.getElementById('inptNome')
+    nomeVar = inpNome.value
     inpEmail = document.getElementById('inptEmail')
+    emailVar = inpEmail.value
     inpCelular = document.getElementById('inptCelular')
+    celularVar = inpCelular.value
     inpSenha = document.getElementById('inptSenha')
+    senhaVar = inpSenha.value
     inpConfirma = document.getElementById('inptConfirmaSenha')
 
-    if (inpNome.value != "" && inpEmail.value != "" && inpCelular.value != "" && inpSenha.value != "" && inpSenha.value == inpConfirma.value) {
+    if (nomeVar != "" && emailVar != "" && celularVar != "" && senhaVar != "" && senhaVar == inpConfirma.value) {
 
+        const resposta = await fetch("/empresas/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                razaoServer: razaoVar,
+                cnpjServer: cnpjVar,
+                cepServer: cepVar,
+                enderecoServer: enderecoVar,
+                numeroServer: numeroVar,
+                cepServer: cepVar
+            }),
+        })
+
+        if (!resposta.ok) {
+            erro("2000", 'Verifique se as informações foram digitadas corretamente')
+            return
+        }
+
+        let cnpjAtual = buscarPorCnpj(cnpjVar)
 
         setTimeout(() => {
             window.location = "login.html";
@@ -63,10 +104,10 @@ function cadastrar() {
         return
     }
 
-    erro()
+    erro("2000", 'Por favor revise os campos e preencha os dados corretamente')
 }
 
-function erro() {
+function erro(tempo, texto) {
     document.getElementById('divFundoErro').style.display = 'flex'
 
     if (inpRazao.value == '') {
@@ -121,8 +162,9 @@ function erro() {
     }
 
     setTimeout(() => {
+        document.getElementById('spnErro').innerHTML = texto
         document.getElementById('divFundoErro').style.display = 'none'
-    }, "2000");
+    }, tempo);
     return
 }
 
@@ -133,9 +175,9 @@ function buscarPorCnpj(cnpj) {
         .then(function (resposta) {
             resposta.json().then((resposta) => {
                 if (resposta.length > 0) {
-                    return false
+                    return null
                 } else {
-                    return true
+                    return resposta
                 }
             });
         })
