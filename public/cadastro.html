@@ -29,30 +29,30 @@
                 <span>Que bom ter você conosco!</span>
                 <div class="inputs">
                     <div class="grupoInput">
-                        <span>Razão Social</span>
+                        <span id="spnRazao">Razão Social</span>
                         <input placeholder="Razão social da sua empresa" type="text" id="inptRazaoSocial">
                     </div>
                     <div class="linha">
                         <div class="grupoInput cnpj">
-                            <span>CNPJ</span>
+                            <span id="spnCnpj">CNPJ</span>
                             <input placeholder="XX.XXX.XXX/0001-YY" type="text" id="inptCNPJ" maxlength="14">
                         </div>
                         <div class="grupoInput cep">
-                            <span>CEP</span>
+                            <span id="spnCep">CEP</span>
                             <input placeholder="00000-000" type="text" id="inptCEP" maxlength="8">
                         </div>
                     </div>
                     <div class="grupoInput">
-                        <span>Endereço</span>
+                        <span id="spnEndereco">Endereço</span>
                         <input placeholder="Digite seu endereço" type="text" id="inptEndereco">
                     </div>
                     <div class="linha">
                         <div class="grupoInput numero">
-                            <span>Número</span>
+                            <span id="spnNumero">Número</span>
                             <input placeholder="12345" type="number" id="inptNumero">
                         </div>
                         <div class="grupoInput complemento">
-                            <span>Complemento</span>
+                            <span>Complemento (opcional)</span>
                             <input placeholder="Complemento se houver" type="text" id="inptComplemento">
                         </div>
                     </div>
@@ -69,25 +69,25 @@
                 </span>
                 <div class="inputs">
                     <div class="grupoInput">
-                        <span>Nome para contato</span>
+                        <span id="spnNome">Nome para contato</span>
                         <input placeholder="Digite seu nome" type="text" id="inptNome">
                     </div>
                     <div class="linha">
                         <div class="grupoInput email">
-                            <span>E-mail</span>
+                            <span id="spnEmail">E-mail</span>
                             <input placeholder="meu.email@email.com" type="text" id="inptEmail">
                         </div>
                         <div class="grupoInput celular">
-                            <span>Celular</span>
+                            <span id="spnCelular">Celular</span>
                             <input placeholder="(99) 99999-9999" type="text" maxlength="11" id="inptCelular">
                         </div>
                     </div>
                     <div class="grupoInput">
-                        <span>Senha</span>
+                        <span id="spnSenha">Senha</span>
                         <input placeholder="Digite sua senha" type="text" id="inptSenha">
                     </div>
                     <div class="grupoInput">
-                        <span>Confirme a senha</span>
+                        <span id="spnConfirma">Confirme a senha</span>
                         <input placeholder="Confirmar a senha" type="text" id="inptConfirmaSenha">
                     </div>
                 </div>
@@ -95,6 +95,12 @@
                     <button onclick="cadastrar()" class="botao formulario">Cadastrar</button>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="divFundoErro" class="fundoErro">
+        <div class="containerErro">
+            <h1>Erro</h1>
+            <span>Por favor revise os campos e preencha os dados corretamente</span>
         </div>
     </div>
 </body>
