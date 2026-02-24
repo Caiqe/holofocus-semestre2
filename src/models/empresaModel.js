@@ -24,4 +24,10 @@ function cadastrar(razaoSocial, cnpj) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+function deletarEmpresa(id) {
+  let instrucaoSql = `DELETE FROM empresa WHERE id = ${id};`
+
+  return database.executar(instrucaoSql);
+}
+
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, deletarEmpresa };

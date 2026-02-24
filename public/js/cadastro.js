@@ -76,7 +76,7 @@ async function cadastrar() {
 
     if (nomeVar != "" && emailVar != "" && celularVar != "" && senhaVar != "" && senhaVar == inpConfirma.value) {
 
-        const resposta = await fetch("/empresas/cadastrar", {
+        const respCadEmpresa = await fetch("/empresas/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -91,12 +91,40 @@ async function cadastrar() {
             }),
         })
 
-        if (!resposta.ok) {
+        if (!respCadEmpresa.ok) {
             erro("2000", 'Verifique se as informações foram digitadas corretamente')
             return
         }
 
-        let cnpjAtual = buscarPorCnpj(cnpjVar)
+        let idCnpjAtual = buscarPorCnpj(cnpjVar)
+
+        if (idCnpjAtual == null) {
+            erro("4000", "Erro interno, peça ajuda ao nosso suporte")
+            return
+        }
+
+        const respCadUsuario = await fetch('/usuarios/cadastrar', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idEmpresaServer: idCnpjAtual,
+                nomeServer: nomeVar,
+                celularServer: celularVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        })
+
+        if (!respCadUsuario.ok) {
+            erro("3000", "Erro ao cadastrar o usuario, verifique as informações inseridas")
+
+            await fetch(`/empresas/deletarEmpresa/${idCnpjAtual}`, {
+                method: "DELETE",
+                headers: {"Content-Type": "aaplication/json"}
+            })
+
+            return
+        }
 
         setTimeout(() => {
             window.location = "login.html";
@@ -177,7 +205,7 @@ function buscarPorCnpj(cnpj) {
                 if (resposta.length > 0) {
                     return null
                 } else {
-                    return resposta
+                    return resposta.id
                 }
             });
         })
