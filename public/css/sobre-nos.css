@@ -1,0 +1,181 @@
+body {
+    background-color: black;
+}
+
+.div1 {
+    display: flex;
+    position: relative;
+
+}
+
+.img1 {
+    width: 400px;
+    height: 550px;
+    border-radius: 10%;
+    border: 2px solid #f0d48d9a;
+    margin-top: 1%;
+    margin-left: 7%;
+}
+
+.img2 {
+    width: 500px;
+    height: 555px;
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: 7%;
+    filter: blur(3px);
+    transform: scaleX(-1);
+}
+
+h1 {
+    position: absolute;
+    top: 30%;
+    right: 12%;
+    font-size: 80px;
+    z-index: 2;
+}
+
+p {
+    position: absolute;
+    top: 47%;
+    right: 33%;
+    font-size: 45px;
+    color: #F0D48D;
+    z-index: 2;
+}
+
+.div2 {
+    display: flex;
+    position: relative;
+}
+
+.div2 img {
+    width: 400px;
+    height: 600px;
+    border-radius: 10%;
+    border: 2px solid #f0d48d9a;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: 7%;
+}
+
+.t1 {
+    text-align: right;
+    top: 10%;
+    right: 40%;
+    font-size: 40px;
+    color: #F0D48D;
+}
+
+.div2 h1 {
+    text-align: right;
+    top: 49%;
+    font-size: 50px;
+    right: 40%;
+    color: #DA9EF7;
+}
+
+.t2 {
+    text-align: right;
+    top: 72%;
+    right: 40%;
+    font-size: 40px;
+    color: #F0D48D;
+}
+
+
+.div3 {
+    display: flex;
+    position: relative;
+}
+
+.div3 img {
+    width: 400px;
+    height: 630px;
+    border-radius: 10%;
+    border: 2px solid #f0d48d9a;
+    margin-top: 4%;
+    margin-right: auto;
+    margin-left: 7%;
+}
+
+.div3 h1 {
+    text-align: left;
+    top: 8%;
+    left: 40%;
+    font-size: 50px;
+    color: #DA9EF7;
+}
+
+.p1 {
+    position: absolute;
+    text-align: left;
+    top: 42%;
+    left: 40%;
+    right: 7%;
+    font-size: 40px;
+    color: #F0D48D;
+}
+
+.p2 {
+    position: absolute;
+    left: 50%;
+    top: 140%;
+    transform: translate(-50%, -50%);
+
+    width: 70%;
+    text-align: center;
+    font-size: 50px;
+    color: #DA9EF7;
+}
+
+.div4 {
+    display: flex;
+    position: relative;
+    margin-top: 10%;
+}
+
+.div4 img {
+    width: 400px;
+    height: 660px;
+    border-radius: 10%;
+    border: 2px solid #f0d48d9a;
+    margin-top: 27%;
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: 7%;
+}
+
+.textos h1 {
+    text-align: right;
+    top: 38%;
+    right: 40%;
+    font-size: 30px;
+    color: #DA9EF7;
+
+}
+
+.h1 {
+    text-align: right;
+    top: 42%;
+    left: 7%;
+    right: 40%;
+    font-size: 25px;
+    color: #F0D48D;
+}
+
+.titulo {
+    text-align: right;
+    right: 40%;
+    left: 7%;
+    font-size: 30px;
+    color: #DA9EF7;
+}
+
+.text {
+    text-align: right;
+    left: 7%;
+    right: 40%;
+    font-size: 25px;
+    color: #F0D48D;
+}
