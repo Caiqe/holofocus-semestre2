@@ -115,10 +115,10 @@ footer{
     position: relative;
     bottom: 0;
     left: 0;
-    border: solid 10px #F0D48D;
+    border: solid 10px var(--texto-amarelo);
     border-top-left-radius: 80px;
     border-top-right-radius: 80px;
-    background-color: #DA9EF7;
+    background-color: #000;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -130,25 +130,36 @@ footer{
     padding: 25px;
 }
 .logo-footer{
+    justify-content: center;
     padding-left: 10%;
+}
+.div-img-footer{
+    display: flex;
+    width: 50%;
+    justify-content: flex-start;
+    align-items: center;   
 }
 .infos-footer{
     display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    font-size: 20px;
     flex-direction: row;
-    padding-right: 10% ;
 }
 .lista-footer{
     display: flex;
     flex-direction: column;
     list-style: none;
-    align-items: start;
+    align-items: center;
     justify-content: flex-start;
-    padding-left: 30px;
+    width: 28%;
+    padding-right: 25px;
+    align-items: flex-end;
 }
 
 .lista-footer li{
-    margin-bottom: 25px;
-    color: #F0D48D;
+    margin-bottom: 18px;
+    color: var(--texto-amarelo);
 }
 .lista-footer li:hover{
     scale: 97%;
@@ -175,15 +186,29 @@ footer{
 }
 
 /*RESPONSIVIDADE FOOTER*/
-@media (max-width: 1080px){
+@media (max-width: 600px){
     .main-footer{
         flex-direction: column;
-        font-size: 20px;
+    }
+    .infos-footer{
+        width: 100%;
+        gap: 5px;
+        & ul{
+            padding: 0;
+            margin: 0px;
+            width: 33%;
+            font-size: 12px;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
     }
     
     .div-img-footer{
         display: flex;
         justify-content: center;
+        width: 100%;
+        padding: 0px;
 
         & .logo-footer{
             padding: 0px 0px 20px 0px;
