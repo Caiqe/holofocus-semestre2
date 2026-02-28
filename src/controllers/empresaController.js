@@ -39,9 +39,16 @@ function cadastrar(req, res) {
   });
 }
 
+function deletarEmpresa(req, res) {
+  let id = req.params.id
+
+  empresaModel.deletarEmpresa(id).then((resultado) => {res.status(200).json(resultado)})
+}
+
 module.exports = {
   buscarPorCnpj,
   buscarPorId,
   cadastrar,
   listar,
+  deletarEmpresa
 };
