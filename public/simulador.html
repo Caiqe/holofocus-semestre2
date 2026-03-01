@@ -6,7 +6,7 @@
     <title>HoloFocus - Simulador</title>
     <link rel="stylesheet" href="css/elementosPadrao.css" />
     <link rel="stylesheet" href="css/simulador.css" />
-    <link rel="icon" href="./assets/icon/holofocus.ico" />
+    <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
   </head>
   <body>
     
@@ -91,7 +91,7 @@
                   <th>Receita gerada:</th>
                 </tr>
                 <tr>
-                  <td>40%-60%</td>
+                  <td>60% - 70%</td>
                   <td id="lotacao_sem_dados"></td>
                   <td id="receita_sem_dados"></td>
                 </tr>
@@ -117,7 +117,7 @@
                   <th>Receita gerada:</th>
                 </tr>
                 <tr>
-                  <td>80%-100%</td>
+                  <td>85% - 95%</td>
                   <td id="lotacao_com_dados"></td>
                   <td id="receita_com_dados"></td>
                 </tr>
@@ -216,10 +216,10 @@
     let valorSoldOut = Number(lotacao.value) * Number(preco_medio.value);
 
     lotacaoSemDados.innerHTML = `${Number(lotacao.value) * 0.4} - ${Number(lotacao.value) * 0.6}`;
-    receitaSemDados.innerHTML = `${(valorSoldOut * 0.4).toLocaleString("pt-br", { style: "currency", currency: "BRL" })} - ${(valorSoldOut * 0.6).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`;
+    receitaSemDados.innerHTML = `${(valorSoldOut * 0.6).toLocaleString("pt-br", { style: "currency", currency: "BRL" })} - ${(valorSoldOut * 0.7).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`;
 
     lotacaoComDados.innerHTML = `${Number(lotacao.value) * 0.8} - ${Number(lotacao.value)}`;
-    receitaComDados.innerHTML = `${(valorSoldOut * 0.8).toLocaleString("pt-br", { style: "currency", currency: "BRL" })} - ${valorSoldOut.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`;
+    receitaComDados.innerHTML = `${(valorSoldOut * 0.85).toLocaleString("pt-br", { style: "currency", currency: "BRL" })} - ${(valorSoldOut * 0.95).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`;
 
     resultado_simulacao.style.display = "flex";
   }
