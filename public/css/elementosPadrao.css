@@ -188,7 +188,7 @@ footer{
 }
 
 /*RESPONSIVIDADE FOOTER*/
-@media (max-width: 600px){
+@media (max-width: 1400px){
     .main-footer{
         flex-direction: column;
     }
