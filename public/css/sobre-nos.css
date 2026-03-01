@@ -5,12 +5,11 @@ body {
 .div1 {
     display: flex;
     position: relative;
-
 }
 
 .img1 {
-    width: 400px;
-    height: 550px;
+    width: 30%;
+    height: auto;
     border-radius: 10%;
     border: 2px solid #f0d48d9a;
     margin-top: 1%;
@@ -18,8 +17,8 @@ body {
 }
 
 .img2 {
-    width: 500px;
-    height: 555px;
+    width: 35%;
+    height: auto;
     margin-top: 1%;
     margin-left: auto;
     margin-right: 7%;
@@ -30,8 +29,8 @@ body {
 h1 {
     position: absolute;
     top: 30%;
-    right: 12%;
-    font-size: 80px;
+    right: 10%;
+    font-size: 5vw;
     z-index: 2;
 }
 
@@ -39,7 +38,7 @@ p {
     position: absolute;
     top: 47%;
     right: 33%;
-    font-size: 45px;
+    font-size: 2.5vw;
     color: #F0D48D;
     z-index: 2;
 }
@@ -140,7 +139,7 @@ p {
     height: 660px;
     border-radius: 10%;
     border: 2px solid #f0d48d9a;
-    margin-top: 27%;
+    margin-top: 25%;
     margin-bottom: 5%;
     margin-left: auto;
     margin-right: 7%;
@@ -178,4 +177,103 @@ p {
     right: 40%;
     font-size: 25px;
     color: #F0D48D;
+}
+
+@media (max-width:1500px) {
+
+
+    .img1 {
+        width: 35%;
+    }
+
+    .img2 {
+        width: 40%;
+    }
+
+    .div1 h1 {
+        font-size: 4vw;
+        right: 12%;
+        top: 28%;
+    }
+
+    .div1 p {
+        font-size: 3vw;
+        right: 21%;
+        top: 45%;
+    }
+
+
+    .div2 img {
+        width: 35%;
+        height: auto;
+    }
+
+    .div2 h1 {
+        font-size: 4vw;
+        right: 50%;
+        top: 48%;
+    }
+
+    .t1 {
+        font-size: 3vw;
+        right: 50%;
+        top: 12%;
+    }
+
+    .t2 {
+        font-size: 3vw;
+        right: 50%;
+        top: 70%;
+    }
+
+    .div3 img {
+        width: 35%;
+        height: auto;
+    }
+
+    .div3 h1 {
+        font-size: 3vw;
+        left: 50%;
+        top: 8%;
+    }
+
+    .p1 {
+        font-size: 3vw;
+        left: 50%;
+        top: 33%;
+    }
+
+    .p2 {
+        font-size: 4vw;
+        width: 85%;
+        top: 130%;
+    }
+
+    .div4 img {
+        width: 35%;
+        height: auto;
+        margin-top: 35%;
+    }
+
+    .textos h1 {
+        font-size: 2.3vw;
+        right: 49%;
+        top: 36%;
+    }
+
+    .h1 {
+        font-size: 2.3vw;
+        right: 49%;
+        top:39%;
+    }
+
+    .titulo {
+        font-size: 2.3vw;
+        right: 49%;
+    }
+
+    .text {
+        font-size: 2.3vw;
+        right: 49%;
+    }
 }
