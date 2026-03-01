@@ -56,7 +56,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 6%;
-    
+
 }
 
 .texto-fonte-grande p {
@@ -77,8 +77,48 @@ main {
     justify-content: center;
     align-items: center;
 }
+
 .imagem-section-2 img {
     width: 60%;
     height: 100%;
 }
 
+
+
+/*Elemento 3ª seção ----------------------------------------------------------------------------*/
+.section-3 {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 5%;
+}
+
+.imagem-container {
+    width: 93%;
+    height: 539px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.imagem-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.texto-grande-3 {
+    position: absolute;
+    z-index: 2;
+    bottom: 13%;
+    left: 68%;
+}
+
+.texto-grande-3 p {
+    color: var(--texto-amarelo);
+    font-size: 40px;
+    letter-spacing: -3px;
+    font-weight: 900;
+    text-align: end;
+    
+}
