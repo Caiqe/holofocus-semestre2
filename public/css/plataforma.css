@@ -74,8 +74,8 @@ main {
 
 .imagem-section-2 {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .imagem-section-2 img {
@@ -120,5 +120,62 @@ main {
     letter-spacing: -3px;
     font-weight: 900;
     text-align: end;
-    
+
+}
+
+
+
+/*Elemento 4ª seção ----------------------------------------------------------------------------*/
+.section-4 {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 5%;
+    gap: 3%;
+}
+
+.text-container {
+    flex-direction: column;
+    display: flex;
+    background: var(--texto-amarelo);
+    width: 483px;
+    height: 551px;
+    border-radius: 50px;
+    padding: 3%;
+    gap: 8%;
+
+    box-shadow: 0px 0px 20px 5px rgb(218 158 247 / 50%);
+}
+
+.texto-grande {
+    display: flex;
+    flex-direction: column;
+    gap: 4%;
+}
+.texto-grande h2 {
+    color: var(--texto-laranja);
+    font-weight: 900;
+}
+
+.texto-grande h1 {
+    font-size: 35px;
+    letter-spacing: -3px;
+    color: var(--texto-lilas);
+    font-weight: 900;
+}
+
+.texto-pequeno {
+    display: flex;
+    flex-direction: column;
+    gap: 15%;
+}
+
+.texto-pequeno p {
+    font-size: 19px;
+    font-weight: 500;
+}
+.forma-texto {
+    display: flex;
+    width: 89%;
+    border-bottom: 2px solid var(--texto-lilas);
 }
