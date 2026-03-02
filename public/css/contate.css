@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poiret+One&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: block;
+}
+
+.imgFundo{
+    display: flex;
+    justify-content: center;
+}
+
+.titulo{
+    color: #DA9EF7;
+    font-family: 'archivo', sans-serif;
+    font-size: 80px;
+    margin-top: -13%;
+    margin-left: 7%;
+}
+
+.envio{
+    display: flex;
+    justify-content: center;
+    border-radius: 80px;
+    background-color: #F0D48D;
+    margin: 5% 0% 5% 2.5%;
+    width: 95%;
+    height: 30%;
+
+}
+
+.envioMsg{
+    color: #667887;
+    font-family: 'archivo', sans-serif;
+    font-size: 50px;
+    margin-top: 3%;
+    height: 10%;
+}
+
+.inp{
+    margin: 5% 0% 0 -18%;
+
+}
+
+
+
+.cont{
+     background-color: #F0D48D;
+     width: 95%;
+}
+
+
+
+
+.contato-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+}
+/*
+.box {
+  padding: 30px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  width: 195%;
+  margin-left: -10%;
+}
+*/
+
+body {
+  background-color: #000;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.contato-container {
+  width: 90%;
+  margin: 5% auto;
+}
+
+.box {
+  width: 100%;
+  padding: 4%;
+  border-radius: 80px;
+  margin-bottom: 5%;
+  width: 195%;
+  margin-left: -47%;
+}
+
+.amarelo {
+  background-color: #F0D48D;
+}
+
+.box h2 {
+  text-align: center;
+  margin-bottom: 2%;
+  color: #667887;
+  font-size: 450%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 3%;
+}
+
+::placeholder {
+  color: #667887;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 1.5%;
+  border-radius: 15px;
+  border: none;
+  background-color: #ffffff;
+  font-size: 100%;
+  margin: 1% 0 0 0;
+}
+
+textarea {
+  resize: none;
+  font-size: 130%;
+}
+
+
+
+button {
+  width: 30%;
+  padding: 1%;
+  margin: 2% auto 0 auto;
+  border-radius: 20px;
+  border: none;
+  background-color: #667887;
+  color: white;
+  cursor: pointer;
+  font-size: 120%;
+}
+
+button:hover {
+   box-shadow: 0 0 15px #667887;
+}
+
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  gap: 3%;
+  flex-wrap: wrap;
+  margin: -2% 0 0 10%;
+  width:80%;
+}
+
+h2.infCont{
+   margin: 0 10% 3% 10%;
+    font-size: 450%;
+}
+
+.info p {
+    margin: 5% 0% 10% 0% ;
+  font-size: 165%;
+  color: #667887;
+}
+
+.icons-footer{
+    display: flex;
+}

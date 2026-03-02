@@ -43,6 +43,7 @@ function proximo() {
         if (!buscarPorCnpj(inpCnpj.value)) {
             pt1.style.display = 'none'
             pt2.style.display = 'flex'
+            document.getElementById("divFundo").style.backgroundImage = 'url("../assets/imgs/fundo-cadastro-parte-2.jpg")'
             return
         } else {
             erro("4000", 'CNPJ já cadastrado')
@@ -55,6 +56,7 @@ function proximo() {
 function voltar() {
     pt2.style.display = 'none'
     pt1.style.display = 'flex'
+    document.getElementById("divFundo").style.backgroundImage = 'url("../assets/imgs/fundo-cadastro-parte-1.jpg")'        
 }
 
 let inpNome = document.getElementById('inptNome')

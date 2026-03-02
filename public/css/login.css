@@ -11,6 +11,10 @@
     font-family: "Archivo", sans-serif;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -23,7 +27,7 @@ body {
     justify-content: center;
     height: 82%;
     width: 95%;
-    background-image: url('../assets/imgs/pexels-phreewil-2020432\ 1.png');
+    background-image: url('../assets/imgs/fundo-login.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 80px;
@@ -118,4 +122,44 @@ input {
 
 button {
     cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .fundo {
+        height: 88%;
+    }
+
+    .container {
+        padding: 20px 0;
+    }
+
+    span {
+        font-size: 20px;
+    }
+
+    .inputs {
+        width:80%;
+    }
+
+    .grupoInput span {
+        font-size: 14px;
+    }
+
+    input {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .conjuntoBotao {
+        width: 60%;
+
+        & a {
+            font-size: 12px;
+        }
+    }
+
+    .botao.formulario {
+        font-size: 14px;
+        height: 44px;
+    }
 }

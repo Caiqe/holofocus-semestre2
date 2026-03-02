@@ -11,6 +11,10 @@
     font-family: "Archivo", sans-serif;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -23,7 +27,7 @@ body {
     justify-content: center;
     height: 82%;
     width: 95%;
-    background-image: url('../assets/imgs/pexels-phreewil-2020432\ 1.png');
+    background-image: url('../assets/imgs/fundo-cadastro-parte-1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 80px;
@@ -142,6 +146,7 @@ input[type="number"] {
     font-size: 25px;
 
     & a {
+        text-align: center;
         color: white;
         text-decoration: none;
         font-size: 22px;
@@ -205,5 +210,112 @@ span {
     & span {
         font-size: 30px;
         width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .fundo {
+        height: 88%;
+    }
+
+    .container {
+        width: 85%;
+    }
+
+    .tituloParte1 {
+        width: 60%;
+        text-align: center;
+    }
+
+    .container {
+        padding: 20px 0;
+    }
+
+    #divParte1{
+        font-size: 20px;
+    }
+    
+    #divParte2 {
+        font-size: 20px;
+    }
+
+    .inputs {
+        width: 80%;
+    }
+
+    .grupoInput {
+        margin-top: 10px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .grupoInput span {
+        font-size: 14px;
+    }
+
+    .linha {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cnpj {
+        width: 100%;
+    }
+
+    .cep {
+        width: 100%;
+    }
+
+    .numero {
+        width: 100%;
+    }
+
+    .complemento {
+        width: 100%;
+    }
+
+    .email {
+        width: 100%;
+    }
+
+    .celular {
+        width: 100%;
+    }
+
+    input {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .conjuntoBotao {
+        width: 60%;
+
+        & a {
+            margin-top: 5%;
+            font-size: 12px;
+        }
+    }
+
+    .botao.formulario {
+        font-size: 14px;
+        height: 44px;
+    }
+
+    span button {
+        font-size: 12px;
+    }
+
+    .containerErro {
+        width: 80%;
+        height: 40%;
+
+        & h1 {
+            font-size: 25px;
+        }
+
+        & span {
+            font-size: 14px;
+            width: 80%;
+        }
     }
 }
