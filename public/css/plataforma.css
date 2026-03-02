@@ -28,3 +28,284 @@
     letter-spacing: -4px;
     font-weight: 900;
 }
+
+
+/* home */
+
+
+
+
+.section-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     background-color: black;
+     width: 100%;
+     height: 780px ;
+   
+
+}
+
+.section-2 .items-container{ 
+    display: flex;
+background-color: #EFD38D;
+width: 85%;
+height: 700px;
+border-radius: 45px;
+padding: 30px 30px 30px 30px;
+flex-direction: row;
+justify-content: space-between;
+}
+.section-2 .items-container .img-container{
+background-image: url(../assets/imgs/pexels-yankrukov-9010082.jpg);
+ background-size:cover; 
+width: 470px;
+height: 640px;
+border-radius: 25px;
+
+}
+
+.section-2 .items-container .text-container{
+background-color:#EFD38D;
+color: white;
+width: 600px;
+height: 600px;
+margin: 50px 0px 50px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+
+
+
+}
+
+.section-2 .items-container .text-container .text1{
+font-size: 30px;
+font-weight:800;
+color: #FF6D03;
+
+
+
+}
+.section-2 .items-container .text-container .text2{
+font-size: 65px;
+color: #DA9EF7;
+font-weight: 900;
+
+
+}
+.section-2 .items-container .text-container .text0{
+font-size:30px;
+font-weight:625;
+color: black;
+
+
+
+}
+
+.section-2 .items-container .text-container button{
+width: 140px;
+height: 40px;
+border-radius: 25px;
+background-color: #FF6D03;
+color: #DA9EF7;
+font-size: 20px;
+ cursor:pointer;
+
+
+}
+
+.section-3{
+
+
+     display: flex;
+     background-color: black;
+     width: 100%;
+     height: 780px ;
+     flex-direction: column;
+     color: #EFD38D;
+   
+}
+
+.section-3 .items-container{
+background-color: black;
+width: 1400px;
+height: 700px;
+display: flex;
+flex-direction: row;
+margin: 50px 90px 50px 90px;
+justify-content: space-evenly;
+
+}
+
+.section-3 .text-container{
+display: flex;
+flex-direction: column;
+
+
+}
+
+.section-3 .text-container h1{
+    font-size: 50px;
+    padding-top: 70px;
+    font-weight: 800;}
+.section-3 .text-container p{
+    font-size: 30px;
+    padding-top: 30px;
+}
+.section-3 .img-container{
+width: 600px;
+height: 600px;
+background-image: url(../assets/imgs/holofote-sem-fundo.png
+);
+
+
+}
+
+ .faixa{
+    width: 100%;
+    height: 100px;
+    background-color: #EFD38D;
+    color: #FF6D03;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    
+
+}
+.faixa h1{
+    font-weight: 760;
+}
+
+.section-4{
+
+
+     display: flex;
+     background-color: black;
+     width: 100%;
+     height: 400px ;
+     flex-direction: row;
+     
+   
+}
+
+.section-4 .item1, .item2, .item3, .item4, .item5{
+width: 250px;
+height: 350px;
+background-color: black;
+color: white;
+margin-right: 20px;
+border-radius: 20px;
+margin-top: 30px;
+margin-left: 45px;
+padding: 20px;
+box-shadow:0 0 80px rgba(184,110,255,0.6);
+
+
+
+
+}
+
+.item1 h1, .item2 h1, .item3 h1, .item4 h1, .item5 h1{
+padding-bottom: 30px;
+font-size: 35px;
+color: #EFD38D;
+}
+.item1 p, .item2 p, .item3 p, .item4 p, .item5 p{
+
+font-size: 20px;
+color: #DA9EF7;}
+
+body{
+  margin:0;
+  background:#000;
+  font-family:Arial, sans-serif;
+}
+
+/* seção principal */
+.plataforma{
+  width:100%;
+  height:1045px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 120px;
+}
+
+/* colunas */
+.coluna{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.esquerda{
+  width:30%;
+}
+
+.centro{
+  width:40%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.direita{
+  width:30%;
+  align-items:flex-end;
+}
+
+/* cards */
+.card{
+  margin-bottom:120px;
+  max-width:380px;
+}
+
+/* títulos laterais */
+.card h3{
+  color:#E6C37A;
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+/* texto lateral */
+.card p{
+  color:#C88CF5;
+  font-size:18px;
+  line-height:1.4;
+}
+
+/* círculo central */
+.circulo{
+  width:480px;
+  height:480px;
+  background:#000;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+
+  box-shadow:0 0 80px rgba(184,110,255,0.6);
+}
+
+/* texto dentro do círculo */
+.circulo h1{
+  color:#E6C37A;
+  font-size:54px;
+  line-height:1.2;
+  font-weight:800;
+}
+
+/* botão */
+.btn-beneficios{
+  margin-top:60px;
+  padding:18px 40px;
+  background:#C88CF5;
+  border:none;
+  border-radius:40px;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+}
+
