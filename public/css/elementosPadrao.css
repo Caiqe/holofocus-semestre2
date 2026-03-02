@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
 
-
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -16,98 +15,215 @@
     --texto-rosa: #FF17BA;
     font-family: "Archivo", sans-serif;
 }
-a{
+
+a {
     text-decoration: none;
-}
-html {
-    width: 100%;
-    height: 100%;
 }
 
 body {
-    margin: 0;
-    padding: 0;
     width: 100%;
     height: 100%;
     background-color: black;
-    margin: 0;
 }
 
-/* CSS HEADER */
+/* HEADER */
 
 header {
     width: 100%;
-    height: 123px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     font-weight: 900;
 }
 
+.hamburger {
+    display: none;
+}
+
 .logoHeader {
     display: flex;
     align-items: center;
     justify-content: center;
+}
 
-    & a {
-        width: 190px;
-        aspect-ratio: 19/10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+.logoHeader a {
+    width: 130px;
+    aspect-ratio: 19/10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        & img {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            align-items: center;
-            justify-content: center;
-        }
-    }
+.logoHeader img {
+    width: 100%;
+    height: 100%;
 }
 
 ul {
     list-style: none;
-    padding: 0;
     width: 70%;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-li {
-    & a {
-        text-decoration: none;
-        font-size: 28px;
-        color: var(--texto-lilas);
-    }
+li a {
+    font-size: 24px;
+    color: var(--texto-lilas);
 }
 
 .botaoHeader {
     padding: 14px 24px;
     border: 2px solid var(--texto-lilas);
     border-radius: 53px;
+}
 
-    & a {
-        font-size: 25px;
-    }
+.botaoHeader a {
+    font-size: 20px;
 }
 
 .botaoHeader.cadastrar {
     background-color: var(--texto-lilas);
-    border-radius: 53px;
     padding: 10px 20px;
-    
-    & a {
+}
+
+.botaoHeader.cadastrar a {
+    color: black;
+}
+
+header.ativo {
+    background-color: var(--texto-lilas);
+}
+
+header.ativo a {
+    color: black;
+}
+
+header.ativo .botaoHeader {
+    border: 2px solid black;
+}
+
+header.ativo .botaoHeader.cadastrar {
+    background-color: black;
+}
+
+header.ativo .botaoHeader.cadastrar a {
+    color: var(--texto-lilas);
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 600px) {
+
+    header {
+        position: sticky;
+        height: 70px;
+        padding: 0 10px;
+    }
+
+    .logoHeader {
+        width: 80px;
+    }
+
+    ul {
+        width: auto;
+        gap: 10px;
+    }
+
+    .navLink {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        background: var(--texto-lilas);
+        display: flex;
+        justify-content: center;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.4s ease, opacity 0.3s ease;
+    }
+
+    .navLink a {
+        padding: 15px 0;
         color: black;
+    }
+
+    .navLink:nth-child(1) {
+        top: 99%;
+    }
+
+    .navLink:nth-child(2) {
+        top: 177%;
+    }
+
+    .navLink:nth-child(3) {
+        top: 254%;
+    }
+
+    header.ativo .navLink {
+        max-height: 60px;
+        opacity: 1;
+    }
+
+    .botaoHeader {
+        padding: 4px 10px;
+    }
+
+    .botaoHeader a {
+        font-size: 12px;
+    }
+
+    .botaoHeader.cadastrar {
+        padding: 6px 10px;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger input {
+        display: none;
+    }
+
+    .hamburger svg {
+        height: 3em;
+        transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .line {
+        fill: none;
+        stroke: var(--texto-lilas);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3;
+        transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+            stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .line-top-bottom {
+        stroke-dasharray: 12 63;
+    }
+
+    .hamburger input:checked+svg {
+        transform: rotate(-45deg);
+    }
+
+    .hamburger input:checked+svg .line-top-bottom {
+        stroke-dasharray: 20 300;
+        stroke-dashoffset: -32.42;
+    }
+
+    .hamburger input:checked+svg .line {
+        stroke: black;
+        transition: 300ms;
     }
 }
 
-/* FIM CSS HEADER */
-
 /* CSS FOOTER */
 
-footer{
+footer {
     font-family: 'archivo', sans-serif;
     font-size: 28px;
     font-weight: bold;
@@ -123,30 +239,35 @@ footer{
     flex-direction: column;
     width: 100%;
 }
-.main-footer{
+
+.main-footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 25px;
 }
-.logo-footer{
+
+.logo-footer {
     justify-content: center;
     padding-left: 10%;
 }
-.div-img-footer{
+
+.div-img-footer {
     display: flex;
     width: 50%;
     justify-content: flex-start;
-    align-items: center;   
+    align-items: center;
 }
-.infos-footer{
+
+.infos-footer {
     display: flex;
     justify-content: flex-end;
     width: 50%;
     font-size: 20px;
     flex-direction: row;
 }
-.lista-footer{
+
+.lista-footer {
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -157,24 +278,28 @@ footer{
     align-items: flex-end;
 }
 
-.lista-footer li{
+.lista-footer li {
     margin-bottom: 18px;
     color: var(--texto-amarelo);
 }
-.lista-footer li:hover{
+
+.lista-footer li:hover {
     scale: 97%;
     text-decoration: underline;
 }
-.bottom-footer{
+
+.bottom-footer {
     width: 100%;
     border-top: #F0D48D 10px solid;
     color: #F0D48D;
     font-size: 15px;
-    display: flex; 
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
-    & #copyright, p{
+
+    & #copyright,
+    p {
         position: static;
         display: flex;
         align-items: center;
@@ -183,19 +308,21 @@ footer{
     }
 }
 
-.icon-footer{
+.icon-footer {
     width: 32px;
 }
 
 /*RESPONSIVIDADE FOOTER*/
-@media (max-width: 1400px){
-    .main-footer{
+@media (max-width: 1400px) {
+    .main-footer {
         flex-direction: column;
     }
-    .infos-footer{
+
+    .infos-footer {
         width: 100%;
         gap: 5px;
-        & ul{
+
+        & ul {
             padding: 0;
             margin: 0px;
             width: 33%;
@@ -205,23 +332,23 @@ footer{
         }
 
     }
-    
-    .div-img-footer{
+
+    .div-img-footer {
         display: flex;
         justify-content: center;
         width: 100%;
         padding: 0px;
 
-        & .logo-footer{
+        & .logo-footer {
             padding: 0px 0px 20px 0px;
         }
     }
 
-    .bottom-footer{
+    .bottom-footer {
         flex-direction: column-reverse;
         justify-content: center;
 
-        & .icons-footer{
+        & .icons-footer {
             display: flex;
             justify-content: center;
         }
