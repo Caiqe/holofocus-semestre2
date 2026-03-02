@@ -1,84 +1,47 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poiret+One&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    display: block;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: block;
 }
 
-.imgFundo{
-    display: flex;
-    justify-content: center;
+.imgFundo {
+  display: flex;
+  justify-content: center;
 }
+
+.imgFundo img {
+  width: 95%;
+}
+
 
 .titulo{
     color: #DA9EF7;
     font-family: 'archivo', sans-serif;
-    font-size: 80px;
-    margin-top: -13%;
-    margin-left: 7%;
+    font-size: 500%;
+    margin-top: -33%;
+    margin-left: -47%;
 }
-
-.envio{
-    display: flex;
-    justify-content: center;
-    border-radius: 80px;
-    background-color: #F0D48D;
-    margin: 5% 0% 5% 2.5%;
-    width: 95%;
-    height: 30%;
-
-}
-
-.envioMsg{
-    color: #667887;
-    font-family: 'archivo', sans-serif;
-    font-size: 50px;
-    margin-top: 3%;
-    height: 10%;
-}
-
-.inp{
-    margin: 5% 0% 0 -18%;
-
-}
-
-
-
-.cont{
-     background-color: #F0D48D;
-     width: 95%;
-}
-
-
-
-
-.contato-container {
-  width: 90%;
-  max-width: 900px;
-  margin: 40px auto;
-}
-/*
-.box {
-  padding: 30px;
-  border-radius: 20px;
-  margin-bottom: 30px;
-  width: 195%;
-  margin-left: -10%;
-}
-*/
 
 body {
   background-color: #000;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .contato-container {
-  width: 90%;
-  margin: 5% auto;
+  width: 95%;
+  justify-content: center;
+  margin-left: 2%;
+  margin-top: 2%;
 }
 
 .box {
@@ -86,8 +49,7 @@ body {
   padding: 4%;
   border-radius: 80px;
   margin-bottom: 5%;
-  width: 195%;
-  margin-left: -47%;
+  width: 98%;
 }
 
 .amarelo {
@@ -142,7 +104,7 @@ button {
 }
 
 button:hover {
-   box-shadow: 0 0 15px #667887;
+  box-shadow: 0 0 15px #667887;
 }
 
 
@@ -152,20 +114,20 @@ button:hover {
   gap: 3%;
   flex-wrap: wrap;
   margin: -2% 0 0 10%;
-  width:80%;
+  width: 80%;
 }
 
-h2.infCont{
-   margin: 0 10% 3% 10%;
-    font-size: 450%;
+h2.infCont {
+  margin: 0 10% 3% 10%;
+  font-size: 450%;
 }
 
 .info p {
-    margin: 5% 0% 10% 0% ;
+  margin: 5% 0% 10% 0%;
   font-size: 165%;
   color: #667887;
 }
 
-.icons-footer{
-    display: flex;
+.icons-footer {
+  display: flex;
 }
