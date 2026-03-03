@@ -9,7 +9,33 @@
     <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
   </head>
   <body>
-    
+    <header id="header">
+      <div class="logoHeader">
+        <a href="./index.html"
+          ><img src="./assets/icon/holofocus-06 1.png" alt="logo HoloFocus"
+        /></a>
+      </div>
+      <ul>
+        <li class="navLink"><a href="./a-plataforma.html">A PLATAFORMA</a></li>
+        <li class="navLink"><a href="./sobre-nos.html">SOBRE NÓS</a></li>
+        <li class="navLink"><a href="./contate-nos.html">CONTATE-NOS</a></li>
+
+        <li class="botaoHeader"><a href="./login.html">LOGIN</a></li>
+        <li class="botaoHeader cadastrar">
+          <a href="./cadastro.html">CADASTRE-SE</a>
+        </li>
+      </ul>
+      <label class="hamburger">
+        <input type="checkbox" id="menuHamburguer" />
+        <svg viewBox="0 0 32 32">
+          <path
+            class="line line-top-bottom"
+            d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
+          ></path>
+          <path class="line" d="M7 16 27 16"></path>
+        </svg>
+      </label>
+    </header>
     <main>
       <div class="section-1">
         <div class="text-section-1">
@@ -34,8 +60,8 @@
             <h2>Veja Resultados</h2>
             <p>
               A escolha do artista certo muda tudo<br /><br />
-              Simule agora e veja o quanto a <i>HoloFocus</i> pode
-              impulsionar sua bilheteria<br /><br />
+              Simule agora e veja o quanto a <i>HoloFocus</i> pode impulsionar
+              sua bilheteria<br /><br />
               A escolha certa pode te ajudar a alcançar o <i>Sold out!</i>
             </p>
           </div>
@@ -67,9 +93,7 @@
         >
           <div class="call-to-action">
             <h2>Simulação</h2>
-            <p>
-              Abaixo, veja como essa escolha pode mudar seus ganhos.
-            </p>
+            <p>Abaixo, veja como essa escolha pode mudar seus ganhos.</p>
           </div>
           <div class="cards-artistas">
             <div class="card-artista">
@@ -125,11 +149,14 @@
             </div>
           </div>
           <div class="call-to-action">
-            <p>A escolha do artista, assim como outros fatores impacta diretamente
-              na venda de bilheteria<br />
+            <p>
+              A escolha do artista, assim como outros fatores impacta
+              diretamente na venda de bilheteria<br />
               <b>Por isso, é essencial tomar essa decisão baseada em dados</b>
             </p>
-            <a href="./cadastro.html" ><button class="buttom-section-3">Contratar</button></a>
+            <a href="./cadastro.html"
+              ><button class="buttom-section-3">Contratar</button></a
+            >
           </div>
         </div>
       </div>
@@ -146,17 +173,17 @@
         </div>
         <div class="infos-footer">
           <ul class="lista-footer">
-            <a href=""><li>A PLATAFORMA</li></a>
-            <a href=""><li>SOBRE NÓS</li></a>
-            <a href=""><li>CONTATE-NOS</li></a>
+            <a href="a-plataforma.html"><li>A PLATAFORMA</li></a>
+            <a href="sobre-nos.html"><li>SOBRE NÓS</li></a>
+            <a href="contate-nos.html"><li>CONTATE-NOS</li></a>
           </ul>
           <ul class="lista-footer">
-            <a href=""><li>LOGIN</li></a>
-            <a href=""><li>CADASTRO</li></a>
+            <a href="login.html"><li>LOGIN</li></a>
+            <a href="cadastro.html"><li>CADASTRO</li></a>
           </ul>
           <ul class="lista-footer">
-            <a href=""><li>PROJETO</li></a>
-            <a href=""><li>SUPORTE</li></a>
+            <a href="https://github.com/Caiqe/holofocus-semestre2"><li>PROJETO</li></a>
+            <a href="#"><li>SUPORTE</li></a>
           </ul>
         </div>
       </div>
@@ -224,3 +251,4 @@
     resultado_simulacao.style.display = "flex";
   }
 </script>
+<script src="./js/elementosPadrao.js"></script>
