@@ -89,8 +89,6 @@ textarea {
   font-size: 130%;
 }
 
-
-
 button {
   width: 30%;
   padding: 1%;
@@ -107,12 +105,10 @@ button:hover {
   box-shadow: 0 0 15px #667887;
 }
 
-
 .info {
   display: flex;
   justify-content: space-between;
   gap: 3%;
-  flex-wrap: wrap;
   margin: -2% 0 0 10%;
   width: 80%;
 }
@@ -131,6 +127,11 @@ h2.infCont {
 .icons-footer {
   display: flex;
 }
+
+.mapa iframe{
+  width: 100%;
+}
+
 
 @media (max-width: 600px) {
 
