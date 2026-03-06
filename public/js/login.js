@@ -22,9 +22,9 @@ async function login() {
     //     }, "2000");
     //     return
     // }
-    
+
     if (email.trim() != "" && email != null && senha.trim() != "" && senha != null) {
-        erro("3000", "Login realizado com sucesso")
+        erro("3000", "Sucesso", "Login realizado com sucesso")
 
         // setTimeout(() => {
         //     window.location = "./dashboard/dashboard.html";
@@ -32,15 +32,16 @@ async function login() {
         return
     }
 
-    erro("3000", "Usuário e/ou Senha incorretos")
+    erro("3000", "Erro", "Usuário e/ou Senha incorretos")
 }
 
 
-function erro(tempo, texto) {
+function erro(tempo, titulo, texto) {
+    document.getElementById('titulo').innerHTML = titulo
+    document.getElementById('spnErro').innerHTML = texto
+    
     document.getElementById('divFundoErro').style.display = 'flex'
-
-setTimeout(() => {
-        document.getElementById('spnErro').innerHTML = texto
+    setTimeout(() => {
         document.getElementById('divFundoErro').style.display = 'none'
     }, tempo);
     return
