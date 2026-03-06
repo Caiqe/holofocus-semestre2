@@ -225,243 +225,145 @@ main {
 
 
 
-@media (max-width: 600px){
-
-/* SECTION 1 */
-
-.video-container{
-    width:95%;
-    height:300px;
-    border-radius:25px;
-}
-
-.video-container video {
-    width: 53%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 25px;
-}
-.texto-principal h1{
-    font-size:32px;
-    letter-spacing:-2px;
-    bottom:10%;
-}
 
 
-/* SECTION 2 */
-
-.section-2{
-    flex-direction:column;
-    height:auto;
-    padding:40px 0;
-}
-
-.section-2 .items-container{
-    flex-direction:column;
-    width:90%;
-    height:auto;
-    gap:30px;
-    align-items:center;
-}
-
-.section-2 .items-container .img-container{
-    width:100%;
-    height:260px;
-}
-
-.section-2 .items-container .text-container{
-    width:100%;
-    height:auto;
-    margin:0;
-    gap:20px;
-}
-
-.section-2 .items-container .text-container .text1{
-    font-size:20px;
-}
-
-.section-2 .items-container .text-container .text2{
-    font-size:36px;
-}
-
-.section-2 .items-container .text-container .text0{
-    font-size:18px;
-}
-
-.section-2 .items-container .text-container button{
-    width:120px;
-    height:36px;
-    font-size:16px;
-}
 
 
-/* SECTION 3 */
-
-.section-3{
-    height:auto;
-    padding:40px 0;
-}
-
-.section-3 .items-container{
-    flex-direction:column;
-    width:100%;
-    height:auto;
-    margin:0;
-    gap:30px;
-    align-items:center;
-}
-
-.section-3 .img-container{
-    width:80%;
-    height:260px;
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-}
-
-.section-3 .text-container{
-    align-items:center;
-    text-align:center;
-}
-
-.section-3 .text-container h1{
-    font-size:32px;
-    padding-top:0;
-}
-
-.section-3 .text-container p{
-    font-size:18px;
-}
 
 
-/* FAIXA */
-
-.faixa{
-    height:70px;
-}
-
-.faixa h1{
-    font-size:20px;
-}
 
 
-/* SECTION 4 CARDS */
+/*Resposividade para 600px ----------------------------------------------------------------------------------------------------------------------*/
+@media (max-width: 600px) {
+    /* SECTION 1 --------------------------------------------------------------------------------------------------------------------------------*/
+    .video-container {
+        width: 95%;
+        height: 300px;
+        border-radius: 25px;
+    }
 
-.section-4{
-    flex-direction:column;
-    align-items:center;
-    height:auto;
-    gap:20px;
-}
+    .video-container video {
+        width: 53%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 25px;
+    }
 
-.section-4 .item1,
-.section-4 .item2,
-.section-4 .item3,
-.section-4 .item4,
-.section-4 .item5{
-    width:90%;
-    height:auto;
-    margin:0;
-}
-
-.item1 h1,
-.item2 h1,
-.item3 h1,
-.item4 h1,
-.item5 h1{
-    font-size:26px;
-}
-
-.item1 p,
-.item2 p,
-.item3 p,
-.item4 p,
-.item5 p{
-    font-size:16px;
-}
+    .texto-principal h1 {
+        font-size: 32px;
+        letter-spacing: -2px;
+        bottom: 10%;
+    }
 
 
-/* PLATAFORMA */
+    /* SECTION 2 --------------------------------------------------------------------------------------------------------------------------------*/
+    .section-2 {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        width: 45%;
+    }
 
-.plataforma{
-    flex-direction:column;
-    height:auto;
-    padding:60px 20px;
-    gap:40px;
-}
+    .texto-fonte-grande {
+        gap: 13px;
+        text-align: center;
+    }
 
-.coluna{
-    width:100%;
-    align-items:center;
-    text-align:center;
-}
+    .texto-grande-p {
+        gap: 15px;
+    }
 
-.card{
-    margin-bottom:40px;
-}
+    .texto-fonte-grande p {
+        font-size: 20px;
+        letter-spacing: -1px;
+        text-align: left;
+    }
 
-.circulo{
-    width:280px;
-    height:280px;
-}
+    .texto-fonte-grande h1 {
+        font-size: 28px;
+        letter-spacing: -2px;
+    }
 
-.circulo h1{
-    font-size:28px;
-}
-
-.btn-beneficios{
-    margin-top:30px;
-}
-
-
-/* SECTION COM IMAGEM */
-
-.imagem-container{
-    height:260px;
-}
-
-.texto-grande-3{
-    position:static;
-    margin-top:20px;
-}
-
-.texto-grande-3 p{
-    font-size:22px;
-    text-align:center;
-}
+    .imagem-section-2 img {
+        display: none;
+    }
 
 
-/* SECTION 4 FINAL */
+    /* SECTION 3 -------------------------------------------------------------------------------------------------------------------------------*/
+    .section-3 {
+        flex-direction: column;
+        align-items: center;
+        width: 45%;
+    }
 
-.text-container{
-    width:100%;
-    height:auto;
-}
+    .imagem-container {
+        width: 100%;
+        height: 260px;
+        border-radius: 25px;
+    }
 
-.texto-grande h1{
-    font-size:26px;
-}
+    .imagem-container img {
+        width: 175%;
+    }
 
-.texto-pequeno p{
-    font-size:16px;
-}
+    .texto-grande-3 {
+        position: static;
+        margin-top: 40px;
+        width: 100%;
+    }
+
+    .texto-grande-3 p {
+        font-size: 20px;
+        text-align: center;
+        letter-spacing: -1px;
+    }
 
 
-/* SECTION 5 */
+    /* SECTION 4 --------------------------------------------------------------------------------------------------------------------------------*/
+    .section-4 {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        width: 45%;
+    }
 
-.section-5{
-    margin:80px 5%;
-}
+    .text-container {
+        width: 100%;
+        height: auto;
+        padding: 35px;
+    }
 
-.forma-texto-section-5 h1{
-    font-size:32px;
-    letter-spacing:-2px;
-}
+    .texto-grande h1 {
+        font-size: 26px;
+    }
 
-.botao-simular{
-    width:140px;
-    height:40px;
-    font-size:16px;
-}
+    .texto-pequeno {
+        gap: 20px;
+    }
 
+    .texto-pequeno p {
+        font-size: 16px;
+    }
+
+
+    /* SECTION 5 --------------------------------------------------------------------------------------------------------------------------------*/
+    .section-5 {
+        margin: 80px 5%;
+        width: 45%;
+    }
+
+    .forma-texto-section-5 {
+        width: 100%;
+    }
+
+    .forma-texto-section-5 h1 {
+        font-size: 23px;
+        letter-spacing: -1px;
+    }
+
+    .botao-simular {
+        width: 140px;
+        height: 40px;
+        font-size: 16px;
+    }
 }
