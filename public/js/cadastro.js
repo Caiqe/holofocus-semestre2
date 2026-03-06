@@ -89,7 +89,7 @@ function proximo() {
             // return
         // }    
     }
-    erro("2000", "Por favor revise os campos e preencha os dados corretamente")
+    erro("2000", "Erro", "Por favor revise os campos e preencha os dados corretamente")
 }
 
 function voltar() {
@@ -171,7 +171,7 @@ async function cadastrar() {
         //     return
         // }
 
-        erro("2000", 'Cadastro realizado com sucesso')
+        erro("2000", "Sucesso", 'Cadastro realizado com sucesso')
 
         setTimeout(() => {
             window.location = "login.html";
@@ -179,10 +179,10 @@ async function cadastrar() {
         return
     }
 
-    erro("2000", 'Por favor revise os campos e preencha os dados corretamente')
+    erro("2000", "Erro", 'Por favor revise os campos e preencha os dados corretamente')
 }
 
-function erro(tempo, texto) {
+function erro(tempo, titulo, texto) {
     document.getElementById('divFundoErro').style.display = 'flex'
 
     if (inpRazao.value == '') {
@@ -236,6 +236,7 @@ function erro(tempo, texto) {
         document.getElementById('spnConfirma').style.color = 'white'
     }
 
+    document.getElementById('titulo').innerHTML = titulo
     document.getElementById('spnErro').innerHTML = texto
 
     setTimeout(() => {
