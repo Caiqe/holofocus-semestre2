@@ -24,11 +24,11 @@ async function login() {
     // }
 
     if (email.trim() != "" && email != null && senha.trim() != "" && senha != null) {
-        erro("3000", "Sucesso", "Login realizado com sucesso")
+        erro("2000", "Sucesso", "Login realizado com sucesso")
 
-        // setTimeout(() => {
-        //     window.location = "./dashboard/dashboard.html";
-        // }, "2000");
+        setTimeout(() => {
+            window.location = "https://www.figma.com/proto/HGRblLlsttw5Jxo5ONeGPf/Wireframe-HoloFocus?node-id=1-2&p=f&t=mcSNUv7oFNZV0Dfe-0&scaling=contain&content-scaling=fixed&page-id=0%3A1";
+        }, "1000");
         return
     }
 

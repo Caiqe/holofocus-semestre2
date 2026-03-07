@@ -124,6 +124,52 @@ button {
     cursor: pointer;
 }
 
+
+span {
+    display: flex;
+    align-items: center;
+
+    & button {
+        color: #EFD38D;
+        font-size: 15px;
+        background: none;
+        border: 1px solid #EFD38D;
+        border-radius: 20px;
+    }
+}
+
+.fundoErro {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.containerErro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #EFD38D;
+    color: black;
+    border-radius: 80px;
+    width: 40%;
+    height: 50%;
+    text-align: center;
+
+    & h1 {
+        font-size: 50px;
+    }
+
+    & span {
+        font-size: 30px;
+        width: 50%;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .fundo {
         height: 88%;
