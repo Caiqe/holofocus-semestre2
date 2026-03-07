@@ -62,6 +62,7 @@ body {
 
 .amarelo {
   background-color: #F0D48D;
+  margin-top: 3%;
 }
 
 .box h2 {
@@ -101,8 +102,7 @@ textarea {
 }
 
 button {
-  width: 170px;
-  height: 50px;
+  width: 15%;
   padding: 1%;
   margin: 2% auto 0 auto;
   border-radius: 50px;
@@ -186,10 +186,10 @@ h2.infCont {
   }
 
   .box h2 {
-    text-align: center;
+    text-align: start;
     margin-bottom: 2%;
-    color: #667887;
     font-size: 200%;
+    letter-spacing: -2px;
   }
 
   ::placeholder {
@@ -206,6 +206,18 @@ h2.infCont {
   textarea {
     resize: none;
     font-size: 130%;
+  }
+
+  button {
+    width: 20%;
+    padding: 1%;
+    margin: 2% auto 0 auto;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    margin-top: 25px;
+    font-size: 15px;
+    font-weight: 800;
   }
 
   .info {
@@ -225,7 +237,6 @@ h2.infCont {
   .info p {
     margin: 5% 0% 10% 0%;
     font-size: 100%;
-    color: #667887;
   }
 
   .mapa iframe {
