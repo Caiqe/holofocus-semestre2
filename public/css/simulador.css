@@ -161,14 +161,13 @@ main {
             width: 170px;
             height: 50px;
             align-self: center;
-            margin-top: -11px;
+            margin-top: px;
             border-radius: 50px;
             background-color: var(--texto-lilas);
             color: black;
 
             font-size: 20px;
             font-weight: 795;
-            ;
         }
 
         & button:hover {

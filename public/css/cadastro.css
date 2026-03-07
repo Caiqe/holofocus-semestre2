@@ -52,8 +52,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
-    font-weight: 900;
+    font-size: var(--texto-enfatico-font-size);
+    font-weight: var(--texto-enfatico-font-weight);
+    color: #DA9EF7;
 }
 
 #divParte2 {
@@ -61,8 +62,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
-    font-weight: 900;
+    font-size: var(--texto-enfatico-font-size);
+    font-weight: var(--texto-enfatico-font-weight);
+    color: var(--texto-lilas);
 
     & .inputs {
         margin: 30px 0;
@@ -70,22 +72,25 @@ body {
 }
 
 .grupoInput {
-    font-family: "Lato", sans-serif;
     color: white;
-    font-size: 25px;
-    font-weight: 400;
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
+    margin: 5px 0;
 
     & span {
+        text-align: left;
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        font-size: var(--texto-fonte-pequena-font-size);
         margin-left: 20px;
+        letter-spacing: 0px;
     }
 }
 
 .linha {
     display: flex;
-    width: 80%;
+    width: 100%;
     justify-content: space-between;
 }
 
@@ -96,8 +101,8 @@ input {
     border-radius: 20px;
     border: none;
     color: white;
-    font-size: 25px;
-    padding-left: 7px;
+    font-size: var(--texto-fonte-pequena-font-size);
+    padding: 1% 4%;
 }
 
 input::placeholder {
@@ -144,24 +149,29 @@ input[type="number"] {
     flex-direction: column;
     width: 50%;
     font-size: 25px;
+    margin: 2%;
 
     & a {
         text-align: center;
         color: white;
         text-decoration: none;
-        font-size: 22px;
+        font-size: var(--texto-fonte-pequena-font-size);
         font-weight: 400;
+        margin: 2%;
     }
 }
 
 .botao.formulario {
-    color: black;
-    background-color: #EFD38D;
+    width: 170px;
+    height: 50px;
+    align-self: center;
+    margin: -7% 0% 1%;
     border-radius: 50px;
-    border: none;
-    height: 66px;
-    font-size: 25px;
-    font-weight: 800;
+    background-color: var(--texto-lilas);
+    color: black;
+
+    font-size: 20px;
+    font-weight: 795;
 }
 
 button {
@@ -171,6 +181,8 @@ button {
 span {
     display: flex;
     align-items: center;
+    width: 80%;
+    gap: 2%;
 
     & button {
         color: #EFD38D;
@@ -231,10 +243,10 @@ span {
         padding: 20px 0;
     }
 
-    #divParte1{
+    #divParte1 {
         font-size: 20px;
     }
-    
+
     #divParte2 {
         font-size: 20px;
     }
@@ -291,7 +303,7 @@ span {
         width: 60%;
 
         & a {
-            margin-top: 5%;
+            margin-top: 1%;
             font-size: 12px;
         }
     }
@@ -299,6 +311,7 @@ span {
     .botao.formulario {
         font-size: 14px;
         height: 44px;
+        margin-top: -3%;
     }
 
     span button {
