@@ -6,6 +6,7 @@
     box-sizing: border-box;
 }
 
+/*Padronização de cores*/
 :root {
     --texto-verde: #93BCA5;
     --texto-amarelo: #F0D48D;
@@ -14,6 +15,34 @@
     --texto-lilas: #DA9EF7;
     --texto-rosa: #FF17BA;
     font-family: "Archivo", sans-serif;
+}
+
+/*Padronização de texto*/
+:root {
+    /*Título principal*/
+    --tituloP-line-height: 90%;
+    --tituloP-font-size: 60px;
+    --tituloP-letter-spacing: -5px;
+    --tituloP-font-weight: 900;
+    
+    /*Texto enfático*/
+    --texto-enfatico-font-size: 40px;
+    --texto-enfatico-letter-spacing: -3px;
+    --texto-enfatico-font-weight: 900;
+
+    /*Texto longo*/
+    --texto-longo-font-size: 42px;
+    --texto-longo-letter-spacing: -3px;
+
+    /*texto fonte pequena*/
+    --texto-fonte-pequena-font-size: 19px;
+    --texto-fonte-pequena-font-weight: 500;
+    --texto-fonte-pequena-line-height: 104%;
+
+    /*texto enfático laranja - EM CAIXA ALTA E LARANJA*/
+    --textoE-laranja-font-weight: 900;
+
+
 }
 
 a {
@@ -27,7 +56,6 @@ body {
 }
 
 /* HEADER */
-
 header {
     width: 100%;
     height: 100px;
