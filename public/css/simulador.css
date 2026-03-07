@@ -10,62 +10,72 @@
     --texto-rosa: #ff17ba;
 }
 
-*{
+* {
     color: #F0D48D;
     font-family: 'archivo', sans-serif;
 }
-main{
+
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.section-1{
+
+.section-1 {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin: 3% 0% 3% 0%;
 
-    & h1{
-        font-size: 80px;
+    & h1 {
+        font-size: var(--tituloP-font-size);
+        letter-spacing: var(--tituloP-letter-spacing);
+        font-weight: var(--tituloP-font-weight);
         margin-bottom: 40px;
     }
-    & h2{
+
+    & h2 {
         font-family: 'Lato', sans-serif;
         font-size: 33px;
         font-weight: 100;
-        border-bottom: 2px solid var(--texto-rosa);
+        border-bottom: 2px solid var(--texto-lilas);
         margin-bottom: 15px;
     }
-    & img{
+
+    & img {
         width: 40%;
     }
 }
-.buttom-section-1{
-    background-color: var(--texto-rosa);
-    border: 2px solid var(--texto-amarelo);
-    width: 360px;
-    height: 70px;
-    font-size: 33px;
-    font-weight: 600;
-    border-radius: 80px;
-    margin-top: 40px;
+
+.buttom-section-1 {
+    width: 170px;
+    height: 50px;
+    margin-top: 25px;
+    border-radius: 50px;
+    background-color: var(--texto-lilas);
+    color: black;
+
+    font-size: 20px;
+    font-weight: 795;
 }
-.buttom-section-1:hover{
+
+.buttom-section-1:hover {
     cursor: pointer;
     scale: 97%;
     transition: 0.3s;
 }
 
 
-.divisor{
+.divisor {
     height: 80px;
     width: 100%;
     background-color: var(--texto-amarelo);
     margin: 20px 0px;
 }
 
-.section-2{
+.section-2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -75,12 +85,14 @@ main{
     background-image: url("../assets/imgs/pexels-phreewil-2020432.jpg");
     border-radius: 80px;
     margin-bottom: 20px;
-    & .top-section-2{
+
+    & .top-section-2 {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
     }
-     & .infos-forms{
+
+    & .infos-forms {
         display: flex;
         flex-direction: column;
         background-color: black;
@@ -88,19 +100,24 @@ main{
         width: 40%;
         padding: 30px;
         gap: 20px;
-        & h2{
-            font-size: 40px;
-            font-weight: bold;
+
+        & h2 {
+            font-size: var(--texto-enfatico-font-size);
+            font-weight: var(--texto-enfatico-font-weight);
+            letter-spacing: var(--texto-enfatico-letter-spacing);
             text-align: center;
+            color: #DA9EF7;
         }
-        & p{
+
+        & p {
             font-family: 'Lato', sans-serif;
             font-size: 33px;
             font-weight: 200;
             margin: 24px;
         }
-     }
-    & .formulario{
+    }
+
+    & .formulario {
         display: flex;
         flex-direction: column;
         background-color: black;
@@ -108,21 +125,27 @@ main{
         width: 40%;
         padding: 30px;
         gap: 50px;
-        & h2{
-            font-size: 40px;
-            font-weight: bold;
+
+        & h2 {
+            font-size: var(--texto-enfatico-font-size);
+            font-weight: var(--texto-enfatico-font-weight);
+            letter-spacing: var(--texto-enfatico-letter-spacing);
             text-align: center;
+            color: #DA9EF7;
         }
-        & .campo-input{
+
+        & .campo-input {
             display: flex;
             flex-direction: column;
             gap: 5px;
-             & label{
+
+            & label {
                 color: white;
                 font-size: 25px;
                 font-weight: 200;
-             }
-             & input{
+            }
+
+            & input {
                 background-color: #1C1C1C;
                 width: 100%;
                 height: 75px;
@@ -131,53 +154,64 @@ main{
                 font-size: 30px;
                 color: white;
                 padding-left: 25px;
-             }
+            }
         }
-        & button{
-            background-color: var(--texto-amarelo);
-            color: black;
-            font-weight: 600;
-            border: none;
-            width: 360px;
-            height: 70px;
-            font-size: 33px;
-            border-radius: 80px;
+
+        & button {
+            width: 170px;
+            height: 50px;
             align-self: center;
+            margin-top: -11px;
+            border-radius: 50px;
+            background-color: var(--texto-lilas);
+            color: black;
+
+            font-size: 20px;
+            font-weight: 795;
+            ;
         }
-        & button:hover{
+
+        & button:hover {
             cursor: pointer;
             scale: 97%;
             transition: 0.3s;
         }
-    } 
-    & .resultado_simulacao{
+    }
+
+    & .resultado_simulacao {
         display: flex;
         flex-direction: column;
         border-radius: 80px;
         background-color: black;
         padding: 20px 0px;
-        & .call-to-action{
+
+        & .call-to-action {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin: 25px 0px;
-            & h2{
+
+            & h2 {
                 font-weight: 800;
                 font-size: 40px;
                 margin-bottom: 20px;
             }
-            & p,b{
+
+            & p,
+            b {
                 text-align: center;
                 font-family: 'Lato', sans-serif;
-                font-size:28px;
+                font-size: 28px;
                 width: 90%;
                 font-weight: 200;
             }
         }
-        & .cards-artistas{
+
+        & .cards-artistas {
             display: flex;
             justify-content: space-around;
-            & .card-artista{
+
+            & .card-artista {
                 margin-top: 30px;
                 display: flex;
                 flex-direction: column;
@@ -187,7 +221,8 @@ main{
                 width: 40%;
                 padding: 20px 10px;
                 gap: 10px;
-                & .icon-card-artista{
+
+                & .icon-card-artista {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -196,133 +231,163 @@ main{
                     width: 150px;
                     height: 150px;
                 }
-                & h2{
+
+                & h2 {
                     text-decoration: underline;
                 }
-                & p{
+
+                & p {
                     font-family: 'Lato', sans-serif;
                     width: 70%;
                 }
 
-                & tr,td,th{
-                    border-left:solid 2px var(--texto-rosa);
-                    border-right:solid 2px var(--texto-rosa);
+                & tr,
+                td,
+                th {
+                    border-left: solid 2px var(--texto-rosa);
+                    border-right: solid 2px var(--texto-rosa);
                     font-size: 18px;
                     text-align: center;
                     padding: 5px;
                 }
-                & th{
+
+                & th {
                     border-bottom: 2px solid var(--texto-rosa);
                 }
             }
         }
     }
 }
-.buttom-section-3{
-    background-color: var(--texto-rosa);
-    border: 2px solid var(--texto-amarelo);
-    width: 360px;
-    height: 70px;
-    font-size: 33px;
-    font-weight: 600;
-    border-radius: 80px;
+
+.buttom-section-3 {
+    width: 170px;
+    height: 50px;
+    align-self: center;
     margin-top: 25px;
-    height: 40px;
+    border-radius: 50px;
+    background-color: var(--texto-lilas);
+    color: black;
+
+    font-size: 20px;
+    font-weight: 795;
 }
-.buttom-section-3:hover{
+
+.buttom-section-3:hover {
     cursor: pointer;
     scale: 97%;
     transition: 0.3s;
 }
 
 
-#error_forms{
+#error_forms {
     color: red;
     font-size: 20px;
     text-align: center;
 }
 
-@media (max-width:1080px){
-    .section-1{
-        & h1{
-        font-size: 50px;
+@media (max-width:1080px) {
+    .section-1 {
+        & h1 {
+            font-size: 50px;
         }
-        & h2{
-        font-size: 18px;
-        border-bottom: 2px solid var(--texto-rosa);
-        margin-bottom: 15px;
+
+        & h2 {
+            font-size: 18px;
+            border-bottom: 2px solid var(--texto-rosa);
+            margin-bottom: 15px;
         }
-        & img{
-        display: none;
+
+        & img {
+            display: none;
         }
     }
+
     .text-section-1 {
         display: flex;
         flex-direction: column;
         width: 98%;
-        & a{
+
+        & a {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        & .buttom-section-1{
+
+        & .buttom-section-1 {
             margin-top: 20px;
             width: 80%;
-            height: 40px;  
+            height: 40px;
         }
     }
-    .divisor{
+
+    .divisor {
         height: 50px;
     }
-    .section-2{
+
+    .section-2 {
         padding: 0;
         align-items: center;
-        & .top-section-2{
+
+        & .top-section-2 {
             flex-direction: column;
             align-items: center;
             gap: 20px;
             width: 90%;
-            & h2{
+
+            & h2 {
                 font-size: 28px;
             }
-            & p{
+
+            & p {
                 font-size: 18px;
             }
-            & .infos-forms, .formulario{
+
+            & .infos-forms,
+            .formulario {
                 padding: 0;
                 width: 98%;
-                & label{
+
+                & label {
                     font-size: 20px;
                 }
-                & input{
+
+                & input {
                     height: 40px;
                     width: 98%;
                 }
-                & button{
+
+                & button {
                     width: 95%;
                     height: 40px;
                 }
             }
         }
-        & .resultado_simulacao{
+
+        & .resultado_simulacao {
             padding: 20px 0px;
             width: 100%;
             border-radius: 80px;
-            & .call-to-action{
-                & h2{
+
+            & .call-to-action {
+                & h2 {
                     font-size: 28px;
                 }
-                & p,b{
+
+                & p,
+                b {
                     font-size: 18px;
                 }
-                & b{
+
+                & b {
                     font-weight: 600;
                 }
             }
-            & .cards-artistas{
+
+            & .cards-artistas {
                 flex-direction: column;
                 align-items: center;
-                & .card-artista{
+
+                & .card-artista {
                     width: 98%;
                 }
             }
