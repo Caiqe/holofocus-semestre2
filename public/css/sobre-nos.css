@@ -5,7 +5,7 @@ body {
     overflow-x: hidden;
 }
 
-#header{
+#header {
     position: relative;
     z-index: 9999;
 }
@@ -37,16 +37,21 @@ body {
 h1 {
     position: absolute;
     top: 30%;
-    right: 10%;
-    font-size: 5vw;
+    right: 23%;
     z-index: 2;
+
+    font-size: var(--tituloP-font-size);
+    line-height: var(--tituloP-line-height);
+    letter-spacing: var(--tituloP-letter-spacing);
+    font-weight: var(--tituloP-font-weight);
 }
 
 p {
     position: absolute;
-    top: 47%;
-    right: 33%;
-    font-size: 2.5vw;
+    top: 42%;
+    right: 35%;
+    font-size: var(--texto-longo-font-size);
+    letter-spacing: var(--texto-longo-letter-spacing);
     color: #F0D48D;
     z-index: 2;
 }
@@ -71,6 +76,7 @@ p {
     top: 10%;
     right: 40%;
     font-size: 40px;
+    letter-spacing: -2px;
     color: #F0D48D;
 }
 
@@ -84,9 +90,10 @@ p {
 
 .t2 {
     text-align: right;
-    top: 72%;
+    top: 68%;
     right: 40%;
     font-size: 40px;
+    letter-spacing: -2px;
     color: #F0D48D;
 }
 
@@ -108,9 +115,11 @@ p {
 
 .div3 h1 {
     text-align: left;
-    top: 8%;
+    top: 17%;
     left: 40%;
-    font-size: 50px;
+    font-size: var(--texto-enfatico-font-size);
+    letter-spacing: var(--texto-enfatico-letter-spacing);
+    font-weight: var(--texto-enfatico-font-weight);
     color: #DA9EF7;
 }
 
@@ -121,6 +130,7 @@ p {
     left: 40%;
     right: 7%;
     font-size: 40px;
+    letter-spacing: -2px;
     color: #F0D48D;
 }
 
@@ -133,6 +143,9 @@ p {
     width: 70%;
     text-align: center;
     font-size: 50px;
+    line-height: var(--tituloP-line-height);
+    letter-spacing: var(--texto-enfatico-letter-spacing);
+    font-weight: var(--tituloP-font-weight);
     color: #DA9EF7;
 }
 
@@ -157,34 +170,42 @@ p {
     text-align: right;
     top: 38%;
     right: 40%;
-    font-size: 30px;
+    font-size: 40px;
+    font-weight: var(--texto-enfatico-font-weight);
+    letter-spacing: -2px;
     color: #DA9EF7;
 
 }
 
-.h1 {
+.textos .h1 {
     text-align: right;
     top: 42%;
     left: 7%;
     right: 40%;
     font-size: 25px;
     color: #F0D48D;
+    letter-spacing: 0px;
 }
 
-.titulo {
+.textos .titulo {
     text-align: right;
+    top: 38%;
     right: 40%;
-    left: 7%;
-    font-size: 30px;
+    font-size: 40px;
+    font-weight: var(--texto-enfatico-font-weight);
+    letter-spacing: -2px;
     color: #DA9EF7;
 }
 
-.text {
+.textos .text {
     text-align: right;
-    left: 7%;
+    top: 42%;
+    left: 13%;
     right: 40%;
     font-size: 25px;
     color: #F0D48D;
+    letter-spacing: 0px;
+    margin: 1% 0% 0% 0%
 }
 
 @media (max-width:1400px) {
@@ -207,12 +228,14 @@ p {
         font-size: 4vw;
         right: 12%;
         top: 28%;
+        letter-spacing: -1px;
     }
 
     .div1 p {
         font-size: 3vw;
-        right: 21%;
+        right: 25%;
         top: 45%;
+        letter-spacing: -1px;
     }
 
 
@@ -225,18 +248,21 @@ p {
         font-size: 4vw;
         right: 50%;
         top: 48%;
+        letter-spacing: -1px
     }
 
     .t1 {
         font-size: 3vw;
         right: 50%;
         top: 12%;
+        letter-spacing: 0px
     }
 
     .t2 {
         font-size: 3vw;
         right: 50%;
         top: 70%;
+        letter-spacing: 0px
     }
 
     .div3 img {
@@ -246,20 +272,23 @@ p {
 
     .div3 h1 {
         font-size: 3vw;
-        left: 50%;
+        left: 49%;
         top: 8%;
+        letter-spacing: -1px
     }
 
     .p1 {
         font-size: 3vw;
-        left: 50%;
+        left: 49%;
         top: 33%;
+        letter-spacing: 0px
     }
 
     .p2 {
         font-size: 4vw;
         width: 85%;
         top: 130%;
+        letter-spacing: 0px
     }
 
     .div4 img {
@@ -269,12 +298,12 @@ p {
     }
 
     .textos h1 {
-        font-size: 2.3vw;
-        right: 49%;
+        font-size: 21px;
+        right: 45%;
         top: 36%;
     }
 
-    .h1 {
+    .textos .h1 {
         font-size: 2.3vw;
         right: 49%;
         top: 39%;
@@ -288,5 +317,27 @@ p {
     .text {
         font-size: 2.3vw;
         right: 49%;
+    }
+
+    .textos .h1 {
+        top: 40%;
+        left: 8%;
+        right: 45%;
+        font-size: 15px;
+    }
+
+    .textos .titulo {
+        left: -13%;
+        right: 45%;
+        font-size: 21px;
+        margin: 2% 0% 0% 0%
+    }
+
+    .textos .text {
+        top: 40%;
+        left: 8%;
+        right: 45%;
+        font-size: 15px;
+        margin: 2% 0% 0% 0%
     }
 }

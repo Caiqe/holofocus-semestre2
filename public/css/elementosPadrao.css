@@ -17,7 +17,7 @@
     font-family: "Archivo", sans-serif;
 }
 
-/*Padronização de texto*/
+/*Padronização de texto 1920px*/
 :root {
     /*Título principal*/
     --tituloP-line-height: 90%;
@@ -41,8 +41,32 @@
 
     /*texto enfático laranja - EM CAIXA ALTA E LARANJA*/
     --textoE-laranja-font-weight: 900;
+}
 
+/*Padronização de texto 700px*/
+:root {
+    /*Título principal*/
+    --tituloP-line-height-600: 90%;
+    --tituloP-font-size-600: 60px;
+    --tituloP-letter-spacing-600: -5px;
+    --tituloP-font-weight-600: 900;
+    
+    /*Texto enfático*/
+    --texto-enfatico-font-size-600: 40px;
+    --texto-enfatico-letter-spacing-600: -3px;
+    --texto-enfatico-font-weight-600: 900;
 
+    /*Texto longo*/
+    --texto-longo-font-size-600: 42px;
+    --texto-longo-letter-spacing-600: -3px;
+
+    /*texto fonte pequena*/
+    --texto-fonte-pequena-font-size-600: 19px;
+    --texto-fonte-pequena-font-weight-600: 500;
+    --texto-fonte-pequena-line-height-600: 104%;
+
+    /*texto enfático laranja - EM CAIXA ALTA E LARANJA*/
+    --textoE-laranja-font-weight-600: 900;
 }
 
 a {
@@ -266,6 +290,7 @@ footer {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-top: 10%;
 }
 
 .main-footer {
