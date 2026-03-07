@@ -24,7 +24,7 @@
     --tituloP-font-size: 60px;
     --tituloP-letter-spacing: -5px;
     --tituloP-font-weight: 900;
-    
+
     /*Texto enfático*/
     --texto-enfatico-font-size: 40px;
     --texto-enfatico-letter-spacing: -3px;
@@ -50,7 +50,7 @@
     --tituloP-font-size-600: 60px;
     --tituloP-letter-spacing-600: -5px;
     --tituloP-font-weight-600: 900;
-    
+
     /*Texto enfático*/
     --texto-enfatico-font-size-600: 40px;
     --texto-enfatico-letter-spacing-600: -3px;
@@ -162,6 +162,22 @@ header.ativo .botaoHeader.cadastrar {
 
 header.ativo .botaoHeader.cadastrar a {
     color: var(--texto-lilas);
+}
+
+.cls-1,
+.cls-2 {
+    fill: #da9ef7;
+}
+
+header.ativo .cls-1,
+header.ativo .cls-2 {
+    fill: black;
+}
+
+.cls-2 {
+    font-family: ArialMT, Arial;
+    font-size: 50.36px;
+    letter-spacing: -.05em;
 }
 
 /* MOBILE */
