@@ -184,6 +184,9 @@ header.ativo .cls-2 {
 
 @media screen and (max-width: 600px) {
 
+    .main {
+        width: 182%;
+    }
     header {
         position: sticky;
         height: 70px;
