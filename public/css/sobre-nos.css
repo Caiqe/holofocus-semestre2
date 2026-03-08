@@ -156,8 +156,8 @@ p {
 }
 
 .div4 img {
-    width: 400px;
-    height: 660px;
+    width: 35%;
+    height: auto;
     border-radius: 10%;
     border: 2px solid #f0d48d9a;
     margin-top: 25%;
@@ -209,8 +209,6 @@ p {
 }
 
 @media (max-width:1400px) {
-
-
     body {
         margin: 0;
         padding: 0;
@@ -287,57 +285,60 @@ p {
     .p2 {
         font-size: 4vw;
         width: 85%;
-        top: 130%;
         letter-spacing: 0px
     }
 
-    .div4 img {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .img1 {
         width: 35%;
-        height: auto;
-        margin-top: 35%;
     }
 
-    .textos h1 {
-        font-size: 21px;
-        right: 45%;
-        top: 36%;
+    .img2 {
+        width: 40%;
     }
 
-    .textos .h1 {
-        font-size: 2.3vw;
-        right: 49%;
-        top: 39%;
+    .div4 {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50%;
+        gap: 20px;
     }
 
-    .titulo {
-        font-size: 2.3vw;
-        right: 49%;
+    .div4 img {
+        display: none;
     }
 
-    .text {
-        font-size: 2.3vw;
-        right: 49%;
+    .textos {
+        position: static;
+        width: 69%;
+        text-align: center;
     }
 
-    .textos .h1 {
-        top: 40%;
-        left: 8%;
-        right: 45%;
-        font-size: 15px;
-    }
-
-    .textos .titulo {
-        left: -13%;
-        right: 45%;
-        font-size: 21px;
-        margin: 2% 0% 0% 0%
-    }
-
+    .textos h1,
+    .textos .titulo,
+    .textos .h1,
     .textos .text {
-        top: 40%;
-        left: 8%;
-        right: 45%;
-        font-size: 15px;
-        margin: 2% 0% 0% 0%
+        position: static;
+        right: auto;
+        left: auto;
+        top: auto;
+    }
+
+    .textos h1,
+    .textos .titulo {
+        font-size: 26px;
+        margin: 1% 0% -1% 0%;
+        text-align: center;
+    }
+
+    .textos .h1,
+    .textos .text {
+        font-size: 18px;
+        text-align: center;
+        margin: 1% 0% 3% 0%;
     }
 }
