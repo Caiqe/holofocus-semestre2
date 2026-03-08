@@ -5,11 +5,6 @@ body {
     overflow-x: hidden;
 }
 
-#header {
-    position: relative;
-    z-index: 9999;
-}
-
 .div1 {
     display: flex;
     position: relative;
