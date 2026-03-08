@@ -130,6 +130,7 @@ main {
     flex-direction: row;
     margin: 5%;
     gap: 3%;
+    justify-content: center;
 }
 
 .text-container {
@@ -234,6 +235,7 @@ main {
 
 /*Resposividade para 600px ----------------------------------------------------------------------------------------------------------------------*/
 @media (max-width: 600px) {
+
     /* SECTION 1 --------------------------------------------------------------------------------------------------------------------------------*/
     .video-container {
         width: 95%;
@@ -260,6 +262,7 @@ main {
         flex-direction: column;
         align-items: center;
         width: 45%;
+        justify-content: center;
     }
 
     .texto-fonte-grande {
