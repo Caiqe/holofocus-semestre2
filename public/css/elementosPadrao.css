@@ -87,6 +87,8 @@ header {
     align-items: center;
     justify-content: space-around;
     font-weight: 900;
+    position: relative;
+    z-index: 9999;
 }
 
 .hamburger {
