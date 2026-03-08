@@ -306,8 +306,7 @@ main {
     }
 
     .section-2 .img-container {
-        width: 100%;
-        height: 250px;
+        display: none;
     }
 
     .section-2 .text-container {
