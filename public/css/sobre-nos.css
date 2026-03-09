@@ -151,11 +151,11 @@ p {
 }
 
 .div4 img {
-    width: 35%;
-    height: auto;
+    width: 400px;
+    height: 660px;
     border-radius: 10%;
     border: 2px solid #f0d48d9a;
-    margin-top: 25%;
+    margin-top: 30%;
     margin-bottom: 5%;
     margin-left: auto;
     margin-right: 7%;
