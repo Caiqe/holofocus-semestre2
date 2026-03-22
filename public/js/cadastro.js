@@ -57,7 +57,7 @@ function proximo() {
     inpRazao = document.getElementById('inptRazaoSocial')
     razaoVar = inpRazao.value
     inpCnpj = document.getElementById('inptCNPJ')
-    cnpjVar = inpCnpj.value
+    cnpjVar = inpCnpj.value.replace(/\D/g, "")
     inpCep = document.getElementById('inptCEP')
     inpEndereco = document.getElementById('inptEndereco')
     enderecoVar = inpEndereco.value
@@ -66,28 +66,25 @@ function proximo() {
     inpComplemento = document.getElementById('inptComplemento')
     complementoVar = inpComplemento.value
 
-    let cnpj = inpCnpj.value.replaceAll('.', '') 
-    cnpj = cnpj.replaceAll('/', '') 
-    cnpjVar = cnpj.replaceAll('-', '')
-
     cepVar = inpCep.value.replace(/\D/g, "")
 
     if (razaoVar.trim() !== "" &&
-     validarCnpj(inpCnpj.value) &&
-     cepVar.trim().length === 8 &&
-     inpEndereco.value.trim() !== "" &&
-     inpNumero.value.trim() !== "") {
-        // if (!buscarPorCnpj(inpCnpj.value)) {
+        validarCnpj(inpCnpj.value) &&
+        cepVar.trim().length === 8 &&
+        inpEndereco.value.trim() !== "" &&
+        inpNumero.value.trim() !== "") {
+
+        if (!buscarPorCnpj(inpCnpj.value)) {
 
             pt1.style.display = 'none'
             pt2.style.display = 'flex'
             document.getElementById("divFundo").style.backgroundImage = 'url("../assets/imgs/fundo-cadastro-parte-2.jpg")'
             return
 
-        // } else {
-            // erro("4000", 'CNPJ já cadastrado')
-            // return
-        // }    
+        } else {
+            erro("4000", 'CNPJ já cadastrado')
+            return
+        }
     }
     erro("2000", "Erro", "Por favor revise os campos e preencha os dados corretamente")
 }
@@ -95,7 +92,7 @@ function proximo() {
 function voltar() {
     pt2.style.display = 'none'
     pt1.style.display = 'flex'
-    document.getElementById("divFundo").style.backgroundImage = 'url("../assets/imgs/fundo-cadastro-parte-1.jpg")'        
+    document.getElementById("divFundo").style.backgroundImage = 'url("../assets/imgs/fundo-cadastro-parte-1.jpg")'
 }
 
 let inpNome = document.getElementById('inptNome')
@@ -116,66 +113,66 @@ async function cadastrar() {
     inpConfirma = document.getElementById('inptConfirmaSenha')
 
     if (nomeVar !== "" &&
-     validarEmail(emailVar) &&
-     validarCelular(celularVar) &&
-     validarSenha(senhaVar) &&
-     senhaVar === inpConfirma.value) {
+        validarEmail(emailVar) &&
+        validarCelular(celularVar) &&
+        validarSenha(senhaVar) &&
+        senhaVar === inpConfirma.value) {
 
-        // const respCadEmpresa = await fetch("/empresas/cadastrar", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         razaoServer: razaoVar,
-        //         cnpjServer: cnpjVar,
-        //         cepServer: cepVar,
-        //         enderecoServer: enderecoVar,
-        //         numeroServer: numeroVar,
-        //         cepServer: cepVar
-        //     }),
-        // })
+        const respCadEmpresa = await fetch("/empresas/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                razaoServer: razaoVar,
+                cnpjServer: cnpjVar,
+                cepServer: cepVar,
+                enderecoServer: enderecoVar,
+                numeroServer: numeroVar,
+                cepServer: cepVar
+            }),
+        })
 
-        // if (!respCadEmpresa.ok) {
-        //     erro("2000", 'Verifique se as informações foram digitadas corretamente')
-        //     return
-        // }
+        if (!respCadEmpresa.ok) {
+            erro("2000", 'Verifique se as informações foram digitadas corretamente')
+            return
+        }
 
-        // let idCnpjAtual = buscarPorCnpj(cnpjVar)
+        let idCnpjAtual = buscarPorCnpj(cnpjVar)
 
-        // if (idCnpjAtual == null) {
-        //     erro("4000", "Erro interno, peça ajuda ao nosso suporte")
-        //     return
-        // }
+        if (idCnpjAtual == null) {
+            erro("4000", "Erro interno, peça ajuda ao nosso suporte")
+            return
+        }
 
-        // const respCadUsuario = await fetch('/usuarios/cadastrar', {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({
-        //         idEmpresaServer: idCnpjAtual,
-        //         nomeServer: nomeVar,
-        //         celularServer: celularVar,
-        //         emailServer: emailVar,
-        //         senhaServer: senhaVar
-        //     })
-        // })
+        const respCadUsuario = await fetch('/usuarios/cadastrar', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idEmpresaServer: idCnpjAtual,
+                nomeServer: nomeVar,
+                telefoneServer: celularVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        })
 
-        // if (!respCadUsuario.ok) {
-        //     erro("3000", "Erro ao cadastrar o usuario, verifique as informações inseridas")
+        if (!respCadUsuario.ok) {
+            erro("3000", "Erro ao cadastrar o usuario, verifique as informações inseridas")
 
-        //     await fetch(`/empresas/deletarEmpresa/${idCnpjAtual}`, {
-        //         method: "DELETE",
-        //         headers: {"Content-Type": "aplication/json"}
-        //     })
+            await fetch(`/empresas/deletarEmpresa/${idCnpjAtual}`, {
+                method: "DELETE",
+                headers: { "Content-Type": "aplication/json" }
+            })
 
-        //     return
-        // }
+            return
+        }
 
         erro("2000", "Sucesso", 'Cadastro realizado com sucesso')
 
         setTimeout(() => {
             window.location = "login.html";
-        }, "5000");
+        }, "3000");
         return
     }
 
@@ -291,14 +288,14 @@ function mascaraCelular(input) {
     input.value = valor
 }
 
-document.getElementById("inptCNPJ").addEventListener("input", function() {
+document.getElementById("inptCNPJ").addEventListener("input", function () {
     mascaraCnpj(this)
 })
 
-document.getElementById("inptCEP").addEventListener("input", function() {
+document.getElementById("inptCEP").addEventListener("input", function () {
     mascaraCep(this)
 })
 
-document.getElementById("inptCelular").addEventListener("input", function() {
+document.getElementById("inptCelular").addEventListener("input", function () {
     mascaraCelular(this)
 })
