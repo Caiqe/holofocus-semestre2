@@ -1,62 +1,123 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
+CREATE DATABASE holofocus;
 
-/*
-comandos para mysql server
-*/
+USE holofocus;
 
-CREATE DATABASE aquatech;
+--TABELAS --------------------------------------------------------------------------------------------*
+-- Seção Organizacional
+CREATE TABLE endereco (
+    id_endereco INT PRIMARY KEY AUTO_INCREMENT,
+    cep VARCHAR(8) NOT NULL,
+    logradouro VARCHAR(60)  NOT NULL,
+    numero VARCHAR(10)  NOT NULL,
+    complemento VARCHAR(60)
+);
 
-USE aquatech;
+CREATE TABLE nivel_acesso (
+    id_nivel_acesso INT PRIMARY KEY AUTO_INCREMENT,
+    tipo_acesso VARCHAR(7) NOT NULL,
+    descricao VARCHAR(100)  NOT NULL
+);
 
 CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
+	id_empresa INT PRIMARY KEY AUTO_INCREMENT,
+	razao_social VARCHAR(80) NOT NULL UNIQUE,
+    lotacao INT,
+	cnpj CHAR(14) NOT NULL UNIQUE,
+    perfil_artistas VARCHAR(14),
+    fk_endereco INT NOT NULL,
+	CONSTRAINT fk_empresa_endereco
+    FOREIGN KEY (fk_endereco) REFERENCES endereco(id_endereco)
 );
+
 
 CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(60) NOT NULL,
+    email VARCHAR(60) NOT NULL UNIQUE,
+    telefone VARCHAR(11) NOT NULL UNIQUE,
+    senha VARCHAR(40) NOT NULL,
+    fk_nivel_acesso INT NOT NULL,
+    fk_empresa INT NOT NULL,
+    CONSTRAINT fk_usuario_nivel
+    FOREIGN KEY (fk_nivel_acesso) REFERENCES nivel_acesso(id_nivel_acesso),
+    CONSTRAINT fk_usuario_empresa
+    FOREIGN KEY (fk_empresa) REFERENCES empresa(id_empresa)
+
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+
+
+
+
+-- Seção Base de dados
+CREATE TABLE genero (
+    id_genero INT PRIMARY KEY AUTO_INCREMENT,
+    titulo_genero VARCHAR(30) NOT NULL
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE pais(
+    id_pais INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(30)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+CREATE TABLE artista (
+    id_artista INT PRIMARY KEY AUTO_INCREMENT,
+    artista_nome VARCHAR(60) NOT NULL,
+    fk_pais INT NOT NULL,
+    CONSTRAINT fk_artista_pais
+    Foreign Key (fk_pais) REFERENCES pais(id_pais)
 );
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+CREATE TABLE musica (
+    id_musica INT PRIMARY KEY AUTO_INCREMENT,
+    titulo_musica VARCHAR(80) NOT NULL,
+    data_lancamento DATE,
+    duracao INT,
+    popularidade INT NOT NULL,
+    dancabilidade DOUBLE(3,2),
+    explicita TINYINT NOT NULL,
+    contagem_streams INT NOT NULL,
+    energia DOUBLE(3,2),
+    fk_artista INT NOT NULL,
+    fk_genero INT NOT NULL,
+    CONSTRAINT fk_musica_artista
+    FOREIGN KEY (fk_artista) REFERENCES artista(id_artista),
+    CONSTRAINT fk_musica_genero
+    FOREIGN KEY (fk_genero) REFERENCES genero(id_genero)
+);
+
+CREATE TABLE evento (
+    id_evento INT PRIMARY KEY AUTO_INCREMENT,
+    nome_evento VARCHAR(60),
+    data_evento DATE,
+    investimento_evento DOUBLE(10,2),
+    retorno_evento DOUBLE(10,2),
+    total_pessoas INT,
+    fk_empresa INT NOT NULL,
+    fk_artista INT NOT NULL,
+    fk_genero INT NOT NULL,
+    CONSTRAINT fk_empresa_evento
+    FOREIGN KEY (fk_empresa) REFERENCES empresa(id_empresa),
+    CONSTRAINT fk_evento_artista
+    FOREIGN KEY (fk_artista) REFERENCES artista(id_artista),
+    CONSTRAINT fk_evento_genero
+    FOREIGN KEY (fk_genero) REFERENCES genero(id_genero)
+);
+
+
+
+
+-- Seção logs
+CREATE TABLE tipo_log (
+    id_tipo_log INT PRIMARY KEY AUTO_INCREMENT,
+    tipo_log VARCHAR(20)
+);
+
+CREATE TABLE logs_site (
+    id_logs_site INT PRIMARY KEY AUTO_INCREMENT,
+    data_hora DATETIME,
+    titulo VARCHAR(20),
+    fk_tipo INT NOT NULL,
+    CONSTRAINT fk_logs_tipo
+    FOREIGN KEY (fk_tipo) REFERENCES tipo_log(id_tipo_log)
+);
