@@ -2,7 +2,7 @@ CREATE DATABASE holofocus;
 
 USE holofocus;
 
---TABELAS --------------------------------------------------------------------------------------------*
+-- TABELAS --------------------------------------------------------------------------------------------*
 -- Seção Organizacional
 CREATE TABLE endereco (
     id_endereco INT PRIMARY KEY AUTO_INCREMENT,
