@@ -6,6 +6,10 @@ import school.sptech.model.Artista;
 import school.sptech.model.Log;
 import school.sptech.model.Musica;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,12 +17,22 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Conexao conexao = new Conexao();
-        JdbcTemplate template = new JdbcTemplate(conexao.getConexao());
+        Conexao conexaoo = new Conexao();
+        JdbcTemplate template = new JdbcTemplate(conexaoo.getConexao());
         Scanner sc = new Scanner(System.in);
         int acaoDesejada = -1;
         List<Log> logsBD = new ArrayList<Log>();
         Log log;
+
+
+        String url = "jdbc:mysql://127.0.0.1:3306/holofocus";
+        String usuario = "root";
+        String senha = "P@ssw0rd";
+
+        String sqlPais = "INSERT INTO pais (nome) VALUES (?);" ;
+        String sqlArtista = "INSERT INTO artista (artista_nome, fk_pais) VALUES (?, ?)";
+        String sqlGenero = "INSERT INTO genero (titulo_genero) VALUES (?)";
+        String sqlMusica = "INSERT INTO musica (titulo_musica, data_lancamento, duracao, popularidade, dancabilidade, explicita, contagem_streams, energia, volume, tempo, instrumentabilidade, fk_artista, fk_genero) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         //BASE DE DADOS
         String nomeArquivo = "holofocus-bdd.xlsx";
@@ -43,6 +57,38 @@ public class Main {
                 List<Artista> dadosExtraidos = leitorExcel.extrairDados(nomeArquivo);
                 leitorExcel.gerarRelatorio();
 
+
+                System.out.println("Inserindo Logs no Banco de dados...");
+                // Inserindo logs no BD
+                List<Log> logs = leitorExcel.getLogs();
+                String queryLogs = "INSERT INTO log (data_hora, titulo, fk_tipo, fk_artefato) VALUES ";
+                for (int i = 0; i < 30000; i++) {
+                    int tipo = logs.get(i).getTipo().equals("INFO") ? 1 : logs.get(i).getTipo().equals("SUCESSO") ? 2 : 3 ;
+                    int artefato = logs.get(i).getArtefato().equals("BASE DE DADOS") ? 1 : 2;
+
+                    if(i != 0){
+                        queryLogs += ",\n('"+logs.get(i).getDataHora()+"', '"+logs.get(i).getTitulo()+"', "+tipo+", "+artefato+")";
+                    }else{
+                        queryLogs += "\n('"+logs.get(i).getDataHora()+"', '"+logs.get(i).getTitulo()+"', "+tipo+", "+artefato+")";
+                    }
+                }
+                queryLogs+=";";
+                template.update(queryLogs);
+
+                queryLogs = "INSERT INTO log (data_hora, titulo, fk_tipo, fk_artefato) VALUES ";
+                for (int i = 30000; i < logs.size(); i++) {
+                    int tipo = logs.get(i).getTipo().equals("INFO") ? 1 : logs.get(i).getTipo().equals("SUCESSO") ? 2 : 3 ;
+                    int artefato = logs.get(i).getArtefato().equals("BASE DE DADOS") ? 1 : 2;
+
+                    if(i != 30000){
+                        queryLogs += ",\n('"+logs.get(i).getDataHora()+"', '"+logs.get(i).getTitulo()+"', "+tipo+", "+artefato+")";
+                    }else{
+                        queryLogs += "\n('"+logs.get(i).getDataHora()+"', '"+logs.get(i).getTitulo()+"', "+tipo+", "+artefato+")";
+                    }
+                }
+                queryLogs+=";";
+                template.update(queryLogs);
+
                 int menu2 = -1;
                 do{
                     System.out.println("""
@@ -60,10 +106,12 @@ public class Main {
                 switch (menu2){
                     case 1:{
                         System.out.println("Aguarde...");
+
+
                         /*
                         * INSERINDO PAISES NO BANCO DE DACOS
                         * */
-                        log = new Log("INICIANDO INSERÇÃO DE PAISES", "INFO");
+                        log = new Log("INICIANDO INSERÇÃO DE PAISES", "INFO", "BANCO DE DADOS");
                         System.out.println(log);
                         logsBD.add(log);
                         List<String> paises = new ArrayList<>();
@@ -72,47 +120,56 @@ public class Main {
                                 paises.add(dadosExtraidos.get(i).getPais());
                             }
                         }
-                        String queryPais = "INSERT INTO pais (nome) VALUES ";
-                        for (int i = 0; i < paises.size(); i++) {
-                            if(i != 0){
-                                queryPais+=",\n('"+paises.get(i)+"')";
-                            }else{
-                                queryPais+="\n('"+paises.get(i)+"')";
+                        try(Connection conexao = DriverManager.getConnection(url,usuario,senha);
+                        PreparedStatement stmt = conexao.prepareStatement(sqlPais)){
+                            conexao.setAutoCommit(false);
+                            for (int i = 0; i < paises.size(); i++) {
+                                stmt.setString(1, paises.get(i));
+                                stmt.addBatch();
                             }
+                            stmt.executeBatch();
+                            conexao.commit();
+                            log = new Log("INSERÇÃO DE PAISES FINALIZADA", "SUCESSO", "BANCO DE DADOS");
+                            System.out.println(log);
+                            logsBD.add(log);
+                        }catch (SQLException e){
+                            log = new Log("ERRO AO INSERIR PAÍSES", "ERRO", "BANCO DE DADOS");
+                            System.out.println(log);
+                            logsBD.add(log);
+                            System.out.println(e);
                         }
-                        queryPais+=";";
-                        template.update(queryPais); //ENVIANDO QUERY
-                        log = new Log("INSERÇÃO DE PAISES FINALIZADA", "SUCESSO");
-                        System.out.println(log);
-                        logsBD.add(log);
 
+                        try(Connection conexao = DriverManager.getConnection(url,usuario,senha);
+                        PreparedStatement stmt = conexao.prepareStatement(sqlArtista)){
 
-                        /*
-                        * INSERINDO ARTISTAS NO BANCO DE DADOS
-                        * */
-                        log = new Log("INICIANDO INSERÇÃO DE ARTISTAS", "INFO");
-                        System.out.println(log);
-                        logsBD.add(log);
-                        String queryArtista = "INSERT INTO artista (artista_nome, fk_pais) VALUES ";
-                        for (int i = 0; i < dadosExtraidos.size(); i++) {
-                            if(i != 0){
-                                queryArtista+=",\n('"+dadosExtraidos.get(i).getNome()+"', (SELECT id_pais FROM pais WHERE nome = '"+dadosExtraidos.get(i).getPais()+"'))";
-                            }else{
-                                queryArtista+="\n('"+dadosExtraidos.get(i).getNome()+"', (SELECT id_pais FROM pais WHERE nome = '"+dadosExtraidos.get(i).getPais()+"'))";
+                            conexao.setAutoCommit(false);
+
+                            for (int i = 0; i < dadosExtraidos.size(); i++) {
+                                Artista artista = dadosExtraidos.get(i);
+                                stmt.setString(1, dadosExtraidos.get(i).getNome());
+                                int idPais = paises.indexOf(artista.getPais())+1;
+                                stmt.setInt(2, idPais);
+                                stmt.addBatch();
                             }
+                            stmt.executeBatch();
+                            conexao.commit();
+
+                            log = new Log("INSERÇÃO DE ARTISTAS FINALIZADA", "SUCESSO", "BANCO DE DADOS");
+                            System.out.println(log);
+                            logsBD.add(log);
+
+                        }catch (SQLException e){
+                            log = new Log("ERRO NA INSERÇÃO DE ARTISTAS", "ERRO", "BANCO DE DADOS");
+                            System.out.println(log);
+                            logsBD.add(log);
+                            System.out.println(e);
                         }
-                        queryArtista+=";";
-                        template.update(queryArtista); //ENVIANDO QUERY
-                        log = new Log("INSERÇÃO DE ARTISTAS FINALIZADA", "SUCESSO");
-                        System.out.println(log);
-                        logsBD.add(log);
-
-
-                        /*
-                        * INSERINDO GÊNEROS
-                        * */
+//
+//                        /*
+//                        * INSERINDO GÊNEROS
+//                        * */
                         List<String> generos = new ArrayList<>();
-                        log = new Log("INICIANDO INSERÇÃO DE GENEROS", "INFO");
+                        log = new Log("INICIANDO INSERÇÃO DE GENEROS", "INFO", "BANCO DE DADOS");
                         System.out.println(log);
                         logsBD.add(log);
                         for (int i = 0; i < dadosExtraidos.size(); i++) {
@@ -122,65 +179,89 @@ public class Main {
                                 }
                             }
                         }
-                        String queryGenero = "INSERT INTO genero (titulo_genero) VALUES ";
-                        for (int i = 0; i < generos.size(); i++) {
-                            if(i != 0){
-                                queryGenero+=",\n('"+generos.get(i)+"')";
-                            }else{
-                                queryGenero+="\n('"+generos.get(i)+"')";
-                            }
-                        }
-                        queryGenero+=";";
-                        template.update(queryGenero);
-                        log = new Log("INSERÇÃO DE GENEROS FINALIZADA", "SUCESSO");
-                        System.out.println(log);
-                        logsBD.add(log);
 
-                        /*
-                         * INSERINDO MÚSICAS parte 1
-                         * */
-                        log = new Log("INICIANDO INSERÇÃO DE MUSICAS", "INFO");
+                          try(Connection conexao = DriverManager.getConnection(url, usuario, senha);
+                          PreparedStatement stmt = conexao.prepareStatement(sqlGenero)){
+
+                              conexao.setAutoCommit(false);
+
+                              for (int i = 0; i < generos.size(); i++) {
+                                  stmt.setString(1, generos.get(i));
+                                  stmt.addBatch();
+                              }
+                              stmt.executeBatch();
+                              conexao.commit();
+
+                              log = new Log("INSERÇÃO DE GENEROS FINALIZADA", "SUCESSO", "BANCO DE DADOS");
+                              System.out.println(log);
+                              logsBD.add(log);
+
+                          }catch (SQLException e){
+                              log = new Log("ERRO NA INSERÇÃO DE GENEROS", "ERRO", "BANCO DE DADOS");
+                              System.out.println(log);
+                              logsBD.add(log);
+                              System.out.println(e);
+                          }
+
+//                        /*
+//                         * INSERINDO MÚSICAS parte 1
+//                         * */
+                        log = new Log("INICIANDO INSERÇÃO DE MUSICAS", "INFO", "BANCO DE DADOS");
                         System.out.println(log);
                         logsBD.add(log);
                         Musica musica;
-                        String queryMusica = "INSERT INTO musica (titulo_musica, data_lancamento, duracao, popularidade, dancabilidade, explicita, contagem_streams, energia, volume, tempo, instrumentabilidade, fk_artista, fk_genero) VALUES ";
-                        for (int i = 0; i < 30000; i++) {
-                            for (int i1 = 0; i1 < dadosExtraidos.get(i).getMusicas().size(); i1++) {
-                                musica = dadosExtraidos.get(i).getMusicas().get(i1);
-                                int id_genero = 1+generos.indexOf(musica.getGenero());
-                                int id_artista = i+1;
-                                if(i != 0){
-                                    queryMusica+= ",\n('"+musica.getTitulo_musica()+"', '"+musica.getData_lancamento()+"', "+ musica.getDuracao()+", "+ musica.getPopularidade()+", "+ musica.getDancabilidade()+", "+ musica.getIsExplicita()+", "+ musica.getContagem_streams()+", "+musica.getEnergia()+", "+musica.getVolume()+", "+ musica.getTempo()+", "+ musica.getInstrumentabilidade()+", "+id_artista+", "+id_genero+")";
-                                }else {
-                                    queryMusica += "\n('"+musica.getTitulo_musica()+"', '"+musica.getData_lancamento()+"', "+ musica.getDuracao()+", "+ musica.getPopularidade()+", "+ musica.getDancabilidade()+", "+ musica.getIsExplicita()+", "+ musica.getContagem_streams()+", "+musica.getEnergia()+", "+musica.getVolume()+", "+ musica.getTempo()+", "+ musica.getInstrumentabilidade()+", "+id_artista+", "+id_genero+")";
-                                }
-                            }
-                        }
-                        queryMusica+=";";
-                        template.update(queryMusica);
 
-                        /*
-                         * INSERINDO MÚSICAS parte 2
-                         * */
-                        queryMusica = "INSERT INTO musica (titulo_musica, data_lancamento, duracao, popularidade, dancabilidade, explicita, contagem_streams, energia, volume, tempo, instrumentabilidade, fk_artista, fk_genero) VALUES ";
-                        for (int i = 30000; i < dadosExtraidos.size(); i++) {
-                            for (int i1 = 0; i1 < dadosExtraidos.get(i).getMusicas().size(); i1++) {
-                                musica = dadosExtraidos.get(i).getMusicas().get(i1);
-                                int id_genero = 1+generos.indexOf(musica.getGenero());
-                                int id_artista = i+1;
-                                if(i != 30000){
-                                    queryMusica+= ",\n('"+musica.getTitulo_musica()+"', '"+musica.getData_lancamento()+"', "+ musica.getDuracao()+", "+ musica.getPopularidade()+", "+ musica.getDancabilidade()+", "+ musica.getIsExplicita()+", "+ musica.getContagem_streams()+", "+musica.getEnergia()+", "+musica.getVolume()+", "+ musica.getTempo()+", "+ musica.getInstrumentabilidade()+", "+id_artista+", "+id_genero+")";
-                                }else {
-                                    queryMusica += "\n('"+musica.getTitulo_musica()+"', '"+musica.getData_lancamento()+"', "+ musica.getDuracao()+", "+ musica.getPopularidade()+", "+ musica.getDancabilidade()+", "+ musica.getIsExplicita()+", "+ musica.getContagem_streams()+", "+musica.getEnergia()+", "+musica.getVolume()+", "+ musica.getTempo()+", "+ musica.getInstrumentabilidade()+", "+id_artista+", "+id_genero+")";
+                        try(Connection conexao = DriverManager.getConnection(url,usuario,senha);
+                        PreparedStatement stmt = conexao.prepareStatement(sqlMusica)){
+
+                            conexao.setAutoCommit(false);
+
+
+                            for (int i = 0; i < dadosExtraidos.size(); i++) {
+                                for (int i1 = 0; i1 < dadosExtraidos.get(i).getMusicas().size(); i1++) {
+                                    musica = dadosExtraidos.get(i).getMusicas().get(i1);
+                                    int id_genero = 1+generos.indexOf(musica.getGenero());
+                                    int id_artista = i+1;
+                                    stmt.setString(1, musica.getTitulo_musica());
+                                    stmt.setObject(2, musica.getData_lancamento());
+                                    stmt.setInt(3, musica.getDuracao());
+                                    stmt.setDouble(4, musica.getPopularidade());
+                                    stmt.setDouble(5, musica.getDancabilidade());
+                                    stmt.setInt(6, musica.getIsExplicita());
+                                    stmt.setInt(7, musica.getContagem_streams());
+                                    stmt.setDouble(8, musica.getEnergia());
+                                    stmt.setDouble(9, musica.getVolume());
+                                    stmt.setDouble(10, musica.getTempo());
+                                    stmt.setDouble(11, musica.getInstrumentabilidade());
+                                    stmt.setInt(12,id_artista);
+                                    stmt.setInt(13,id_genero);
+                                    stmt.addBatch();
                                 }
                             }
+                            stmt.executeBatch();
+                            conexao.commit();
+
+                        }catch (SQLException e){
+                            System.out.println(e);
                         }
-                        queryMusica+=";";
-                        template.update(queryMusica);
-                        log = new Log("INSERÇÃO DE MUSICAS FINALIZADA", "SUCESSO");
-                        System.out.println(log);
-                        logsBD.add(log);
-                    }
+
+
+                        //INSERINDO LOGS NO BD
+                        System.out.println("Inserindo Logs no Banco de dados...");
+                        queryLogs = "INSERT INTO log (data_hora, titulo, fk_tipo, fk_artefato) VALUES ";
+                        for (int i = 0; i < logsBD.size(); i++) {
+                            int tipo = logsBD.get(i).getTipo().equals("INFO") ? 1 : logsBD.get(i).getTipo().equals("SUCESSO") ? 2 : 3 ;
+                            int artefato = logsBD.get(i).getArtefato().equals("BASE DE DADOS") ? 1 : 2;
+
+                            if(i != 0){
+                                queryLogs += ",\n('"+logsBD.get(i).getDataHora()+"', '"+logsBD.get(i).getTitulo()+"', "+tipo+", "+artefato+")";
+                            }else{
+                                queryLogs += "\n('"+logsBD.get(i).getDataHora()+"', '"+logsBD.get(i).getTitulo()+"', "+tipo+", "+artefato+")";
+                            }
+                        }
+                        queryLogs+=";";
+                        template.update(queryLogs);
+                   }
 
                 }
 

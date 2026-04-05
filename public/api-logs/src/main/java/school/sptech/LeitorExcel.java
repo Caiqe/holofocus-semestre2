@@ -32,7 +32,7 @@ public class LeitorExcel {
                 InputStream arquivo = new FileInputStream(nomeArquivo);
                 Workbook workbook = new XSSFWorkbook(arquivo) // caso seja .xls troque para HSSFWorkbook
         ) {
-            log = new Log("INICIANDO LEITURA BASE DE DADOS", "INFO");
+            log = new Log("INICIANDO LEITURA BASE DE DADOS", "INFO", "BASE DE DADOS");
             logs.add(log);
             System.out.println(log);
 
@@ -45,7 +45,7 @@ public class LeitorExcel {
                 }
 
                 // Extraindo valor das células e criando objeto Artista e Musica
-                log = new Log("LENDO LINHA "+row.getRowNum(), "SUCESSO");
+                log = new Log("LENDO LINHA "+row.getRowNum(), "SUCESSO", "BASE DE DADOS");
                 logs.add(log);
                 System.out.println(log);
 
@@ -94,16 +94,16 @@ public class LeitorExcel {
             LocalDateTime horaTermino = LocalDateTime.now();
             Duration duracao = Duration.between(horaInicio, horaTermino);
             tempoDecorrido = duracao.getSeconds();
-            log = new Log("LEITURA BASE DE DADOS FINALIZADA", "SUCESSO");
+            log = new Log("LEITURA BASE DE DADOS FINALIZADA", "SUCESSO", "BASE DE DADOS");
             logs.add(log);
             System.out.println(log);
-            log = new Log("TEMPO DECORRIDO: "+tempoDecorrido+" segundos", "INFO");
+            log = new Log("TEMPO DECORRIDO: "+tempoDecorrido+" segundos", "INFO", "BASE DE DADOS");
             logs.add(log);
             System.out.println(log);
 
             return artistas;
         } catch (IOException e) {
-            log = new Log("FALHA AO LER BASE DE DADOS", "ERRO");
+            log = new Log("FALHA AO LER BASE DE DADOS", "ERRO", "BASE DE DADOS");
             logs.add(log);
             System.out.println(log);
             LocalDateTime horaTermino = LocalDateTime.now();
