@@ -115,12 +115,28 @@ CREATE TABLE tipo_log (
     id_tipo_log INT PRIMARY KEY AUTO_INCREMENT,
     tipo_log VARCHAR(20)
 );
+INSERT INTO tipo_log (tipo_log) VALUES
+('INFO'),
+('SUCESSO'),
+('ERRO');
 
-CREATE TABLE logs_site (
+CREATE TABLE artefato (
+id_artefato INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(20)
+);
+
+INSERT INTO artefato (nome) VALUES 
+('BASE DE DADOS'),
+('BANCO DE DADOS');
+
+CREATE TABLE log (
     id_logs_site INT PRIMARY KEY AUTO_INCREMENT,
     data_hora DATETIME,
-    titulo VARCHAR(20),
+    titulo VARCHAR(60),
     fk_tipo INT NOT NULL,
     CONSTRAINT fk_logs_tipo
-    FOREIGN KEY (fk_tipo) REFERENCES tipo_log(id_tipo_log)
+    FOREIGN KEY (fk_tipo) REFERENCES tipo_log(id_tipo_log),
+    fk_artefato INT NOT NULL,
+    FOREIGN KEY (fk_artefato)
+    REFERENCES artefato(id_artefato)
 );
