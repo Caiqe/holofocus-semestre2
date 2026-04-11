@@ -130,7 +130,7 @@ INSERT INTO artefato (nome) VALUES
 ('BANCO DE DADOS');
 
 CREATE TABLE log (
-    id_logs_site INT PRIMARY KEY AUTO_INCREMENT,
+    id_log INT PRIMARY KEY AUTO_INCREMENT,
     data_hora DATETIME,
     titulo VARCHAR(60),
     fk_tipo INT NOT NULL,
