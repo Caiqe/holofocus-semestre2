@@ -51,9 +51,41 @@ p{
     }
 }
 #btt__sair{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: #DA9EF7;
     border-radius: 16px;
-    width: 75%;
+    width: 40%;
     padding: 5px 25px;
     gap: 10px;
+    margin-top: 25px;
+}
+
+main{
+    background-color: black;
+    width: 76%;
+    height: 96vh;
+    border-radius: 16px;
+    margin-top: 15px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+#section__2{
+    padding: 20px 0px 5rem 0px;
+}
+
+#section__3{
+    padding: 20px 0px 5rem 0px;
+}
+.button__editar{
+    padding: 3px 15px;
+}
+.button__editar:hover{
+    cursor: pointer;
 }
