@@ -27,7 +27,7 @@ public class Main {
 
         String url = "jdbc:mysql://127.0.0.1:3306/holofocus";
         String usuario = "root";
-        String senha = "P@ssw0rd";
+        String senha = "123456";
 
         String sqlPais = "INSERT INTO pais (nome) VALUES (?);" ;
         String sqlArtista = "INSERT INTO artista (artista_nome, fk_pais) VALUES (?, ?)";
@@ -35,6 +35,7 @@ public class Main {
         String sqlMusica = "INSERT INTO musica (titulo_musica, data_lancamento, duracao, popularidade, dancabilidade, explicita, contagem_streams, energia, volume, tempo, instrumentabilidade, fk_artista, fk_genero) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         //BASE DE DADOS
+        String nomeBucket = "holofocus";
         String nomeArquivo = "holofocus-bdd.xlsx";
         do{
             System.out.println("SELECIONE A AÇÃO DESEJADA");
@@ -54,7 +55,7 @@ public class Main {
                 // Extraindo os dados do arquivo
                 System.out.println("Aguarde...");
                 LeitorExcel leitorExcel = new LeitorExcel();
-                List<Artista> dadosExtraidos = leitorExcel.extrairDados(nomeArquivo);
+                List<Artista> dadosExtraidos = leitorExcel.extrairDados(nomeBucket, nomeArquivo);
                 leitorExcel.gerarRelatorio();
 
 

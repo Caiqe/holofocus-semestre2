@@ -9,7 +9,7 @@ public class Conexao {
     public Conexao() {
         DriverManagerDataSource driver = new DriverManagerDataSource();
         driver.setUsername("root");
-        driver.setPassword("P@ssw0rd");
+        driver.setPassword("123456");
         driver.setUrl("jdbc:mysql://127.0.0.1:3306/holofocus");
         driver.setDriverClassName("com.mysql.cj.jdbc.Driver");
         this.conexao = driver;
