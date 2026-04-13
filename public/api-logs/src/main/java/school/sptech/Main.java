@@ -63,7 +63,7 @@ public class Main {
                 // Inserindo logs no BD
                 List<Log> logs = leitorExcel.getLogs();
                 String queryLogs = "INSERT INTO log (data_hora, titulo, fk_tipo, fk_artefato) VALUES ";
-                for (int i = 0; i < 30000; i++) {
+                for (int i = 0; i < logs.size(); i++) {
                     int tipo = logs.get(i).getTipo().equals("INFO") ? 1 : logs.get(i).getTipo().equals("SUCESSO") ? 2 : 3 ;
                     int artefato = logs.get(i).getArtefato().equals("BASE DE DADOS") ? 1 : 2;
 
@@ -76,19 +76,6 @@ public class Main {
                 queryLogs+=";";
                 template.update(queryLogs);
 
-                queryLogs = "INSERT INTO log (data_hora, titulo, fk_tipo, fk_artefato) VALUES ";
-                for (int i = 30000; i < logs.size(); i++) {
-                    int tipo = logs.get(i).getTipo().equals("INFO") ? 1 : logs.get(i).getTipo().equals("SUCESSO") ? 2 : 3 ;
-                    int artefato = logs.get(i).getArtefato().equals("BASE DE DADOS") ? 1 : 2;
-
-                    if(i != 30000){
-                        queryLogs += ",\n('"+logs.get(i).getDataHora()+"', '"+logs.get(i).getTitulo()+"', "+tipo+", "+artefato+")";
-                    }else{
-                        queryLogs += "\n('"+logs.get(i).getDataHora()+"', '"+logs.get(i).getTitulo()+"', "+tipo+", "+artefato+")";
-                    }
-                }
-                queryLogs+=";";
-                template.update(queryLogs);
 
                 int menu2 = -1;
                 do{
