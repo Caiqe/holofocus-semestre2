@@ -15,7 +15,7 @@
         id="logo__header"
         src="./assets/icon/holofocus-06 1.png"
         alt="logo holofocus"
-        class="w-30 self-start ml-36"
+        class="w-30 self-start "
       />
       <ul class="flex flex-col items-start gap-6">
         <li></li>
@@ -116,6 +116,9 @@
               <option value="#" selected disabled class="">
                 Selecione o perfil
               </option>
+              <option value="">Intimista</option>
+              <option value="">Energético</option>
+              <option value="">Positivo</option>
             </select>
             <hr class="w-1/1" />
           </div>
@@ -134,6 +137,11 @@
               <option value="#" selected disabled class="">
                 Selecione o genêro
               </option>
+              <option value="1">Sertanejo</option>
+              <option value="2">Rock</option>
+              <option value="3">Punk</option>
+              <option value="4">Pop</option>
+              <option value="5">Eletrônica</option>
             </select>
             <hr class="w-1/1" />
           </div>
@@ -153,32 +161,36 @@
         </section>
         <section
           id="section__3"
-          class="w-2/5 flex flex-col gap-16 font-black bg-[#F0D48D] rounded-[16px] items-center"
+          class="w-2/5 flex flex-col gap-12 font-black bg-[#F0D48D] rounded-[16px] items-center"
         >
           <h2>Perfis Sonoros</h2>
+          <div class="flex gap-1 hover:scale-105 justify-center hover:cursor-pointer items-center">
+            <h2>Adicionar</h2>
+            <img class="h-5" src="./assets/icon/icon-mais.svg" alt="Icone de mais">
+          </div>
           <div id="div__lista_perfis" class="flex flex-col w-5/6 gap-12">
-            <div class="flex flex-col gap-1.5">
+            <div class="flex flex-col gap-1">
               <div class="flex justify-between">
-                <h3 class="font-light">Dançante</h3>
-                <button class="button__editar bg-black text-white font-light">
+                <h3 class="font-light">Intimista</h3>
+                <button class="button__editar bg-black text-white font-light hover:cursor-pointer">
                   Editar
                 </button>
               </div>
               <hr class="w-1/1" />
             </div>
-            <div class="flex flex-col gap-1.5">
+            <div class="flex flex-col gap-1">
               <div class="flex justify-between">
-                <h3 class="font-light">Dançante</h3>
-                <button class="button__editar bg-black text-white font-light">
+                <h3 class="font-light">Energético</h3>
+                <button class="button__editar bg-black text-white font-light hover:cursor-pointer">
                   Editar
                 </button>
               </div>
               <hr class="w-1/1" />
             </div>
-            <div class="flex flex-col gap-1.5">
+            <div class="flex flex-col gap-1">
               <div class="flex justify-between">
-                <h3 class="font-light">Dançante</h3>
-                <button class="button__editar bg-black text-white font-light">
+                <h3 class="font-light">Positivo</h3>
+                <button class="button__editar bg-black text-white font-light hover:cursor-pointer">
                   Editar
                 </button>
               </div>

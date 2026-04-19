@@ -19,7 +19,7 @@ body{
 
 }
 #logo__header{
-    margin-left: 2.5em;
+    margin-left: 3.3em;
 }
 
 li{
@@ -64,7 +64,7 @@ p{
 
 main{
     background-color: black;
-    width: 76%;
+    width: 77%;
     height: 96vh;
     border-radius: 16px;
     margin-top: 15px;
