@@ -25,7 +25,7 @@ public class Main {
         Log log;
 
 
-        String url = "jdbc:mysql://127.0.0.1:3306/holofocus";
+        String url = "jdbc:mysql://mysql-container:3306/holofocus";
         String usuario = "root";
         String senha = "123456";
 
