@@ -1,3 +1,4 @@
+const idEmpresa = sessionStorage.id_empresa
 const formulario = document.getElementById("formPerfil")
 const botaoTopo = document.getElementById("pular")
 
@@ -140,6 +141,81 @@ fragment.appendChild(div)
 
 formulario.appendChild(fragment)
 
+const container1 = document.getElementById("divContainer1")
+const container2 = document.getElementById("divContainer2")
+
+function metadeValor(eixo, positivo) {
+    const ranges = {
+        E1: 5,
+        E2: 5,
+        E3: 5,
+        E4: 5
+    }
+
+    const metade = Math.floor(ranges[eixo] / 2)
+
+    return positivo ? metade : -metade
+}
+
+function aplicarOverride(eixoReal, positivo) {
+    const novoValor = metadeValor(eixoReal, positivo)
+
+    if (baseScores[eixoReal] >= 0 && novoValor > 0) {
+        overrideScores[eixoReal] = null
+    } else if (baseScores[eixoReal] < 0 && novoValor < 0) {
+        overrideScores[eixoReal] = null
+    } else {
+        overrideScores[eixoReal] = novoValor
+    }
+}
+
+container2.addEventListener("click", function (e) {
+    const container = e.target.closest(".respostas div")
+    if (!container) return
+
+    const input = container.querySelector("input")
+    if (!input) return
+
+    e.preventDefault()
+
+    const name = input.name
+    const eixo = name.toUpperCase()
+
+    const eixoMap = {
+        eixo1: "E1",
+        eixo2: "E2",
+        eix3: "E3",
+        eixo4: "E4"
+    }
+
+    const eixoReal = eixoMap[name]
+
+    const group = container2.querySelectorAll(`input[name="${name}"]`)
+    const other = [...group].find(r => r !== input)
+
+    const isPositive = input.value === "P" || input.value === "E" || input.value === "D" || input.value === "A"
+
+    if (input.checked) {
+        input.checked = false
+        if (other) {
+            other.checked = true
+
+            const otherPositive = !isPositive
+            aplicarOverride(eixoReal, otherPositive)
+
+            other.dispatchEvent(new Event("change", { bubbles: true }))
+        }
+    } else {
+        input.checked = true
+
+        aplicarOverride(eixoReal, isPositive)
+
+        input.dispatchEvent(new Event("change", { bubbles: true }))
+    }
+
+    atualizaSeuPerfil()
+})
+
 formulario.addEventListener("change", function (e) {
     const target = e.target
 
@@ -164,21 +240,18 @@ formulario.addEventListener("change", function (e) {
     }
 })
 
-const container1 = document.getElementById("divContainer1")
-const container2 = document.getElementById("divContainer2")
-
-const scores = {
+const baseScores = {
     E1: 0,
     E2: 0,
     E3: 0,
     E4: 0
 }
 
-const perfil = {
-    E1: scores.E1 >= 0 ? "P" : "I",
-    E2: scores.E2 >= 0 ? "E" : "S",
-    E3: scores.E3 >= 0 ? "D" : "C",
-    E4: scores.E4 >= 0 ? "A" : "C"
+const overrideScores = {
+    E1: null,
+    E2: null,
+    E3: null,
+    E4: null
 }
 
 formulario.addEventListener("submit", function (e) {
@@ -198,7 +271,7 @@ formulario.addEventListener("submit", function (e) {
 
             const pontos = Number(numero)
 
-            scores[eixo] += pontos
+            baseScores[eixo] += pontos
         })
     }
 
@@ -208,13 +281,120 @@ formulario.addEventListener("submit", function (e) {
 function resultado() {
     container1.style.display = "none"
     container2.style.display = "flex"
+    aplicarSelecaoContainer2()
+    atualizaSeuPerfil()
 }
 
 function voltar() {
     container1.style.display = "flex"
     container2.style.display = "none"
+    aplicarSelecaoContainer2()
+    atualizaSeuPerfil()
+}
+
+function scoreFinal(eixo) {
+    return overrideScores[eixo] !== null
+        ? overrideScores[eixo]
+        : baseScores[eixo]
 }
 
 function atualizaSeuPerfil() {
     const campo = document.getElementById("seuPerfil")
+
+    const perfil = {
+        E1: scoreFinal("E1") >= 0 ? "P" : "I",
+        E2: scoreFinal("E2") >= 0 ? "E" : "S",
+        E3: scoreFinal("E3") >= 0 ? "D" : "C",
+        E4: scoreFinal("E4") >= 0 ? "A" : "P"
+    }
+
+    campo.innerHTML = perfil.E1 + perfil.E2 + perfil.E3 + perfil.E4
 }
+
+function aplicarSelecaoContainer2() {
+    const eixoMap = {
+        E1: "eixo1",
+        E2: "eixo2",
+        E3: "eix3",
+        E4: "eixo4"
+    }
+
+    const valorPositivo = {
+        E1: "P",
+        E2: "E",
+        E3: "D",
+        E4: "A"
+    }
+
+    Object.keys(eixoMap).forEach(eixo => {
+        const score = scoreFinal(eixo)
+
+        const name = eixoMap[eixo]
+
+        const radios = container2.querySelectorAll(`input[name="${name}"]`)
+
+        radios.forEach(radio => {
+            radio.checked = false
+        })
+
+        const valorEsperado = score >= 0 ? valorPositivo[eixo] : null
+
+        const selecionado = [...radios].find(radio => {
+            if (score >= 0) return radio.value === valorPositivo[eixo]
+            else return radio.value !== valorPositivo[eixo]
+        })
+
+        if (selecionado) {
+            selecionado.checked = true
+        }
+    })
+}
+
+function montarDados() {
+    const perfil = {
+        E1: scoreFinal("E1") >= 0 ? "P" : "I",
+        E2: scoreFinal("E2") >= 0 ? "E" : "S",
+        E3: scoreFinal("E3") >= 0 ? "D" : "C",
+        E4: scoreFinal("E4") >= 0 ? "A" : "P"
+    }
+
+    return {
+        id,
+        finalScores: {
+            E1: scoreFinal("E1"),
+            E2: scoreFinal("E2"),
+            E3: scoreFinal("E3"),
+            E4: scoreFinal("E4")
+        },
+        perfil: perfil.E1 + perfil.E2 + perfil.E3 + perfil.E4
+    }
+}
+
+const formResultado = document.getElementById("resultPerfil")
+
+formResultado.addEventListener("submit", async function (e) {
+    e.preventDefault()
+
+    const dados = montarDados()
+
+    try {
+        const response = await fetch("/perfis", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dados)
+        })
+
+        if (!response.ok) {
+            throw new Error("Erro ao salvar")
+        }
+
+        const data = await response.json()
+
+        console.log("Salvo com sucesso:", data)
+    } catch (error) {
+        console.error("Erro:", error)
+        alert("Erro ao salvar perfil")
+    }
+})

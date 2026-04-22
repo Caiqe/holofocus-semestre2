@@ -124,3 +124,18 @@ CREATE TABLE logs_site (
     CONSTRAINT fk_logs_tipo
     FOREIGN KEY (fk_tipo) REFERENCES tipo_log(id_tipo_log)
 );
+
+
+-- Seção Preferencias
+CREATE TABLE perfil (
+    id_perfil INT AUTO_INCREMENT,
+    fk_empresa INT NOT NULL,
+    cpk_perfil_empresa PRIMARY KEY (id_perfil, fk_empresa),
+    scoreE1 TINYINT,
+    scoreE2 TINYINT,
+    scoreE3 TINYINT,
+    scoreE4 TINYINT,
+    perfil CHAR(4),
+    CONSTRAINT fk_perfil_empresa
+    FOREIGN KEY (fk_empresa) REFERENCES empresa(id_empresa)
+);

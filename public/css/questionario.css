@@ -29,11 +29,11 @@ body {
 }
 
 #divContainer1 {
-  display: none;
+  display: flex;
 }
 
 #divContainer2 {
-  display: flex;
+  display: none;
 }
 
 .container {
@@ -53,7 +53,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #DA9EF7;
   width: 100%;
   gap: 5%;
   text-align: center;
@@ -61,6 +60,7 @@ body {
 
 h1 {
   font-weight: 900;
+  color: #DA9EF7;
 }
 
 .topo button {
@@ -193,12 +193,20 @@ h3 {
   justify-content: center;
 }
 
-#divContainer2 .perguntasCards .cards .respostas div{
-  width: 15%;
+#divContainer2 .perguntasCards .cards .respostas div {
+  width: fit-content;
+}
+
+#divContainer2 .perguntasCards .cards .respostas div label:nth-child(1){
+  text-align: end;
+}
+
+#divContainer2 .perguntasCards .cards .respostas div label:nth-child(2){
+  text-align: start;
 }
 
 #divContainer2 .perguntasCards .cards {
-  width: 70%;
+  width: 80%;
   height: 80%;
   gap: 0 5%;
   display: grid;
@@ -212,17 +220,35 @@ h3 {
 
 #divContainer2 .perguntasCards .cards .card{
   height: 70%;
+  overflow: hidden;
 }
 
 #divContainer2 .perguntasCards .cards label{
   color: #2a2a2a;
-  font-size: 25px;
+  font-size: 18px;
+}
+
+#divContainer2 .respostas div label {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 #divContainer2 .respostas div:has(input:checked) label {
   color: #DA9EF7;
   font-weight: 700;
-  font-size: 50px;
+  transform: scale(1.8);
+}
+
+#divContainer2 .respostas div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#divContainer2 .cards .linhaBotao {
+  grid-column: 1 / -1;
+  margin-top: 20px;
+  height: 40%;
 }
 
 .svg {
