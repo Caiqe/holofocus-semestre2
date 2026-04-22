@@ -17,14 +17,77 @@
             <path></path>
         </svg>
     </div>
-    <div class="container">
+    <div id="divContainer1" class="container">
         <div class="topo">
             <h1>Questionário Perfil Sonoro</h1>
-            <a href="#">Pular</a>
+            <button onclick="resultado()">Pular</button>
         </div>
 
         <div class="perguntasCards">
             <form class="cards" id="formPerfil">
+            </form>
+        </div>
+    </div>
+    <div id="divContainer2" class="container">
+        <div class="topo">
+            <button onclick="voltar()">Voltar</button>
+            <h1>Seu Perfil Sonoro</h1>
+        </div>
+        <h2 id="seuPerfil">Perfil</h2>
+        <div class="perguntasCards">
+            <form class="cards" id="resultPerfil">
+                <div class="card proximo">
+                    <h3>Emoção</h3>
+                    <div class="respostas">
+                        <div>
+                            <label for="e1_a">P</label>
+                            <input type="radio" name="eixo1" id="e1_a" value="P">
+                        </div>
+                        <div>
+                            <label for="e1_b">I</label>
+                            <input type="radio" name="eixo1" id="e1_b" value="I">
+                        </div>
+                    </div>
+                </div>
+                <div class="card proximo">
+                    <h3>Intensidade</h3>
+                    <div class="respostas">
+                        <div>
+                            <label for="e2_a">E</label>
+                            <input type="radio" name="eixo2" id="e2_a" value="E">
+                        </div>
+                        <div>
+                            <label for="e2_b">S</label>
+                            <input type="radio" name="eixo2" id="e2_b" value="S">
+                        </div>
+                    </div>
+                </div>
+                <div class="card proximo">
+                    <h3>Movimento</h3>
+                    <div class="respostas">
+                        <div>
+                            <label for="e3_a">D</label>
+                            <input type="radio" name="eix3" id="e3_a" value="D">
+                        </div>
+                        <div>
+                            <label for="e3_b">C</label>
+                            <input type="radio" name="eix3" id="e3_b" value="C">
+                        </div>
+                    </div>
+                </div>
+                <div class="card proximo">
+                    <h3>Engajamento</h3>
+                    <div class="respostas">
+                        <div>
+                            <label for="e4_a">A</label>
+                            <input type="radio" name="eixo4" id="e4_a" value="A">
+                        </div>
+                        <div>
+                            <label for="e4_b">C</label>
+                            <input type="radio" name="eixo4" id="e4_b" value="C">
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

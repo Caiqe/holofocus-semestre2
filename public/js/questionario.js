@@ -1,4 +1,5 @@
 const formulario = document.getElementById("formPerfil")
+const botaoTopo = document.getElementById("pular")
 
 const pergResp = [
     {
@@ -163,15 +164,25 @@ formulario.addEventListener("change", function (e) {
     }
 })
 
+const container1 = document.getElementById("divContainer1")
+const container2 = document.getElementById("divContainer2")
+
+const scores = {
+    E1: 0,
+    E2: 0,
+    E3: 0,
+    E4: 0
+}
+
+const perfil = {
+    E1: scores.E1 >= 0 ? "P" : "I",
+    E2: scores.E2 >= 0 ? "E" : "S",
+    E3: scores.E3 >= 0 ? "D" : "C",
+    E4: scores.E4 >= 0 ? "A" : "C"
+}
+
 formulario.addEventListener("submit", function (e) {
     e.preventDefault()
-
-    const scores = {
-        E1: 0,
-        E2: 0,
-        E3: 0,
-        E4: 0
-    }
 
     for (let i = 0; i < pergResp.length; i++) {
         const selecionado = document.querySelector(`input[name="resp${i}"]:checked`)
@@ -191,10 +202,19 @@ formulario.addEventListener("submit", function (e) {
         })
     }
 
-    const perfil = {
-        E1: scores.E1 >= 0 ? "P" : "I",
-        E2: scores.E2 >= 0 ? "E" : "S",
-        E3: scores.E3 >= 0 ? "D" : "C",
-        E4: scores.E4 >= 0 ? "A" : "C"
-    }
+    resultado()
 })
+
+function resultado() {
+    container1.style.display = "none"
+    container2.style.display = "flex"
+}
+
+function voltar() {
+    container1.style.display = "flex"
+    container2.style.display = "none"
+}
+
+function atualizaSeuPerfil() {
+    const campo = document.getElementById("seuPerfil")
+}

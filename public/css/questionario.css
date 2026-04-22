@@ -28,6 +28,14 @@ body {
   height: 100%;
 }
 
+#divContainer1 {
+  display: none;
+}
+
+#divContainer2 {
+  display: flex;
+}
+
 .container {
   position: absolute;
   background-color: black;
@@ -55,9 +63,10 @@ h1 {
   font-weight: 900;
 }
 
-a {
+.topo button {
   font-weight: 900;
   padding: 5px;
+  width: 8%;
   border-radius: 50px;
   background-color: #DA9EF7;
   text-decoration: none;
@@ -127,7 +136,13 @@ button {
   color: #DA9EF7;
 }
 
-.card h2 {
+h2 {
+  font-weight: 900;
+  color: #2a2a2a;
+  text-align: center;
+}
+
+h3 {
   font-weight: 900;
   color: #2a2a2a;
   text-align: center;
@@ -172,6 +187,42 @@ button {
 
 .card.atual .respostas {
   color: black;
+}
+
+#divContainer2 .perguntasCards .cards .respostas {
+  justify-content: center;
+}
+
+#divContainer2 .perguntasCards .cards .respostas div{
+  width: 15%;
+}
+
+#divContainer2 .perguntasCards .cards {
+  width: 70%;
+  height: 80%;
+  gap: 0 5%;
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  align-items: center;
+}
+
+#divContainer2 h2 {
+  color: #DA9EF7;
+}
+
+#divContainer2 .perguntasCards .cards .card{
+  height: 70%;
+}
+
+#divContainer2 .perguntasCards .cards label{
+  color: #2a2a2a;
+  font-size: 25px;
+}
+
+#divContainer2 .respostas div:has(input:checked) label {
+  color: #DA9EF7;
+  font-weight: 700;
+  font-size: 50px;
 }
 
 .svg {
