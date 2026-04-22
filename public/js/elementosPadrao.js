@@ -7,32 +7,36 @@ if (toggle && header) {
     });
 }
 
-  document.addEventListener('DOMContentLoaded', pegarNomeUsuario);
+const pegarNomeUsuario = () => {
+    validarSessao();
+};
+
+document.addEventListener("DOMContentLoaded", pegarNomeUsuario);
 
 const logout = () => {
-    sessionStorage.clear()
-    navigation.navigate("/")
+    sessionStorage.clear();
+    window.location.href = "/";
 }
 
-const isAdm = () =>{
+const isAdm = () => {
 
     validarSessao();
     
     const permissao = sessionStorage.getItem('NIVEL_ACESSO');
 
-    if(permissao == null || permissao != '1'){
+    if (permissao == null || permissao != "1") {
         logout();
     }
     return;
 }
 
-const validarSessao = () => {
+function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
 
-    const elemento = document.getElementById('nome_usuario');
+    const elemento = document.getElementById("nome_usuario");
 
-    if (email != null && nome != null) {
+    if (elemento && email != null && nome != null) {
         elemento.innerHTML = nome;
     } else {
         logout();
