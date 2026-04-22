@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="./css/meu-estabelecimento.css" />
     <link rel="stylesheet" href="./css/output.css" />
+    <link rel="stylesheet" href="./css/modal.css">
   </head>
   <body style="background-color: #2a2a2a">
     <header id="__header">
@@ -128,6 +129,11 @@
               <option value="#" selected disabled class="">
                 Selecione o local
               </option>
+              <option value="">Brasil</option>
+              <option value="">EUA</option>
+              <option value="">França</option>
+              <option value="">Inglaterra</option>
+              <option value="">Espanha</option>
             </select>
             <hr class="w-1/1" />
           </div>
@@ -155,6 +161,10 @@
               <option value="#" selected disabled class="">
                 Selecione o índice de popularidade
               </option>
+              <option value="25">0%-25%</option>
+              <option value="25">25%-50%</option>
+              <option value="25">50%-75%</option>
+              <option value="25">75%-100%</option>
             </select>
             <hr class="w-1/1" />
           </div>
@@ -164,7 +174,7 @@
           class="w-2/5 flex flex-col gap-12 font-black bg-[#F0D48D] rounded-[16px] items-center"
         >
           <h2>Perfis Sonoros</h2>
-          <div class="flex gap-1 hover:scale-105 justify-center hover:cursor-pointer items-center">
+          <div onclick="modal()" class="flex gap-1 hover:scale-105 justify-center hover:cursor-pointer items-center">
             <h2>Adicionar</h2>
             <img class="h-5" src="./assets/icon/icon-mais.svg" alt="Icone de mais">
           </div>
@@ -172,7 +182,7 @@
             <div class="flex flex-col gap-1">
               <div class="flex justify-between">
                 <h3 class="font-light">Intimista</h3>
-                <button class="button__editar bg-black text-white font-light hover:cursor-pointer">
+                <button onclick="modal()" class="button__editar bg-black text-white font-light hover:cursor-pointer">
                   Editar
                 </button>
               </div>
@@ -181,7 +191,7 @@
             <div class="flex flex-col gap-1">
               <div class="flex justify-between">
                 <h3 class="font-light">Energético</h3>
-                <button class="button__editar bg-black text-white font-light hover:cursor-pointer">
+                <button onclick="modal()" class="button__editar bg-black text-white font-light hover:cursor-pointer">
                   Editar
                 </button>
               </div>
@@ -190,7 +200,7 @@
             <div class="flex flex-col gap-1">
               <div class="flex justify-between">
                 <h3 class="font-light">Positivo</h3>
-                <button class="button__editar bg-black text-white font-light hover:cursor-pointer">
+                <button onclick="modal()" class="button__editar bg-black text-white font-light hover:cursor-pointer">
                   Editar
                 </button>
               </div>
@@ -201,4 +211,5 @@
       </div>
     </main>
   </body>
+  <script src="./js/modal.js"></script>
 </html>
