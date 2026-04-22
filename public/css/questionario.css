@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Archivo", sans-serif;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2a2a2a;
+  width: 100%;
+  height: 100%;
+}
+
+.body {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  position: absolute;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30px;
+  height: 80%;
+  width: 60%;
+  padding: 1% 0;
+  gap: 3%;
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #DA9EF7;
+  width: 100%;
+  gap: 5%;
+  text-align: center;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+a {
+  font-weight: 900;
+  padding: 5px;
+  border-radius: 50px;
+  background-color: #DA9EF7;
+  text-decoration: none;
+  color: black;
+}
+
+.perguntasCards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 98%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.perguntasCards::-webkit-scrollbar {
+  width: 10px;
+}
+
+.perguntasCards::-webkit-scrollbar-track {
+  background: none;
+}
+
+.perguntasCards::-webkit-scrollbar-thumb {
+  background: #525F67;
+  border-radius: 10px;
+}
+
+.cards {
+  height: 100%;
+  width: 40%;
+}
+
+.cards .linhaBotao {
+  display: flex;
+  height: 10%;
+  width: 100%;
+  justify-content: center;
+}
+
+button {
+  font-size: large;
+  width: 30%;
+  background-color: #DA9EF7;
+  color: black;
+  border: none;
+  border-radius: 50px;
+}
+
+.card {
+  margin: 5% 0;
+  height: 40%;
+  width: 100%;
+  border-radius: 15px;
+  border: 2px solid #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.card.atual {
+  background-color: #F0D48D;
+  border-color: none;
+}
+
+.card.proximo * {
+  color: #DA9EF7;
+}
+
+.card h2 {
+  font-weight: 900;
+  color: #2a2a2a;
+  text-align: center;
+}
+
+.card .respostas {
+  color: #2a2a2a;
+}
+
+.card input[type="radio"] {
+  display: none;
+}
+
+.card label {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.respostas {
+  display: flex;
+  justify-content: space-around;
+}
+
+.respostas div {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+}
+
+.respostas div:has(input:checked) label {
+  color: #525F67;
+  font-weight: 700;
+}
+
+.card.atual {
+  background-color: #F0D48D;
+}
+
+.card.atual .respostas {
+  color: black;
+}
+
+.svg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  filter: blur(150px);
+}
+
+.svg path {
+  d: path("M0,75 C150,160 150,-10 300,75");
+  stroke: #ff0092;
+  stroke-width: 50;
+  stroke-linecap: round;
+  transform: translate(0, 75px);
+  animation: animate 30s ease-in-out infinite;
+}
+
+@keyframes animate {
+  0% {
+    stroke: #FF6D03;
+    d: path("M0,25 C150,110 150,-60 300,25");
+  }
+
+  25% {
+    stroke: #EFD38D;
+    d: path("M0,25 C160,-50 140,110 300,25");
+  }
+
+  50% {
+    stroke: #FF16B9;
+    d: path("M0,25 C150,110 150,-60 300,25");
+  }
+
+  75% {
+    stroke: #DA9EF7;
+    d: path("M0,25 C160,-50 140,110 300,25");
+  }
+
+  100% {
+    stroke: #FF6D03;
+    d: path("M0,25 C150,110 150,-60 300,25");
+  }
+}
