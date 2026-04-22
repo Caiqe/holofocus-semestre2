@@ -1,4 +1,4 @@
-const idEmpresa = sessionStorage.id_empresa
+const idEmpresa = sessionStorage.ID_EMPRESA
 const formulario = document.getElementById("formPerfil")
 const botaoTopo = document.getElementById("pular")
 
