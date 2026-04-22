@@ -131,7 +131,9 @@ CREATE TABLE perfil (
     id_perfil INT AUTO_INCREMENT,
     fk_empresa INT NOT NULL,
     cpk_perfil_empresa PRIMARY KEY (id_perfil, fk_empresa),
-    taxa VARCHAR(45),
+    nome VARCHAR(45),
+    taxa_minima FLOAT,
+    taxa_maxima FLOAT,
     fk_genero INT,
     scoreE1 TINYINT,
     scoreE2 TINYINT,
@@ -140,7 +142,7 @@ CREATE TABLE perfil (
     perfil CHAR(4),
     CONSTRAINT fk_perfil_empresa
     FOREIGN KEY (fk_empresa) REFERENCES empresa(id_empresa),
-    CONSTRAINT fk_perfil_empresa
+    CONSTRAINT fk_perfil_genero
     FOREIGN KEY (fk_genero) REFERENCES genero(id_genero)
 );
 
@@ -215,3 +217,13 @@ INSERT INTO logs_site (data_hora, titulo, fk_tipo) VALUES
 (NOW(), 'Usuário logou', 1),
 (NOW(), 'Erro ao carregar página', 2),
 (NOW(), 'Acesso ao dashboard', 3);
+
+INSERT INTO perfil 
+(fk_empresa, nome, taxa_minima, taxa_maxima, fk_genero, scoreE1, scoreE2, scoreE3, scoreE4, perfil)
+VALUES
+(1, 'Perfil Pop Alta Energia', 30000, 120000, 1, 5, 3, 4, 2, 'PEDA'),
+(1, 'Perfil Eletrônico Premium', 50000, 150000, 3, 4, 4, 5, 3, 'PSDA'),
+(2, 'Perfil Hip Hop Urbano', 10000, 40000, 4, 2, 5, 3, 3, 'PECA'),
+(2, 'Perfil Pop Alternativo', 8000, 30000, 1, 3, 4, 2, 4, 'IEDP'),
+(3, 'Perfil Rock Arena', 60000, 200000, 2, 5, 2, 4, 5, 'IECP'),
+(3, 'Perfil Sertanejo Massa', 40000, 180000, 5, 4, 3, 5, 4, 'PEDA');
