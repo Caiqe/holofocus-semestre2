@@ -131,11 +131,87 @@ CREATE TABLE perfil (
     id_perfil INT AUTO_INCREMENT,
     fk_empresa INT NOT NULL,
     cpk_perfil_empresa PRIMARY KEY (id_perfil, fk_empresa),
+    taxa VARCHAR(45),
+    fk_genero INT,
     scoreE1 TINYINT,
     scoreE2 TINYINT,
     scoreE3 TINYINT,
     scoreE4 TINYINT,
     perfil CHAR(4),
     CONSTRAINT fk_perfil_empresa
-    FOREIGN KEY (fk_empresa) REFERENCES empresa(id_empresa)
+    FOREIGN KEY (fk_empresa) REFERENCES empresa(id_empresa),
+    CONSTRAINT fk_perfil_empresa
+    FOREIGN KEY (fk_genero) REFERENCES genero(id_genero)
 );
+
+
+-- Populando dados
+INSERT INTO endereco (cep, logradouro, numero, complemento) VALUES
+('01001000', 'Praça da Sé', '100', 'Sala 1'),
+('20040002', 'Rua da Quitanda', '45', NULL),
+('30140071', 'Av. Afonso Pena', '1500', 'Andar 5');
+
+INSERT INTO nivel_acesso (tipo_acesso, descricao) VALUES
+('ADMIN', 'Administrador do sistema'),
+('USER', 'Usuário padrão'),
+('GESTOR', 'Gestor de eventos');
+
+INSERT INTO empresa (razao_social, lotacao, cnpj, perfil_artistas, fk_endereco) VALUES
+('Casa de Shows Vibra SP', 5000, '12345678000101', 'PEDA', 1),
+('Bar Cultural Rio Beats', 800, '22345678000102', 'PSCA', 2),
+('Arena BH Music', 12000, '32345678000103', 'ISCP', 3);
+
+INSERT INTO usuario (nome, email, telefone, senha, fk_nivel_acesso, fk_empresa) VALUES
+('João Silva', 'joao@vibra.com', '11999999999', '123456', 1, 1),
+('Maria Souza', 'maria@riobeats.com', '21988888888', '123456', 2, 2),
+('Carlos Lima', 'carlos@arenabh.com', '31977777777', '123456', 3, 3);
+
+INSERT INTO genero (titulo_genero) VALUES
+('Pop'),
+('Rock'),
+('Eletrônica'),
+('Hip Hop'),
+('Sertanejo');
+
+INSERT INTO pais (nome) VALUES
+('Brasil'),
+('Estados Unidos'),
+('Reino Unido');
+
+INSERT INTO artista (artista_nome, fk_pais) VALUES
+('Anitta', 1),
+('Drake', 2),
+('Coldplay', 3),
+('Alok', 1),
+('Jorge & Mateus', 1);
+
+INSERT INTO musica 
+(titulo_musica, data_lancamento, popularidade, contagem_streams, duracao, dancabilidade, energia, volume, tempo, instrumentabilidade, explicita, fk_artista, fk_genero)
+VALUES
+('Envolver', '2022-03-01', 95, 1500000000, 180, 0.85, 0.80, -5.20, 120.00, 0.010, 0, 1, 1),
+('God''s Plan', '2018-01-19', 98, 2000000000, 198, 0.75, 0.65, -6.00, 77.00, 0.000, 1, 2, 4),
+('Yellow', '2000-06-26', 90, 1800000000, 266, 0.60, 0.70, -4.50, 87.00, 0.050, 0, 3, 2),
+('Hear Me Now', '2016-10-21', 88, 900000000, 190, 0.80, 0.90, -4.00, 122.00, 0.020, 0, 4, 3),
+('Propaganda', '2018-01-01', 85, 700000000, 210, 0.70, 0.75, -5.80, 100.00, 0.000, 0, 5, 5);
+
+INSERT INTO evento 
+(nome_evento, data_evento, investimento_evento, retorno_evento, total_pessoas, fk_empresa, fk_artista, fk_genero)
+VALUES
+('Festival Vibra Pop', '2025-07-10', 50000.00, 120000.00, 4500, 1, 1, 1),
+('Noite Hip Hop RJ', '2025-08-15', 20000.00, 50000.00, 700, 2, 2, 4),
+('Rock Arena BH', '2025-09-20', 80000.00, 200000.00, 10000, 3, 3, 2);
+
+INSERT INTO tipo_log (tipo_log) VALUES
+('LOGIN'),
+('ERRO'),
+('ACESSO');
+
+INSERT INTO logs_site (data_hora, titulo, fk_tipo) VALUES
+(NOW(), 'Usuário logou', 1),
+(NOW(), 'Erro ao carregar página', 2),
+(NOW(), 'Acesso ao dashboard', 3);
+
+INSERT INTO logs_site (data_hora, titulo, fk_tipo) VALUES
+(NOW(), 'Usuário logou', 1),
+(NOW(), 'Erro ao carregar página', 2),
+(NOW(), 'Acesso ao dashboard', 3);
