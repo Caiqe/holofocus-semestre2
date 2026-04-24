@@ -53,40 +53,46 @@ function validarCnpj(cnpj) {
     return numeros.length == 14
 }
 
-function proximo() {
+async function proximo() {
     inpRazao = document.getElementById('inptRazaoSocial')
-    razaoVar = inpRazao.value
+    razaoVar = inpRazao.value.trim()
     inpCnpj = document.getElementById('inptCNPJ')
     cnpjVar = inpCnpj.value.replace(/\D/g, "")
     inpCep = document.getElementById('inptCEP')
     inpEndereco = document.getElementById('inptEndereco')
-    enderecoVar = inpEndereco.value
+    enderecoVar = inpEndereco.value.trim()
     inpNumero = document.getElementById('inptNumero')
-    numeroVar = inpNumero.value
+    numeroVar = inpNumero.value.trim()
     inpComplemento = document.getElementById('inptComplemento')
-    complementoVar = inpComplemento.value
+    complementoVar = inpComplemento.value.trim()
 
-    cepVar = inpCep.value.replace(/\D/g, "")
+    cepVar = inpCep.value.replace(/\D/g, "").trim()
 
-    if (razaoVar.trim() !== "" &&
+    if (razaoVar !== "" &&
         validarCnpj(inpCnpj.value) &&
-        cepVar.trim().length === 8 &&
-        inpEndereco.value.trim() !== "" &&
-        inpNumero.value.trim() !== "") {
+        cepVar.length === 8 &&
+        inpEndereco.value !== "" &&
+        inpNumero.value !== "") {
 
-        if (!buscarPorCnpj(inpCnpj.value)) {
+        const cnpjExiste = await buscarPorCnpj(cnpjVar)
+        const enderecoExiste = await buscarEndereco(cepVar, numeroVar, complementoVar)
 
-            pt1.style.display = 'none'
-            pt2.style.display = 'flex'
-            document.getElementById("divFundo").style.backgroundImage = 'url("../assets/imgs/fundo-cadastro-parte-2.jpg")'
-            return
-
-        } else {
-            erro("4000", 'CNPJ já cadastrado')
+        if (cnpjExiste) {
+            erro("4000", "CNPJ já cadastrado")
             return
         }
+
+        if (enderecoExiste) {
+            erro("4000", "Endereço já cadastrado")
+            return
+        }
+
+        pt1.style.display = 'none'
+        pt2.style.display = 'flex'
+        document.getElementById("divFundo").style.backgroundImage = 'url("../assets/imgs/fundo-cadastro-parte-2.jpg")'
+        return
     }
-    erro("2000", "Erro", "Por favor revise os campos e preencha os dados corretamente")
+    erro("2000", "Por favor revise os campos e preencha os dados corretamente")
 }
 
 function voltar() {
@@ -103,83 +109,123 @@ let inpConfirma = document.getElementById('inptConfirmaSenha')
 
 async function cadastrar() {
     inpNome = document.getElementById('inptNome')
-    nomeVar = inpNome.value
+    nomeVar = inpNome.value.trim()
     inpEmail = document.getElementById('inptEmail')
-    emailVar = inpEmail.value
+    emailVar = inpEmail.value.trim()
     inpCelular = document.getElementById('inptCelular')
-    celularVar = inpCelular.value
+    celularVar = inpCelular.value.replace(/\D/g, "").trim()
     inpSenha = document.getElementById('inptSenha')
-    senhaVar = inpSenha.value
+    senhaVar = inpSenha.value.trim()
     inpConfirma = document.getElementById('inptConfirmaSenha')
 
-    if (nomeVar !== "" &&
-        validarEmail(emailVar) &&
-        validarCelular(celularVar) &&
-        validarSenha(senhaVar) &&
-        senhaVar === inpConfirma.value) {
-
-        const respCadEmpresa = await fetch("/empresas/cadastrar", {
+    if (enderecoVar !== "" &&
+        cepVar !== "" &&
+        numeroVar !== ""
+    ) {
+        const respCadEndereco = await fetch("/empresas/cadastrarEndereco", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                razaoServer: razaoVar,
-                cnpjServer: cnpjVar,
                 cepServer: cepVar,
-                enderecoServer: enderecoVar,
+                logradouroServer: enderecoVar,
                 numeroServer: numeroVar,
-                cepServer: cepVar
-            }),
+                complementoServer: complementoVar
+            })
         })
 
-        if (!respCadEmpresa.ok) {
-            erro("2000", 'Verifique se as informações foram digitadas corretamente')
+        if (!respCadEndereco.ok) {
+            erro("2000", "Verifique se as informações foram digitadas corretamente")
             return
         }
 
-        let idCnpjAtual = buscarPorCnpj(cnpjVar)
+        let idEndereco = await obterEndereco(cepVar, numeroVar, complementoVar)
 
-        if (idCnpjAtual == null) {
+        if (idEndereco == null) {
             erro("4000", "Erro interno, peça ajuda ao nosso suporte")
             return
         }
 
-        const respCadUsuario = await fetch('/usuarios/cadastrar', {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                idEmpresaServer: idCnpjAtual,
-                nomeServer: nomeVar,
-                telefoneServer: celularVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        })
+        if (nomeVar !== "" &&
+            validarEmail(emailVar) &&
+            validarCelular(celularVar) &&
+            validarSenha(senhaVar) &&
+            senhaVar === inpConfirma.value) {
 
-        if (!respCadUsuario.ok) {
-            erro("3000", "Erro ao cadastrar o usuario, verifique as informações inseridas")
-
-            await fetch(`/empresas/deletarEmpresa/${idCnpjAtual}`, {
-                method: "DELETE",
-                headers: { "Content-Type": "aplication/json" }
+            const respCadEmpresa = await fetch("/empresas/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idEnderecoServer: idEndereco,
+                    razaoServer: razaoVar,
+                    cnpjServer: cnpjVar
+                }),
             })
 
+            if (!respCadEmpresa.ok) {
+                erro("2000", 'Verifique se as informações foram digitadas corretamente')
+
+                await fetch(`/empresas/deletarEndereco/${idEndereco}`, {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" }
+                })
+
+                return
+            }
+
+            let idCnpjAtual = await obterEmpresaPorCnpj(cnpjVar)
+
+            if (idCnpjAtual == null) {
+                erro("4000", "Erro interno, peça ajuda ao nosso suporte")
+                return
+            }
+
+            const respCadUsuario = await fetch('/usuarios/cadastrar', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idEmpresaServer: idCnpjAtual,
+                    nomeServer: nomeVar,
+                    telefoneServer: celularVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            })
+
+            if (!respCadUsuario.ok) {
+                erro("3000", "Erro ao cadastrar o usuario, verifique as informações inseridas")
+
+                await fetch(`/empresas/deletarEmpresa/${idCnpjAtual}`, {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" }
+                })
+
+                await fetch(`/empresas/deletarEndereco/${idEndereco}`, {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" }
+                })
+
+                return
+            }
+
+            erro("2000", 'Cadastro realizado com sucesso')
+
+            setTimeout(() => {
+                window.location = "login.html";
+            }, "3000");
             return
         }
 
-        erro("2000", "Sucesso", 'Cadastro realizado com sucesso')
-
-        setTimeout(() => {
-            window.location = "login.html";
-        }, "3000");
+        erro("2000", 'Por favor revise os campos e preencha os dados corretamente')
+    } else {
+        erro("2000", "Preencha os dados de endereço corretamente")
         return
     }
-
-    erro("2000", "Erro", 'Por favor revise os campos e preencha os dados corretamente')
 }
 
-function erro(tempo, titulo, texto) {
+
+function erro(tempo, titulo) {
     document.getElementById('divFundoErro').style.display = 'flex'
 
     if (inpRazao.value == '') {
@@ -234,7 +280,6 @@ function erro(tempo, titulo, texto) {
     }
 
     document.getElementById('titulo').innerHTML = titulo
-    document.getElementById('spnErro').innerHTML = texto
 
     setTimeout(() => {
         document.getElementById('divFundoErro').style.display = 'none'
@@ -242,22 +287,59 @@ function erro(tempo, titulo, texto) {
     return
 }
 
-function buscarPorCnpj(cnpj) {
-    fetch("/empresas/buscar", {
-        method: "GET",
-    })
-        .then(function (resposta) {
-            resposta.json().then((resposta) => {
-                if (resposta.length > 0) {
-                    return null
-                } else {
-                    return resposta.id
-                }
-            });
+async function buscarPorCnpj(cnpj) {
+    try {
+        const resposta = await fetch(`/empresas/buscar/${cnpj}`)
+        const dados = await resposta.json()
+
+        return dados.length > 0
+    } catch (erro) {
+        console.log("#ERRO:", erro)
+        return false
+    }
+}
+
+async function obterEmpresaPorCnpj(cnpj) {
+    const resposta = await fetch(`/empresas/buscar/${cnpj}`)
+    const dados = await resposta.json()
+
+    return dados[0]?.id_empresa || null
+}
+
+async function obterEndereco(cep, numero, complemento) {
+    const resposta = await fetch(`/empresas/buscarEndereco`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            cepServer: cep,
+            numeroServer: numero,
+            complementoServer: complemento
         })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
+    })
+
+    const dados = await resposta.json()
+    return dados[0]?.id_endereco || null
+}
+
+async function buscarEndereco(cep, numero, complemento) {
+    try {
+        const resposta = await fetch(`/empresas/buscarEndereco`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                cepServer: cep,
+                numeroServer: numero,
+                complementoServer: complemento
+            })
+        })
+
+        const dados = await resposta.json()
+
+        return dados.length > 0
+    } catch (erro) {
+        console.log("#ERRO:", erro)
+        return false
+    }
 }
 
 function mascaraCnpj(input) {
