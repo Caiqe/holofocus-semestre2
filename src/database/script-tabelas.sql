@@ -146,7 +146,7 @@ CREATE TABLE log (
 CREATE TABLE perfil (
     id_perfil INT AUTO_INCREMENT,
     fk_empresa INT NOT NULL,
-    cpk_perfil_empresa PRIMARY KEY (id_perfil, fk_empresa),
+    PRIMARY KEY (id_perfil, fk_empresa),
     nome VARCHAR(45),
     taxa_minima FLOAT,
     taxa_maxima FLOAT,
@@ -170,9 +170,9 @@ INSERT INTO endereco (cep, logradouro, numero, complemento) VALUES
 ('30140071', 'Av. Afonso Pena', '1500', 'Andar 5');
 
 INSERT INTO nivel_acesso (tipo_acesso, descricao) VALUES
+('GESTOR', 'Gestor de eventos'),
 ('ADMIN', 'Administrador do sistema'),
-('USER', 'Usuário padrão'),
-('GESTOR', 'Gestor de eventos');
+('USER', 'Usuário padrão');
 
 INSERT INTO empresa (razao_social, lotacao, cnpj, perfil_artistas, fk_endereco) VALUES
 ('Casa de Shows Vibra SP', 5000, '12345678000101', 'PEDA', 1),
@@ -219,20 +219,6 @@ VALUES
 ('Noite Hip Hop RJ', '2025-08-15', 20000.00, 50000.00, 700, 2, 2, 4),
 ('Rock Arena BH', '2025-09-20', 80000.00, 200000.00, 10000, 3, 3, 2);
 
-INSERT INTO tipo_log (tipo_log) VALUES
-('LOGIN'),
-('ERRO'),
-('ACESSO');
-
-INSERT INTO logs_site (data_hora, titulo, fk_tipo) VALUES
-(NOW(), 'Usuário logou', 1),
-(NOW(), 'Erro ao carregar página', 2),
-(NOW(), 'Acesso ao dashboard', 3);
-
-INSERT INTO logs_site (data_hora, titulo, fk_tipo) VALUES
-(NOW(), 'Usuário logou', 1),
-(NOW(), 'Erro ao carregar página', 2),
-(NOW(), 'Acesso ao dashboard', 3);
 
 INSERT INTO perfil 
 (fk_empresa, nome, taxa_minima, taxa_maxima, fk_genero, scoreE1, scoreE2, scoreE3, scoreE4, perfil)

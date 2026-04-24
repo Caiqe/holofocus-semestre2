@@ -29,7 +29,7 @@ function cadastrar(req, res) {
     var telefone = req.body.telefoneServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.idEmpresaVincularServer;
+    var fkEmpresa = req.body.idEmpresaServer;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
