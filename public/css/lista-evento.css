@@ -33,6 +33,10 @@ body {
 
 }
 
+#logo__header{
+  width: 100%;
+}
+
 a{
   text-decoration: none;
   color: #DA9EF7;
@@ -67,6 +71,32 @@ color: #d278ff;
   list-style: none;
 }
 
+#ul_navbar{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+#ul_navbar li {
+  align-self: flex-start;
+  padding: 0;
+  width: 100%;
+}
+
+#ul_navbar li a{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+#ul_navbar li a img{
+  width: 34px;
+  height: 34px;
+}
+
 
 .sidebar li {
   display: flex;
@@ -90,7 +120,18 @@ color: #d278ff;
 
 .user {
   font-size: 14px;
-  margin-left: 12%;
+}
+
+.usuario-info{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+#icon__admin{
+  height: 16px;
+  width: auto;
 }
 
 .tag {
@@ -117,9 +158,19 @@ margin: 0px 0px -3px 0px;
 }
 
 .conf{
-  display: flex;
   color: #F0D48D;
   font-size: 15px;
+}
+
+#btt___configuracoes{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0;
+}
+
+#btt___configuracoes img{
+  width: 24px;
 }
 
 .iconConf{

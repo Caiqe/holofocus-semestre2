@@ -7,23 +7,10 @@ if (toggle && header) {
     });
 }
 
-  document.addEventListener('DOMContentLoaded', pegarNomeUsuario);
 
 const logout = () => {
     sessionStorage.clear()
     navigation.navigate("/")
-}
-
-const isAdm = () =>{
-
-    validarSessao();
-    
-    const permissao = sessionStorage.getItem('NIVEL_ACESSO');
-
-    if(permissao == null || permissao != '1'){
-        logout();
-    }
-    return;
 }
 
 const validarSessao = () => {
@@ -38,3 +25,16 @@ const validarSessao = () => {
         logout();
     }
 }
+
+const isAdm = () =>{
+
+    validarSessao();
+    
+    const permissao = sessionStorage.getItem('NIVEL_ACESSO');
+
+    if(permissao == null || permissao != '1'){
+        logout();
+    }
+    return;
+}
+
