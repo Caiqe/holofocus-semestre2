@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon --exec node app.js"
+    "dev": "nodemon --exec node app.js",
+    "build:css": "npx @tailwindcss/cli -i public/css/elementosPadrao.css -o public/css/output.css --watch",
+    "dev:all": "concurrently \"npm run dev\" \"npm run build:css\""
   },
   "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
   "license": "MIT",
@@ -16,5 +18,10 @@
     "mysql2": "^3.9.4",
     "nodemon": "^2.0.7",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "concurrently": "^9.2.1",
+    "tailwindcss": "^4.2.2"
   }
 }

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Empresas Cadastredas</title>
+    <link rel="stylesheet" href="css/lista-empresa.css">
+      <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
+</head>
+
+<body>
+
+    <div class="container">
+
+        <aside class="sidebar">
+            <img src="assets/imgs/holofocus-06.svg" alt="">
+
+
+      
+<nav>
+        <ul>
+          <li><img class="iconHeader" src="assets/icon/Vector.svg" alt=""><a href=""> Dashboard</a></li>
+          <li><img class="iconHeader" src="assets/icon/Vector (1).svg" alt=""><a
+              href="lista-usuario.html">Usuários</a></li>
+          <li  class="active"> <img class="iconHeader" src="assets/icon/Icon (from Tabler.io).svg" alt=""><a href="lista-empresa.html"> Gerência</a></li>
+          <li> <img class="iconHeader" src="assets/icon/Icon (from Tabler.io) (1).svg" alt=""><a href="lista-chamados.html"> Suporte</a> 
+          </li>
+          <li> <img class="iconHeader" src="assets/icon/Icon (from Tabler.io) (2).svg" alt=""><a href="lista-evento.html"> evento</a>
+          </li>
+        </ul>
+      </nav>
+            <div class="user">
+                <p>Gustavo Xavier <span class="tag">Admin</span></p>
+                <small class="conf"><a href="editarPerfil.html"> Configurações</a></small>
+              <button class="logout"><img src="assets/imgs/iconSaida.png" alt=""><a href="login.html"><strong> Sair</strong></a></button>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main">
+            <div class="header">
+                <h1>Empresas Cadastradas</h1>
+
+                <div class="actions">
+                    <input type="text" placeholder="pesquisar">
+                    <button><img src="assets/imgs/IconFiltro.png" alt=""></button>
+                    <button class="btn-yellow" onclick="abrirModal('cadastrar')" title="Cadastrar usuário">
+                        <img src="assets/imgs/iconMais.png" alt="">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Usuário</th>
+                        <th>Eventos</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Casa de Show Alemão LTDA</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td><button class="edit" onclick="abrirModal('editar')" title="editar mpresa"><img
+                                    src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
+                    </tr>
+
+                    <tr>
+                        <td>Soberana Casa de Show</td>
+                        <td>12</td>
+                        <td>1</td>
+                        <td><button class="edit" onclick="abrirModal('editar')" title="editar empresa"><img
+                                    src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
+                    </tr>
+
+                    <tr>
+                        <td>Casa Show Bar LTDA EPP</td>
+                        <td>5</td>
+                        <td>7</td>
+                        <td><button class="edit" onclick="abrirModal('editar')" title="editar empresa"><img
+                                    src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
+                    </tr>
+
+                    <tr>
+                        <td> Áudio SP (Audio Club)</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td><button class="edit" onclick="abrirModal('editar')" title="editar empresa"><img
+                                    src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
+                    </tr>
+
+                    <tr>
+                        <td>Blue Note São Paulo</td>
+                        <td>12</td>
+                        <td>3</td>
+                        <td><button class="edit" onclick="abrirModal('editar')" title="editar empresa"><img
+                                    src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
+                    </tr>
+
+                    <tr>
+                        <td>Bourbon Street Music Club</td>
+                        <td>10</td>
+                        <td>3</td>
+                        <td><button class="edit" onclick="abrirModal('editar')" title="editar empresa"><img
+                                    src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
+                    </tr>
+
+                    <tr>
+                        <td>Tokio Marine Hall</td>
+                        <td>23</td>
+                        <td>0</td>
+                        <td><button class="edit" onclick="abrirModal('editar')" title="editar empresa"><img
+                                    src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button>&lt;</button>
+                <button class="current">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>&gt;</button>
+            </div>
+
+        </main>
+
+    </div>
+
+
+
+
+
+    <!---->
+
+    <div class="desfoque" id="desfoque-cadastrar">
+        <div class="overlay" id="overlay-cadastrar" onclick="fecharOverlay(event,'cadastrar')">
+
+            <div class="modal">
+
+                <div class="cardP">
+                    <div class="topo">
+                        <h2><strong>Cadastrar Empresa </strong></h2>
+                        <button class="btx" class="modal-close" onclick="fecharModal('cadastrar')"><img
+                                src="assets/imgs/iconX.png" alt=""></button>
+                    </div>
+                    <form>
+                        <label>Nome</label>
+                        <input type="text">
+
+                        <div class="linha">
+                            <div class="campo">
+                                <label>CNPJ</label>
+                                <input type="text" placeholder="00.000.000/0000-00">
+                            </div>
+
+                            <div class="campo">
+                                <label>Telefone</label>
+                                <input type="text" placeholder="(99) 99999-9999">
+                            </div>
+                        </div>
+
+                        <h4><strong> Endereço:</strong></h4>
+
+                        <label>Logadouro</label>
+                        <input type="text">
+                        <div class="linha2">
+                            <div class="campo">
+                                <label>CEP</label>
+                                <input type="text" placeholder="00000-000">
+                            </div>
+                            <div class="campo">
+                                <label>Numero</label>
+                                <input type="text">
+                            </div>
+
+                            <div class="campo">
+                                <label>Complemento</label>
+                                <input type="text">
+                            </div>
+                        </div>
+
+
+
+                        <button class="buttonP">SALVAR</button>
+                </div>
+            </div>
+        </div>
+
+</div>"
+    <div class="desfoque" id="desfoque-editar">
+        <div class="overlay" id="overlay-editar" onclick="fecharOverlay(event,'editar')">
+
+            <div class="modal">
+
+                <div class="cardE">
+                    <div class="topo">
+                        <h2><strong>Editar Empresa </strong></h2>
+                        <button class="btx" class="modal-close" onclick="fecharModal('editar')"><img
+                                src="assets/imgs/iconX.png" alt=""></button>
+                    </div>
+                    <form>
+                        <label>Nome</label>
+                        <input type="text" value="Casa de Show Alemão LTDA">
+
+                        <div class="linha">
+                            <div class="campo">
+                                <label>CNPJ</label>
+                                <input type="text" placeholder="00.000.000/0000-00" value="12.123.123/1234-12">
+                            </div>
+
+                            <div class="campo">
+                                <label>Telefone</label>
+                                <input type="text" placeholder="(99) 99999-9999" value="11 98765-4321">
+                            </div>
+                        </div>
+
+                        <h4><strong> Endereço:</strong></h4>
+
+                        <label>Logradouro</label>
+                        <input type="text" value="Rua Haddok Lobo">
+                        <div class="linha2">
+                            <div class="campo">
+                                <label>CEP</label>
+                                <input type="text" placeholder="00000-000" value="000000-000">
+                            </div>
+                            <div class="campo">
+                                <label>Numero</label>
+                                <input type="text" value="123">
+                            </div>
+
+                            <div class="campo">
+                                <label>Complemento</label>
+                                <input type="text" value="nenhum">
+                            </div>
+                        </div>
+
+
+
+                        <button class="buttonS">SALVAR</button>
+                        <button class="buttonE">EXCLUIR</button>
+                </div>
+            </div>
+        </div>
+
+</div>
+            <script>
+                function abrirModal(id) {
+                    document.getElementById('overlay-' + id).classList.add('open');
+                    document.getElementById('desfoque-' + id).classList.add('open');
+                }
+                function fecharModal(id) {
+                    document.getElementById('overlay-' + id).classList.remove('open');
+                    document.getElementById('desfoque-' + id).classList.remove('open');
+                }
+                function fecharOverlay(e, id) {
+                    if (e.target === document.getElementById('overlay-' + id)) fecharModal(id);
+                    if (e.target === document.getElementById('desfoque-' + id)) fecharModal(id);
+                }
+            </script>
+
+</body>
+
+</html>

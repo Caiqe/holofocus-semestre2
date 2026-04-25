@@ -76,13 +76,13 @@
       <h2>Envie sua mensagem</h2>
 
       <form>
-        <input type="text" placeholder="Nome Completo:" required>
-        <input type="email" placeholder="Email:" required>
-        <input type="tel" placeholder="Telefone:">
-        <input type="text" placeholder="Assunto:">
-        <textarea placeholder="Mensagem:" rows="5"></textarea>
+        <input id="inptNome" type="text" placeholder="Nome Completo:" required>
+        <input id="inptEmail" type="email" placeholder="Email:" required>
+        <input id="inptTelefone" type="tel" placeholder="Telefone:">
+        <input id="inptAssunto" type="text" placeholder="Assunto:">
+        <textarea id="inptMensagem" placeholder="Mensagem:" rows="5"></textarea>
 
-        <button type="submit">ENVIAR</button>
+        <button onclick="enviar()" type="submit">ENVIAR</button>
       </form>
     </div>
 
@@ -171,3 +171,4 @@
 
 </html>
 <script src="./js/elementosPadrao.js"></script>
+<script src="./js/contateNos.js"></script>

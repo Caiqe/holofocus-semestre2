@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de chamados</title>
+    <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
+  <link rel="stylesheet" href="css/lista-chamados.css ">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <aside class="sidebar">
+      <img src="assets/imgs/holofocus-06.svg" alt="">
+
+
+      
+<nav>
+        <ul>
+          <li><img class="iconHeader" src="assets/icon/Vector.svg" alt=""><a href=""> Dashboard</a></li>
+          <li ><img class="iconHeader" src="assets/icon/Vector (1).svg" alt=""><a
+              href="lista-usuario.html">Usuários</a></li>
+          <li> <img class="iconHeader" src="assets/icon/Icon (from Tabler.io).svg" alt=""><a href="lista-empresa.html"> Gerência</a></li>
+          <li class="active"> <img class="iconHeader" src="assets/icon/Icon (from Tabler.io) (1).svg" alt=""><a href="lista-chamados.html"> Suporte</a> 
+          </li>
+          <li> <img class="iconHeader" src="assets/icon/Icon (from Tabler.io) (2).svg" alt=""><a href="lista-evento.html"> evento</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="user">
+        <p>Gustavo Xavier <span class="tag">Admin</span></p>
+      <small class="conf"><a href="editarPerfil.html"> Configurações</a></small>
+       <button class="logout"><img src="assets/imgs/iconSaida.png" alt=""><a href="login.html"><strong> Sair</strong></a></button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="header">
+        <h1>Lista de chamados</h1>
+
+        <div class="actions">
+          <input type="text" placeholder="pesquisar">
+          <button><img src="assets/imgs/IconFiltro.png" alt=""></button>
+          <button class="btn-yellow" onclick="abrirModal('cadastrar')" title="Cadastrar usuário">
+            <img src="assets/imgs/iconMais.png" alt="">
+          </button>
+        </div>
+      </div>
+
+
+
+      <table>
+        <thead>
+          <tr>
+            <th>identificação</th>
+            <th>Data de solicitação</th>
+            <th>status</th>
+            <th></th>
+          </tr>
+        </thead>
+
+       <tbody>
+          <tr>
+            <td>Casa de Show Alemão LTDA</td>
+            <td>20/08/2026</td>
+            <td><button class="and"> Em andamento</button></td>
+            <td><button class="visu" onclick="abrirModal('Visualizar')" title="Visualizar evento"> Visualizar</button></td>
+          </tr>
+
+          <tr>
+            <td>Soberana Casa de Show</td>
+            <td>04/03/2026</td>
+            <td><button class="and">Em andamento</button></td>
+            <td><button class="visu" onclick="abrirModal('Visualizar')" title="Visualizar evento"> Visualizar</button></td>
+          </tr>
+
+          <tr>
+            <td>Casa Show Bar LTDA EPP</td>
+            <td>25/03/2026</td>
+            <td><button class="conc">Concluido</button></td>
+            <td><button class="visu" onclick="abrirModal('Visualizar')" title="Visualizar evento"> Visualizar</button></td>
+          </tr>
+
+          <tr>
+            <td> Áudio SP (Audio Club)</td>
+            <td>25/03/2026</td>
+            <td><button class="conc">Concluido</button></td>
+            <td><button class="visu" onclick="abrirModal('Visualizar')" title="Visualizar evento"> Visualizar</button></td>
+          </tr>
+
+          <tr>
+            <td>Blue Note São Paulo</td>
+            <td>03/05/2026</td>
+            <td><button class="conc">Concluido</button></td>
+            <td><button class="visu" onclick="abrirModal('Visualizar')" title="Visualizar evento"> Visualizar</button></td>
+          </tr>
+
+          <tr>
+            <td>Bourbon Street Music Club</td>
+            <td>03/05/2026</td>
+            <td><button class="enc">Encerrado</button></td>
+            <td><button class="visu" onclick="abrirModal('Visualizar')" title="Visualizar evento"> Visualizar</button></td>
+          </tr>
+
+          <tr>
+            <td>Tokio Marine Hall</td>
+            <td>03/12/2026</td>
+            <td><button class="enc">Encerrado</button></td>
+            <td><button class="visu" onclick="abrirModal('Visualizar')" title="Visualizar evento"> Visualizar</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <div class="pagination">
+        <button>&lt;</button>
+        <button class="current">1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>&gt;</button>
+      </div>
+
+    </main>
+
+  </div>
+
+
+
+
+
+  <!---->
+  <div class="desfoque" id="desfoque-cadastrar">
+    <div class="overlay" id="overlay-cadastrar" onclick="fecharOverlay(event,'cadastrar')">
+      <div class="modal">
+
+
+        <div class="cardP">
+          <div class="topo">
+            <h2><strong>Abrir chamado </strong></h2>
+            <button class="btx" class="modal-close" onclick="fecharModal('cadastrar')"><img src="assets/imgs/iconX.png"
+                alt=""></button>
+          </div>
+
+          <form>
+            <label>Assunto</label>
+            <input type="text">
+
+                <label>Descrição</label>
+                <textarea type="text">
+                </textarea>
+              
+
+
+            <button class="buttonP">SALVAR</button>
+        </div>
+      </div>
+    </div>
+</div>
+    <div class="desfoque" id="desfoque-Visualizar">
+      <div class="overlay tamanho" id="overlay-Visualizar" onclick="fecharOverlay(event,'Visualizar')">
+        <div class="modal">
+
+
+          <div class="cardE">
+            <div class="topo">
+              <h2 class="h2"><strong>Visualizar chamado</strong></h2>
+              <button class="btx2" class="modal-close" onclick="fecharModal('Visualizar')"><img src="assets/imgs/iconX.png"
+                  alt=""></button>
+            </div>
+
+            <form>
+              <label>Assunto</label>
+              <input type="text" placeholder="Problema para cadastrar empresa">
+
+            
+                  <label>Descrição</label>
+                  <textarea type="text" placeholder="Tive problema para fazer o cadastro da minha empresa, esta dando erro na hora de salvar"></textarea>
+              
+
+
+
+              <button class="buttonE">EXCLUIR</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <script>
+        function abrirModal(id) {
+          document.getElementById('overlay-' + id).classList.add('open');
+          document.getElementById('desfoque-' + id).classList.add('open');
+        }
+        function fecharModal(id) {
+          document.getElementById('overlay-' + id).classList.remove('open');
+          document.getElementById('desfoque-' + id).classList.remove('open');
+        }
+        function fecharOverlay(e, id) {
+          if (e.target === document.getElementById('overlay-' + id)) fecharModal(id);
+          if (e.target === document.getElementById('desfoque-' + id)) fecharModal(id);
+        }
+
+      </script>
+
+</body>
+
+</html>
