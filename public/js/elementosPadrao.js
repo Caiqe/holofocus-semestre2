@@ -16,19 +16,17 @@ document.addEventListener("DOMContentLoaded", pegarNomeUsuario);
 const logout = () => {
     sessionStorage.clear();
     window.location.href = "/";
-}
+};
 
 const isAdm = () => {
-
     validarSessao();
-    
-    const permissao = sessionStorage.getItem('NIVEL_ACESSO');
+    const permissao = sessionStorage.getItem("NIVEL_ACESSO");
 
     if (permissao == null || permissao != "1") {
         logout();
     }
     return;
-}
+};
 
 function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
