@@ -53,52 +53,49 @@ function validarCnpj(cnpj) {
     return numeros.length == 14
 }
 
-async function proximo() {
+function proximo() {
     inpRazao = document.getElementById('inptRazaoSocial')
-    razaoVar = inpRazao.value.trim()
+    razaoVar = inpRazao.value
     inpCnpj = document.getElementById('inptCNPJ')
-    cnpjVar = inpCnpj.value.replace(/\D/g, "")
+    cnpjVar = inpCnpj.value
     inpCep = document.getElementById('inptCEP')
     inpEndereco = document.getElementById('inptEndereco')
-    enderecoVar = inpEndereco.value.trim()
+    enderecoVar = inpEndereco.value
     inpNumero = document.getElementById('inptNumero')
-    numeroVar = inpNumero.value.trim()
+    numeroVar = inpNumero.value
     inpComplemento = document.getElementById('inptComplemento')
-    complementoVar = inpComplemento.value.trim()
+    complementoVar = inpComplemento.value
 
-    cepVar = inpCep.value.replace(/\D/g, "").trim()
+    let cnpj = inpCnpj.value.replaceAll('.', '') 
+    cnpj = cnpj.replaceAll('/', '') 
+    cnpjVar = cnpj.replaceAll('-', '')
 
-    if (razaoVar !== "" &&
-        validarCnpj(inpCnpj.value) &&
-        cepVar.length === 8 &&
-        inpEndereco.value !== "" &&
-        inpNumero.value !== "") {
+    cepVar = inpCep.value.replace(/\D/g, "")
 
-        const cnpjExiste = await buscarPorCnpj(cnpjVar)
-        const enderecoExiste = await buscarEndereco(cepVar, numeroVar, complementoVar)
+    if (razaoVar.trim() !== "" &&
+     validarCnpj(inpCnpj.value) &&
+     cepVar.trim().length === 8 &&
+     inpEndereco.value.trim() !== "" &&
+     inpNumero.value.trim() !== "") {
+        // if (!buscarPorCnpj(inpCnpj.value)) {
 
-        if (cnpjExiste) {
-            erro("4000", "CNPJ já cadastrado")
+            pt1.style.display = 'none'
+            pt2.style.display = 'flex'
+            document.getElementById("divFundo").style.backgroundImage = 'url("../assets/imgs/fundo-cadastro-parte-2.jpg")'
             return
-        }
 
-        if (enderecoExiste) {
-            erro("4000", "Endereço já cadastrado")
-            return
-        }
-
-        pt1.style.display = 'none'
-        pt2.style.display = 'flex'
-        document.getElementById("divFundo").style.backgroundImage = 'url("../assets/imgs/fundo-cadastro-parte-2.jpg")'
-        return
+        // } else {
+            // erro("4000", 'CNPJ já cadastrado')
+            // return
+        // }    
     }
-    erro("2000", "Por favor revise os campos e preencha os dados corretamente")
+    erro("2000", "Erro", "Por favor revise os campos e preencha os dados corretamente")
 }
 
 function voltar() {
     pt2.style.display = 'none'
     pt1.style.display = 'flex'
-    document.getElementById("divFundo").style.backgroundImage = 'url("../assets/imgs/fundo-cadastro-parte-1.jpg")'
+    document.getElementById("divFundo").style.backgroundImage = 'url("../assets/imgs/fundo-cadastro-parte-1.jpg")'        
 }
 
 let inpNome = document.getElementById('inptNome')
@@ -109,123 +106,83 @@ let inpConfirma = document.getElementById('inptConfirmaSenha')
 
 async function cadastrar() {
     inpNome = document.getElementById('inptNome')
-    nomeVar = inpNome.value.trim()
+    nomeVar = inpNome.value
     inpEmail = document.getElementById('inptEmail')
-    emailVar = inpEmail.value.trim()
+    emailVar = inpEmail.value
     inpCelular = document.getElementById('inptCelular')
-    celularVar = inpCelular.value.replace(/\D/g, "").trim()
+    celularVar = inpCelular.value
     inpSenha = document.getElementById('inptSenha')
-    senhaVar = inpSenha.value.trim()
+    senhaVar = inpSenha.value
     inpConfirma = document.getElementById('inptConfirmaSenha')
 
-    if (enderecoVar !== "" &&
-        cepVar !== "" &&
-        numeroVar !== ""
-    ) {
-        const respCadEndereco = await fetch("/empresas/cadastrarEndereco", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                cepServer: cepVar,
-                logradouroServer: enderecoVar,
-                numeroServer: numeroVar,
-                complementoServer: complementoVar
-            })
-        })
+    if (nomeVar !== "" &&
+     validarEmail(emailVar) &&
+     validarCelular(celularVar) &&
+     validarSenha(senhaVar) &&
+     senhaVar === inpConfirma.value) {
 
-        if (!respCadEndereco.ok) {
-            erro("2000", "Verifique se as informações foram digitadas corretamente")
-            return
-        }
+        // const respCadEmpresa = await fetch("/empresas/cadastrar", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         razaoServer: razaoVar,
+        //         cnpjServer: cnpjVar,
+        //         cepServer: cepVar,
+        //         enderecoServer: enderecoVar,
+        //         numeroServer: numeroVar,
+        //         cepServer: cepVar
+        //     }),
+        // })
 
-        let idEndereco = await obterEndereco(cepVar, numeroVar, complementoVar)
+        // if (!respCadEmpresa.ok) {
+        //     erro("2000", 'Verifique se as informações foram digitadas corretamente')
+        //     return
+        // }
 
-        if (idEndereco == null) {
-            erro("4000", "Erro interno, peça ajuda ao nosso suporte")
-            return
-        }
+        // let idCnpjAtual = buscarPorCnpj(cnpjVar)
 
-        if (nomeVar !== "" &&
-            validarEmail(emailVar) &&
-            validarCelular(celularVar) &&
-            validarSenha(senhaVar) &&
-            senhaVar === inpConfirma.value) {
+        // if (idCnpjAtual == null) {
+        //     erro("4000", "Erro interno, peça ajuda ao nosso suporte")
+        //     return
+        // }
 
-            const respCadEmpresa = await fetch("/empresas/cadastrar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    idEnderecoServer: idEndereco,
-                    razaoServer: razaoVar,
-                    cnpjServer: cnpjVar
-                }),
-            })
+        // const respCadUsuario = await fetch('/usuarios/cadastrar', {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify({
+        //         idEmpresaServer: idCnpjAtual,
+        //         nomeServer: nomeVar,
+        //         celularServer: celularVar,
+        //         emailServer: emailVar,
+        //         senhaServer: senhaVar
+        //     })
+        // })
 
-            if (!respCadEmpresa.ok) {
-                erro("2000", 'Verifique se as informações foram digitadas corretamente')
+        // if (!respCadUsuario.ok) {
+        //     erro("3000", "Erro ao cadastrar o usuario, verifique as informações inseridas")
 
-                await fetch(`/empresas/deletarEndereco/${idEndereco}`, {
-                    method: "DELETE",
-                    headers: { "Content-Type": "application/json" }
-                })
+        //     await fetch(`/empresas/deletarEmpresa/${idCnpjAtual}`, {
+        //         method: "DELETE",
+        //         headers: {"Content-Type": "aplication/json"}
+        //     })
 
-                return
-            }
+        //     return
+        // }
 
-            let idCnpjAtual = await obterEmpresaPorCnpj(cnpjVar)
+        erro("2000", "Sucesso", 'Cadastro realizado com sucesso')
 
-            if (idCnpjAtual == null) {
-                erro("4000", "Erro interno, peça ajuda ao nosso suporte")
-                return
-            }
-
-            const respCadUsuario = await fetch('/usuarios/cadastrar', {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    idEmpresaServer: idCnpjAtual,
-                    nomeServer: nomeVar,
-                    telefoneServer: celularVar,
-                    emailServer: emailVar,
-                    senhaServer: senhaVar
-                })
-            })
-
-            if (!respCadUsuario.ok) {
-                erro("3000", "Erro ao cadastrar o usuario, verifique as informações inseridas")
-
-                await fetch(`/empresas/deletarEmpresa/${idCnpjAtual}`, {
-                    method: "DELETE",
-                    headers: { "Content-Type": "application/json" }
-                })
-
-                await fetch(`/empresas/deletarEndereco/${idEndereco}`, {
-                    method: "DELETE",
-                    headers: { "Content-Type": "application/json" }
-                })
-
-                return
-            }
-
-            erro("2000", 'Cadastro realizado com sucesso')
-
-            setTimeout(() => {
-                window.location = "login.html";
-            }, "3000");
-            return
-        }
-
-        erro("2000", 'Por favor revise os campos e preencha os dados corretamente')
-    } else {
-        erro("2000", "Preencha os dados de endereço corretamente")
+        setTimeout(() => {
+            window.location = "login.html";
+        }, "5000");
         return
     }
+
+    erro("2000", "Erro", 'Por favor revise os campos e preencha os dados corretamente')
 }
 
-
-function erro(tempo, titulo) {
+function erro(tempo, titulo, texto) {
     document.getElementById('divFundoErro').style.display = 'flex'
 
     if (inpRazao.value == '') {
@@ -280,6 +237,7 @@ function erro(tempo, titulo) {
     }
 
     document.getElementById('titulo').innerHTML = titulo
+    document.getElementById('spnErro').innerHTML = texto
 
     setTimeout(() => {
         document.getElementById('divFundoErro').style.display = 'none'
@@ -287,59 +245,22 @@ function erro(tempo, titulo) {
     return
 }
 
-async function buscarPorCnpj(cnpj) {
-    try {
-        const resposta = await fetch(`/empresas/buscar/${cnpj}`)
-        const dados = await resposta.json()
-
-        return dados.length > 0
-    } catch (erro) {
-        console.log("#ERRO:", erro)
-        return false
-    }
-}
-
-async function obterEmpresaPorCnpj(cnpj) {
-    const resposta = await fetch(`/empresas/buscar/${cnpj}`)
-    const dados = await resposta.json()
-
-    return dados[0]?.id_empresa || null
-}
-
-async function obterEndereco(cep, numero, complemento) {
-    const resposta = await fetch(`/empresas/buscarEndereco`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            cepServer: cep,
-            numeroServer: numero,
-            complementoServer: complemento
-        })
+function buscarPorCnpj(cnpj) {
+    fetch("/empresas/buscar", {
+        method: "GET",
     })
-
-    const dados = await resposta.json()
-    return dados[0]?.id_endereco || null
-}
-
-async function buscarEndereco(cep, numero, complemento) {
-    try {
-        const resposta = await fetch(`/empresas/buscarEndereco`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                cepServer: cep,
-                numeroServer: numero,
-                complementoServer: complemento
-            })
+        .then(function (resposta) {
+            resposta.json().then((resposta) => {
+                if (resposta.length > 0) {
+                    return null
+                } else {
+                    return resposta.id
+                }
+            });
         })
-
-        const dados = await resposta.json()
-
-        return dados.length > 0
-    } catch (erro) {
-        console.log("#ERRO:", erro)
-        return false
-    }
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
 }
 
 function mascaraCnpj(input) {
@@ -370,14 +291,14 @@ function mascaraCelular(input) {
     input.value = valor
 }
 
-document.getElementById("inptCNPJ").addEventListener("input", function () {
+document.getElementById("inptCNPJ").addEventListener("input", function() {
     mascaraCnpj(this)
 })
 
-document.getElementById("inptCEP").addEventListener("input", function () {
+document.getElementById("inptCEP").addEventListener("input", function() {
     mascaraCep(this)
 })
 
-document.getElementById("inptCelular").addEventListener("input", function () {
+document.getElementById("inptCelular").addEventListener("input", function() {
     mascaraCelular(this)
 })

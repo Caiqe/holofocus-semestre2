@@ -3,20 +3,17 @@ var router = express.Router();
 
 var empresaController = require("../controllers/empresaController");
 
+//Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
 router.post("/cadastrar", function (req, res) {
   empresaController.cadastrar(req, res);
 })
 
-router.post("/cadastrarEndereco", function (req, res) {
-  empresaController.cadastrarEndereco(req, res);
-})
-
-router.get("/buscar/:cnpj", function (req, res) {
+router.get("/buscar", function (req, res) {
   empresaController.buscarPorCnpj(req, res);
 });
 
-router.post("/buscarEndereco", function (req, res) {
-  empresaController.buscarEndereco(req, res);
+router.get("/buscar/:id", function (req, res) {
+  empresaController.buscarPorId(req, res);
 });
 
 router.get("/listar", function (req, res) {
@@ -26,11 +23,6 @@ router.get("/listar", function (req, res) {
 router.delete("/deletarEmpresa/:id", function
   (req, res) {
     empresaController.deletarEmpresa(req, res);
-});
-
-router.delete("/deletarEndereco/:id", function
-  (req, res) {
-    empresaController.deletarEndereco(req, res);
 });
 
 module.exports = router;

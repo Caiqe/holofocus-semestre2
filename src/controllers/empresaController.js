@@ -1,19 +1,9 @@
 var empresaModel = require("../models/empresaModel");
 
 function buscarPorCnpj(req, res) {
-  var cnpj = req.params.cnpj;
+  var cnpj = req.query.cnpj;
 
   empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
-    res.status(200).json(resultado);
-  });
-}
-
-function buscarEndereco(req, res) {
-  var cep = req.body.cepServer;
-  var numero = req.body.numeroServer;
-  var complemento = req.body.complementoServer;
-
-  empresaModel.buscarEndereco(cep, numero, complemento).then((resultado) => {
     res.status(200).json(resultado);
   });
 }
@@ -24,10 +14,17 @@ function listar(req, res) {
   });
 }
 
+function buscarPorId(req, res) {
+  var id = req.params.id;
+
+  empresaModel.buscarPorId(id).then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
+
 function cadastrar(req, res) {
-  var cnpj = req.body.cnpjServer;
-  var razaoSocial = req.body.razaoServer;
-  var idEndereco = req.body.idEnderecoServer;
+  var cnpj = req.body.cnpj;
+  var razaoSocial = req.body.razaoSocial;
 
   empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
     if (resultado.length > 0) {
@@ -35,26 +32,7 @@ function cadastrar(req, res) {
         .status(401)
         .json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
     } else {
-      empresaModel.cadastrar(razaoSocial, cnpj, idEndereco).then((resultado) => {
-        res.status(201).json(resultado);
-      });
-    }
-  });
-}
-
-function cadastrarEndereco(req, res) {
-  var cep = req.body.cepServer;
-  var endereco = req.body.logradouroServer;
-  var numero = req.body.numeroServer;
-  var complemento = req.body.complementoServer;
-
-  empresaModel.buscarEndereco(cep, numero, complemento).then((resultado) => {
-    if (resultado.length > 0) {
-      res
-        .status(401)
-        .json({ mensagem: `a empresa com o cep ${cep} já existe` });
-    } else {
-      empresaModel.cadastrarEndereco(cep, endereco, numero, complemento).then((resultado) => {
+      empresaModel.cadastrar(razaoSocial, cnpj).then((resultado) => {
         res.status(201).json(resultado);
       });
     }
@@ -64,21 +42,13 @@ function cadastrarEndereco(req, res) {
 function deletarEmpresa(req, res) {
   let id = req.params.id
 
-  empresaModel.deletarEmpresa(id).then((resultado) => { res.status(200).json(resultado) })
-}
-
-function deletarEndereco(req, res) {
-  let id = req.params.id
-
-  empresaModel.deletarEndereco(id).then((resultado) => { res.status(200).json(resultado) })
+  empresaModel.deletarEmpresa(id).then((resultado) => {res.status(200).json(resultado)})
 }
 
 module.exports = {
   buscarPorCnpj,
-  buscarEndereco,
+  buscarPorId,
   cadastrar,
-  cadastrarEndereco,
   listar,
-  deletarEmpresa,
-  deletarEndereco
+  deletarEmpresa
 };
