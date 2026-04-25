@@ -11,56 +11,20 @@
     <link rel="stylesheet" href="./css/modal.css">
     <script src="./js/elementosPadrao.js"></script>
   </head>
-  <body onload="isAdm()" style="background-color: #2a2a2a">
+  <body onload="isAdm()" class="!bg-[#1a1a1a]">
     <header id="__header">
       <img
         id="logo__header"
-        src="./assets/icon/holofocus-06 1.png"
+        src="./assets/imgs/holofocus-06.svg"
         alt="logo holofocus"
         class="self-center "
       />
-      <ul class="flex flex-col items-start gap-6">
-        <li></li>
-        <li>
-          <a href=""
-            ><img
-              src="./assets/icon/icon-dashboard.png"
-              alt="Icône dashboard"
-            />
-            <p>Dashboard</p></a
-          >
-        </li>
-        <li>
-          <a href=""
-            ><img src="./assets/icon/icon-usuarios.png" alt="Icône usuários" />
-            <p>Usuários</p></a
-          >
-        </li>
-        <li>
-          <a href=""
-            ><img src="./assets/icon/icon-gerencia.png" alt="Icône gerência" />
-            <p>Gerência</p></a
-          >
-        </li>
-        <li>
-          <a href=""
-            ><img src="./assets/icon/icon-suporte.png" alt="Icône suporte" />
-            <p>Suporte</p></a
-          >
-        </li>
-        <li>
-          <a href=""
-            ><img
-              src="./assets/icon/icon-favoritos.png"
-              alt="Icône favoritos"
-            />
-            <p>Favoritos</p></a
-          >
-        </li>
+      <ul id="ul_navbar" class="flex flex-col items-start gap-6">
+        
       </ul>
-      <div class="flex flex-col self-center w-2/3">
+      <div class="flex flex-col self-start w-full">
         <div class="flex items-center gap-3.5">
-          <p id="nome_usuario" class="text-white self-start "></p>
+          <p id="nome_usuario" class="text-white self-start !text-[14px]"></p>
           <img id="icon__admin" class="h-4" src="./assets/icon/icon-admin.png" alt="Icone de admin">
         </div>
         <a id="btt___configuracoes" href="" class="self-start"
@@ -69,14 +33,23 @@
             src="./assets/icon/icon-configuracoes.svg"
             alt="Icone de configurações"
           />
-          <p>Configurações</p></a
+          <p class="!text-[15px]">Configurações</p>
+        </a
         >
-        <button class="hover:cursor-pointer" id="btt__sair" onclick="logout()"
-          ><img src="./assets/icon/icon-sair.png" alt="Icone de sair" class="h-4.5 font-light"/><span class="font-light">Sair</span></button
+        <button class=" flex 
+        justify-center
+        cursor-pointer 
+        !w-[100px] 
+        bg-[#E4AFFF] 
+        rounded-[15px] 
+        !p-1.5
+        !text-[13px]  font-bold" 
+        id="btt__sair" onclick="logout()"
+          ><img src="./assets/imgs/iconSaida.png" alt="Icone de sair" class="h-4"/>Sair</button
         >
       </div>
     </header>
-    <main class="bg-black rouded-16 w-1/1 h-1/1 ml-16">
+    <main class="flex bg-black rouded-16 !w-[86%] !h-[98vh] !ml-2 !rounded-2xl items-center bg-black justify-center !p-5 gap-5">
       <div class="flex items-start w-1/1 gap-[20px]">
         <section id="section__1" class="w-3/12 flex flex-col gap-8 font-black">
           <div
@@ -213,4 +186,5 @@
     </main>
   </body>
   <script src="./js/modal.js"></script>
+  <script src="./js/navbar.js"></script>
 </html>

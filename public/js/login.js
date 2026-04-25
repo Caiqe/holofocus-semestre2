@@ -28,7 +28,14 @@ async function login() {
             sessionStorage.EMPRESA = resp.empresaId;
 
             setTimeout(() => {
-                window.location = "./dashboard/dashboard.html";
+
+                if (resp.nivelAcesso == 1) {
+                    window.location = "./dash.html";
+                } else if (resp.nivelAcesso == 2) {
+                    window.location = "./dashboard.html";
+                } else {
+                    window.location = "./lista-chamados.html";
+                }
             }, 2000);
             return
         }else{
