@@ -7,10 +7,6 @@ if (toggle && header) {
     });
 }
 
-
-
-
-
   document.addEventListener('DOMContentLoaded', pegarNomeUsuario);
 
 const logout = () => {
@@ -19,6 +15,9 @@ const logout = () => {
 }
 
 const isAdm = () =>{
+
+    validarSessao();
+    
     const permissao = sessionStorage.getItem('NIVEL_ACESSO');
 
     if(permissao == null || permissao != '1'){
