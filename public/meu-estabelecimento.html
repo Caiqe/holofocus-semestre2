@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="./css/meu-estabelecimento.css" />
     <link rel="stylesheet" href="./css/output.css" />
     <link rel="stylesheet" href="./css/modal.css">
+
+    <script src="./js/elementosPadrao.js"></script>
   </head>
-  <body style="background-color: #2a2a2a">
+  <body onload="isAdm()" style="background-color: #2a2a2a">
     <header id="__header">
       <img
         id="logo__header"
         src="./assets/icon/holofocus-06 1.png"
         alt="logo holofocus"
-        class="w-30 self-start "
+        class="self-center "
       />
       <ul class="flex flex-col items-start gap-6">
         <li></li>
@@ -59,7 +61,7 @@
       </ul>
       <div class="flex flex-col self-center w-2/3">
         <div class="flex items-center gap-3.5">
-          <p class="text-white self-start ">Gustavo Xavier</p>
+          <p id="nome_usuario" class="text-white self-start "></p>
           <img id="icon__admin" class="h-4" src="./assets/icon/icon-admin.png" alt="Icone de admin">
         </div>
         <a id="btt___configuracoes" href="" class="self-start"
@@ -70,8 +72,8 @@
           />
           <p>Configurações</p></a
         >
-        <a id="btt__sair" href=""
-          ><img src="./assets/icon/icon-sair.png" alt="Icone de sair" class="h-[18px]"/><span>Sair</span></a
+        <button class="hover:cursor-pointer" id="btt__sair" onclick="logout()"
+          ><img src="./assets/icon/icon-sair.png" alt="Icone de sair" class="h-4.5 font-light"/><span class="font-light">Sair</span></button
         >
       </div>
     </header>

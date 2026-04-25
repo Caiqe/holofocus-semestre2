@@ -1,8 +1,15 @@
+const aguardar = () => {
+    div_aguardar.style.display = "block";
+}
+const fimAguardar = () => {
+    div_aguardar.style.display = "none";
+}
+
 async function login() {
     let email = document.getElementById('inptEmail').value
     let senha = document.getElementById('inptSenha').value
 
-    if (email.trim() != "" && email != null && senha.trim() != "" && senha != null) {
+    if (email != null && email.trim() != ""  && senha != null && senha.trim() != "") {
         const resposta = await fetch('/usuarios/autenticar', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -11,21 +18,25 @@ async function login() {
                 senhaServer: senha
             })
         })
-
-        if (resposta.ok) {
-            let resp = resposta.json()
+        aguardar();
+        if (await resposta.ok) {
+            let resp =  await resposta.json()
             sessionStorage.EMAIL_USUARIO = resp.email;
             sessionStorage.NOME_USUARIO = resp.nome;
             sessionStorage.ID_USUARIO = resp.id;
+            sessionStorage.NIVEL_ACESSO = resp.nivelAcesso;
+            sessionStorage.EMPRESA = resp.empresaId;
 
             setTimeout(() => {
                 window.location = "./dashboard/dashboard.html";
-            }, "2000");
+            }, 2000);
             return
+        }else{
+            console.log("Erro ao logar", await resposta)
         }
     }
-
-    erro("3000", "Erro", "Usuário e/ou Senha incorretos")
+    fimAguardar();
+    erro("1000", "Erro", "Usuário e/ou Senha incorretos")
 }
 
 

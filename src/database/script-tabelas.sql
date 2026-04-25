@@ -14,7 +14,7 @@ CREATE TABLE endereco (
 
 CREATE TABLE nivel_acesso (
     id_nivel_acesso INT PRIMARY KEY AUTO_INCREMENT,
-    tipo_acesso VARCHAR(7) NOT NULL,
+    tipo_acesso VARCHAR(10) NOT NULL,
     descricao VARCHAR(100)  NOT NULL
 );
 
@@ -146,7 +146,7 @@ CREATE TABLE log (
 CREATE TABLE perfil (
     id_perfil INT AUTO_INCREMENT,
     fk_empresa INT NOT NULL,
-    cpk_perfil_empresa PRIMARY KEY (id_perfil, fk_empresa),
+    constraint cpk_perfil_empresa PRIMARY KEY (id_perfil, fk_empresa),
     scoreE1 TINYINT,
     scoreE2 TINYINT,
     scoreE3 TINYINT,
