@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Marketing</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/meu-estabelecimento.css" />
+    <link rel="stylesheet" href="./css/output.css" />
+    <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
+</head>
+
+<body>
+
+    <header id="__header">
+        <img id="logo__header" src="./assets/icon/holofocus-06 1.png" alt="logo holofocus" class="self-center " />
+        <ul class="flex flex-col items-start gap-6">
+            <li></li>
+            <li>
+                <a href=""><img src="./assets/icon/icon-dashboard.png" alt="Icône dashboard" />
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a href=""><img src="./assets/icon/icon-usuarios.png" alt="Icône usuários" />
+                    <p>Usuários</p>
+                </a>
+            </li>
+            <li>
+                <a href=""><img src="./assets/icon/icon-gerencia.png" alt="Icône gerência" />
+                    <p>Gerência</p>
+                </a>
+            </li>
+            <li>
+                <a href=""><img src="./assets/icon/icon-suporte.png" alt="Icône suporte" />
+                    <p>Suporte</p>
+                </a>
+            </li>
+            <li>
+                <a href=""><img src="./assets/icon/icon-favoritos.png" alt="Icône favoritos" />
+                    <p>Favoritos</p>
+                </a>
+            </li>
+        </ul>
+        <div class="flex flex-col self-center w-2/3">
+            <div class="flex items-center gap-3.5">
+                <p id="nome_usuario" class="text-white self-start "></p>
+                <img id="icon__admin" class="h-4" src="./assets/icon/icon-admin.png" alt="Icone de admin">
+            </div>
+            <a id="btt___configuracoes" href="" class="self-start"><img class="w-6"
+                    src="./assets/icon/icon-configuracoes.svg" alt="Icone de configurações" />
+                <p>Configurações</p>
+            </a>
+            <button class="hover:cursor-pointer" id="btt__sair" onclick="logout()"><img
+                    src="./assets/icon/icon-sair.png" alt="Icone de sair" class="h-4.5 font-light" /><span
+                    class="font-light">Sair</span></button>
+        </div>
+    </header>
+
+    <div class="principal">
+
+        <div class="caixas-superiores">
+            <div class="caixa">Gênero Popular: Pop</div>
+            <div class="caixa">Música Mais Tocada: Lights - The Weeknd</div>
+            <div class="caixa">Energia Do Gênero: 70</div>
+        </div>
+
+        <div class="graficos">
+            <div class="grafico-container">
+                <canvas id="graficoBarras"></canvas>
+            </div>
+            <div class="grafico-container">
+                <canvas id="graficoLinhas"></canvas>
+            </div>
+        </div>
+
+        <div class="painéis">
+
+            <div class="grupo-esquerda">
+
+                <div class="painel pequeno">
+                    <h3>Investimento</h3>
+                    <p>Gênero: <strong>Hip-Hop</strong></p>
+                    <p>Popularidade: 77%</p>
+                    <p>Energia: 45%</p>
+                    <br>
+                    <p style="color: #090909; font-weight: bold;">
+                        Focar campanhas e playlists em Hip-Hop
+                    </p>
+                </div>
+
+                <div class="painel medio">
+                    <h3>Oportunidade</h3>
+                    <p>
+                        O gênero <strong>Hip-Hop</strong> apresenta o maior potencial de crescimento para o próximo
+                        trimestre. Investir
+                        em campanhas e na curadoria de playlists voltadas a esse público pode ampliar significativamente
+                        o engajamento e o alcance das ações.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="painel grande">
+
+                <div class="filtro-header">
+                    <h3>Músicas por Gênero</h3>
+
+                    <div class="filtro-controles">
+                        <select id="tipoMusica">
+                            <option value="R&B">R&B</option>
+                            <option value="Rock">Rock</option>
+                            <option value="Funk">Funk</option>
+                            <option value="Jazz">Jazz</option>
+                            <option value="MPB">MPB</option>
+                        </select>
+
+                        <button onclick="filtrarMusicas()">Filtrar</button>
+                    </div>
+                </div>
+
+                <div class="tabela-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Música</th>
+                                <th>Artista</th>
+                                <th>Pop.</th>
+                                <th>País</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpoTabela"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        boxWidth: 12,
+                        font: { size: 11 },
+                        color: '#ffffff'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ffffff'
+                    },
+                    grid: {
+                        color: '#444'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ffffff'
+                    },
+                    grid: {
+                        color: '#666'
+                    }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('graficoBarras'), {
+            type: 'bar',
+            data: {
+                labels: ['Pop', 'Hip-Hop', 'Rock', 'Funk', 'Jazz'],
+                datasets: [{
+                    label: 'Popularidade (%)',
+                    data: [95, 77, 60, 50, 40],
+                    backgroundColor: '#ff17ba',
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    borderRadius: 10,
+                    borderSkipped: false,
+                    barPercentage: 0.8,
+                    categoryPercentage: 0.9
+                }]
+            },
+            options: chartOptions
+        });
+
+        new Chart(document.getElementById('graficoLinhas'), {
+            type: 'line',
+            data: {
+                labels: ['Funk', 'Jazz', 'R&B', 'Pop', 'Hip-Hop'],
+                datasets: [{
+                    label: 'Energia',
+                    data: [30, 40, 50, 70, 45],
+                    borderColor: '#ff6e03',
+                    borderWidth: 3,
+                    tension: 0.5,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#ff6e03',
+                    pointHoverRadius: 8,
+                    fill: false
+                }]
+            },
+            options: chartOptions
+        });
+
+        const musicas = [
+            { nome: "Amor Eterno", artista: "Luan ", genero: "R&B", popularidade: 85, pais: "BR" },
+            { nome: "Coração Livre", artista: "Iza", genero: "R&B", popularidade: 90, pais: "BR" },
+            { nome: "Energia Total", artista: "Capital Inicial", genero: "Rock", popularidade: 88, pais: "BR" },
+            { nome: "Batida Forte", artista: "Linkin Park", genero: "Rock", popularidade: 92, pais: "US" },
+            { nome: "Tranquilidade", artista: "Miles Davis", genero: "Jazz", popularidade: 70, pais: "US" },
+            { nome: "Zen Mode", artista: "H.E.R.", genero: "R&B", popularidade: 75, pais: "US" },
+            { nome: "Calmaria", artista: "Djavan", genero: "MPB", popularidade: 65, pais: "BR" },
+            { nome: "Noite de Festa", artista: "Ludmilla", genero: "Funk", popularidade: 92, pais: "BR" },
+            { nome: "Party All Night", artista: "Anitta", genero: "Funk", popularidade: 95, pais: "BR" }
+        ];
+
+        function filtrarMusicas() {
+            const tipo = document.getElementById("tipoMusica").value;
+            const tabela = document.getElementById("corpoTabela");
+            tabela.innerHTML = "";
+
+            const filtradas = musicas.filter(m => m.genero === tipo);
+
+            filtradas.forEach(m => {
+                tabela.innerHTML += `
+        <tr>
+            <td>${m.nome}</td>
+            <td>${m.artista}</td>
+            <td>${m.popularidade}</td>
+            <td>${m.pais}</td>
+        </tr>`;
+            });
+        }
+
+        filtrarMusicas();
+
+    </script>
+
+</html>
