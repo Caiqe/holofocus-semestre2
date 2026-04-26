@@ -8,7 +8,12 @@ if (toggle && header) {
 }
 
 const pegarNomeUsuario = () => {
-    validarSessao();
+    const elemento = document.getElementById("nome_usuario");
+
+    // Paginas publicas nao possuem esse elemento; nao deve forcar redirecionamento.
+    if (!elemento) return;
+
+    validarSessao(true);
 };
 
 document.addEventListener("DOMContentLoaded", pegarNomeUsuario);
@@ -19,7 +24,7 @@ const logout = () => {
 };
 
 const isAdm = () => {
-    validarSessao();
+    validarSessao(true);
     const permissao = sessionStorage.getItem("NIVEL_ACESSO");
 
     if (permissao == null || permissao != "1") {
@@ -28,15 +33,19 @@ const isAdm = () => {
     return;
 };
 
-function validarSessao() {
+function validarSessao(redirecionarSeInvalido = false) {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
 
     const elemento = document.getElementById("nome_usuario");
 
-    if (elemento && email != null && nome != null) {
+    if (!elemento) return;
+
+    if (email != null && nome != null) {
         elemento.innerHTML = nome;
-    } else {
+    } else if (redirecionarSeInvalido) {
         logout();
+    } else {
+        elemento.innerHTML = "";
     }
 }

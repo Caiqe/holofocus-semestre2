@@ -11,7 +11,7 @@ if (ul) {
     ul.innerHTML = `
     
         <li>
-              <a href="dash.html"
+              <a href="dashmarketing.html"
                 ><img src="./assets/icon/icon-gerencia.png" alt="Icône gerência" />
                 <p>Resultados</p></a
               >

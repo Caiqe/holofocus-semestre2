@@ -30,7 +30,7 @@ async function login() {
             setTimeout(() => {
 
                 if (resp.nivelAcesso == 1) {
-                    window.location = "./dash.html";
+                    window.location = "./dashmarketing.html";
                 } else if (resp.nivelAcesso == 2) {
                     window.location = "./dashboard.html";
                 } else {
