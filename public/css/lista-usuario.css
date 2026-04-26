@@ -75,7 +75,10 @@ color: #d278ff;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
+<<<<<<< HEAD
   align-self: center;
+=======
+>>>>>>> 9fd96d4dd563f2fcc12a62297b93a0394fb23988
 }
 
 #ul_navbar li {
@@ -91,9 +94,12 @@ color: #d278ff;
   gap: 10px;
   width: 100%;
 }
+<<<<<<< HEAD
 #ul_navbar li a p{
   font-size: 16px !important;
 }
+=======
+>>>>>>> 9fd96d4dd563f2fcc12a62297b93a0394fb23988
 
 #ul_navbar li a img {
   width: 34px;
