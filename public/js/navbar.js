@@ -23,7 +23,7 @@ if (ul) {
               >
         </li>
         <li>
-          <a href="dashboard/dashboard.html"
+          <a href="dashboard.html"
             ><img
               src="./assets/icon/icon-dashboard.png"
               alt="Icône dashboard"

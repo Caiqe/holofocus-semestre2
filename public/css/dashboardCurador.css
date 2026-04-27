@@ -9,20 +9,13 @@ body {
     gap: 1%;
 }
 
-.navBar {
-    width: 19%;
-    height: 96vh;
-    background-color: #000000;
-    border-radius: 16px;
-    margin: 1% 0% 1% 1%;
-}
 
 
 .dashboard {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 81%;
+    width: 91%;
     height: 96vh;
     background-color: #000000;
     border-radius: 16px;

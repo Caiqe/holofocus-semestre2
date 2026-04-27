@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="icon" href="/public/assets/icon/holofocus-06 1.png" />
+    <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
 
 
-    <link rel="stylesheet" href="/public/css/elementosPadrao.css">
-    <link rel="stylesheet" href="/public/css/dashboardCurador.css">
+    <link rel="stylesheet" href="./css/elementosPadrao.css">
+    <link rel="stylesheet" href="./css/dashboardCurador.css">
+    
+    <link rel="stylesheet" href="css/lista-evento.css">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -19,10 +21,23 @@
         rel="stylesheet">
 </head>
 
-<body>
-    <div class="navBar">
-        
-    </div>
+<body onload="validarSessao()">
+    
+        <aside class="sidebar" id="__header">
+            <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
+            <ul id="ul_navbar"></ul>
+            <div class="user">
+                <div class="usuario-info">
+                    <p id="nome_usuario"></p>
+                    <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
+                </div>
+                <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img
+                        src="./assets/icon/icon-configuracoes.svg" alt="Icone de configurações"> Configurações</a>
+                <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png" alt=""><strong>
+                        Sair</strong></button>
+            </div>
+        </aside>
+
     <div class="dashboard">
         <div class="container1">
             <div class="containerSeletores">
@@ -159,7 +174,7 @@
                             <div class="containerPorcentagem">
                                 <p>crescimento de</p>
                                 <div class="porcentagemCrescimento">
-                                    <img src="/public/assets/icon/seta.png" alt="seta">
+                                    <img src="./assets/icon/seta.png" alt="seta">
                                     <p>20%</p>
                                 </div>
                             </div>
@@ -174,7 +189,7 @@
                             <div class="containerPorcentagem">
                                 <p>crescimento de</p>
                                 <div class="porcentagemCrescimento">
-                                    <img src="/public/assets/icon/seta.png" alt="seta">
+                                    <img src="./assets/icon/seta.png" alt="seta">
                                     <p>20%</p>
                                 </div>
                             </div>
@@ -189,7 +204,7 @@
                             <div class="containerPorcentagem">
                                 <p>crescimento de</p>
                                 <div class="porcentagemCrescimento">
-                                    <img src="/public/assets/icon/seta.png" alt="seta">
+                                    <img src="./assets/icon/seta.png" alt="seta">
                                     <p>20%</p>
                                 </div>
                             </div>
@@ -204,7 +219,7 @@
                             <div class="containerPorcentagem">
                                 <p>crescimento de</p>
                                 <div class="porcentagemCrescimento">
-                                    <img src="/public/assets/icon/seta.png" alt="seta">
+                                    <img src="./assets/icon/seta.png" alt="seta">
                                     <p>20%</p>
                                 </div>
                             </div>
@@ -219,7 +234,7 @@
                             <div class="containerPorcentagem">
                                 <p>crescimento de</p>
                                 <div class="porcentagemCrescimento">
-                                    <img src="/public/assets/icon/seta.png" alt="seta">
+                                    <img src="./assets/icon/seta.png" alt="seta">
                                     <p>20%</p>
                                 </div>
                             </div>
@@ -315,6 +330,8 @@
 </body>
 
 </html>
+<script src="./js/elementosPadrao.js"></script>
+<script src="./js/navbar.js"></script>
 <script>
     function atualizarKPIs() {
         const boxes = document.querySelectorAll(".boxIndicador");
