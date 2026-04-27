@@ -1,10 +1,10 @@
-CREATE DATABASE holofocus;
+CREATE DATABASE IF NOT EXISTS holofocus;
 
 USE holofocus;
 
 -- TABELAS --------------------------------------------------------------------------------------------*
 -- Seção Organizacional
-CREATE TABLE endereco (
+CREATE TABLE IF NOT EXISTS endereco (
     id_endereco INT PRIMARY KEY AUTO_INCREMENT,
     cep VARCHAR(8) NOT NULL,
     logradouro VARCHAR(60)  NOT NULL,
@@ -12,25 +12,26 @@ CREATE TABLE endereco (
     complemento VARCHAR(60)
 );
 
-CREATE TABLE nivel_acesso (
+CREATE TABLE IF NOT EXISTS nivel_acesso (
     id_nivel_acesso INT PRIMARY KEY AUTO_INCREMENT,
-    tipo_acesso VARCHAR(10) NOT NULL,
+    tipo_acesso VARCHAR(7) NOT NULL,
     descricao VARCHAR(100)  NOT NULL
 );
 
-CREATE TABLE empresa (
+CREATE TABLE IF NOT EXISTS empresa (
 	id_empresa INT PRIMARY KEY AUTO_INCREMENT,
 	razao_social VARCHAR(80) NOT NULL UNIQUE,
     lotacao INT,
 	cnpj CHAR(14) NOT NULL UNIQUE,
     perfil_artistas VARCHAR(14),
     fk_endereco INT NOT NULL,
+    contrato_ativo TINYINT NOT NULL,
 	CONSTRAINT fk_empresa_endereco
     FOREIGN KEY (fk_endereco) REFERENCES endereco(id_endereco)
 );
 
 
-CREATE TABLE usuario (
+CREATE TABLE IF NOT EXISTS usuario (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(60) NOT NULL,
     email VARCHAR(60) NOT NULL UNIQUE,
@@ -50,17 +51,17 @@ CREATE TABLE usuario (
 
 
 -- Seção Base de dados
-CREATE TABLE genero (
+CREATE TABLE IF NOT EXISTS genero (
     id_genero INT PRIMARY KEY AUTO_INCREMENT,
     titulo_genero VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE pais(
+CREATE TABLE IF NOT EXISTS pais(
     id_pais INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome VARCHAR(30)
 );
 
-CREATE TABLE artista (
+CREATE TABLE IF NOT EXISTS artista (
     id_artista INT PRIMARY KEY AUTO_INCREMENT,
     artista_nome VARCHAR(60) NOT NULL,
     fk_pais INT NOT NULL,
@@ -68,7 +69,7 @@ CREATE TABLE artista (
     Foreign Key (fk_pais) REFERENCES pais(id_pais)
 );
 
-CREATE TABLE musica (
+CREATE TABLE IF NOT EXISTS musica (
     id_musica INT PRIMARY KEY AUTO_INCREMENT,
     titulo_musica VARCHAR(80) NOT NULL,
     data_lancamento DATE,
@@ -89,7 +90,7 @@ CREATE TABLE musica (
     FOREIGN KEY (fk_genero) REFERENCES genero(id_genero)
 );
 
-CREATE TABLE evento (
+CREATE TABLE IF NOT EXISTS evento (
     id_evento INT PRIMARY KEY AUTO_INCREMENT,
     nome_evento VARCHAR(60),
     data_evento DATE,
@@ -111,7 +112,7 @@ CREATE TABLE evento (
 
 
 -- Seção logs
-CREATE TABLE tipo_log (
+CREATE TABLE IF NOT EXISTS tipo_log (
     id_tipo_log INT PRIMARY KEY AUTO_INCREMENT,
     tipo_log VARCHAR(20)
 );
@@ -120,7 +121,7 @@ INSERT INTO tipo_log (tipo_log) VALUES
 ('SUCESSO'),
 ('ERRO');
 
-CREATE TABLE artefato (
+CREATE TABLE IF NOT EXISTS artefato (
 id_artefato INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(20)
 );
@@ -129,7 +130,7 @@ INSERT INTO artefato (nome) VALUES
 ('BASE DE DADOS'),
 ('BANCO DE DADOS');
 
-CREATE TABLE log (
+CREATE TABLE IF NOT EXISTS log (
     id_log INT PRIMARY KEY AUTO_INCREMENT,
     data_hora DATETIME,
     titulo VARCHAR(60),
@@ -143,10 +144,14 @@ CREATE TABLE log (
 
 
 -- Seção Preferencias
-CREATE TABLE perfil (
+CREATE TABLE IF NOT EXISTS perfil (
     id_perfil INT AUTO_INCREMENT,
     fk_empresa INT NOT NULL,
-    constraint cpk_perfil_empresa PRIMARY KEY (id_perfil, fk_empresa),
+    PRIMARY KEY (id_perfil, fk_empresa),
+    nome VARCHAR(45),
+    taxa_minima FLOAT,
+    taxa_maxima FLOAT,
+    fk_genero INT,
     scoreE1 TINYINT,
     scoreE2 TINYINT,
     scoreE3 TINYINT,
@@ -170,10 +175,10 @@ INSERT INTO nivel_acesso (tipo_acesso, descricao) VALUES
 ('ADMIN', 'Administrador do sistema'),
 ('USER', 'Usuário padrão');
 
-INSERT INTO empresa (razao_social, lotacao, cnpj, perfil_artistas, fk_endereco) VALUES
-('Casa de Shows Vibra SP', 5000, '12345678000101', 'PEDA', 1),
-('Bar Cultural Rio Beats', 800, '22345678000102', 'PSCA', 2),
-('Arena BH Music', 12000, '32345678000103', 'ISCP', 3);
+INSERT INTO empresa (razao_social, lotacao, cnpj, perfil_artistas, fk_endereco, contrato_ativo) VALUES
+('Casa de Shows Vibra SP', 5000, '12345678000101', 'PEDA', 1, 1),
+('Bar Cultural Rio Beats', 800, '22345678000102', 'PSCA', 2, 1),
+('Arena BH Music', 12000, '32345678000103', 'ISCP', 3, 1);
 
 INSERT INTO usuario (nome, email, telefone, senha, fk_nivel_acesso, fk_empresa) VALUES
 ('João Silva', 'joao@vibra.com', '11999999999', '123456', 1, 1),
