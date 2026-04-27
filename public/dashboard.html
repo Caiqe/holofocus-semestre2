@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" href="/public/assets/icon/holofocus-06 1.png" />
+
+
+    <link rel="stylesheet" href="/public/css/elementosPadrao.css">
+    <link rel="stylesheet" href="/public/css/dashboardCurador.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="navBar">
+        
+    </div>
+    <div class="dashboard">
+        <div class="container1">
+            <div class="containerSeletores">
+                <div class="seletor">
+                    <label>Perfil Sonoro</label>
+                    <select name="selecionar">
+                        <option value="perfil1">selecionar</option>
+                        <option value="banana">Perfil 2</option>
+                    </select>
+                </div>
+                <div class="seletor">
+                    <label>Gênero</label>
+                    <select name="selecionar">
+                        <option value="perfil1">selecionar</option>
+                        <option value="perfil1">Perfil 1</option>
+                        <option value="banana">Perfil 2</option>
+                    </select>
+                </div>
+                <div class="seletor">
+                    <label>Popularidade</label>
+                    <select name="selecionar">
+                        <option value="perfil1">selecionar</option>
+                        <option value="perfil1">Perfil 1</option>
+                        <option value="banana">Perfil 2</option>
+                    </select>
+                </div>
+                <div class="seletor">
+                    <label>País</label>
+                    <select name="selecionar">
+                        <option value="perfil1">selecionar</option>
+                        <option value="perfil1">Perfil 1</option>
+                        <option value="banana">Perfil 2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="containersInternos">
+                <div class="containerInterno1">
+                    <div class="box1">
+                        <h2>Popularidade/ <br>Streams</h2>
+                        <div class="graficoBarras">
+                            <canvas id="graficoBarras"></canvas>
+                        </div>
+                    </div>
+                    <div class="box1">
+                        <h2>Streams das <br> músicas mais ouvidas</h2>
+                        <div class="graficoLinhas">
+                            <canvas id="graficoLinhas"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="containerInterno2">
+                    <div class="listaArtistas">
+                        <table>
+                            <h2>Artistas mais ativos do último trimestre</h2>
+                            <div class="headerLista">
+                                <div class="headerArtista">
+                                    <span>Artista</span>
+                                </div>
+                                <span>Gênero <br>dominante</span>
+                                <span>Média de <br>streams</span>
+                                <span>Média de <br>popularidade</span>
+                                <span></span>
+                            </div>
+                            <label class="row">
+                                <div class="artista">
+                                    <span class="numero">1</span>
+                                    <span class="nome">Noah Rhodes</span>
+                                </div>
+                                <span>Pop</span>
+                                <span>36000</span>
+                                <span>90</span>
+                                <input type="radio" name="artista" value="0">
+                                <div class="radio-custom"></div>
+                            </label>
+                            <label class="row">
+                                <div class="artista">
+                                    <span class="numero">2</span>
+                                    <span class="nome">Luna Vega</span>
+                                </div>
+                                <span>Indie</span>
+                                <span>28000</span>
+                                <span>85</span>
+                                <input type="radio" name="artista" value="1" checked>
+                                <div class="radio-custom"></div>
+                            </label>
+                            <label class="row">
+                                <div class="artista">
+                                    <span class="numero">3</span>
+                                    <span class="nome">Kai Storm</span>
+                                </div>
+                                <span>Rock</span>
+                                <span>41000</span>
+                                <span>88</span>
+                                <input type="radio" name="artista" value="2">
+                                <div class="radio-custom"></div>
+                            </label>
+                            <label class="row">
+                                <div class="artista">
+                                    <span class="numero">4</span>
+                                    <span class="nome">Maya Bloom</span>
+                                </div>
+                                <span>R&B</span>
+                                <span>33000</span>
+                                <span>92</span>
+                                <input type="radio" name="artista" value="3">
+                                <div class="radio-custom"></div>
+                            </label>
+                            <label class="row">
+                                <div class="artista">
+                                    <span class="numero">5</span>
+                                    <span class="nome">Zion Beats</span>
+                                </div>
+                                <span>Hip-Hop</span>
+                                <span>39000</span>
+                                <span>87</span>
+                                <input type="radio" name="artista" value="4000">
+                                <div class="radio-custom"></div>
+                            </label>
+                    </div>
+                    </table>
+                </div>
+                <div class="boxPequeno">
+                    <div class="tituloKPI">
+                        <h1>Crescimento do trimestre</h1>
+                    </div>
+                    <div class="indicadores">
+                        <div class="boxIndicador">
+                            <div class="identificacaoIndicador">
+                                <div class="containerNumero">
+                                    <P>1</P>
+                                </div>
+                                <h1>Noah Rhodes</h1>
+                            </div>
+                            <div class="containerPorcentagem">
+                                <p>crescimento de</p>
+                                <div class="porcentagemCrescimento">
+                                    <img src="/public/assets/icon/seta.png" alt="seta">
+                                    <p>20%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boxIndicador">
+                            <div class="identificacaoIndicador">
+                                <div class="containerNumero">
+                                    <P>2</P>
+                                </div>
+                                <h1>Nome Rhodes</h1>
+                            </div>
+                            <div class="containerPorcentagem">
+                                <p>crescimento de</p>
+                                <div class="porcentagemCrescimento">
+                                    <img src="/public/assets/icon/seta.png" alt="seta">
+                                    <p>20%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boxIndicador">
+                            <div class="identificacaoIndicador">
+                                <div class="containerNumero">
+                                    <P>3</P>
+                                </div>
+                                <h1>Nome</h1>
+                            </div>
+                            <div class="containerPorcentagem">
+                                <p>crescimento de</p>
+                                <div class="porcentagemCrescimento">
+                                    <img src="/public/assets/icon/seta.png" alt="seta">
+                                    <p>20%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boxIndicador">
+                            <div class="identificacaoIndicador">
+                                <div class="containerNumero">
+                                    <P>4</P>
+                                </div>
+                                <h1>Nome</h1>
+                            </div>
+                            <div class="containerPorcentagem">
+                                <p>crescimento de</p>
+                                <div class="porcentagemCrescimento">
+                                    <img src="/public/assets/icon/seta.png" alt="seta">
+                                    <p>20%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boxIndicador">
+                            <div class="identificacaoIndicador">
+                                <div class="containerNumero">
+                                    <P>5</P>
+                                </div>
+                                <h1>Nome</h1>
+                            </div>
+                            <div class="containerPorcentagem">
+                                <p>crescimento de</p>
+                                <div class="porcentagemCrescimento">
+                                    <img src="/public/assets/icon/seta.png" alt="seta">
+                                    <p>20%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxPequeno">
+                    <div class="tituloKPI">
+                        <h1>Lançamentos do último ano</h1>
+                    </div>
+                    <div class="indicadores">
+                        <div class="boxIndicador">
+                            <div class="identificacaoIndicador">
+                                <div class="containerNumero">
+                                    <P>1</P>
+                                </div>
+                                <h1>Noah Rhodes</h1>
+                            </div>
+                            <div class="lancamentos">
+                                <p>12</p>
+                            </div>
+                        </div>
+                        <div class="boxIndicador">
+                            <div class="identificacaoIndicador">
+                                <div class="containerNumero">
+                                    <P>2</P>
+                                </div>
+                                <h1>Nome Rhodes</h1>
+                            </div>
+                            <div class="lancamentos">
+                                <p>12</p>
+                            </div>
+                        </div>
+                        <div class="boxIndicador">
+                            <div class="identificacaoIndicador">
+                                <div class="containerNumero">
+                                    <P>3</P>
+                                </div>
+                                <h1>Nome</h1>
+                            </div>
+                            <div class="lancamentos">
+                                <p>12</p>
+                            </div>
+                        </div>
+                        <div class="boxIndicador">
+                            <div class="identificacaoIndicador">
+                                <div class="containerNumero">
+                                    <P>4</P>
+                                </div>
+                                <h1>Nome</h1>
+                            </div>
+                            <div class="lancamentos">
+                                <p>12</p>
+                            </div>
+                        </div>
+                        <div class="boxIndicador">
+                            <div class="identificacaoIndicador">
+                                <div class="containerNumero">
+                                    <P>5</P>
+                                </div>
+                                <h1>Nome</h1>
+                            </div>
+                            <div class="lancamentos">
+                                <p>12</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container2">
+        <div class="nomeArtista">
+            <h5>Artista selecionado</h5>
+            <h1>Jennifer Cole</h1>
+        </div>
+        <div class="box2">
+            <h2>Distribuição de Popularidade</h2>
+            <div class="graficoPizza">
+                <canvas id="graficoPizza"></canvas>
+
+            </div>
+        </div>
+        <div class="box2">
+            <h2>Perfil do Artista</h2>
+            <div class="graficoRadar">
+                <canvas id="graficoRadar"></canvas>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function atualizarKPIs() {
+        const boxes = document.querySelectorAll(".boxIndicador");
+
+        for (let i = 0; i < 5; i++) {
+            const box = boxes[i];
+
+            const nome = box.querySelector("h1");
+            const numero = box.querySelector(".containerNumero p");
+            const porcentagem = box.querySelector(".porcentagemCrescimento p");
+
+            nome.innerText = artistaSelecionado.nome;
+            numero.innerText = i + 1;
+            porcentagem.innerText = artistaSelecionado.crescimento + "%";
+        }
+
+        for (let i = 5; i < 10; i++) {
+            const box = boxes[i];
+
+            const nome = box.querySelector("h1");
+            const numero = box.querySelector(".containerNumero p");
+            const lancamentos = box.querySelector(".lancamentos p");
+
+            const artista = artistas[i - 5];
+
+            nome.innerText = artista.nome;
+            numero.innerText = i - 4;
+            lancamentos.innerText = artista.lancamentos;
+        }
+    }
+    function renderLista() {
+        const container = document.querySelector(".listaArtistas");
+
+        container.innerHTML = `
+        <h2>Artistas mais ativos do último trimestre</h2>
+        <div class="headerLista">
+            <div class="headerArtista">
+                <span>Artista</span>
+            </div>
+            <span>Gênero</span>
+            <span>Streams</span>
+            <span>Popularidade</span>
+            <span></span>
+        </div>
+    `;
+
+        artistas.forEach((a, index) => {
+            container.innerHTML += `
+            <label class="row">
+                <div class="artista">
+                    <span class="numero">${index + 1}</span>
+                    <span class="nome">${a.nome}</span>
+                </div>
+
+                <span>${a.genero}</span>
+                <span>${a.streams}</span>
+                <span>${a.popularidade}</span>
+
+                <input type="radio" name="artista" value="${a.id}" ${index === 0 ? "checked" : ""}>
+                <div class="radio-custom"></div>
+            </label>
+        `;
+        });
+
+        document.querySelectorAll('input[name="artista"]').forEach(input => {
+            input.addEventListener("change", (e) => {
+                const id = Number(e.target.value);
+                artistaSelecionado = artistas.find(a => a.id === id);
+
+                atualizarDashboard();
+            });
+        });
+    }
+
+    const artistas = [
+        {
+            id: 0,
+            nome: "Noah Rhodes",
+            genero: "Pop",
+            streams: 36000,
+            popularidade: 90,
+            crescimento: 20,
+            lancamentos: 12,
+            radar: [60, 80, 75, 50, 90, 65],
+            streamsHistorico: [5000, 7000, 6000, 8000, 9000],
+
+            musicas: [
+                { nome: "Track 1", popularidade: 95 },
+                { nome: "Track 2", popularidade: 88 },
+                { nome: "Track 3", popularidade: 70 },
+                { nome: "Track 4", popularidade: 55 },
+                { nome: "Track 5", popularidade: 30 }
+            ]
+        },
+
+        {
+            id: 1,
+            nome: "Luna Sky",
+            genero: "Indie",
+            streams: 28000,
+            popularidade: 75,
+            crescimento: 35,
+            lancamentos: 8,
+            radar: [70, 60, 80, 55, 70, 60],
+            streamsHistorico: [4000, 6000, 5000, 7000, 8000],
+
+            musicas: [
+                { nome: "Track 1", popularidade: 80 },
+                { nome: "Track 2", popularidade: 72 },
+                { nome: "Track 3", popularidade: 60 },
+                { nome: "Track 4", popularidade: 45 }
+            ]
+        },
+
+        {
+            id: 2,
+            nome: "Kai Nova",
+            genero: "Rock",
+            streams: 50000,
+            popularidade: 95,
+            crescimento: 40,
+            lancamentos: 15,
+            radar: [80, 90, 85, 60, 75, 70],
+            streamsHistorico: [7000, 9000, 8500, 10000, 12000],
+
+            musicas: [
+                { nome: "Track 1", popularidade: 98 },
+                { nome: "Track 2", popularidade: 90 },
+                { nome: "Track 3", popularidade: 85 },
+                { nome: "Track 4", popularidade: 70 },
+                { nome: "Track 5", popularidade: 60 }
+            ]
+        },
+
+        {
+            id: 3,
+            nome: "Maya Bloom",
+            genero: "R&B",
+            streams: 22000,
+            popularidade: 65,
+            crescimento: 18,
+            lancamentos: 6,
+            radar: [50, 65, 70, 40, 60, 55],
+            streamsHistorico: [3000, 3500, 4000, 4500, 5000],
+
+            musicas: [
+                { nome: "Track 1", popularidade: 70 },
+                { nome: "Track 2", popularidade: 60 },
+                { nome: "Track 3", popularidade: 55 },
+                { nome: "Track 4", popularidade: 40 }
+            ]
+        },
+
+        {
+            id: 4,
+            nome: "Zion Wave",
+            genero: "Pop",
+            streams: 42000,
+            popularidade: 88,
+            crescimento: 30,
+            lancamentos: 10,
+            radar: [85, 95, 70, 65, 80, 75],
+            streamsHistorico: [6000, 8000, 7000, 9000, 11000],
+
+            musicas: [
+                { nome: "Track 1", popularidade: 92 },
+                { nome: "Track 2", popularidade: 85 },
+                { nome: "Track 3", popularidade: 78 },
+                { nome: "Track 4", popularidade: 66 },
+                { nome: "Track 5", popularidade: 50 }
+            ]
+        }
+    ];
+
+    let artistaSelecionado = artistas[0];
+
+    renderLista();
+
+    const legendaPadrao = {
+        position: 'top',
+        align: 'start',
+
+        onClick: () => null,
+        onHover: (evt) => {
+            evt.native.target.style.cursor = 'default';
+        },
+
+        labels: {
+            boxWidth: 12,
+            boxHeight: 12,
+            padding: 8,
+
+
+            generateLabels: function (chart) {
+
+                if (chart.config.type === 'doughnut' || chart.config.type === 'pie') {
+                    const data = chart.data;
+                    return data.labels.map((label, i) => ({
+                        text: label,
+                        fillStyle: data.datasets[0].backgroundColor[i],
+                        strokeStyle: data.datasets[0].backgroundColor[i],
+                        index: i,
+                        fontColor: '#DA9EF7'
+                    }));
+                }
+
+                if (chart.config.type === 'bar') {
+                    const datasets = chart.data.datasets;
+                    return datasets.map((dataset, i) => ({
+                        text: dataset.label,
+                        fillStyle: dataset.backgroundColor,
+                        strokeStyle: dataset.backgroundColor,
+                        hidden: !chart.isDatasetVisible(i),
+                        index: i,
+                        fontColor: '#DA9EF7'
+                    }));
+                }
+
+                const datasets = chart.data.datasets;
+                return datasets.map((dataset, i) => ({
+                    text: dataset.label,
+                    fillStyle: dataset.borderColor,
+                    strokeStyle: dataset.borderColor,
+                    hidden: !chart.isDatasetVisible(i),
+                    index: i,
+                    fontColor: '#DA9EF7'
+                }));
+            }
+        }
+    };
+
+    function normalizar(dados) {
+        const max = Math.max(...dados);
+        return dados.map(v => (v / max) * 100);
+    }
+
+    new Chart(document.getElementById('graficoBarras'), {
+        type: 'bar',
+        data: {
+            labels: artistas.map(a => a.nome),
+
+            datasets: [
+                {
+                    label: 'Streams (normalizado)',
+                    data: normalizar(artistas.map(a => a.streams)),
+                    backgroundColor: '#FF7A00',
+                    borderRadius: 8,
+                    barPercentage: 1,
+                    categoryPercentage: 0.8
+                },
+                {
+                    label: 'Popularidade',
+                    data: artistas.map(a => a.popularidade),
+                    backgroundColor: '#FF00B8',
+                    borderRadius: 8,
+                    barPercentage: 1,
+                    categoryPercentage: 0.8
+                }
+            ]
+        },
+
+        options: {
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: legendaPadrao
+            },
+
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#CFA6FF',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+
+                y: {
+                    beginAtZero: true,
+
+                    ticks: {
+                        color: '#CFA6FF',
+                        min: 0,
+                        max: 100
+                    },
+
+                    grid: {
+                        color: '#3a3a3a',
+                        borderDash: [5, 5]
+                    }
+                }
+            }
+        }
+    });
+
+
+    const cores = [
+        '#FF16B9',
+        '#FF6D03',
+        '#A259FF',
+        '#00E5FF',
+        '#FFD600'
+    ];
+
+    new Chart(document.getElementById('graficoLinhas'), {
+        type: 'line',
+        data: {
+            labels: ['Top 5', 'Top 4', 'Top 3', 'Top 2', 'Top 1'],
+
+            datasets: artistas.map((a, i) => ({
+                label: a.nome,
+                data: a.streamsHistorico,
+                borderColor: cores[i],
+                backgroundColor: cores[i] + '33',
+                tension: 0.4,
+                pointRadius: 3,
+                pointHoverRadius: 6
+            }))
+        },
+
+        options: {
+            maintainAspectRatio: false,
+            plugins: {
+                legend: legendaPadrao
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        color: 'white',
+                        callback: value => value / 1000 + 'k'
+                    },
+                    grid: {
+                        color: '#444',
+                        borderDash: [5, 5]
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: 'white'
+                    },
+                    grid: {
+                        color: '#444',
+                        borderDash: [5, 5]
+                    }
+                }
+            }
+        }
+    });
+
+    const graficoPizza = new Chart(document.getElementById('graficoPizza'), {
+        type: 'doughnut',
+
+        data: {
+            labels: ['0-25', '26-50', '51-75', '75-100'],
+
+            datasets: [{
+                label: 'Distribuição de Popularidade',
+                data: [2, 5, 3, 10],
+
+                backgroundColor: [
+                    '#667887',
+                    '#FF17BA',
+                    '#FF6E03',
+                    '#93BCA5'
+                ],
+
+
+                borderWidth: 0,
+                hoverOffset: 6
+            }]
+        },
+
+        options: {
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: legendaPadrao
+            },
+
+            cutout: '30%'
+        }
+    });
+
+
+    const graficoRadar = new Chart(document.getElementById('graficoRadar'), {
+        type: 'radar',
+        data: {
+            labels: ['Danceability', 'Energy', 'Valence', 'Acousticness', 'Liveness', 'Speechiness'],
+
+            datasets: [
+                {
+                    label: 'Artista Selecionado',
+                    data: [60, 80, 75, 50, 90, 65],
+                    borderColor: '#FF6D03',
+                    backgroundColor: 'rgba(255, 109, 3, 0.2)',
+                    pointBackgroundColor: '#FF6D03'
+                },
+                {
+                    label: 'Perfil musical da casa',
+                    data: [70, 85, 60, 80, 50, 75],
+                    borderColor: '#FF16B9',
+                    backgroundColor: 'rgba(255, 22, 185, 0.2)',
+                    pointBackgroundColor: '#FF16B9'
+                }
+            ]
+        },
+
+        options: {
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: legendaPadrao
+            },
+
+            scales: {
+                r: {
+                    min: 0,
+                    max: 100,
+
+                    ticks: {
+                        display: false
+                    },
+
+                    grid: {
+                        color: '#8A6F9E'
+                    },
+
+                    angleLines: {
+                        color: '#8A6F9E'
+                    },
+
+                    pointLabels: {
+                        color: '#D8B4FE',
+                        font: {
+                            size: 12
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    function calcularDistribuicaoMusicas(artista) {
+        const faixas = [0, 0, 0, 0];
+
+        artista.musicas.forEach(m => {
+            const p = m.popularidade;
+
+            if (p <= 25) faixas[0]++;
+            else if (p <= 50) faixas[1]++;
+            else if (p <= 75) faixas[2]++;
+            else faixas[3]++;
+        });
+
+        return faixas;
+    }
+
+    function atualizarDashboard() {
+        document.querySelector(".nomeArtista h1").innerText = artistaSelecionado.nome;
+
+        graficoRadar.data.datasets[0].data = artistaSelecionado.radar;
+        graficoRadar.update();
+
+        graficoPizza.data.datasets[0].data =
+            calcularDistribuicaoMusicas(artistaSelecionado);
+
+        graficoPizza.update();
+    }
+
+    function renderKPIsFixos() {
+        const boxes = document.querySelectorAll(".boxIndicador");
+
+        for (let i = 0; i < 5; i++) {
+            const artista = artistas[i];
+
+            const box = boxes[i];
+            box.querySelector(".containerNumero p").innerText = i + 1;
+            box.querySelector("h1").innerText = artista.nome;
+            box.querySelector(".porcentagemCrescimento p").innerText = artista.crescimento + "%";
+        }
+    }
+
+    function renderLancamentosFixos() {
+        const boxes = document.querySelectorAll(".boxIndicador");
+
+        for (let i = 5; i < 10; i++) {
+            const box = boxes[i];
+
+            const artista = artistas[i - 5];
+
+            const numero = box.querySelector(".containerNumero p");
+            const nome = box.querySelector("h1");
+            const lancamentos = box.querySelector(".lancamentos p");
+
+            numero.innerText = i - 4;
+            nome.innerText = artista.nome;
+            lancamentos.innerText = artista.lancamentos;
+        }
+    }
+
+    renderLista();
+    renderKPIsFixos();
+    renderLancamentosFixos();
+    atualizarDashboard();   
+</script>
