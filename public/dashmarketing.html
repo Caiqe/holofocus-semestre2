@@ -9,54 +9,50 @@
     <link rel="stylesheet" href="./css/meu-estabelecimento.css" />
     <link rel="stylesheet" href="./css/output.css" />
     <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
+    <script src="./js/elementosPadrao.js"></script>
 </head>
 
-<body>
+<body onload="isAdm()" class="!bg-[#1a1a1a]">
 
     <header id="__header">
-        <img id="logo__header" src="./assets/icon/holofocus-06 1.png" alt="logo holofocus" class="self-center " />
-        <ul class="flex flex-col items-start gap-6">
-            <li></li>
-            <li>
-                <a href=""><img src="./assets/icon/icon-dashboard.png" alt="Icône dashboard" />
-                    <p>Dashboard</p>
-                </a>
-            </li>
-            <li>
-                <a href=""><img src="./assets/icon/icon-usuarios.png" alt="Icône usuários" />
-                    <p>Usuários</p>
-                </a>
-            </li>
-            <li>
-                <a href=""><img src="./assets/icon/icon-gerencia.png" alt="Icône gerência" />
-                    <p>Gerência</p>
-                </a>
-            </li>
-            <li>
-                <a href=""><img src="./assets/icon/icon-suporte.png" alt="Icône suporte" />
-                    <p>Suporte</p>
-                </a>
-            </li>
-            <li>
-                <a href=""><img src="./assets/icon/icon-favoritos.png" alt="Icône favoritos" />
-                    <p>Favoritos</p>
-                </a>
-            </li>
+        <img
+          id="logo__header"
+          src="./assets/imgs/holofocus-06.svg"
+          alt="logo holofocus"
+          class="self-center "
+        />
+        <ul id="ul_navbar" class="flex flex-col items-start gap-6">
+          
         </ul>
-        <div class="flex flex-col self-center w-2/3">
-            <div class="flex items-center gap-3.5">
-                <p id="nome_usuario" class="text-white self-start "></p>
-                <img id="icon__admin" class="h-4" src="./assets/icon/icon-admin.png" alt="Icone de admin">
-            </div>
-            <a id="btt___configuracoes" href="" class="self-start"><img class="w-6"
-                    src="./assets/icon/icon-configuracoes.svg" alt="Icone de configurações" />
-                <p>Configurações</p>
-            </a>
-            <button class="hover:cursor-pointer" id="btt__sair" onclick="logout()"><img
-                    src="./assets/icon/icon-sair.png" alt="Icone de sair" class="h-4.5 font-light" /><span
-                    class="font-light">Sair</span></button>
+        <div class="flex flex-col self-start w-full">
+          <div class="flex items-center gap-3.5">
+            <p id="nome_usuario" class="text-white self-start !text-[14px]"></p>
+            <img id="icon__admin" class="h-4" src="./assets/icon/icon-admin.png" alt="Icone de admin">
+          </div>
+          <a id="btt___configuracoes" href="./editarPerfil.html" class="self-start"
+            ><img
+              class="w-6"
+              src="./assets/icon/icon-configuracoes.svg"
+              alt="Icone de configurações"
+            />
+            <p class="!text-[15px]">Configurações</p>
+          </a
+          >
+          <button class=" !flex 
+          !justify-center
+          !cursor-pointer 
+          !w-[100px] 
+          !bg-[#E4AFFF] 
+          !rounded-[15px] 
+          !p-1.5
+          !text-[13px]  
+          !font-bold
+          !text-black" 
+          id="btt__sair" onclick="logout()"
+            ><img src="./assets/imgs/iconSaida.png" alt="Icone de sair" class="h-4"/>Sair</button
+          >
         </div>
-    </header>
+      </header>
 
     <div class="principal">
 
@@ -247,4 +243,5 @@
 
     </script>
 
+    <script src="./js/navbar.js"></script>
 </html>

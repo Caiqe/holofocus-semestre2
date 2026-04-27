@@ -5,16 +5,10 @@
     <title>Editar Perfil</title>
     <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
     <link rel="stylesheet" href="css/editarPerfil.css">
+    <script src="./js/elementosPadrao.js"></script>
 </head>
-
-
-
-<body>
-
-  
-
-
-<button class="botao-voltar">↩</button>
+<body onload="validarSessao()">
+<button onclick="voltar()" class="botao-voltar">↩</button>
 
    <svg class="svg">
       <path class="path"></path>
@@ -29,7 +23,7 @@
     <div class="card">
         <div class="topo">
             <h2><strong>Editar perfil </strong></h2>
-            <button class="btx"><img src="assets/imgs/IconX.png" alt=""></button>
+            <button onclick="voltar()" class="btx"><img src="assets/imgs/IconX.png" alt=""></button>
         </div>
 
         <form>
@@ -65,4 +59,19 @@
 </div>
 
 </body>
+<script>
+    
+    const voltar = () => {
+        const nivelAcesso = sessionStorage.NIVEL_ACESSO;
+
+        if(nivelAcesso == null || nivelAcesso == ""){
+            sessionStorage.clear()
+            window.location.href = "/";
+        }else if( nivelAcesso == 1){
+            window.location.href = "/dashmarketing.html"
+        }else if( nivelAcesso == 2){
+           window.location.href = "/dashboard.html"
+        }
+    }
+</script>
 </html>

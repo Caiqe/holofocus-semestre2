@@ -9,6 +9,13 @@ function autenticar(req, res) {
             function (resultadoAutenticar) {
                 if (resultadoAutenticar.length == 1) {
                     console.log(resultadoAutenticar);
+                    res.json({
+                        id: resultadoAutenticar[0].id_usuario,
+                        nome: resultadoAutenticar[0].nome,
+                        email: resultadoAutenticar[0].email,
+                        empresaId: resultadoAutenticar[0].empresaId,
+                        nivelAcesso: resultadoAutenticar[0].nivelAcesso
+                    })
                 } else if (resultadoAutenticar.length == 0) {
                     res.status(403).send("Email e/ou senha inválido(s)");
                 } else {
