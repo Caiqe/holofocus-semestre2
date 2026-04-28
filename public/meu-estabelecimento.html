@@ -8,73 +8,48 @@
 
     <link rel="stylesheet" href="./css/meu-estabelecimento.css" />
     <link rel="stylesheet" href="./css/output.css" />
+    <link rel="stylesheet" href="./css/modal.css">
+    <script src="./js/elementosPadrao.js"></script>
   </head>
-  <body style="background-color: #2a2a2a">
+  <body onload="isAdm()" class="!bg-[#1a1a1a]">
     <header id="__header">
       <img
         id="logo__header"
-        src="./assets/icon/holofocus-06 1.png"
+        src="./assets/imgs/holofocus-06.svg"
         alt="logo holofocus"
-        class="w-30 self-start "
+        class="self-center "
       />
-      <ul class="flex flex-col items-start gap-6">
-        <li></li>
-        <li>
-          <a href=""
-            ><img
-              src="./assets/icon/icon-dashboard.png"
-              alt="Icône dashboard"
-            />
-            <p>Dashboard</p></a
-          >
-        </li>
-        <li>
-          <a href=""
-            ><img src="./assets/icon/icon-usuarios.png" alt="Icône usuários" />
-            <p>Usuários</p></a
-          >
-        </li>
-        <li>
-          <a href=""
-            ><img src="./assets/icon/icon-gerencia.png" alt="Icône gerência" />
-            <p>Gerência</p></a
-          >
-        </li>
-        <li>
-          <a href=""
-            ><img src="./assets/icon/icon-suporte.png" alt="Icône suporte" />
-            <p>Suporte</p></a
-          >
-        </li>
-        <li>
-          <a href=""
-            ><img
-              src="./assets/icon/icon-favoritos.png"
-              alt="Icône favoritos"
-            />
-            <p>Favoritos</p></a
-          >
-        </li>
+      <ul id="ul_navbar" class="flex flex-col items-start gap-6">
+        
       </ul>
-      <div class="flex flex-col self-center w-2/3">
+      <div class="flex flex-col self-start w-full">
         <div class="flex items-center gap-3.5">
-          <p class="text-white self-start ">Gustavo Xavier</p>
+          <p id="nome_usuario" class="text-white self-start !text-[14px]"></p>
           <img id="icon__admin" class="h-4" src="./assets/icon/icon-admin.png" alt="Icone de admin">
         </div>
-        <a id="btt___configuracoes" href="" class="self-start"
+        <a id="btt___configuracoes" href="./editarPerfil.html" class="self-start"
           ><img
             class="w-6"
             src="./assets/icon/icon-configuracoes.svg"
             alt="Icone de configurações"
           />
-          <p>Configurações</p></a
+          <p class="!text-[15px]">Configurações</p>
+        </a
         >
-        <a id="btt__sair" href=""
-          ><img src="./assets/icon/icon-sair.png" alt="Icone de sair" class="h-[18px]"/><span>Sair</span></a
+        <button class=" flex 
+        justify-center
+        cursor-pointer 
+        !w-[100px] 
+        bg-[#E4AFFF] 
+        rounded-[15px] 
+        !p-1.5
+        !text-[13px]  font-bold" 
+        id="btt__sair" onclick="logout()"
+          ><img src="./assets/imgs/iconSaida.png" alt="Icone de sair" class="h-4"/>Sair</button
         >
       </div>
     </header>
-    <main class="bg-black rouded-16 w-1/1 h-1/1 ml-16">
+    <main class="flex bg-black rouded-16 !w-[86%] !h-[98vh] !ml-2 !rounded-2xl items-center bg-black justify-center !p-5 gap-5">
       <div class="flex items-start w-1/1 gap-[20px]">
         <section id="section__1" class="w-3/12 flex flex-col gap-8 font-black">
           <div
@@ -128,6 +103,11 @@
               <option value="#" selected disabled class="">
                 Selecione o local
               </option>
+              <option value="">Brasil</option>
+              <option value="">EUA</option>
+              <option value="">França</option>
+              <option value="">Inglaterra</option>
+              <option value="">Espanha</option>
             </select>
             <hr class="w-1/1" />
           </div>
@@ -155,6 +135,10 @@
               <option value="#" selected disabled class="">
                 Selecione o índice de popularidade
               </option>
+              <option value="25">0%-25%</option>
+              <option value="25">25%-50%</option>
+              <option value="25">50%-75%</option>
+              <option value="25">75%-100%</option>
             </select>
             <hr class="w-1/1" />
           </div>
@@ -164,7 +148,7 @@
           class="w-2/5 flex flex-col gap-12 font-black bg-[#F0D48D] rounded-[16px] items-center"
         >
           <h2>Perfis Sonoros</h2>
-          <div class="flex gap-1 hover:scale-105 justify-center hover:cursor-pointer items-center">
+          <div onclick="modal()" class="flex gap-1 hover:scale-105 justify-center hover:cursor-pointer items-center">
             <h2>Adicionar</h2>
             <img class="h-5" src="./assets/icon/icon-mais.svg" alt="Icone de mais">
           </div>
@@ -172,7 +156,7 @@
             <div class="flex flex-col gap-1">
               <div class="flex justify-between">
                 <h3 class="font-light">Intimista</h3>
-                <button class="button__editar bg-black text-white font-light hover:cursor-pointer">
+                <button onclick="modal()" class="button__editar bg-black text-white font-light hover:cursor-pointer">
                   Editar
                 </button>
               </div>
@@ -181,7 +165,7 @@
             <div class="flex flex-col gap-1">
               <div class="flex justify-between">
                 <h3 class="font-light">Energético</h3>
-                <button class="button__editar bg-black text-white font-light hover:cursor-pointer">
+                <button onclick="modal()" class="button__editar bg-black text-white font-light hover:cursor-pointer">
                   Editar
                 </button>
               </div>
@@ -190,7 +174,7 @@
             <div class="flex flex-col gap-1">
               <div class="flex justify-between">
                 <h3 class="font-light">Positivo</h3>
-                <button class="button__editar bg-black text-white font-light hover:cursor-pointer">
+                <button onclick="modal()" class="button__editar bg-black text-white font-light hover:cursor-pointer">
                   Editar
                 </button>
               </div>
@@ -201,4 +185,6 @@
       </div>
     </main>
   </body>
+  <script src="./js/modal.js"></script>
+  <script src="./js/navbar.js"></script>
 </html>

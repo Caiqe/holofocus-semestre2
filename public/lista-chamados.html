@@ -3,37 +3,28 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Lista de chamados</title>
-    <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
-  <link rel="stylesheet" href="css/lista-chamados.css ">
+  <title>Chamados - Holofocus</title>
+  <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
+  <link rel="stylesheet" href="./css/lista-chamados.css">
+  <script src="./js/elementosPadrao.js"></script>
 </head>
 
-<body>
+<body onload="validarSessao()">
 
   <div class="container">
 
-    <aside class="sidebar">
-      <img src="assets/imgs/holofocus-06.svg" alt="">
-
-
-      
-<nav>
-        <ul>
-          <li><img class="iconHeader" src="assets/icon/Vector.svg" alt=""><a href=""> Dashboard</a></li>
-          <li ><img class="iconHeader" src="assets/icon/Vector (1).svg" alt=""><a
-              href="lista-usuario.html">Usuários</a></li>
-          <li> <img class="iconHeader" src="assets/icon/Icon (from Tabler.io).svg" alt=""><a href="lista-empresa.html"> Gerência</a></li>
-          <li class="active"> <img class="iconHeader" src="assets/icon/Icon (from Tabler.io) (1).svg" alt=""><a href="lista-chamados.html"> Suporte</a> 
-          </li>
-          <li> <img class="iconHeader" src="assets/icon/Icon (from Tabler.io) (2).svg" alt=""><a href="lista-evento.html"> evento</a>
-          </li>
-        </ul>
-      </nav>
-
+    <aside class="sidebar" id="__header">
+      <img id="logo__header" src="./assets/imgs/holofocus-06.svg" alt="logo holofocus" />
+      <ul id="ul_navbar"></ul>
       <div class="user">
-        <p>Gustavo Xavier <span class="tag">Admin</span></p>
-      <small class="conf"><a href="editarPerfil.html"> Configurações</a></small>
-       <button class="logout"><img src="assets/imgs/iconSaida.png" alt=""><a href="login.html"><strong> Sair</strong></a></button>
+        <div class="usuario-info">
+          <p id="nome_usuario"></p>
+          <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
+        </div>
+        <a class="conf" id="btt___configuracoes" href="editarPerfil.html">
+          <img src="./assets/icon/icon-configuracoes.svg" alt="Icone de configurações" /> Configurações
+        </a>
+        <button onclick="logout()" class="logout" id="btt__sair"><img src="./assets/imgs/iconSaida.png" alt=""><strong> Sair</strong></button>
       </div>
     </aside>
 
@@ -44,9 +35,9 @@
 
         <div class="actions">
           <input type="text" placeholder="pesquisar">
-          <button><img src="assets/imgs/IconFiltro.png" alt=""></button>
+          <button><img src="./assets/imgs/IconFiltro.png" alt=""></button>
           <button class="btn-yellow" onclick="abrirModal('cadastrar')" title="Cadastrar usuário">
-            <img src="assets/imgs/iconMais.png" alt="">
+            <img src="./assets/imgs/iconMais.png" alt="">
           </button>
         </div>
       </div>
@@ -142,7 +133,7 @@
         <div class="cardP">
           <div class="topo">
             <h2><strong>Abrir chamado </strong></h2>
-            <button class="btx" class="modal-close" onclick="fecharModal('cadastrar')"><img src="assets/imgs/iconX.png"
+            <button class="btx" class="modal-close" onclick="fecharModal('cadastrar')"><img src="./assets/imgs/iconX.png"
                 alt=""></button>
           </div>
 
@@ -169,7 +160,7 @@
           <div class="cardE">
             <div class="topo">
               <h2 class="h2"><strong>Visualizar chamado</strong></h2>
-              <button class="btx2" class="modal-close" onclick="fecharModal('Visualizar')"><img src="assets/imgs/iconX.png"
+              <button class="btx2" class="modal-close" onclick="fecharModal('Visualizar')"><img src="./assets/imgs/iconX.png"
                   alt=""></button>
             </div>
 
@@ -204,7 +195,7 @@
         }
 
       </script>
-
+  <script src="./js/navbar.js"></script>
 </body>
 
 </html>

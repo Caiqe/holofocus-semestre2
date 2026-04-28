@@ -147,6 +147,7 @@ button {
   transition: 0.2s;
 }
 
+
 button:hover {
   transform: scale(1.05);
 }
@@ -198,4 +199,8 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background: rgba(0, 0, 0, 0.1);
   transition: 0.2s;
+}
+
+#btt__sair {
+  background: #E4AFFF !important;
 }
