@@ -38,6 +38,8 @@ body {
     border-radius: 80px;
     color: #EFD38D;
     padding: 19px 43px;
+    width: 60%;
+    height: 95%;
 }
 
 .inputs {
