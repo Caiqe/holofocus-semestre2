@@ -84,7 +84,7 @@ Max:
   <option value="false">0</option>
 </select>
 <label>Perfil:</label> <input type="text" id="perfil" value = "PEDA" readonly>
-<a>Deseja alterar a sigla do Perfil Sonoro? Clique aqui!</a>>
+<a href="../public/dashboard/questionario.html">Deseja alterar a sigla do Perfil Sonoro? Clique aqui!</a>>
 
 
 
