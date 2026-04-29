@@ -183,7 +183,7 @@ INSERT INTO empresa (razao_social, lotacao, cnpj, perfil_artistas, fk_endereco, 
 INSERT INTO usuario (nome, email, telefone, senha, fk_nivel_acesso, fk_empresa) VALUES
 ('Maycon Kageyama', 'maycon@vibra.com', '11999999999', '123456', 1, 1),
 ('Marcelinny Akame', 'akame@vibra.com', '21988888888', '123456', 2, 1),
-('Carlos Lima', 'carlos@arenabh.com', '31977777777', '123456', 3, 2);
+('Carlos Lima', 'carlos@show.com', '31977777777', '123456', 3, 2);
 
 INSERT INTO genero (titulo_genero) VALUES
 ('Pop'),
@@ -225,6 +225,4 @@ INSERT INTO perfil
 (fk_empresa, nome, taxa_minima, taxa_maxima, fk_genero, scoreE1, scoreE2, scoreE3, scoreE4, perfil)
 VALUES
 (1, 'Perfil Pop Alta Energia', 30000, 120000, 1, 5, 3, 4, 2, 'PEDA'),
-(1, 'Perfil Eletrônico Premium', 50000, 150000, 3, 4, 4, 5, 3, 'PSDA'),
-(2, 'Perfil Hip Hop Urbano', 10000, 40000, 4, 2, 5, 3, 3, 'PECA'),
-(2, 'Perfil Pop Alternativo', 8000, 30000, 1, 3, 4, 2, 4, 'IEDP');
+(1, 'Perfil Eletrônico Premium', 50000, 150000, 3, 4, 4, 5, 3, 'PSDA');
