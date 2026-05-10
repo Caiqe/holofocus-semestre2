@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>Dashboard Marketing</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/meu-estabelecimento.css" />
     <link rel="stylesheet" href="./css/output.css" />
     <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
@@ -54,86 +53,79 @@
         </div>
       </header>
 
-    <div class="principal">
-
-        <div class="caixas-superiores">
-            <div class="caixa">Gênero Popular: Pop</div>
-            <div class="caixa">Música Mais Tocada: Lights - The Weeknd</div>
-            <div class="caixa">Energia Do Gênero: 70</div>
-        </div>
-
-        <div class="graficos">
-            <div class="grafico-container">
-                <canvas id="graficoBarras"></canvas>
-            </div>
-            <div class="grafico-container">
-                <canvas id="graficoLinhas"></canvas>
-            </div>
-        </div>
-
-        <div class="painéis">
-
-            <div class="grupo-esquerda">
-
-                <div class="painel pequeno">
-                    <h3>Investimento</h3>
-                    <p>Gênero: <strong>Hip-Hop</strong></p>
-                    <p>Popularidade: 77%</p>
-                    <p>Energia: 45%</p>
-                    <br>
-                    <p style="color: #090909; font-weight: bold;">
-                        Focar campanhas e playlists em Hip-Hop
-                    </p>
+    <div class="flex flex-col bg-black rouded-16 !w-[86%] !h-[98vh] !ml-2 !rounded-2xl  bg-black  !p-5 gap-5">
+        <div id="indicadores__kpi" class="h-1/8 w-1/1 flex justify-between gap-6">
+            <div id="kpi__primeira" class="bg-[#E2B8F5] w-1/1 grid grid-cols-3 rounded-[8px]">
+                <div class="col-start-1 col-end-3 self-end">
+                    <p class="text-[26px]! font-medium! self-center ml-1.5!">Gênero com maior popularidade:</p>
+                    <p class="font-medium! ml-1.5!">Consulta: <span id="data__consulta1">05/2026</span></p>
                 </div>
-
-                <div class="painel medio">
-                    <h3>Oportunidade</h3>
-                    <p>
-                        O gênero <strong>Hip-Hop</strong> apresenta o maior potencial de crescimento para o próximo
-                        trimestre. Investir
-                        em campanhas e na curadoria de playlists voltadas a esse público pode ampliar significativamente
-                        o engajamento e o alcance das ações.
-                    </p>
-                </div>
-
+                <span id="genero__popular" class="text-center self-center font-bold text-3xl">POP</span>
             </div>
-
-            <div class="painel grande">
-
-                <div class="filtro-header">
-                    <h3>Músicas por Gênero</h3>
-
-                    <div class="filtro-controles">
-                        <select id="tipoMusica">
-                            <option value="R&B">R&B</option>
-                            <option value="Rock">Rock</option>
-                            <option value="Funk">Funk</option>
-                            <option value="Jazz">Jazz</option>
-                            <option value="MPB">MPB</option>
-                        </select>
-
-                        <button onclick="filtrarMusicas()">Filtrar</button>
+            <div id="kpi__segunda" class="bg-[#E2B8F5] w-1/1 grid grid-cols-3 rounded-[8px]">
+                <div class="col-start-1 col-end-3 grid justify-between self-end gap-3.5">
+                    <p class="text-[26px]! font-medium! ml-1.5!">Energia do genêro (<span id="genero__titulo" class="font-bold">POP</span>):</p>
+                    <p class="font-medium! ml-1.5! ">Consulta: <span id="data__consulta2">05/2026</span></p>
+                </div>
+                <span id="genero_energia" class="text-center self-center font-bold text-3xl">79/100</span>
+            </div>
+            <div id="kpi__terceira" class="bg-[#E2B8F5] w-1/1 grid grid-cols-3 rounded-[8px]">
+                <div class="col-start-1 col-end-3 grid justify-between self-end gap-3.5">
+                    <p class="text-[26px]! font-medium! ml-1.5!">Música mais ouvida (<span id="genero__titulo" class="font-bold">POP</span>):</p>
+                    <p class="font-medium! ml-1.5! ">Consulta: <span id="data__consulta3">05/2026</span></p>
+                </div>
+                <span id="top__musica" class="text-center self-center font-bold text-3xl">Lights - The Weeknd</span>
+            </div>
+        </div>
+        <div id="indicadores__graficos" class="h-4/8 w-1/1 flex gap-6">
+            <div id="grafico__1" class="flex flex-col w-1/2 bg-[#313131] rounded-[8px] px-2!">
+                <h2 class="text-white font-bold text-[26px] ">Popularidade | Energia - TOP 5 Genêros</h2>
+                <canvas id="graficoBarras" class="h-8/10! w-9/10!  self-center"></canvas>
+                <h2 class="text-white flex items-center self-center mt-1.5"><img class="w-[25px] h-[25px]" src="./assets/icon/icon-info.svg" alt="informação"> Populariade é um atributo dado pelo spotify com base em métricas próprias</h2>
+            </div>
+            <div id="grafico__2" class="flex flex-col w-1/2 bg-[#313131] rounded-[8px] px-2!">
+                <h2 class="text-white font-bold text-[26px] ">Quantidade de eventos realizados por mês (12 meses)</h2>
+                <canvas id="graficoLinhas" class="h-9/10! w-9/10!  self-center"></canvas>
+            </div>
+        </div>
+        <div  id="indicadores__sugestoes" class="h-3/8 w-1/1 flex gap-6">
+            <div id="top__musicas-generos" class="w-1/2 h-1/1 bg-[#313131] rounded-[8px] flex flex-col gap-6">
+                <div id="titulo__select" class="flex justify-between px-2!">
+                    <p class="text-white font-bold! text-[26px]!">TOP 3 - Músicas mais ouvidas por genêro</p>
+                    <select class="text-white! border-b-2 " name="" id="">
+                        <option class="" value="#" selected disabled>Selecione um genêro</option>
+                    </select>
+                </div>
+                <table class="w-[98%] h-[70%] self-center text-center justify-self-center rounded-lg overflow-hidden">
+                    <tr class="bg-[#BC85D5] border-b-2 border-white">
+                        <th class=" border-r-2  border-white">Música</th>
+                        <th class=" border-r-2  border-white">Artista</th>
+                        <th class=" border-r-2  border-white">Popularidade</th>
+                        <th>País</th>
+                    </tr>
+                    <tr class="bg-[#E2B8F5] ">
+                        <td class=" border-r-2  border-white">teste</td>
+                        <td class=" border-r-2  border-white">teste</td>
+                        <td class=" border-r-2  border-white">teste</td>
+                        <td >teste</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div id="top__musicas-generos" class="w-1/2 bg-[#313131] rounded-[8px] flex flex-col gap-6 px-2!">
+                <p class="text-white font-bold! text-[26px]!">Oportunidade de Investimento</p>
+                <div id="insights__genero" class="flex w-1/1 h-[70%] gap-6">
+                    <div class="bg-[#E2B8F5] w-1/2  flex flex-col  rounded-lg gap-1.5 pl-8! justify-center">
+                        <p class="text-[26px]! font-bold!">Genêro: <span id="insight__genero"></span></p>
+                        <p class="text-[26px]! font-bold!">Popularidade: <span id="insight__popularidade"></span></p>
+                        <p class="text-[26px]! font-bold!">Energia: <span id="insight__energia"></span></p>
+                    </div>
+                    <div class="bg-[#E2B8F5] w-1/2  flex flex-col  rounded-lg gap-1.5 pl-2! justify-center">
+                        <p class="text-[18px]! font-medium!">O gênero <span class=" font-bold">HIP-HOP</span> apresenta o maior potencial de <b>crescimento</b> para o próximo trimestre. <b>investir</b> em campanhas e na curadoria de playlists voltadas a esse público pode ampliar significativamente o <b>engajamento</b> e o alcance das ações.</p>
                     </div>
                 </div>
-
-                <div class="tabela-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Música</th>
-                                <th>Artista</th>
-                                <th>Pop.</th>
-                                <th>País</th>
-                            </tr>
-                        </thead>
-                        <tbody id="corpoTabela"></tbody>
-                    </table>
-                </div>
-
-            </div>
-
+            </div>  
         </div>
-
     </div>
 
     <script>
@@ -143,10 +135,10 @@
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    position: 'bottom',
+                    position: 'top',
                     labels: {
-                        boxWidth: 12,
-                        font: { size: 11 },
+                        boxWidth: 15,
+                        font: { size: 16 },
                         color: '#ffffff'
                     }
                 }
@@ -154,6 +146,9 @@
             scales: {
                 x: {
                     ticks: {
+                        font:{
+                            size: 18
+                        },
                         color: '#ffffff'
                     },
                     grid: {
@@ -162,6 +157,9 @@
                 },
                 y: {
                     ticks: {
+                        font:{
+                            size: 18
+                        },
                         color: '#ffffff'
                     },
                     grid: {
@@ -178,13 +176,17 @@
                 datasets: [{
                     label: 'Popularidade (%)',
                     data: [95, 77, 60, 50, 40],
-                    backgroundColor: '#ff17ba',
-                    borderColor: '#ffffff',
-                    borderWidth: 2,
-                    borderRadius: 10,
+                    backgroundColor: '#E2B8F5',
                     borderSkipped: false,
-                    barPercentage: 0.8,
-                    categoryPercentage: 0.9
+                    barPercentage: 0.5,
+                    categoryPercentage: 0.5
+                }, {
+                   label: 'Energia (%)',
+                    data: [80, 50, 70, 30, 80],
+                    backgroundColor: '#B006FD',
+                    borderSkipped: false,
+                    barPercentage: 0.5,
+                    categoryPercentage: 0.5
                 }]
             },
             options: chartOptions
@@ -193,15 +195,15 @@
         new Chart(document.getElementById('graficoLinhas'), {
             type: 'line',
             data: {
-                labels: ['Funk', 'Jazz', 'R&B', 'Pop', 'Hip-Hop'],
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                 datasets: [{
-                    label: 'Energia',
-                    data: [30, 40, 50, 70, 45],
-                    borderColor: '#ff6e03',
+                    label: 'Qtd. Eventos',
+                    data: [30, 40, 50, 70, 45, 10, 15, 20, 12, 13, 11 , 12],
+                    borderColor: '#F0D48D',
                     borderWidth: 3,
                     tension: 0.5,
-                    pointBackgroundColor: '#fff',
-                    pointBorderColor: '#ff6e03',
+                    pointBackgroundColor: '#E2B8F5',
+                    pointBorderColor: '#E2B8F5',
                     pointHoverRadius: 8,
                     fill: false
                 }]
