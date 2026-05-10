@@ -22,6 +22,7 @@ var empresasRouter = require("./src/routes/empresas");
 var suportesRouter = require("./src/routes/suportes");
 var perfisRouter = require("./src/routes/perfis");
 var PFRouter = require("./src/routes/PF");
+var dashboardMarketingRouter = require("./src/routes/dashboard-marketing");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,6 +37,7 @@ app.use("/empresas", empresasRouter);
 app.use("/suportes", suportesRouter);
 app.use("/perfis", perfisRouter);
 app.use("/PF", PFRouter);
+app.use("/dashboard-marketing", dashboardMarketingRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
