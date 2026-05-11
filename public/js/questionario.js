@@ -1,4 +1,4 @@
-const idEmpresa = sessionStorage.ID_EMPRESA
+const idEmpresa = sessionStorage.EMPRESA
 const formulario = document.getElementById("formPerfil")
 const botaoTopo = document.getElementById("pular")
 
@@ -359,7 +359,7 @@ function montarDados() {
     }
 
     return {
-        id,
+        id: idEmpresa,
         finalScores: {
             E1: scoreFinal("E1"),
             E2: scoreFinal("E2"),
@@ -375,10 +375,10 @@ const formResultado = document.getElementById("resultPerfil")
 formResultado.addEventListener("submit", async function (e) {
     e.preventDefault()
 
-    const dados = montarDados()
+    const dados = await montarDados()
 
     try {
-        const response = await fetch("/perfis", {
+        const response = await fetch("/perfis/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -390,9 +390,13 @@ formResultado.addEventListener("submit", async function (e) {
             throw new Error("Erro ao salvar")
         }
 
-        const data = await response.json()
+        const resp = await fetch(`/perfis/atualizarPerfilCad/${idEmpresa}`)
+        const r = await resp.json()
 
-        console.log("Salvo com sucesso:", data)
+        sessionStorage.PERFIL = r.id_perfil
+
+        window.location = "../dashboard.html";
+
     } catch (error) {
         console.error("Erro:", error)
         alert("Erro ao salvar perfil")

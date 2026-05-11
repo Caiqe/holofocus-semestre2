@@ -1,71 +1,87 @@
 #perfilSonoro {
-    /* --- Sua base de centralização (perfeita) --- */
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    
-    /* --- O visual da imagem --- */
-    background: #E0C785; /* O tom de dourado/bege do fundo */
-    border-radius: 25px; /* Bordas mais arredondadas como na imagem */
-    
-    /* Um padding maior e mais equilibrado */
-    padding: 30px 40px; 
-    
-    /* Dimensões sugeridas para caber os campos */
-    width: 90%; 
-    max-width: 500px; 
-    box-sizing: border-box; /* Garante que padding não altere o tamanho final */
-
-    /* Uma sombra suave para dar profundidade (efeito de 'saltar') */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-    
-    /* Fonte e cor do texto base */
-    font-family: 'Poppins', sans-serif; /* Sugestão de fonte moderna */
-    color: #1A1A1A; /* Quase preto */
+    background: #E0C785;
+    border-radius: 25px;
+    padding: 25px 30px;
+    width: 420px;
+    max-width: 95%;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    font-family: 'Poppins', sans-serif;
+    color: #1A1A1A;
 }
 
-/* --- Estilização dos elementos internos (Labels e Título) --- */
-#perfilSonoro h2 {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 25px;
-    color: #000;
+#perfilSonoro input,
+#perfilSonoro select {
+    width: 100%;
+    background: #D1D1D1;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #555;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23555' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    cursor: pointer;
 }
 
 #perfilSonoro label {
     display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
+    font-size: 12px;
+    margin-bottom: 4px;
     font-weight: 500;
 }
 
-/* --- Estilização dos Inputs --- */
-#perfilSonoro input {
-    width: 100%;
-    background: #D1D1D1; /* O cinza dos campos */
-    border: none;
-    padding: 12px 15px;
-    border-radius: 10px;
-    margin-bottom: 15px; /* Espaço entre os campos */
-    font-size: 14px;
-    color: #555; /* Cor do texto dentro do input */
-    box-sizing: border-box;
+#perfilSonoro h2 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 18px;
+    color: #000;
 }
 
-/* Placeholder (o texto de exemplo "Samba rock", "Vibrante") */
-#perfilSonoro input::placeholder {
-    color: #888;
+.aspectos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 15px;
 }
 
-/* --- Botão Salvar --- */
+.taxa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 15px;
+}
+
+#perfilSonoro a {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#perfilSonoro a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
 #perfilSonoro .btn-salvar {
     display: block;
     width: 140px;
-    margin: 20px auto 0 auto; /* Centralizado horizontalmente */
-    background: #E3B6FF; /* O lilás do botão */
+    margin: 20px auto 0 auto;
+    background: #E3B6FF;
     color: #000;
     border: none;
     padding: 10px;
@@ -76,11 +92,14 @@
     cursor: pointer;
 }
 
-/* --- Botão Fechar (X) --- */
+#perfilSonoro .btn-salvar:hover {
+    background: #d49ff0;
+}
+
 #perfilSonoro .btn-fechar {
     position: absolute;
     top: 20px;
-    right: 20px;
+    left: 20px;
     background: none;
     border: none;
     font-size: 18px;

@@ -2,19 +2,19 @@ var PFModel = require("../models/PFModel")
 
 
 function buscar(req, res){
-var email = req.query.email;
 
 
 
 
 
-  PFModel.buscar(email).then((resultado) => {
+
+  PFModel.buscar().then((resultado) => {
     if (resultado.length >0) {
       res
         .status(200)
-        .json(resultado[0]);
+        .json(resultado);
     } else {
-      console.log("esse email não existe")
+      console.log("tabela vazia ou inexistente")
       
     }
   }).catch((erro) => {
@@ -27,18 +27,21 @@ var email = req.query.email;
 
 function editar(req, res){
 var genero = req.body.genero;
-var taxa = req.body.taxa
+var taxa_min = req.body.taxa_min
+var taxa_max = req.body.taxa_max
 var aspecto1 = req.body.aspecto1
 var aspecto2 = req.body.aspecto2
 var aspecto3 = req.body.aspecto3
 var aspecto4 = req.body.aspecto4
-var id = req.query.id;
+var perfil = req.body.perfil;
+var fkEmpresa = req.query.fk
+var idPerfil = req.query.id
 
 
 
 
 
-  PFModel.editar(id, genero, taxa, aspecto1, aspecto2, aspecto3, aspecto4).then((resultado) => {
+  PFModel.editar( genero, taxa_min, taxa_max, aspecto1, aspecto2, aspecto3, aspecto4, perfil, idPerfil, fkEmpresa).then((resultado) => {
     if (resultado.affectedRows >0) {
       res.status(200).json({mensagem: "edição bem sucedida"});
     } else {

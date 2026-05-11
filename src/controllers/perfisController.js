@@ -13,4 +13,12 @@ function cadastrar(req, res) {
     })
 }
 
-module.exports = {cadastrar}
+function atualizarPerfilCad(req, res) {
+    let id = req.params.id
+
+    perfisModel.atualizarPerfilCad(id).then((resul) => {
+        res.status(200).json(resul)
+    })
+}
+
+module.exports = {cadastrar, atualizarPerfilCad}

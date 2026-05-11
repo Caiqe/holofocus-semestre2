@@ -3,35 +3,27 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Eventos</title>
+  <title>Eventos - Holofocus</title>
   <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
   <link rel="stylesheet" href="css/lista-evento.css">
 </head>
 
-<body>
+<body onload="validarSessao()">
 
   <div class="container">
 
-    <aside class="sidebar">
-      <img src="assets/imgs/holofocus-06.svg" alt="">
-
-
-<nav>
-        <ul>
-          <li><img class="iconHeader" src="assets/icon/Vector.svg" alt=""><a href=""> Dashboard</a></li>
-          <li><img class="iconHeader" src="assets/icon/Vector (1).svg" alt=""><a
-              href="lista-usuario.html">Usuários</a></li>
-          <li> <img class="iconHeader" src="assets/icon/Icon (from Tabler.io).svg" alt=""><a href="lista-empresa.html"> Gerência</a></li>
-          <li> <img class="iconHeader" src="assets/icon/Icon (from Tabler.io) (1).svg" alt=""><a href="lista-chamados.html"> Suporte</a> 
-          </li>
-          <li  class="active"><img class="iconHeader" src="assets/icon/Icon (from Tabler.io) (2).svg" alt=""><a href="lista-evento.html"> evento</a>
-          </li>
-        </ul>
-      </nav>
+    <aside class="sidebar" id="__header">
+      <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
+      <ul id="ul_navbar"></ul>
       <div class="user">
-        <p>Gustavo Xavier <span class="tag">Admin</span></p>
-       <small class="conf"><a href="editarPerfil.html"> Configurações</a></small>
-        <button class="logout"><img src="assets/imgs/iconSaida.png" alt=""><strong><a href="login.html"> Sair</a></strong></button>
+        <div class="usuario-info">
+          <p id="nome_usuario"></p>
+          <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
+        </div>
+        <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img src="./assets/icon/icon-configuracoes.svg"
+            alt="Icone de configurações"> Configurações</a>
+        <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png" alt=""><strong>
+            Sair</strong></button>
       </div>
     </aside>
 
@@ -158,7 +150,7 @@
             <label>Artitas contratado</label>
             <input type="text">
 
-         
+
             <label>Principal genero musical do evento</label>
             <select>
               <option>selecionar</option>
@@ -192,7 +184,7 @@
               </div>
             </div>
 
-            
+
             <button class="buttonP">SALVAR</button>
         </div>
       </div>
@@ -223,7 +215,7 @@
               <option>selecionar</option>
             </select>
 
-            
+
             <div class="linha3">
               <div class="campo">
                 <label>Valor investimento</label>
@@ -253,8 +245,8 @@
             </div>
 
             <div class="linhaB">
-            <button class="buttonS">SALVAR</button>
-            <button class="buttonE">EXCLUIR</button>
+              <button class="buttonS">SALVAR</button>
+              <button class="buttonE">EXCLUIR</button>
             </div>
           </form>
         </div>
@@ -278,6 +270,8 @@
       if (e.key === 'Escape') { fecharModal('cadastrar'); fecharModal('editar'); }
     });
   </script>
+  <script src="./js/elementosPadrao.js"></script>
+  <script src="./js/navbar.js"></script>
 </body>
 
 </html>
