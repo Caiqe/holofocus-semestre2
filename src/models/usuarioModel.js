@@ -37,16 +37,14 @@ function cadastrar(nome, telefone, email, senha, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
-function listar() {
-
+function listar(fkEmpresa) {
     var instrucaoSql = `
-        SELECT id, nome, telefone, email
-        FROM usuario;
-    `;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-
-    return database.executar(instrucaoSql);
+        SELECT id_usuario, nome, telefone, email
+        FROM usuario
+        WHERE fk_empresa = ?;`;
+ 
+    console.log("Executando listar() no usuarioModel | fk_empresa:", fkEmpresa);
+    return database.executar(instrucaoSql, [fkEmpresa]);
 }
 
 module.exports = {

@@ -253,12 +253,6 @@
   .h-1\/8 {
     height: calc(1 / 8 * 100%);
   }
-  .h-1\/9 {
-    height: calc(1 / 9 * 100%);
-  }
-  .h-1\/10 {
-    height: calc(1 / 10 * 100%);
-  }
   .h-3 {
     height: calc(var(--spacing) * 3);
   }
@@ -351,6 +345,9 @@
   }
   .w-full {
     width: 100%;
+  }
+  .border-collapse {
+    border-collapse: collapse;
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
@@ -979,6 +976,11 @@ footer {
   syntax: "*";
   inherits: false;
 }
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-font-weight {
   syntax: "*";
   inherits: false;
@@ -1011,6 +1013,7 @@ footer {
       --tw-rotate-z: initial;
       --tw-skew-x: initial;
       --tw-skew-y: initial;
+      --tw-border-style: solid;
       --tw-font-weight: initial;
       --tw-outline-style: solid;
       --tw-scale-x: 1;

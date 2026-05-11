@@ -70,23 +70,22 @@ function cadastrar(req, res) {
 }
 
 function listar(req, res) {
-
-    usuarioModel.listar()
-        .then(function(resultado) {
-
+    var fkEmpresa = req.query.fkEmpresa;
+ 
+    if (!fkEmpresa) {
+        return res.status(400).send("O parâmetro fkEmpresa é obrigatório.");
+    }
+ 
+    usuarioModel.listar(fkEmpresa)
+        .then(function (resultado) {
+            if (resultado.length === 0) {
+                return res.status(404).json([]);
+            }
             res.status(200).json(resultado);
-
-        }).catch(function(erro) {
-
-            console.log(erro);
-
-            console.log(
-                "\nHouve um erro ao listar os usuários! Erro: ",
-                erro.sqlMessage
-            );
-
+        })
+        .catch(function (erro) {
+            console.log("\nErro ao listar usuários:", erro.sqlMessage);
             res.status(500).json(erro.sqlMessage);
-
         });
 }
 
