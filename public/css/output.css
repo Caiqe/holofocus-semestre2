@@ -253,6 +253,12 @@
   .h-1\/8 {
     height: calc(1 / 8 * 100%);
   }
+  .h-1\/9 {
+    height: calc(1 / 9 * 100%);
+  }
+  .h-1\/10 {
+    height: calc(1 / 10 * 100%);
+  }
   .h-3 {
     height: calc(var(--spacing) * 3);
   }
@@ -283,14 +289,8 @@
   .h-\[8rem\] {
     height: 8rem;
   }
-  .h-\[16px\] {
-    height: 16px;
-  }
   .h-\[25px\] {
     height: 25px;
-  }
-  .h-\[30px\] {
-    height: 30px;
   }
   .h-\[70\%\] {
     height: 70%;
@@ -343,14 +343,8 @@
   .w-9\/10\! {
     width: calc(9 / 10 * 100%) !important;
   }
-  .w-\[16px\] {
-    width: 16px;
-  }
   .w-\[25px\] {
     width: 25px;
-  }
-  .w-\[30px\] {
-    width: 30px;
   }
   .w-\[98\%\] {
     width: 98%;
@@ -550,17 +544,8 @@
   .text-\[12px\]\! {
     font-size: 12px !important;
   }
-  .text-\[15px\]\! {
-    font-size: 15px !important;
-  }
   .text-\[18px\]\! {
     font-size: 18px !important;
-  }
-  .text-\[25px\] {
-    font-size: 25px;
-  }
-  .text-\[25px\]\! {
-    font-size: 25px !important;
   }
   .text-\[26px\] {
     font-size: 26px;
@@ -605,12 +590,6 @@
     font-weight: var(--font-weight-normal) !important;
   }
   .\!text-black {
-    color: var(--color-black) !important;
-  }
-  .text-black {
-    color: var(--color-black);
-  }
-  .text-black\! {
     color: var(--color-black) !important;
   }
   .text-white {
