@@ -18,7 +18,20 @@ function cadastrar(nome, telefone, email, senha, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function listar() {
+
+    var instrucaoSql = `
+        SELECT id, nome, telefone, email
+        FROM usuario;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    listar
 };
