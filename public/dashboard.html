@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="./css/elementosPadrao.css">
     <link rel="stylesheet" href="./css/dashboardCurador.css">
-    
+
     <link rel="stylesheet" href="css/lista-evento.css">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -22,306 +22,81 @@
 </head>
 
 <body onload="validarSessao()">
-    
-        <aside class="sidebar" id="__header">
-            <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
-            <ul id="ul_navbar"></ul>
-            <div class="user">
-                <div class="usuario-info">
-                    <p id="nome_usuario"></p>
-                    <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
-                </div>
-                <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img
-                        src="./assets/icon/icon-configuracoes.svg" alt="Icone de configurações"> Configurações</a>
-                <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png" alt=""><strong>
-                        Sair</strong></button>
+
+    <aside class="sidebar" id="__header">
+        <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
+        <ul id="ul_navbar"></ul>
+        <div class="user">
+            <div class="usuario-info">
+                <p id="nome_usuario"></p>
+                <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
             </div>
-        </aside>
+            <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img
+                    src="./assets/icon/icon-configuracoes.svg" alt="Icone de configurações"> Configurações</a>
+            <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png"
+                    alt=""><strong>
+                    Sair</strong></button>
+        </div>
+    </aside>
 
     <div class="dashboard">
         <div class="container1">
-            <div class="containerSeletores">
-                <div class="seletor">
-                    <label>Perfil Sonoro</label>
-                    <select name="selecionar">
-                        <option value="perfil1">selecionar</option>
-                        <option value="banana">Perfil 2</option>
-                    </select>
+            <div class="containerApresentacao">
+                <div class="containerTitulo">
+                    <h1>Análise de Compatibilidade Artística</h1>
+                    <p>Recorte temporal: Último trimestre (01/04/2026 a 15/05/2026) <br>
+                        Resultados dos cinco artistas mais compatíveis com os filtros selecionados</p>
                 </div>
-                <div class="seletor">
-                    <label>Gênero</label>
-                    <select name="selecionar">
-                        <option value="perfil1">selecionar</option>
-                        <option value="perfil1">Perfil 1</option>
-                        <option value="banana">Perfil 2</option>
-                    </select>
-                </div>
-                <div class="seletor">
-                    <label>Popularidade</label>
-                    <select name="selecionar">
-                        <option value="perfil1">selecionar</option>
-                        <option value="perfil1">Perfil 1</option>
-                        <option value="banana">Perfil 2</option>
-                    </select>
-                </div>
-                <div class="seletor">
-                    <label>País</label>
-                    <select name="selecionar">
-                        <option value="perfil1">selecionar</option>
-                        <option value="perfil1">Perfil 1</option>
-                        <option value="banana">Perfil 2</option>
-                    </select>
+                <div class="containerSeletores ">
+                    <div class="seletor">
+                        <label>Perfil Sonoro</label>
+                        <select name="selecionar">
+                            <option value="perfil1">selecionar</option>
+                            <option value="banana">Perfil 2</option>
+                        </select>
+                    </div>
+                    <div class="seletor">
+                        <label>Gênero</label>
+                        <select name="selecionar">
+                            <option value="perfil1">selecionar</option>
+                            <option value="perfil1">Perfil 1</option>
+                            <option value="banana">Perfil 2</option>
+                        </select>
+                    </div>
+                    <div class="seletor">
+                        <label>Popularidade</label>
+                        <select name="selecionar">
+                            <option value="perfil1">selecionar</option>
+                            <option value="perfil1">Perfil 1</option>
+                            <option value="banana">Perfil 2</option>
+                        </select>
+                    </div>
+                    <div class="seletor">
+                        <label>País</label>
+                        <select name="selecionar">
+                            <option value="perfil1">selecionar</option>
+                            <option value="perfil1">Perfil 1</option>
+                            <option value="banana">Perfil 2</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="containersInternos">
                 <div class="containerInterno1">
                     <div class="box1">
-                        <h2>Popularidade/ <br>Streams</h2>
+                        <h2>Popularidade/ Streams</h2>
                         <div class="graficoBarras">
                             <canvas id="graficoBarras"></canvas>
                         </div>
                     </div>
-                    <div class="box1">
-                        <h2>Streams das <br> músicas mais ouvidas</h2>
-                        <div class="graficoLinhas">
-                            <canvas id="graficoLinhas"></canvas>
-                        </div>
+                    <div class="box2">
                     </div>
                 </div>
                 <div class="containerInterno2">
-                    <div class="listaArtistas">
-                        <table>
-                            <h2>Artistas mais ativos do último trimestre</h2>
-                            <div class="headerLista">
-                                <div class="headerArtista">
-                                    <span>Artista</span>
-                                </div>
-                                <span>Gênero <br>dominante</span>
-                                <span>Média de <br>streams</span>
-                                <span>Média de <br>popularidade</span>
-                                <span></span>
-                            </div>
-                            <label class="row">
-                                <div class="artista">
-                                    <span class="numero">1</span>
-                                    <span class="nome">Noah Rhodes</span>
-                                </div>
-                                <span>Pop</span>
-                                <span>36000</span>
-                                <span>90</span>
-                                <input type="radio" name="artista" value="0">
-                                <div class="radio-custom"></div>
-                            </label>
-                            <label class="row">
-                                <div class="artista">
-                                    <span class="numero">2</span>
-                                    <span class="nome">Luna Vega</span>
-                                </div>
-                                <span>Indie</span>
-                                <span>28000</span>
-                                <span>85</span>
-                                <input type="radio" name="artista" value="1" checked>
-                                <div class="radio-custom"></div>
-                            </label>
-                            <label class="row">
-                                <div class="artista">
-                                    <span class="numero">3</span>
-                                    <span class="nome">Kai Storm</span>
-                                </div>
-                                <span>Rock</span>
-                                <span>41000</span>
-                                <span>88</span>
-                                <input type="radio" name="artista" value="2">
-                                <div class="radio-custom"></div>
-                            </label>
-                            <label class="row">
-                                <div class="artista">
-                                    <span class="numero">4</span>
-                                    <span class="nome">Maya Bloom</span>
-                                </div>
-                                <span>R&B</span>
-                                <span>33000</span>
-                                <span>92</span>
-                                <input type="radio" name="artista" value="3">
-                                <div class="radio-custom"></div>
-                            </label>
-                            <label class="row">
-                                <div class="artista">
-                                    <span class="numero">5</span>
-                                    <span class="nome">Zion Beats</span>
-                                </div>
-                                <span>Hip-Hop</span>
-                                <span>39000</span>
-                                <span>87</span>
-                                <input type="radio" name="artista" value="4000">
-                                <div class="radio-custom"></div>
-                            </label>
-                    </div>
-                    </table>
-                </div>
-                <div class="boxPequeno">
-                    <div class="tituloKPI">
-                        <h1>Crescimento do trimestre</h1>
-                    </div>
-                    <div class="indicadores">
-                        <div class="boxIndicador">
-                            <div class="identificacaoIndicador">
-                                <div class="containerNumero">
-                                    <P>1</P>
-                                </div>
-                                <h1>Noah Rhodes</h1>
-                            </div>
-                            <div class="containerPorcentagem">
-                                <p>crescimento de</p>
-                                <div class="porcentagemCrescimento">
-                                    <img src="./assets/icon/seta.png" alt="seta">
-                                    <p>20%</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="boxIndicador">
-                            <div class="identificacaoIndicador">
-                                <div class="containerNumero">
-                                    <P>2</P>
-                                </div>
-                                <h1>Nome Rhodes</h1>
-                            </div>
-                            <div class="containerPorcentagem">
-                                <p>crescimento de</p>
-                                <div class="porcentagemCrescimento">
-                                    <img src="./assets/icon/seta.png" alt="seta">
-                                    <p>20%</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="boxIndicador">
-                            <div class="identificacaoIndicador">
-                                <div class="containerNumero">
-                                    <P>3</P>
-                                </div>
-                                <h1>Nome</h1>
-                            </div>
-                            <div class="containerPorcentagem">
-                                <p>crescimento de</p>
-                                <div class="porcentagemCrescimento">
-                                    <img src="./assets/icon/seta.png" alt="seta">
-                                    <p>20%</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="boxIndicador">
-                            <div class="identificacaoIndicador">
-                                <div class="containerNumero">
-                                    <P>4</P>
-                                </div>
-                                <h1>Nome</h1>
-                            </div>
-                            <div class="containerPorcentagem">
-                                <p>crescimento de</p>
-                                <div class="porcentagemCrescimento">
-                                    <img src="./assets/icon/seta.png" alt="seta">
-                                    <p>20%</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="boxIndicador">
-                            <div class="identificacaoIndicador">
-                                <div class="containerNumero">
-                                    <P>5</P>
-                                </div>
-                                <h1>Nome</h1>
-                            </div>
-                            <div class="containerPorcentagem">
-                                <p>crescimento de</p>
-                                <div class="porcentagemCrescimento">
-                                    <img src="./assets/icon/seta.png" alt="seta">
-                                    <p>20%</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="box3">
+                        
                     </div>
                 </div>
-                <div class="boxPequeno">
-                    <div class="tituloKPI">
-                        <h1>Lançamentos do último ano</h1>
-                    </div>
-                    <div class="indicadores">
-                        <div class="boxIndicador">
-                            <div class="identificacaoIndicador">
-                                <div class="containerNumero">
-                                    <P>1</P>
-                                </div>
-                                <h1>Noah Rhodes</h1>
-                            </div>
-                            <div class="lancamentos">
-                                <p>12</p>
-                            </div>
-                        </div>
-                        <div class="boxIndicador">
-                            <div class="identificacaoIndicador">
-                                <div class="containerNumero">
-                                    <P>2</P>
-                                </div>
-                                <h1>Nome Rhodes</h1>
-                            </div>
-                            <div class="lancamentos">
-                                <p>12</p>
-                            </div>
-                        </div>
-                        <div class="boxIndicador">
-                            <div class="identificacaoIndicador">
-                                <div class="containerNumero">
-                                    <P>3</P>
-                                </div>
-                                <h1>Nome</h1>
-                            </div>
-                            <div class="lancamentos">
-                                <p>12</p>
-                            </div>
-                        </div>
-                        <div class="boxIndicador">
-                            <div class="identificacaoIndicador">
-                                <div class="containerNumero">
-                                    <P>4</P>
-                                </div>
-                                <h1>Nome</h1>
-                            </div>
-                            <div class="lancamentos">
-                                <p>12</p>
-                            </div>
-                        </div>
-                        <div class="boxIndicador">
-                            <div class="identificacaoIndicador">
-                                <div class="containerNumero">
-                                    <P>5</P>
-                                </div>
-                                <h1>Nome</h1>
-                            </div>
-                            <div class="lancamentos">
-                                <p>12</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container2">
-        <div class="nomeArtista">
-            <h5>Artista selecionado</h5>
-            <h1>Jennifer Cole</h1>
-        </div>
-        <div class="box2">
-            <h2>Distribuição de Popularidade</h2>
-            <div class="graficoPizza">
-                <canvas id="graficoPizza"></canvas>
-
-            </div>
-        </div>
-        <div class="box2">
-            <h2>Perfil do Artista</h2>
-            <div class="graficoRadar">
-                <canvas id="graficoRadar"></canvas>
             </div>
         </div>
     </div>
