@@ -6,6 +6,7 @@ body {
     background-color: #2A2A2A;
     font-family: "Archivo", sans-serif;
     gap: 1%;
+    height: 100vh;
 }
 
 .dashboard {
@@ -16,7 +17,6 @@ body {
     height: 95vh;
     background-color: #000000;
     border-radius: 16px;
-    margin: 1% 1% 1% 0%;
     padding: 1%;
 }
 
@@ -114,10 +114,6 @@ body {
     justify-content: space-between;
 }
 
-.graficoBarras {
-    height: 84%;
-}
-
 .box2 {
     background: #272727;
     padding: 3%;
@@ -144,8 +140,4 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-.graficoRadar {
-    height: 82%;
 }
