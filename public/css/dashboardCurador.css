@@ -1,51 +1,16 @@
 body {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin: 0;
     background-color: #2A2A2A;
     font-family: "Archivo", sans-serif;
-    gap: 1%;
-    height: 100vh;
 }
 
-.dashboard {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 91%;
-    height: 95vh;
-    background-color: #000000;
-    border-radius: 16px;
-    padding: 1%;
-}
-
-.container1 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.container1 h2 {
+.container1,
+.graficoDistribuicao,
+.KPIsCrescimento h2 {
     color: #F0D48D;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 400;
     text-align: start;
-    padding: 0% 0% 2% 0%;
-}
-
-/* CONTAINER APRESENTAÇÃO ---------------------------------------------------------------------------------------------- */
-.containerApresentacao {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 1%;
-}
-
-.containerTitulo {
-    display: flex;
-    flex-direction: column;
+    line-height: 18px;
 }
 
 .containerTitulo h1 {
@@ -56,88 +21,190 @@ body {
 .containerTitulo p {
     font-size: 11px;
     color: #959596;
-}
-
-.containerSeletores {
-    display: flex;
-    justify-content: space-between;
-    width: 46%;
-}
-
-.seletor {
-    display: flex;
-    flex-direction: column;
-    width: 24%;
+    line-height: 12px;
 }
 
 .seletor select {
-    appearance: auto;
-
     border-radius: 6.43px;
     background-color: #E4AFFF;
     font-size: 15px;
     color: #7D7D7D;
-    padding: 3% 5%;
+    padding: 4%;
 }
 
 .seletor label {
-    font-family: "Archivo", sans-serif;
     color: #F0D48D;
     font-size: 15px;
-    margin: 0% 0% 0% 6%;
     font-weight: 300;
 }
 
+.box3 p {
+    font-size: 15px;
+    color: #959596;
+}
 
-/* CONTAINER INTERNO 1 ---------------------------------------------------------------------------------------------- */
-.containersInternos {
+/* Botão logout -------------------------------------------- */
+.logout {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100px !important;
+    padding: 5px !important;
+    gap: 6px;
+    color: #000 !important;
+}
+
+.logout strong {
+    color: #000 !important;
+    font-size: 14px;
+}
+
+.logout img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    display: block;
+    margin: 0 !important;
+}
+
+/* Linhas input radio -------------------------------------- */
+.linha,
+.linhaDiferente {
+    padding: 12%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
+    line-height: 17px;
+    background: #3E3E3E;
+    border-top: 2px solid #313030;
+    height: 18%;
+    margin: 0;
+    gap: 10px;
+}
+
+.linhaDiferente {
+    border-radius: 0 0 16px 16px;
+}
+
+.radio-custom {
+    width: 18px;
+    height: 15px;
+    border: 2px solid #aaa;
+    border-radius: 50%;
+    justify-self: center;
+    position: relative;
+}
+
+.row input:checked+.radio-custom::after {
+    content: "";
+    width: 9px;
+    height: 10px;
+    background: #d59cff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    text-align: center;
+}
+
+.linha:hover,
+.linhaDiferente:hover {
+    background-color: #2A2A2A;
+}
+
+.linha span,
+.linhaDiferente span {
+    color: #d59cff;
+    font-size: 14px;
+}
+
+.linha input[type="radio"],
+.linhaDiferente input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    width: 16px;
+    height: 13px;
+    border: 2px solid #aaa;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.linha input[type="radio"]:checked+.radio-custom::after,
+.linhaDiferente input[type="radio"]:checked+.radio-custom::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: #d59cff;
+    border-radius: 50%;
+}
+
+
+.linha:has(input:checked),
+.linhaDiferente:has(input:checked) {
+    background-color: #3E3045;
+}
+
+/* Container artista selecionado ------------------------------------------- */
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 0.3px solid #959596;
+    padding: 0% 3% 0% 3%;
+    gap: 15%;
+}
+
+.infoDiferente {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0% 3% 0% 3%;
+}
+
+.informacoesKPI p {
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+}
+
+.informacoesKPI h1, .setaCrescimento p {
+    font-weight: 900;
+    text-align: center;
+    color: #DA9EF7;
+    font-size: 20px;
+}
+
+.setaCrescimento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.crescimento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Gráficos -------------------------------- */
+.graficoBarras {
+    width: 100%;
+    height: 180px;
+}
+
+.graficoMusicas {
     height: 90%;
 }
 
-.containerInterno1 {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    gap: 2%;
-}
-
-.box1 {
-    background: #272727;
-    padding: 3%;
-    border-radius: 12px;
-    height: 43%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.box2 {
-    background: #272727;
-    padding: 3%;
-    border-radius: 12px;
-    height: 62%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* CONTAINER INTERNO 2 ---------------------------------------------------------------------------------------------- */
-.containerInterno2 {
-    display: flex;
-    gap: 2%;
-    flex-direction: column;
-    width: 59%;
-}
-
-.box3 {
-    background: #272727;
-    padding: 3%;
-    border-radius: 12px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.graficoRadarContainer {
+    width: 10%;
+    height: 350px;
+    position: relative;
 }
