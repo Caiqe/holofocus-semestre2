@@ -9,6 +9,15 @@ function autenticar(req, res) {
             function (resultadoAutenticar) {
                 if (resultadoAutenticar.length == 1) {
                     console.log(resultadoAutenticar);
+                    res.json({
+                        id: resultadoAutenticar[0].id_usuario,
+                        nome: resultadoAutenticar[0].nome,
+                        email: resultadoAutenticar[0].email,
+                        empresaId: resultadoAutenticar[0].empresaId,
+                        nivelAcesso: resultadoAutenticar[0].nivelAcesso,
+                        contratoAtivo: resultadoAutenticar[0].contratoAtivo,
+                        perfilId: resultadoAutenticar[0].perfilId
+                    })
                 } else if (resultadoAutenticar.length == 0) {
                     res.status(403).send("Email e/ou senha inválido(s)");
                 } else {
@@ -29,7 +38,7 @@ function cadastrar(req, res) {
     var telefone = req.body.telefoneServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.idEmpresaVincularServer;
+    var fkEmpresa = req.body.idEmpresaServer;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
