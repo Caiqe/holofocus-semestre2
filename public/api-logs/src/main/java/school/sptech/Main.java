@@ -25,9 +25,9 @@ public class Main {
         Log log;
 
 
-        String url = "jdbc:mysql://127.0.0.1:3306/holofocus";
+        String url = "jdbc:mysql://mysql-container:3306/holofocus";
         String usuario = "root";
-        String senha = "P@ssw0rd";
+        String senha = "123456";
 
         String sqlPais = "INSERT INTO pais (nome) VALUES (?);" ;
         String sqlArtista = "INSERT INTO artista (artista_nome, fk_pais) VALUES (?, ?)";
@@ -35,6 +35,7 @@ public class Main {
         String sqlMusica = "INSERT INTO musica (titulo_musica, data_lancamento, duracao, popularidade, dancabilidade, explicita, contagem_streams, energia, volume, tempo, instrumentabilidade, fk_artista, fk_genero) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         //BASE DE DADOS
+        String nomeBucket = "holofocus";
         String nomeArquivo = "holofocus-bdd.xlsx";
         do{
             System.out.println("SELECIONE A AÇÃO DESEJADA");
@@ -54,7 +55,7 @@ public class Main {
                 // Extraindo os dados do arquivo
                 System.out.println("Aguarde...");
                 LeitorExcel leitorExcel = new LeitorExcel();
-                List<Artista> dadosExtraidos = leitorExcel.extrairDados(nomeArquivo);
+                List<Artista> dadosExtraidos = leitorExcel.extrairDados(nomeBucket, nomeArquivo);
                 leitorExcel.gerarRelatorio();
 
 
@@ -62,7 +63,7 @@ public class Main {
                 // Inserindo logs no BD
                 List<Log> logs = leitorExcel.getLogs();
                 String queryLogs = "INSERT INTO log (data_hora, titulo, fk_tipo, fk_artefato) VALUES ";
-                for (int i = 0; i < 30000; i++) {
+                for (int i = 0; i < logs.size(); i++) {
                     int tipo = logs.get(i).getTipo().equals("INFO") ? 1 : logs.get(i).getTipo().equals("SUCESSO") ? 2 : 3 ;
                     int artefato = logs.get(i).getArtefato().equals("BASE DE DADOS") ? 1 : 2;
 
@@ -75,19 +76,6 @@ public class Main {
                 queryLogs+=";";
                 template.update(queryLogs);
 
-                queryLogs = "INSERT INTO log (data_hora, titulo, fk_tipo, fk_artefato) VALUES ";
-                for (int i = 30000; i < logs.size(); i++) {
-                    int tipo = logs.get(i).getTipo().equals("INFO") ? 1 : logs.get(i).getTipo().equals("SUCESSO") ? 2 : 3 ;
-                    int artefato = logs.get(i).getArtefato().equals("BASE DE DADOS") ? 1 : 2;
-
-                    if(i != 30000){
-                        queryLogs += ",\n('"+logs.get(i).getDataHora()+"', '"+logs.get(i).getTitulo()+"', "+tipo+", "+artefato+")";
-                    }else{
-                        queryLogs += "\n('"+logs.get(i).getDataHora()+"', '"+logs.get(i).getTitulo()+"', "+tipo+", "+artefato+")";
-                    }
-                }
-                queryLogs+=";";
-                template.update(queryLogs);
 
                 int menu2 = -1;
                 do{
