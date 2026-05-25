@@ -1,15 +1,27 @@
 var database = require("../database/config");
 
 function carregarKpis() {
-    var instrucaoSql = `SELECT genero, media_energia, musica_mais_ouvida FROM vw_kpi_genero_popular;`;
-    
+    var instrucaoSql = `SELECT * FROM vw_kpi_genero_popular;`;
     return database.executar(instrucaoSql);
 }
 
-function carregarGraficoBarras(){
-    var instrucaoSql = `SELECT titulo_genero, media_popularidade, media_energia FROM vw_top5_generos;`;
-    
-    return database.executar(instrucaoSql);
+function carregarGraficoBarras(meses) {
+    var instrucaoSql = `
+        SELECT 
+            g.titulo_genero,
+            ROUND(AVG(m.popularidade), 2)        AS media_popularidade,
+            ROUND(AVG(m.energia) * 100, 2)       AS media_energia,
+            COUNT(DISTINCT e.id_evento)           AS total_eventos
+        FROM genero g
+        JOIN musica m ON m.fk_genero = g.id_genero
+        LEFT JOIN evento e 
+            ON  e.fk_genero   = g.id_genero
+            AND e.data_evento >= DATE_SUB(CURDATE(), INTERVAL ? MONTH)
+        GROUP BY g.id_genero, g.titulo_genero
+        ORDER BY media_popularidade DESC, total_eventos DESC
+        LIMIT 5;
+    `;
+    return database.executar(instrucaoSql, [meses]);
 }
 
 function carregarGraficoLinhas(id){
@@ -18,9 +30,10 @@ function carregarGraficoLinhas(id){
     return database.executar(instrucaoSql, [id]);
 }
 
-function carregarOportunidades(){
-    var instrucaoSql = `SELECT genero, media_popularidade, media_energia FROM vw_oportunidade_investimento;`;
-
+function carregarOportunidades() {
+    var instrucaoSql = `SELECT genero, media_popularidade, media_energia, 
+                               total_streams, total_eventos
+                        FROM vw_oportunidade_investimento;`;
     return database.executar(instrucaoSql);
 }
 
