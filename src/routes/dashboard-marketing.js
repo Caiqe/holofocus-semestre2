@@ -7,9 +7,9 @@ router.get('/kpis', function (req, res) {
     dashboardController.carregarKpis(req, res)
 })
 
-router.get('/grafico-barras', function (req, res) {
-    dashboardController.carregarGraficoBarras(req, res)
-})
+router.get('/grafico-barras/:meses', function (req, res) {
+    dashboardController.carregarGraficoBarras(req, res);
+});
 
 router.get('/grafico-linhas/:id_empresa', function (req, res) {
     dashboardController.carregarGraficoLinhas(req, res)

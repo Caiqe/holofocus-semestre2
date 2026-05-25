@@ -18,22 +18,18 @@ function carregarKpis(req, res) {
         )
 }
 
-function carregarGraficoBarras(req, res){
-    dashboard.carregarGraficoBarras()
-        .then(
-            function (resp) {
-                res.json(resp)
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao registrar a mensagem! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        )
+function carregarGraficoBarras(req, res) {
+    var meses = req.params.meses;
+
+    dashboard.carregarGraficoBarras(meses)
+        .then(function (resp) {
+            res.json(resp);
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log('\nHouve um erro ao carregar o gráfico de barras! Erro: ', erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
 }
 
 function carregarGraficoLinhas(req, res){
