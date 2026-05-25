@@ -300,7 +300,7 @@ tbody td {
   top: 15%;
   left: 35%;
   width: 40%;
-  height: 70%;
+  height: 80%;
   border-radius: 70px;
   background:#EFD38D;
   display: none;
@@ -352,6 +352,7 @@ tbody td {
     padding: 30px;
     border-radius: 30px;
     width: 700px;
+    
 
 }
 

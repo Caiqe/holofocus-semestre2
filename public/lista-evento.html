@@ -14,36 +14,68 @@
 
     <aside class="sidebar" id="__header">
       <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
+
       <ul id="ul_navbar"></ul>
+
       <div class="user">
         <div class="usuario-info">
           <p id="nome_usuario"></p>
-          <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
+
+          <img id="icon__admin"
+            src="./assets/icon/icon-admin.png"
+            alt="Icone de admin">
         </div>
-        <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img src="./assets/icon/icon-configuracoes.svg"
-            alt="Icone de configurações"> Configurações</a>
-        <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png" alt=""><strong>
-            Sair</strong></button>
+
+        <a class="conf"
+          id="btt___configuracoes"
+          href="editarPerfil.html">
+
+          <img src="./assets/icon/icon-configuracoes.svg"
+            alt="Icone de configurações">
+
+          Configurações
+        </a>
+
+        <button class="logout"
+          id="btt__sair"
+          onclick="logout()">
+
+          <img src="assets/imgs/iconSaida.png" alt="">
+
+          <strong>Sair</strong>
+
+        </button>
       </div>
     </aside>
 
-
     <main class="main">
+
       <div class="header">
+
         <h1>Eventos</h1>
 
         <div class="actions">
+
           <input type="text" placeholder="pesquisar">
-          <button><img src="assets/imgs/IconFiltro.png" alt=""></button>
-          <button class="btn-yellow" onclick="abrirModal('cadastrar')" title="Cadastrar usuário">
-            <img src="assets/imgs/iconMais.png" alt="">
+
+          <button>
+            <img src="assets/imgs/IconFiltro.png" alt="">
           </button>
+
+          <button class="btn-yellow"
+            onclick="abrirModal('cadastrar')"
+            title="Cadastrar usuário">
+
+            <img src="assets/imgs/iconMais.png" alt="">
+
+          </button>
+
         </div>
+
       </div>
 
-
-
       <table>
+
         <thead>
           <tr>
             <th>Identificação</th>
@@ -53,230 +85,441 @@
           </tr>
         </thead>
 
-
         <tbody>
+
           <tr>
             <td>Casa de Show Alemão LTDA</td>
             <td>20</td>
             <td>26/11/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
+
+            <td>
+              <button class="edit"
+                onclick="abrirModal('editar')"
+                title="editar evento">
+
+                <img src="assets/imgs/IconLapis.png" alt="">
+                Editar
+
+              </button>
+            </td>
           </tr>
 
           <tr>
             <td>Soberana Casa de Show</td>
             <td>12</td>
             <td>30/01/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
+
+            <td>
+              <button class="edit"
+                onclick="abrirModal('editar')"
+                title="editar evento">
+
+                <img src="assets/imgs/IconLapis.png" alt="">
+                Editar
+
+              </button>
+            </td>
           </tr>
 
-          <tr>
-            <td>Casa Show Bar LTDA EPP</td>
-            <td>5</td>
-            <td>08/10/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td> Áudio SP (Audio Club)</td>
-            <td>2</td>
-            <td>25/03/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Blue Note São Paulo</td>
-            <td>12</td>
-            <td>03/05/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Bourbon Street Music Club</td>
-            <td>10</td>
-            <td>03/03/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Tokio Marine Hall</td>
-            <td>23</td>
-            <td>31/12/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
         </tbody>
+
       </table>
 
       <div class="pagination">
+
         <button>&lt;</button>
+
         <button class="current">1</button>
+
         <button>2</button>
+
         <button>3</button>
+
         <button>4</button>
+
         <button>&gt;</button>
+
       </div>
 
     </main>
 
   </div>
 
+  <!-- MODAL CADASTRAR -->
 
-
-
-
-  <!-- -->
   <div class="desfoque" id="desfoque-cadastrar">
-    <div class="overlay" id="overlay-cadastrar" onclick="fecharOverlay(event,'cadastrar')">
-      <div class="modal">
 
+    <div class="overlay"
+      id="overlay-cadastrar"
+      onclick="fecharOverlay(event,'cadastrar')">
+
+      <div class="modal">
 
         <div class="cardP">
+
           <div class="topo">
-            <h2><strong>Cadastrar Evento </strong></h2>
-            <button class="btx" class="modal-close" onclick="fecharModal('cadastrar')"><img src="assets/imgs/iconX.png"
-                alt=""></button>
+
+            <h2>
+              <strong>Cadastrar Evento</strong>
+            </h2>
+
+            <button class="btx"
+              onclick="fecharModal('cadastrar')">
+
+              <img src="assets/imgs/iconX.png" alt="">
+
+            </button>
+
           </div>
 
-          <form>
+          <!-- FORM COM FETCH -->
+
+          <form onsubmit="cadastrarEvento(event)">
+
             <label>Nome do evento</label>
-            <input type="text">
+            <input type="text" id="input_nomeEvento">
 
             <label>Artitas contratado</label>
-            <input type="text">
+            <input type="text" id="input_artista">
 
+            <label>Data do evento</label>
+            <input type="date" id="input_data">
 
             <label>Principal genero musical do evento</label>
-            <select>
-              <option>selecionar</option>
-            </select>
 
+            <select id="select_genero">
+                 <option value="*">selecionar</option>
+              <option value="1">Pop</option>
+               <option value="2">Rock</option>
+              <option value="3">Eletrônica</option>
+               <option value="4">Hip Hop</option>
+              <option value="5">Sertanejo</option>
+            </select>
 
             <div class="linha2">
+
               <div class="campo">
+
                 <label>Valor investimento</label>
-                <input type="number">
+
+                <input type="number"
+                  id="input_investimento">
+
               </div>
 
               <div class="campo">
+
                 <label>Lucro esperado</label>
-                <input type="number">
+
+                <input type="number"
+                  id="input_lucroEsperado">
+
               </div>
+
               <div class="campo">
+
                 <label>Lucro</label>
-                <input type="number">
+
+                <input type="number"
+                  id="input_lucro">
+
               </div>
+
             </div>
+
             <div class="linha">
+
               <div class="campo">
+
                 <label>Lotação da casa</label>
-                <input type="number">
+
+                <input type="number"
+                  id="input_lotacaoCasa">
+
               </div>
 
               <div class="campo">
+
                 <label>Lotação do evento</label>
-                <input type="number">
+
+                <input type="number"
+                  id="input_lotacaoEvento">
+
               </div>
+
             </div>
 
+            <button class="buttonP">
+              SALVAR
+            </button>
 
-            <button class="buttonP">SALVAR</button>
+          </form>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
 
+  <!-- MODAL EDITAR -->
+
   <div class="desfoque" id="desfoque-editar">
-    <div class="overlay" id="overlay-editar" onclick="fecharOverlay(event,'editar')">
+
+    <div class="overlay"
+      id="overlay-editar"
+      onclick="fecharOverlay(event,'editar')">
+
       <div class="modal">
 
-
         <div class="cardE">
+
           <div class="topo">
-            <h2><strong>Editar evento </strong></h2>
-            <button class="btx2" class="modal-close" onclick="fecharModal('editar')"><img src="assets/imgs/iconX.png"
-                alt=""></button>
+
+            <h2>
+              <strong>Editar evento</strong>
+            </h2>
+
+            <button class="btx2"
+              onclick="fecharModal('editar')">
+
+              <img src="assets/imgs/iconX.png" alt="">
+
+            </button>
+
           </div>
 
           <form>
+
             <label>Nome do evento</label>
-            <input type="text" value="Casa de Show Alemão LTDA">
+
+            <input type="text"
+              value="Casa de Show Alemão LTDA">
 
             <label>Artitas contratado</label>
-            <input type="text" value="Maneskim">
+
+            <input type="text"
+              value="Maneskim">
+              
+            <label>Data do evento</label>
+            <input type="date" id="input_data">
 
             <label>Principal genero musical do evento</label>
+
             <select>
-              <option>selecionar</option>
+              <option value="*">selecionar</option>
+              <option value="1">Pop</option>
+               <option value="2">Rock</option>
+              <option value="3">Eletrônica</option>
+               <option value="4">Hip Hop</option>
+              <option value="5">Sertanejo</option>
             </select>
 
-
             <div class="linha3">
+
               <div class="campo">
+
                 <label>Valor investimento</label>
-                <input type="number" value="7.000">
+
+                <input type="number"
+                  value="7.000">
+
               </div>
 
               <div class="campo">
+
                 <label>Lucro esperado</label>
-                <input type="number" value="15.000">
+
+                <input type="number"
+                  value="15.000">
+
               </div>
+
               <div class="campo">
+
                 <label>Lucro</label>
-                <input type="number" value="13.000">
+
+                <input type="number"
+                  value="13.000">
+
               </div>
+
             </div>
 
             <div class="linha4">
+
               <div class="campo">
+
                 <label>Lotação da casa</label>
-                <input type="number" value="6.000">
+
+                <input type="number"
+                  value="6.000">
+
               </div>
 
               <div class="campo">
+
                 <label>Lotação do evento</label>
-                <input type="number" value="5.787">
+
+                <input type="number"
+                  value="5.787">
+
               </div>
+
             </div>
 
             <div class="linhaB">
-              <button class="buttonS">SALVAR</button>
-              <button class="buttonE">EXCLUIR</button>
+
+              <button class="buttonS">
+                SALVAR
+              </button>
+
+              <button class="buttonE">
+                EXCLUIR
+              </button>
+
             </div>
+
           </form>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
   <script>
+
     function abrirModal(id) {
-      document.getElementById('overlay-' + id).classList.add('open');
-      document.getElementById('desfoque-' + id).classList.add('open');
+
+      document
+        .getElementById('overlay-' + id)
+        .classList.add('open');
+
+      document
+        .getElementById('desfoque-' + id)
+        .classList.add('open');
+
     }
+
     function fecharModal(id) {
-      document.getElementById('overlay-' + id).classList.remove('open');
-      document.getElementById('desfoque-' + id).classList.remove('open');
+
+      document
+        .getElementById('overlay-' + id)
+        .classList.remove('open');
+
+      document
+        .getElementById('desfoque-' + id)
+        .classList.remove('open');
+
     }
+
     function fecharOverlay(e, id) {
-      if (e.target === document.getElementById('overlay-' + id)) fecharModal(id);
-      if (e.target === document.getElementById('desfoque-' + id)) fecharModal(id);
+
+      if (e.target === document.getElementById('overlay-' + id))
+        fecharModal(id);
+
+      if (e.target === document.getElementById('desfoque-' + id))
+        fecharModal(id);
+
     }
+
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { fecharModal('cadastrar'); fecharModal('editar'); }
+
+      if (e.key === 'Escape') {
+
+        fecharModal('cadastrar');
+        fecharModal('editar');
+
+      }
+
     });
 
+    function cadastrarEvento() {
+
+      const nomeEvento =
+        document.getElementById("input_nomeEvento").value;
+
+      const artista =
+        document.getElementById("input_artista").value;
+
+      const data =
+       document.getElementById("input_data").value;
+
+      const genero =
+        document.getElementById("select_genero").value;
+
+      const investimento =
+        document.getElementById("input_investimento").value;
+
+      const lucroEsperado =
+        document.getElementById("input_lucroEsperado").value;
+
+      const lucro =
+        document.getElementById("input_lucro").value;
+
+      const lotacaoCasa =
+        document.getElementById("input_lotacaoCasa").value;
+
+      const lotacaoEvento =
+        document.getElementById("input_lotacaoEvento").value;
+
+
+        const resposta = fetch(
+          "/eventos/criar",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              nomeEvento: nomeEvento,
+              artista: artista,
+              data: data,
+              genero: genero,
+              investimento: investimento,
+              lucroEsperado: lucroEsperado,
+              lucro: lucro,
+              lotacaoCasa: lotacaoCasa,
+              lotacaoEvento: lotacaoEvento
+            })
+
+          })
+          .then(function(resposta){
+            console.log("Resposta:",resposta)
+
+        if (resposta.ok) {
+
+          alert("Evento cadastrado com sucesso!");
+
+          fecharModal('cadastrar');
+
+        } else {
+
+          alert("Erro ao cadastrar evento");
+
+        }
+      })
+
+       .catch (function(resposta) {
+
+        console.log("Erro:",resposta);
+
+        alert("Erro na conexão com o servidor");
+
+       })
+      
     
-
-
+  }
 
   </script>
+
   <script src="./js/elementosPadrao.js"></script>
   <script src="./js/navbar.js"></script>
+
 </body>
 
 </html>

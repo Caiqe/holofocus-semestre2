@@ -1,12 +1,12 @@
 var database = require('../database/config');
 
-function criarEvento(evento) {
+function criarEvento(nomeEvento, data, artista, genero,investimento,lucroEsperado,lucro,lotacaoCasa,lotacaoEvento) {
     const instrucao = `
         INSERT INTO evento 
         (nome_evento, data_evento, investimento_evento, retorno_evento, total_pessoas, fk_empresa, fk_artista, fk_genero)
         VALUES 
-        ('${evento.nome}', '${evento.data}', ${evento.investimento}, ${evento.retorno}, ${evento.pessoas},
-         ${evento.empresa}, ${evento.artista}, ${evento.genero});
+        ('${nomeEvento}',${data},${investimento}, ${lucro}, ${lucroEsperado} ,
+         ${lotacaoEvento},${artista},${genero});
     `;
     return database.executar(instrucao);
 }

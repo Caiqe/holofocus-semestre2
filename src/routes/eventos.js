@@ -3,15 +3,15 @@ var router = express.Router();
  
 var eventosController = require('../controllers/eventosController');
 
-router.post('/criar', (req, res) => {
+router.post('/criar',function (req, res) {
     eventosController.criar(req, res);
 });
 
-router.put('/editar/:id', (req, res) => {
+router.put('/editar/:id', function(req, res){
     eventosController.editar(req, res);
 });
 
-router.delete('/excluir/:id', (req, res) => {
+router.delete('/excluir/:id', function(req, res){
     eventosController.excluir(req, res);
 });
 
