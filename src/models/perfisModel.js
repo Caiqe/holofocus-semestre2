@@ -13,4 +13,16 @@ function atualizarPerfilCad(id) {
     return database.executar(instrucaoSql);
 }
 
-module.exports = { cadastrar, atualizarPerfilCad };
+function editarPerfil(usuario, nome, email, celular, senha, permissao) {
+    var instrucaoSql = `UPDATE usuario SET nome = '${nome}', celular = '${celular}', senha = '${senha}', fk_nivel_acesso = '${permissao}' WHERE id_usuario = '${usuario}'`;
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarPerfilAtual(usuario) {
+    var instrucaoSql = `SELECT nome, email, celular, senha, permissao FROM usuario WHERE id_usuario = '${usuario}'`;
+
+    return database.executar(instrucaoSql);
+}
+
+module.exports = { cadastrar, atualizarPerfilCad, editarPerfil, buscarPerfilAtual };
