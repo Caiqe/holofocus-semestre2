@@ -130,7 +130,7 @@
                                     <span>Artista Muito pinposo</span>
                                 </label>
                             </div>
-                            <div class="kpiArtistaSelecionado flex flex-col w-[73%] gap-[1.8%]">
+                            <div class="kpiArtistaSelecionado flex flex-col w-[78%] gap-[1.8%]">
                                 <h1 class="nomeArtistaGrande text-[#EFD38D] font-black text-[1.31rem] leading-5">Artista
                                     selecionado</h1>
                                 <div class="artistaSelecionadoColuna2 flex flex-col gap-[1.8%]">
@@ -154,30 +154,44 @@
                                     </div>
                                     <div class="containerInternoAS flex flex-col gap-[10px]">
                                         <div
-                                            class="KPIsCrescimento bg-[#313030] p-[2%] rounded-xl h-[100%] flex flex-row justify-between">
-                                            <div class="crescimento">
-                                                <h1>Crescimento de streams</h1>
-                                                <div class="setaCrescimento">
-                                                    <img class="seta w-[20%]" src="./assets/icon/seta.png" alt="seta para cima">
-                                                    <p>20%</p>
+                                            class="KPIsCrescimento bg-[#313030] pt-4 pr-4  pb-4  pl-4 rounded-xl h-[100%] flex flex-col justify-between">
+                                            <div class="crescimentoContainer flex flex-row">
+                                                <div class="crescimento border-r border-solid border-[#F0D48D]">
+                                                    <h1>Crescimento de streams</h1>
+                                                    <div class="setaCrescimento">
+                                                        <img class="seta w-[10%]" src="./assets/icon/seta.png"
+                                                            alt="seta para cima">
+                                                        <p>20%</p>
+                                                    </div>
+                                                </div>
+                                                <div class="crescimento">
+                                                    <h1>Crescimento de popularidade</h1>
+                                                    <div class="setaCrescimento">
+                                                        <img class="seta w-[10%]" src="./assets/icon/seta.png"
+                                                            alt="seta para cima">
+                                                        <p>2%</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="crescimento">
-                                                <h1>Crescimento de popularidade</h1>
-                                                <div class="setaCrescimento">
-                                                    <img class="seta w-[20%]" src="./assets/icon/seta.png" alt="seta para cima">
-                                                    <p>2%</p>
-                                                </div>
+                                            <div class="legenda">
+                                                <p>
+                                                    **Variação em relação ao último trimestre</p>
                                             </div>
                                         </div>
-                                        <div class="graficosArtistaSelecionado flex flex-row justify-between">
-                                            <div class="graficoContainer flex flex-col bg-[#313030] p-[3%] rounded-xl h-[87%] w-[49%]">
+                                        <div class="graficosArtistaSelecionado">
+                                            <div
+                                                class="graficoContainer flex flex-col bg-[#313030] p-[3%] rounded-xl w-[49%]">
                                                 <h1>Distribuição de popularidade das músicas</h1>
-                                                <canvas id="graficoDistribuicao"></canvas>
+                                                <div class="graficoHistograma">
+                                                    <canvas id="graficoHistograma"></canvas>
+                                                </div>
                                             </div>
-                                            <div class="graficoContainer flex flex-col bg-[#313030] p-[3%] rounded-xl h-[87%] w-[49%]">
-                                                <h1>Relação do perfil  da casa com  o artista</h1>
-                                                <canvas id="graficoRadar"></canvas>
+                                            <div
+                                                class="graficoContainer flex flex-col bg-[#313030] p-[3%] rounded-xl w-[49%]">
+                                                <h1>Relação do perfil da casa com o artista</h1>
+                                                <div class="graficoRadarContainer">
+                                                    <canvas id="graficoRadar"></canvas>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -477,6 +491,68 @@
             }
         }
     });
+
+    new Chart(document.getElementById('graficoHistograma'), {
+        type: 'bar',
+        data: {
+            labels: ['0-25', '26-50', '51-75', '76-100'],
+            datasets: [
+                {
+                    type: 'line',
+                    label: 'Distribuição Normalizada',
+                    data: [35, 40, 28, 14], 
+                    borderColor: '#D8B4FE', 
+                    backgroundColor: '#D8B4FE', 
+                    tension: 0.4, fill: false, 
+                    pointRadius: 4, 
+                    pointBackgroundColor: '#D8B4FE'
+                }, 
+                { 
+                    type: 'bar', 
+                    label: 'Frequência', 
+                    data: [42, 30, 22, 78], 
+                    backgroundColor: ['#FF00B8', '#FF6D03', '#97B7A2', '#B587D1'],
+                    borderRadius: 4, 
+                    barPercentage: 1, 
+                    categoryPercentage: 0.9 
+                }
+            ]
+        }, 
+
+        options: 
+        { 
+            responsive: true, 
+            maintainAspectRatio: false, 
+            plugins: 
+            { 
+                legend: { 
+                    display: false 
+                } 
+            }, 
+            scales: 
+            { 
+                x: 
+                { 
+                    ticks: 
+                    { 
+                        color: '#D8B4FE', 
+                        font: { size: 11 } }, 
+                        grid: { display: false } 
+                }, 
+                        
+                y: 
+                { 
+                    beginAtZero: true, 
+                    ticks: { color: '#D8B4FE' }, 
+                    grid: { color: '#413F3F', 
+                    borderDash: [5, 5]
+                } 
+            } 
+        } 
+    } 
+}
+);
+
 </script>
 
 </html>
