@@ -20,7 +20,7 @@
         rel="stylesheet">
 </head>
 
-<body class="flex flex-row h-screen bg-[#1A1A1A]" onload="validarSessao()">
+<body class="flex flex-row h-screen bg-[#1A1A1A]" onload="iniciarDashboard()">
     <aside class="sidebar" id="__header">
         <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
         <ul id="ul_navbar"></ul>
@@ -50,33 +50,33 @@
                 <div class="containerSeletores flex justify-between w-[46%]">
                     <div class="seletor flex flex-col w-[24%]">
                         <label>Perfil Sonoro</label>
-                        <select name="selecionar">
-                            <option value="perfil1">selecionar</option>
-                            <option value="banana">Perfil 2</option>
+                        <select id="selectPerfilSonoro" onchange="filtrarDashboard()">
+                            <option value="">selecionar</option>
                         </select>
                     </div>
                     <div class="seletor flex flex-col w-[24%]">
                         <label>Gênero</label>
-                        <select name="selecionar">
-                            <option value="perfil1">selecionar</option>
-                            <option value="perfil1">Perfil 1</option>
-                            <option value="banana">Perfil 2</option>
+                        <select id="selectGenero" onchange="filtrarDashboard()">
+                            <option value="">selecionar</option>
+                            <option value="Pop">Pop</option>
+                            <option value="Rock">Rock</option>
+                            <option value="Rap">Rap</option>
                         </select>
                     </div>
                     <div class="seletor flex flex-col w-[24%]">
                         <label>Popularidade</label>
-                        <select name="selecionar">
-                            <option value="perfil1">selecionar</option>
-                            <option value="perfil1">Perfil 1</option>
-                            <option value="banana">Perfil 2</option>
+                        <select id="selectPopularidade" onchange="filtrarDashboard()">
+                            <option value="">selecionar</option>
+                            <option value="0-25">0-25</option>
+                            <option value="26-50">26-50</option>
+                            <option value="51-75">51-75</option>
+                            <option value="76-100">76-100</option>
                         </select>
                     </div>
                     <div class="seletor flex flex-col w-[24%]">
                         <label>País</label>
-                        <select name="selecionar">
-                            <option value="perfil1">selecionar</option>
-                            <option value="perfil1">Perfil 1</option>
-                            <option value="banana">Perfil 2</option>
+                        <select id="selectPais" onchange="filtrarDashboard()">
+                            <option value="">selecionar</option>
                         </select>
                     </div>
                 </div>
@@ -100,56 +100,33 @@
                     <div class="box3 bg-[#272727] p-[1.4%] rounded-xl h-full flex flex-col justify-between flex-col">
                         <p>Selecione um artista para ver insights relacionados</p>
                         <div class="artistaSelecionado flex flex-row h-[92%] gap-[1.8%]">
-                            <div class="listaArtistas flex flex-col rounded-2xl bg-[#313030] w-[20%]">
+                            <div id="listaArtistas"
+                                class="listaArtistas flex flex-col rounded-2xl bg-[#313030] w-[20%]">
                                 <div class="top5Titulo text-[#EFD38D] text-center mt-4 font-bold h-[7%]">
                                     <h1>Top 5 artistas</h1>
                                 </div>
-                                <label class="linha">
-                                    <input type="radio" name="artista">
-                                    <div class="radio-custom"></div>
-                                    <span>Artista Muito pinposo</span>
-                                </label>
-                                <label class="linha">
-                                    <input type="radio" name="artista">
-                                    <div class="radio-custom"></div>
-                                    <span>Artista Muito pinposo</span>
-                                </label>
-                                <label class="linha">
-                                    <input type="radio" name="artista">
-                                    <div class="radio-custom"></div>
-                                    <span>Artista Muito pinposo</span>
-                                </label>
-                                <label class="linha">
-                                    <input type="radio" name="artista">
-                                    <div class="radio-custom"></div>
-                                    <span>Artista Muito pinposo</span>
-                                </label>
-                                <label class="linhaDiferente">
-                                    <input type="radio" name="artista">
-                                    <div class="radio-custom"></div>
-                                    <span>Artista Muito pinposo</span>
-                                </label>
                             </div>
                             <div class="kpiArtistaSelecionado flex flex-col w-[78%] gap-[1.8%]">
-                                <h1 class="nomeArtistaGrande text-[#EFD38D] font-black text-[1.31rem] leading-5">Artista
+                                <h1 id="nomeArtistaSelecionado"
+                                    class="nomeArtistaGrande text-[#EFD38D] font-black text-[20px] leading-5">Artista
                                     selecionado</h1>
                                 <div class="artistaSelecionadoColuna2 flex flex-col gap-[1.8%]">
                                     <div class="informacoesKPI flex flex-row justify-center m-3">
                                         <div class="info">
                                             <p>Gênero <br> dominante</p>
-                                            <h1>Rock</h1>
+                                            <h1 id="kpiGenero">Rock</h1>
                                         </div>
                                         <div class="info">
                                             <p>Média de <br> streams</p>
-                                            <h1>609.000.888</h1>
+                                            <h1 id="kpiStreams">609.000.888</h1>
                                         </div>
                                         <div class="info">
                                             <p>Média de <br> popularidade</p>
-                                            <h1>78</h1>
+                                            <h1 id="kpiPopularidade">78</h1>
                                         </div>
                                         <div class="infoDiferente">
                                             <p>Lançamentos do <br> último ano</p>
-                                            <h1>10</h1>
+                                            <h1 id="kpiLancamentos">10</h1>
                                         </div>
                                     </div>
                                     <div class="containerInternoAS flex flex-col gap-[10px]">
@@ -161,7 +138,7 @@
                                                     <div class="setaCrescimento">
                                                         <img class="seta w-[10%]" src="./assets/icon/seta.png"
                                                             alt="seta para cima">
-                                                        <p>20%</p>
+                                                        <p id="crescimentoStreams">20%</p>
                                                     </div>
                                                 </div>
                                                 <div class="crescimento">
@@ -169,7 +146,7 @@
                                                     <div class="setaCrescimento">
                                                         <img class="seta w-[10%]" src="./assets/icon/seta.png"
                                                             alt="seta para cima">
-                                                        <p>2%</p>
+                                                        <p id="crescimentoPopularidade">2%</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -178,7 +155,7 @@
                                                     **Variação em relação ao último trimestre</p>
                                             </div>
                                         </div>
-                                        <div class="graficosArtistaSelecionado">
+                                        <div class="graficosArtistaSelecionado flex justify-between">
                                             <div
                                                 class="graficoContainer flex flex-col bg-[#313030] p-[3%] rounded-xl w-[49%]">
                                                 <h1>Distribuição de popularidade das músicas</h1>
@@ -203,356 +180,9 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
+</div>
+    <script src="./js/elementosPadrao.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script src="./js/dashboard.js"></script>
 </body>
-
-<script src="./js/elementosPadrao.js"></script>
-<script src="./js/navbar.js"></script>
-<script>
-    new Chart(document.getElementById('graficoBarras'), {
-        type: 'bar',
-
-        data: {
-            labels: [
-                'Artista 1',
-                'Artista 2',
-                'Artista 3',
-                'Artista 4',
-                'Artista 5'
-            ],
-
-            datasets: [
-                {
-                    label: 'Streams',
-                    data: [78, 82, 100, 59, 59],
-
-                    backgroundColor: '#FF7300',
-
-                    borderRadius: 5,
-
-                    barPercentage: 1,
-                    categoryPercentage: 0.7
-                },
-
-                {
-                    label: 'Popularidade',
-                    data: [67, 67, 91, 35, 75],
-
-                    backgroundColor: '#FF00B8',
-
-                    borderRadius: 5,
-
-                    barPercentage: 1,
-                    categoryPercentage: 0.7
-                }
-            ]
-        },
-
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-
-            plugins: {
-                legend: {
-                    position: 'top',
-                    align: 'start',
-
-                    labels: {
-                        color: '#DA9EF7',
-                        boxWidth: 14,
-                        boxHeight: 14,
-                        padding: 20,
-
-                        font: {
-                            size: 14
-                        }
-                    }
-                }
-            },
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100,
-
-                    ticks: {
-                        color: '#DA9EF7',
-                        stepSize: 20,
-
-                        font: {
-                            size: 14
-                        }
-                    },
-
-                    grid: {
-                        color: '#413F3F',
-                        borderDash: [5, 5]
-                    }
-                }
-            }
-        }
-    });
-
-    new Chart(document.getElementById('graficoMusicas'), {
-        type: 'bar',
-
-        data: {
-            labels: [
-                'Artista 1',
-                'Artista 2',
-                'Artista 3',
-                'Artista 4',
-                'Artista 5'
-            ],
-
-            datasets: [
-                {
-                    label: 'Top 1',
-                    data: [100, 100, 100, 100, 100],
-                    backgroundColor: '#FF6D03',
-                    borderRadius: 0,
-                    barThickness: 7
-                },
-
-                {
-                    label: 'Top 2',
-                    data: [80, 80, 80, 80, 80],
-                    backgroundColor: '#8E8E8E',
-                    borderRadius: 0,
-                    barThickness: 7
-                },
-
-                {
-                    label: 'Top 3',
-                    data: [70, 70, 70, 70, 70],
-                    backgroundColor: '#FF16B9',
-                    borderRadius: 0,
-                    barThickness: 7
-                },
-
-                {
-                    label: 'Top 4',
-                    data: [60, 60, 60, 60, 60],
-                    backgroundColor: '#9BB9A6',
-                    borderRadius: 0,
-                    barThickness: 7
-                },
-                {
-                    label: 'Top 5',
-                    data: [60, 60, 60, 60, 60],
-                    backgroundColor: '#B888CF',
-                    borderRadius: 0,
-                    barThickness: 7
-                }
-            ]
-        },
-
-        options: {
-            indexAxis: 'y',
-
-            maintainAspectRatio: false,
-
-            responsive: true,
-
-            plugins: {
-                legend: {
-                    display: false
-                },
-
-                tooltip: {
-                    enabled: true
-                }
-            },
-
-            scales: {
-                x: {
-                    display: false,
-                    max: 100,
-
-                    grid: {
-                        display: false
-                    }
-                },
-
-                y: {
-                    ticks: {
-                        color: '#D9A8FF',
-                        font: {
-                            size: 12
-                        }
-                    },
-
-                    grid: {
-                        display: false
-                    }
-                }
-            }
-        }
-    });
-    new Chart(document.getElementById('graficoRadar'), {
-        type: 'radar',
-
-        data: {
-            labels: [
-                'Danceabilidade',
-                'Energia',
-                'Valence',
-                'Acousticness'
-            ],
-
-            datasets: [
-                {
-                    label: 'Artista Selecionado',
-
-                    data: [60, 80, 75, 50, 90, 65],
-
-                    borderColor: '#FF6D03',
-
-                    backgroundColor: 'rgba(255, 109, 3, 0.2)',
-
-                    pointBackgroundColor: '#FF6D03',
-
-                    pointBorderColor: '#FF6D03',
-
-                    pointRadius: 4,
-
-                    borderWidth: 2
-                },
-
-                {
-                    label: 'Perfil musical da casa',
-
-                    data: [70, 85, 60, 80, 50, 75],
-
-                    borderColor: '#FF16B9',
-
-                    backgroundColor: 'rgba(255, 22, 185, 0.2)',
-
-                    pointBackgroundColor: '#FF16B9',
-
-                    pointBorderColor: '#FF16B9',
-
-                    pointRadius: 4,
-
-                    borderWidth: 2
-                }
-            ]
-        },
-
-        options: {
-            responsive: true,
-
-            maintainAspectRatio: false,
-
-            plugins: {
-                legend: {
-                    position: 'top',
-                    align: 'start',
-
-                    labels: {
-                        color: '#D8B4FE',
-                        boxWidth: 12,
-                        boxHeight: 12,
-                        padding: 15,
-                        font: {
-                            size: 12
-                        }
-                    }
-                }
-            },
-
-            scales: {
-                r: {
-                    min: 0,
-                    max: 100,
-
-                    ticks: {
-                        display: false
-                    },
-
-                    grid: {
-                        color: '#6D5A7E'
-                    },
-
-                    angleLines: {
-                        color: '#6D5A7E'
-                    },
-
-                    pointLabels: {
-                        color: '#D8B4FE',
-
-                        font: {
-                            size: 12
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    new Chart(document.getElementById('graficoHistograma'), {
-        type: 'bar',
-        data: {
-            labels: ['0-25', '26-50', '51-75', '76-100'],
-            datasets: [
-                {
-                    type: 'line',
-                    label: 'Distribuição Normalizada',
-                    data: [35, 40, 28, 14], 
-                    borderColor: '#D8B4FE', 
-                    backgroundColor: '#D8B4FE', 
-                    tension: 0.4, fill: false, 
-                    pointRadius: 4, 
-                    pointBackgroundColor: '#D8B4FE'
-                }, 
-                { 
-                    type: 'bar', 
-                    label: 'Frequência', 
-                    data: [42, 30, 22, 78], 
-                    backgroundColor: ['#FF00B8', '#FF6D03', '#97B7A2', '#B587D1'],
-                    borderRadius: 4, 
-                    barPercentage: 1, 
-                    categoryPercentage: 0.9 
-                }
-            ]
-        }, 
-
-        options: 
-        { 
-            responsive: true, 
-            maintainAspectRatio: false, 
-            plugins: 
-            { 
-                legend: { 
-                    display: false 
-                } 
-            }, 
-            scales: 
-            { 
-                x: 
-                { 
-                    ticks: 
-                    { 
-                        color: '#D8B4FE', 
-                        font: { size: 11 } }, 
-                        grid: { display: false } 
-                }, 
-                        
-                y: 
-                { 
-                    beginAtZero: true, 
-                    ticks: { color: '#D8B4FE' }, 
-                    grid: { color: '#413F3F', 
-                    borderDash: [5, 5]
-                } 
-            } 
-        } 
-    } 
-}
-);
-
-</script>
-
 </html>

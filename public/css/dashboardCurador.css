@@ -90,27 +90,6 @@ body {
     border-radius: 0 0 16px 16px;
 }
 
-.radio-custom {
-    width: 18px;
-    height: 15px;
-    border: 2px solid #aaa;
-    border-radius: 50%;
-    justify-self: center;
-    position: relative;
-}
-
-.row input:checked+.radio-custom::after {
-    content: "";
-    width: 9px;
-    height: 10px;
-    background: #d59cff;
-    border-radius: 50%;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    text-align: center;
-}
-
 .linha:hover,
 .linhaDiferente:hover {
     background-color: #2A2A2A;
@@ -128,7 +107,7 @@ body {
 }
 
 .radio-custom {
-    width: 16px;
+    width: 13px;
     height: 13px;
     border: 2px solid #aaa;
     border-radius: 50%;
@@ -142,7 +121,7 @@ body {
 .linha input[type="radio"]:checked+.radio-custom::after,
 .linhaDiferente input[type="radio"]:checked+.radio-custom::after {
     content: "";
-    width: 8px;
+    width: 9px;
     height: 8px;
     background-color: #d59cff;
     border-radius: 50%;
@@ -183,7 +162,7 @@ body {
     font-weight: 900;
     text-align: center;
     color: #DA9EF7;
-    font-size: 20px;
+    font-size: 19px;
 }
 
 .setaCrescimento {
