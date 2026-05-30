@@ -9,24 +9,25 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class Slack {
+    private static HttpClient client = HttpClient.newBuilder()
+            .followRedirects(HttpClient.Redirect.ALWAYS)
+            .build();
 
-   private static HttpClient client =  HttpClient.newHttpClient();
+    public static void enviarMensagem(String mensagem, String url) throws IOException, InterruptedException {
+        JSONObject objeto = new JSONObject();
+        objeto.put("text", mensagem);
 
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .header("Content-Type", "application/json") 
+                .header("accept", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(objeto.toString()))
+                .build();
 
-   public static void enviarMensagem(String mensagem, String url)throws IOException, InterruptedException {
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-       JSONObject objeto = new JSONObject();
-       objeto.put("text", mensagem);
-       HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-               .header("accept", "application/json")
-               .POST(HttpRequest.BodyPublishers.ofString(objeto.toString()))
-               .build();
-
-       HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-       System.out.println(String.format("Status: %s", response.statusCode()));
-       System.out.println(String.format("Status: %s", response.body()));
-
-   }
-
+        System.out.println(String.format("Status: %s", response.statusCode()));
+        System.out.println(String.format("Body: %s", response.body()));
+    }
 }
+
+
