@@ -163,6 +163,18 @@ CREATE TABLE IF NOT EXISTS perfil (
     FOREIGN KEY (fk_genero) REFERENCES genero(id_genero)
 );
 
+CREATE TABLE IF NOT EXISTS preferencias (
+	id_preferencia INT PRIMARY KEY AUTO_INCREMENT,
+    fk_perfil INT,
+    fk_pais INT,
+    fk_genero INT,
+    CONSTRAINT fk_preferencia_perfil
+    FOREIGN KEY (fk_perfil) REFERENCES perfil(id_perfil),
+    CONSTRAINT fk_preferencia_pais
+    FOREIGN KEY (fk_pais) REFERENCES pais(id_pais),
+    CONSTRAINT fk_preferencia_genero
+    FOREIGN KEY (fk_genero) REFERENCES genero(id_genero)
+);
 
 -- Populando dados
 INSERT INTO endereco (cep, logradouro, numero, complemento) VALUES
