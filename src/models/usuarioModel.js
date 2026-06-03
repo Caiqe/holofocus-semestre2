@@ -37,6 +37,15 @@ function cadastrar(nome, telefone, email, senha, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function editarEvento(nome, telefone, email, senha) {
+    const instrucao = `
+        UPDATE evento SET
+        INSERT INTO usuario (nome, telefone, email, senha, fk_empresa, fk_nivel_acesso) VALUES ('${nome}', '${telefone}', '${email}', '${senha}', fk_nivel_acesso);
+        WHERE id_evento = ${id};
+    `;
+    return database.executar(instrucao);
+}
+
 module.exports = {
     autenticar,
     cadastrar

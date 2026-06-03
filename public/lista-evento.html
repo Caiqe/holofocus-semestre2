@@ -86,13 +86,13 @@
         </thead>
 
         <tbody>
-
+<!--
           <tr>
-            <td>Casa de Show Alemão LTDA</td>
-            <td>20</td>
-            <td>26/11/2026</td>
+            <td id="Identificação"></td>
+            <td id="publico"></td>
+            <td id="data"></td>
 
-            <td>
+            <td id="btn_editar">
               <button class="edit"
                 onclick="abrirModal('editar')"
                 title="editar evento">
@@ -102,43 +102,13 @@
 
               </button>
             </td>
-          </tr>
-
-          <tr>
-            <td>Soberana Casa de Show</td>
-            <td>12</td>
-            <td>30/01/2026</td>
-
-            <td>
-              <button class="edit"
-                onclick="abrirModal('editar')"
-                title="editar evento">
-
-                <img src="assets/imgs/IconLapis.png" alt="">
-                Editar
-
-              </button>
-            </td>
-          </tr>
-
+        </tr>
+-->
         </tbody>
 
       </table>
 
       <div class="pagination">
-
-        <button>&lt;</button>
-
-        <button class="current">1</button>
-
-        <button>2</button>
-
-        <button>3</button>
-
-        <button>4</button>
-
-        <button>&gt;</button>
-
       </div>
 
     </main>
@@ -197,58 +167,6 @@
             </select>
 
             <div class="linha2">
-
-              <div class="campo">
-
-                <label>Valor investimento</label>
-
-                <input type="number"
-                  id="input_investimento">
-
-              </div>
-
-              <div class="campo">
-
-                <label>Lucro esperado</label>
-
-                <input type="number"
-                  id="input_lucroEsperado">
-
-              </div>
-
-              <div class="campo">
-
-                <label>Lucro</label>
-
-                <input type="number"
-                  id="input_lucro">
-
-              </div>
-
-            </div>
-
-            <div class="linha">
-
-              <div class="campo">
-
-                <label>Lotação da casa</label>
-
-                <input type="number"
-                  id="input_lotacaoCasa">
-
-              </div>
-
-              <div class="campo">
-
-                <label>Lotação do evento</label>
-
-                <input type="number"
-                  id="input_lotacaoEvento">
-
-              </div>
-
-            </div>
-
             <button class="buttonP">
               SALVAR
             </button>
@@ -295,12 +213,12 @@
             <label>Nome do evento</label>
 
             <input type="text"
-              value="Casa de Show Alemão LTDA">
+              value="">
 
             <label>Artitas contratado</label>
 
             <input type="text"
-              value="Maneskim">
+              value="">
               
             <label>Data do evento</label>
             <input type="date" id="input_data">
@@ -315,59 +233,6 @@
               <option value="4">Hip Hop</option>
               <option value="5">Sertanejo</option>
             </select>
-
-            <div class="linha3">
-
-              <div class="campo">
-
-                <label>Valor investimento</label>
-
-                <input type="number"
-                  value="7.000">
-
-              </div>
-
-              <div class="campo">
-
-                <label>Lucro esperado</label>
-
-                <input type="number"
-                  value="15.000">
-
-              </div>
-
-              <div class="campo">
-
-                <label>Lucro</label>
-
-                <input type="number"
-                  value="13.000">
-
-              </div>
-
-            </div>
-
-            <div class="linha4">
-
-              <div class="campo">
-
-                <label>Lotação da casa</label>
-
-                <input type="number"
-                  value="6.000">
-
-              </div>
-
-              <div class="campo">
-
-                <label>Lotação do evento</label>
-
-                <input type="number"
-                  value="5.787">
-
-              </div>
-
-            </div>
 
             <div class="linhaB">
 
@@ -480,11 +345,7 @@
               artista: artista,
               data: data,
               genero: genero,
-              investimento: investimento,
-              lucroEsperado: lucroEsperado,
-              lucro: lucro,
-              lotacaoCasa: lotacaoCasa,
-              lotacaoEvento: lotacaoEvento
+             
             })
 
           })
@@ -514,6 +375,51 @@
       
     
   }
+
+  
+
+function listarEventos() {
+
+    fetch("/eventos/listar")
+        .then(function(resposta) {
+            return resposta.json();
+        })
+        .then(function(eventos) {
+
+            let tbody = document.getElementById("tbody_eventos");
+
+            tbody.innerHTML = "";
+
+            for (let i = 0; i < eventos.length; i++) {
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${eventos[i].nomeEvento}</td>
+                        <td>${eventos[i].publico}</td>
+                        <td>${eventos[i].data}</td>
+
+                      <td>
+              <button class="edit"
+                onclick="abrirModal('editar')"
+                title="editar evento">
+
+                <img src="assets/imgs/IconLapis.png" alt="">
+                Editar
+
+              </button>
+            </td>
+                    </tr>
+                `;
+            }
+
+        })
+        .catch(function(erro) {
+            console.log(erro);
+        });
+}
+
+window.onload = listarEventos;
+
 
   </script>
 

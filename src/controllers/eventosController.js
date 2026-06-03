@@ -13,7 +13,19 @@ function criar(req, res) {
             console.log(erro);
             res.status(500).json(erro);
         });
-}
+    }
+function listar(req, res) {
+
+    eventosModel.listarEvento()
+        .then(function(resultado) {
+            res.status(200).json(resultado);
+        })
+        .catch(function(erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+
+    }
 
 function editar(req, res) {
     const id = req.params.id;
@@ -41,6 +53,7 @@ function excluir(req, res) {
 
 module.exports = {
     criar,
+    listar,
     editar,
     excluir
 };

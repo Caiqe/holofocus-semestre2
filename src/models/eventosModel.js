@@ -1,26 +1,44 @@
+const { listar } = require('../controllers/eventosController');
 var database = require('../database/config');
 
-function criarEvento(nomeEvento, data, artista, genero,investimento,lucroEsperado,lucro,lotacaoCasa,lotacaoEvento) {
+function criarEvento(nomeEvento, data, artista, genero,investimento,lucro,lotacaoCasa,lotacaoEvento) {
     const instrucao = `
         INSERT INTO evento 
         (nome_evento, data_evento, investimento_evento, retorno_evento, total_pessoas, fk_empresa, fk_artista, fk_genero)
         VALUES 
-        ('${nomeEvento}',${data},${investimento}, ${lucro}, ${lucroEsperado} ,
+        ('${nomeEvento}',${data},${investimento}, ${lucro} ,
          ${lotacaoEvento},${artista},${genero});
     `;
     return database.executar(instrucao);
 }
 
-function editarEvento(id, evento) {
+function listarEvento() {
+
+    const instrucao = `
+        SELECT
+            id_evento,
+            nome_evento,
+            data_evento,
+            investimento_evento,
+            retorno_evento,
+            total_pessoas
+        FROM evento;
+    `;
+
+    return database.executar(instrucao);
+
+}
+
+function editarEvento(nomeEvento, data, artista, genero,investimento,lucro,lotacaoCasa,lotacaoEvento) {
     const instrucao = `
         UPDATE evento SET
-            nome_evento = '${evento.nome}',
-            data_evento = '${evento.data}',
-            investimento_evento = ${evento.investimento},
-            retorno_evento = ${evento.retorno},
-            total_pessoas = ${evento.pessoas},
-            fk_artista = ${evento.artista},
-            fk_genero = ${evento.genero}
+            nome_evento = '${nomeEvento}',
+            data_evento = '${data}',
+            investimento_evento = ${investimento},
+            retorno_evento = ${lucro},
+            total_pessoas = ${lotacaoEvento},
+            fk_artista = ${artista},
+            fk_genero = ${genero}
         WHERE id_evento = ${id};
     `;
     return database.executar(instrucao);
@@ -34,6 +52,7 @@ function excluirEvento(id) {
 
 module.exports = {
     criarEvento,
+    listarEvento,
     editarEvento,
     excluirEvento
 };
