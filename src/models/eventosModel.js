@@ -29,7 +29,7 @@ function listarEvento() {
 
 }
 
-function editarEvento(nomeEvento, data, artista, genero,investimento,lucro,lotacaoCasa,lotacaoEvento) {
+function editarEvento(id,nomeEvento, data, artista, genero,investimento,lucro,lotacaoCasa,lotacaoEvento) {
     const instrucao = `
         UPDATE evento SET
             nome_evento = '${nomeEvento}',
