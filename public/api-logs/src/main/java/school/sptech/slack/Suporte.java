@@ -1,5 +1,7 @@
 package school.sptech.slack;
 
+import java.io.IOException;
+
 public class Suporte extends Usuario {
 
     public Suporte(String nome, String email) {
@@ -12,5 +14,11 @@ public class Suporte extends Usuario {
             throw new IllegalArgumentException("ERRO: Variável SLACK_SUPORTE_URL não configurada!");
         }
         return url;
+    }
+
+    @Override
+    public void enviarMensagem() throws IOException, InterruptedException {
+        String mensagem = "Olá, " + getNome() + "! Ocorreram erros na aplicação Java. Acesse os Logs para acompanhar.";
+            Slack.enviarMensagem(mensagem, getSlackUrl());
     }
 }

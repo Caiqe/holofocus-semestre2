@@ -2,7 +2,7 @@ package school.sptech.slack;
 
 import java.io.IOException;
 
-public class Usuario implements Notificavel {
+public abstract class Usuario implements Notificavel {
     private String nome;
     private String email;
     private Boolean ativo;
@@ -16,9 +16,7 @@ public class Usuario implements Notificavel {
     }
 
     @Override
-    public void enviarMensagem(String mensagem) throws IOException, InterruptedException {
-        Slack.enviarMensagem(mensagem, this.url);
-    }
+    public abstract void enviarMensagem() throws IOException, InterruptedException;
 
     @Override
     public String getNome() { return nome; }
@@ -31,4 +29,6 @@ public class Usuario implements Notificavel {
     @Override
     public Boolean getAtivo() { return ativo; }
     public void setAtivo(Boolean ativo) { this.ativo = ativo; }
+
+    public String getUrl() { return url; }
 }

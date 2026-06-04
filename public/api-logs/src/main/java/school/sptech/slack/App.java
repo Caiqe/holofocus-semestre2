@@ -10,9 +10,9 @@ public class App {
         String mensagem2 = "boa noite suporte!";
 
         Notificavel cliente = new Cliente("lucas", "lucas@yahoo.com");
-        cliente.enviarMensagem(mensagem);
+        cliente.enviarMensagem();
         Notificavel suporte = new Suporte("serjao", "serjao.berrante@constructor.com");
-        suporte.enviarMensagem(mensagem2);
+        suporte.enviarMensagem();
 
     }
 }
