@@ -407,6 +407,201 @@ SELECT
 FROM log
 WHERE fk_tipo     = 2   -- 2 = SUCESSO
   AND fk_artefato = 1;  -- 1 = BASE DE DADOS
+  
+  -- View artista resumo ----------------------------------------------------------------------------------------------
+CREATE OR REPLACE VIEW vw_artista_resumo AS
+SELECT
+    a.id_artista,
+    a.artista_nome,
+    p.nome AS pais,
+
+    (
+        SELECT g2.titulo_genero
+        FROM musica m2
+        JOIN genero g2
+            ON g2.id_genero = m2.fk_genero
+        WHERE m2.fk_artista = a.id_artista
+            AND m2.data_lancamento BETWEEN '2025-10-01' AND '2025-12-31'
+        GROUP BY g2.id_genero
+        ORDER BY COUNT(*) DESC
+        LIMIT 1
+    ) AS genero_dominante,
+
+    (
+        SELECT COUNT(*)
+        FROM musica m3
+        WHERE m3.fk_artista = a.id_artista
+            AND m3.data_lancamento BETWEEN '2025-01-01' AND '2025-12-31'
+    ) AS total_musicas,
+
+    ROUND(AVG(m.popularidade)) AS popularidade_media,
+    SUM(m.contagem_streams) AS streams,
+    ROUND(AVG(m.dancabilidade) * 100) AS dancabilidade,
+    ROUND(AVG(m.energia) * 100) AS energia,
+    ROUND((AVG(m.volume) + 60) * 2) AS valence,
+    ROUND(AVG(m.instrumentabilidade) * 100) AS acousticness
+
+FROM artista a
+JOIN pais p
+    ON p.id_pais = a.fk_pais
+JOIN musica m
+    ON m.fk_artista = a.id_artista
+WHERE m.data_lancamento BETWEEN '2025-10-01' AND '2025-12-31'
+GROUP BY
+    a.id_artista,
+    a.artista_nome,
+    p.nome;
+    
+    
+    -- Popularidade artista ----------------------------------------------------------------------------------------------
+CREATE OR REPLACE VIEW vw_popularidade_artista AS
+SELECT
+    a.id_artista,
+    SUM(
+        CASE
+            WHEN m.popularidade BETWEEN 0 AND 25
+            THEN 1 ELSE 0
+        END
+    ) AS faixa_0_25,
+    SUM(
+        CASE
+            WHEN m.popularidade BETWEEN 26 AND 50
+            THEN 1 ELSE 0
+        END
+    ) AS faixa_26_50,
+    SUM(
+        CASE
+            WHEN m.popularidade BETWEEN 51 AND 70
+            THEN 1 ELSE 0
+        END
+    ) AS faixa_51_70,
+    SUM(
+        CASE
+            WHEN m.popularidade BETWEEN 71 AND 100
+            THEN 1 ELSE 0
+        END
+    ) AS faixa_71_100,
+    CASE
+        WHEN
+            SUM(CASE WHEN m.popularidade BETWEEN 0 AND 25 THEN 1 ELSE 0 END)
+            >=
+            GREATEST(
+                SUM(CASE WHEN m.popularidade BETWEEN 26 AND 50 THEN 1 ELSE 0 END),
+                SUM(CASE WHEN m.popularidade BETWEEN 51 AND 70 THEN 1 ELSE 0 END),
+                SUM(CASE WHEN m.popularidade BETWEEN 71 AND 100 THEN 1 ELSE 0 END)
+            )
+        THEN '0-25'
+        WHEN
+            SUM(CASE WHEN m.popularidade BETWEEN 26 AND 50 THEN 1 ELSE 0 END)
+            >=
+            GREATEST(
+                SUM(CASE WHEN m.popularidade BETWEEN 0 AND 25 THEN 1 ELSE 0 END),
+                SUM(CASE WHEN m.popularidade BETWEEN 51 AND 70 THEN 1 ELSE 0 END),
+                SUM(CASE WHEN m.popularidade BETWEEN 71 AND 100 THEN 1 ELSE 0 END)
+            )
+        THEN '26-50'
+        WHEN
+            SUM(CASE WHEN m.popularidade BETWEEN 51 AND 70 THEN 1 ELSE 0 END)
+            >=
+            GREATEST(
+                SUM(CASE WHEN m.popularidade BETWEEN 0 AND 25 THEN 1 ELSE 0 END),
+                SUM(CASE WHEN m.popularidade BETWEEN 26 AND 50 THEN 1 ELSE 0 END),
+                SUM(CASE WHEN m.popularidade BETWEEN 71 AND 100 THEN 1 ELSE 0 END)
+            )
+        THEN '51-70'
+        ELSE '71-100'
+    END AS faixa_dominante
+FROM artista a
+JOIN musica m
+    ON m.fk_artista = a.id_artista
+GROUP BY a.id_artista;
+
+-- View dashboard artista ----------------------------------------------------------------------------------------------
+CREATE OR REPLACE VIEW vw_dashboard_artista AS
+SELECT
+    r.id_artista,
+    r.artista_nome AS nome,
+    r.genero_dominante AS genero,
+    r.pais,
+    r.total_musicas AS lancamentos,
+    r.popularidade_media AS popularidade,
+    r.streams,
+
+    r.dancabilidade,
+    r.energia,
+    r.valence,
+    r.acousticness,
+
+    pop.faixa_dominante
+FROM vw_artista_resumo r
+JOIN vw_popularidade_artista pop
+    ON pop.id_artista = r.id_artista;
+    
+
+-- View perfil sonoro ----------------------------------------------------------------------------------------------
+CREATE OR REPLACE VIEW vw_perfil_sonoro AS
+SELECT
+    p.id_perfil,
+    p.fk_empresa,
+    p.nome,
+    p.perfil,
+    p.fk_genero,
+    p.taxa_minima,
+    p.taxa_maxima,
+
+    ROUND(((p.scoreE1 + 5) / 10) * 100) AS valence_alvo,
+    ROUND(((p.scoreE2 + 7) / 14) * 100) AS energia_alvo,
+    ROUND(((p.scoreE3 + 4) / 8) * 100) AS dancabilidade_alvo,
+
+    ROUND(100 - (((p.scoreE4 + 5) / 10) * 100)) AS acousticness_alvo
+FROM perfil p;
+
+-- View match perfil sonoro ----------------------------------------------------------------------------------------------
+CREATE OR REPLACE VIEW vw_match_artista_perfil AS
+SELECT
+    a.id_artista,
+    a.nome,
+    a.genero,
+    a.pais,
+    a.lancamentos,
+    a.popularidade,
+    a.streams,
+
+    a.dancabilidade,
+    a.energia,
+    a.valence,
+    a.acousticness,
+
+    a.faixa_dominante,
+
+    p.id_perfil,
+    p.fk_empresa,
+    p.nome AS nome_perfil,
+    p.perfil AS codigo_perfil,
+
+    p.dancabilidade_alvo,
+    p.energia_alvo,
+    p.valence_alvo,
+    p.acousticness_alvo,
+
+    (
+        ABS(a.dancabilidade - p.dancabilidade_alvo) +
+        ABS(a.energia - p.energia_alvo) +
+        ABS(a.valence - p.valence_alvo) +
+        ABS(a.acousticness - p.acousticness_alvo)
+    ) AS distancia_perfil,
+
+    ROUND(
+        100 - LEAST(100, (
+            ABS(a.dancabilidade - p.dancabilidade_alvo) +
+            ABS(a.energia - p.energia_alvo) +
+            ABS(a.valence - p.valence_alvo) +
+            ABS(a.acousticness - p.acousticness_alvo)
+        ) / 4)
+    ) AS match_perfil
+
+FROM vw_dashboard_artista a
+JOIN vw_perfil_sonoro p;
 
 -- Criar usuários
 CREATE USER 'web_user'@'%' IDENTIFIED BY 'web_123456';
