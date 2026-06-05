@@ -25,10 +25,9 @@ async function carregarKpis() {
     genero_titulo.innerHTML = dados.genero;
     genero_titulo2.innerHTML = dados.genero;
 
-    // formata o número de streams (ex: 4.2B, 900M, 50K)
+    
     kpi_streams.innerHTML = formatarStreams(Number(dados.total_streams));
 
-    // evidencia o período da consulta (ex: 2015 - 2025)
     const anoInicio = new Date(dados.data_inicio).getFullYear();
     const anoFim = new Date(dados.data_fim).getFullYear();
 
@@ -54,7 +53,7 @@ function formatarStreams(valor) {
 
 var graficoBarrasInstance = null;
 
-async function carregarGraficoBarras(meses = 3) {
+async function carregarGraficoBarras(meses = 6) {
   try {
     const response = await fetch(
       `/dashboard-marketing/grafico-barras/${meses}`,
@@ -88,14 +87,14 @@ async function carregarGraficoBarras(meses = 3) {
               yAxisID: "y",
             },
             {
-              type: "bar", // ← novo dataset
+              type: "bar", 
               label: "Energia (%)",
               data: energia,
               backgroundColor: "#9a34c9",
               borderSkipped: false,
               barPercentage: 0.5,
               categoryPercentage: 0.5,
-              yAxisID: "y", // mesmo eixo que popularidade (0-100)
+              yAxisID: "y", 
             },
             {
               type: "line",
@@ -226,28 +225,13 @@ function calcularOportunidade(generos) {
     return;
   }
 
-  var generoComMaisEventos = generos[0];
-  var somaPopularidade = Number(0);
+  var menorTotalEventos = Math.min(...generos.map(g => g.total_eventos));
 
-  for (let i = 0; i < generos.length; i++) {
-    if (generos[i].total_eventos > generoComMaisEventos.total_eventos) {
-      generoComMaisEventos = generos[i];
-    }
-    somaPopularidade += Number(generos[i].media_popularidade);
-  }
+  var generosMenosSaturados = generos.filter(g => g.total_eventos === menorTotalEventos);
 
-  var mediaPopularidade = somaPopularidade / generos.length;
-
-  for (let genero of generos) {
-    if (
-      genero != generoComMaisEventos &&
-      genero.media_popularidade >= mediaPopularidade
-    ) {
-      return genero;
-    }
-  }
-
-  return generoComMaisEventos;
+  return generosMenosSaturados.reduce((melhor, g) =>
+    Number(g.media_popularidade) > Number(melhor.media_popularidade) ? g : melhor
+  );
 }
 
 async function carregarGenerosSelect() {
