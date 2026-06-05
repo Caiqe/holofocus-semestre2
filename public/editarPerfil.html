@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/editarPerfil.css">
     <script src="./js/elementosPadrao.js"></script>
 </head>
-<body onload="validarSessao()">
+<body onload="validarSessao(); carregarPerfil()">
 <button onclick="voltar()" class="botao-voltar">↩</button>
 
    <svg class="svg">
@@ -25,44 +25,45 @@
             <h2><strong>Editar perfil </strong></h2>
             <button onclick="voltar()" class="btx"><img src="assets/imgs/IconX.png" alt=""></button>
         </div>
+<form onsubmit="editarPerfil(event)">
+    <label>Nome</label>
+    <input type="text" id="input_nome">
 
-        <form>
-            <label>Nome</label>
-            <input type="text">
+    <div class="linha">
+        <div class="campo">
+            <label>E-mail</label>
+            <input type="email" id="input_email">
+        </div>
 
-            <div class="linha">
-                <div class="campo">
-                    <label>E-mail</label>
-                    <input type="email">
-                </div>
+        <div class="campo">
+            <label>Celular</label>
+            <input type="text" id="input_celular" placeholder="(11) 99999-9999">
+        </div>
+    </div>
 
-                <div class="campo">
-                    <label>Celular</label>
-                    <input type="text" placeholder="(99) 99999-9999">
-                </div>
-            </div>
+    <label>Senha</label>
+    <input type="password" id="input_senha">
 
-            <label>Senha</label>
-            <input type="password">
+    <label>Confirma senha</label>
+    <input type="password" id="input_confirmarSenha">
 
-            <label>Confirma senha</label>
-            <input type="password">
+    <label>Nível de permissão</label>
+    <select id="select_nivel">
+        <option value="">selecionar</option>
+        <option value="1">GESTOR</option>
+        <option value="2">ADMIN</option>
+        <option value="3">USER</option>
+    </select>
 
-            <label>Nível de permissão</label>
-            <select>
-                <option value="">selecionar</option>
-                <option value="1">GESTOR</option>
-                <option value="2">ADMIN</option>
-                <option value="3">USER</option>
-            </select>
-
-            <button type="submit">SALVAR</button>
-        </form>
+    <button type="submit">SALVAR</button>
+</form>
     </div>
 </div>
 
 </body>
 <script>
+
+    console.log(sessionStorage.ID_USUARIO);
     
     const voltar = () => {
         const nivelAcesso = sessionStorage.NIVEL_ACESSO;
@@ -76,5 +77,61 @@
            window.location.href = "/dashboard.html"
         }
     }
+
+   function carregarPerfil() {
+    
+
+    fetch("/usuarios/buscarPerfil", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuario: sessionStorage.ID_USUARIO
+        })
+    })
+    .then(res => res.json())
+    .then(dados => {
+
+        input_nome.value = dados.nome;
+        input_email.value = dados.email;
+        input_celular.value = dados.telefone;
+        select_nivel.value = dados.fk_nivel_acesso;
+
+    });
+}
+
+function editarPerfil(event) {
+
+    event.preventDefault();
+
+    if(input_senha.value != input_confirmarSenha.value){
+        alert("As senhas não coincidem");
+        return;
+    }
+
+    fetch("/usuarios/editar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuario: sessionStorage.ID_USUARIO,
+            nome: input_nome.value,
+            email: input_email.value,
+            telefone: input_celular.value,
+            senha: input_senha.value,
+            fkNivelAcesso: select_nivel.value
+        })
+    })
+    .then(res => {
+        if(res.ok){
+            alert("Perfil atualizado com sucesso!");
+        } else {
+            alert("Erro ao atualizar perfil.");
+        }
+    });
+}
+
 </script>
 </html>

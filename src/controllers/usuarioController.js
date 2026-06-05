@@ -68,8 +68,54 @@ function cadastrar(req, res) {
             );
     }
 }
+function buscarPerfil(req, res) {
+
+    var idUsuario = req.body.idUsuario;
+
+    usuarioModel.buscarPerfil(idUsuario)
+        .then(function(resultado){
+
+            if(resultado.length > 0){
+                res.json(resultado[0]);
+            } else {
+                res.status(404).send("Usuário não encontrado");
+            }
+
+        })
+        .catch(function(erro){
+            console.log(erro);
+            res.status(500).json(erro);
+        });
+}
+function editar(req, res) {
+
+    var idUsuario = req.body.idUsuario;
+    var nome = req.body.nome;
+    var email = req.body.email;
+    var telefone = req.body.telefone;
+    var senha = req.body.senha;
+    var fkNivelAcesso = req.body.fkNivelAcesso;
+
+    usuarioModel.editar(
+        idUsuario,
+        nome,
+        email,
+        telefone,
+        senha,
+        fkNivelAcesso
+    )
+    .then(function(resultado){
+        res.status(200).json(resultado);
+    })
+    .catch(function(erro){
+        console.log(erro);
+        res.status(500).json(erro);
+    });
+}
 
 module.exports = {
+    cadastrar,
     autenticar,
-    cadastrar
-}
+    editar,
+    buscarPerfil
+};

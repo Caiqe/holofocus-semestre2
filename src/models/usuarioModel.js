@@ -46,7 +46,51 @@ function editarEvento(nome, telefone, email, senha) {
     return database.executar(instrucao);
 }
 
+function buscarPerfil(idUsuario) {
+
+    var instrucaoSql = `
+        SELECT
+            id_usuario,
+            nome,
+            email,
+            telefone,
+            fk_nivel_acesso,
+            fk_empresa
+        FROM usuario
+        WHERE id_usuario = ${idUsuario};
+    `;
+
+    console.log(instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function editar(
+    idUsuario,
+    nome,
+    email,
+    telefone,
+    senha,
+    fkNivelAcesso
+) {
+
+    var instrucaoSql = `
+        UPDATE usuario
+        SET
+            nome = '${nome}',
+            email = '${email}',
+            telefone = '${telefone}',
+            senha = '${senha}',
+            fk_nivel_acesso = ${fkNivelAcesso}
+        WHERE id_usuario = ${idUsuario};
+    `;
+
+    console.log(instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
+    buscarPerfil,
+    editar,
     cadastrar
 };
