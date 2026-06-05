@@ -16,4 +16,12 @@ router.get('/distribuicao/:idArtista', function(req, res) {
     dashboardController.buscarDistribuicao(req, res);
 });
 
+router.get('/filtros', function(req, res) {
+    dashboardController.buscarFiltros(req, res);
+});
+
+router.get('/crescimento/:idArtista', function(req, res) {
+    dashboardController.buscarCrescimentoArtista(req, res);
+});
+
 module.exports = router;

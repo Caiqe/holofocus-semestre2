@@ -44,8 +44,9 @@
                 <div class="containerTitulo">
                     <h1 class="nomeArtistaGrande text-[#EFD38D] font-black text-[1.31rem] leading-7">Análise de
                         Compatibilidade Artística</h1>
-                    <p>Recorte temporal: Último trimestre (01/04/2026 a 15/05/2026) <br>
-                        Resultados dos cinco artistas mais compatíveis com os filtros selecionados</p>
+                    <p>Recorte principal: último trimestre disponível na base (01/10/2025 a 31/12/2025) <br>
+                        Compatibilidade calculada no período; top músicas exibidas pelo histórico acumulado de streams.
+                    </p>
                 </div>
                 <div class="containerSeletores flex justify-between w-[46%]">
                     <div class="seletor flex flex-col w-[24%]">
@@ -58,9 +59,6 @@
                         <label>Gênero</label>
                         <select id="selectGenero" onchange="filtrarDashboard()">
                             <option value="">selecionar</option>
-                            <option value="Pop">Pop</option>
-                            <option value="Rock">Rock</option>
-                            <option value="Rap">Rap</option>
                         </select>
                     </div>
                     <div class="seletor flex flex-col w-[24%]">
@@ -69,8 +67,8 @@
                             <option value="">selecionar</option>
                             <option value="0-25">0-25</option>
                             <option value="26-50">26-50</option>
-                            <option value="51-75">51-75</option>
-                            <option value="76-100">76-100</option>
+                            <option value="51-70">51-70</option>
+                            <option value="71-100">71-100</option>
                         </select>
                     </div>
                     <div class="seletor flex flex-col w-[24%]">
@@ -108,25 +106,25 @@
                             </div>
                             <div class="kpiArtistaSelecionado flex flex-col w-[78%] gap-[1.8%]">
                                 <h1 id="nomeArtistaSelecionado"
-                                    class="nomeArtistaGrande text-[#EFD38D] font-black text-[20px] leading-5">Artista
-                                    selecionado</h1>
+                                    class="nomeArtistaGrande text-[#EFD38D] font-black text-[20px] leading-5">Nenhum
+                                    artista selecionado</h1>
                                 <div class="artistaSelecionadoColuna2 flex flex-col gap-[1.8%]">
                                     <div class="informacoesKPI flex flex-row justify-center m-3">
                                         <div class="info">
                                             <p>Gênero <br> dominante</p>
-                                            <h1 id="kpiGenero">Rock</h1>
+                                            <h1 id="kpiGenero">**</h1>
                                         </div>
                                         <div class="info">
                                             <p>Média de <br> streams</p>
-                                            <h1 id="kpiStreams">609.000.888</h1>
+                                            <h1 id="kpiStreams">**</h1>
                                         </div>
                                         <div class="info">
                                             <p>Média de <br> popularidade</p>
-                                            <h1 id="kpiPopularidade">78</h1>
+                                            <h1 id="kpiPopularidade">**</h1>
                                         </div>
                                         <div class="infoDiferente">
                                             <p>Lançamentos do <br> último ano</p>
-                                            <h1 id="kpiLancamentos">10</h1>
+                                            <h1 id="kpiLancamentos">**</h1>
                                         </div>
                                     </div>
                                     <div class="containerInternoAS flex flex-col gap-[10px]">
@@ -134,19 +132,19 @@
                                             class="KPIsCrescimento bg-[#313030] pt-4 pr-4  pb-4  pl-4 rounded-xl h-[100%] flex flex-col justify-between">
                                             <div class="crescimentoContainer flex flex-row">
                                                 <div class="crescimento border-r border-solid border-[#F0D48D]">
-                                                    <h1>Crescimento de streams</h1>
+                                                    <h1>Variação de streams</h1>
                                                     <div class="setaCrescimento">
                                                         <img class="seta w-[10%]" src="./assets/icon/seta.png"
                                                             alt="seta para cima">
-                                                        <p id="crescimentoStreams">20%</p>
+                                                        <p id="crescimentoStreams">-</p>
                                                     </div>
                                                 </div>
                                                 <div class="crescimento">
-                                                    <h1>Crescimento de popularidade</h1>
+                                                    <h1>Variação de popularidade</h1>
                                                     <div class="setaCrescimento">
                                                         <img class="seta w-[10%]" src="./assets/icon/seta.png"
                                                             alt="seta para cima">
-                                                        <p id="crescimentoPopularidade">2%</p>
+                                                        <p id="crescimentoPopularidade">-</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,9 +178,9 @@
             </div>
         </div>
     </div>
-</div>
     <script src="./js/elementosPadrao.js"></script>
     <script src="./js/navbar.js"></script>
     <script src="./js/dashboard.js"></script>
 </body>
+
 </html>
