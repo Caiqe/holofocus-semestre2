@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="css/lista-evento.css">
+    <link rel="stylesheet" href="./css/dashboardCurador.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="flex flex-row h-screen bg-[#1A1A1A]" onload="iniciarDashboard()">
+    <aside class="sidebar" id="__header">
+        <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
+        <ul id="ul_navbar"></ul>
+
+        <div class="user">
+            <div class="usuario-info">
+                <p id="nome_usuario"></p>
+                <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
+            </div>
+            <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img
+                    src="./assets/icon/icon-configuracoes.svg" alt="Icone de configurações"> Configurações</a>
+            <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png"
+                    alt=""><strong>
+                    Sair</strong></button>
+        </div>
+    </aside>
+
+    <div class="dashboard flex flex-row justify-between w-[82%] h-[96.8vh] m-[10px] bg-black rounded-2xl p-[1%]">
+        <div class="container1 flex flex-col justify-between w-full">
+            <div class="containerApresentacao flex justify-between p-[1%]">
+                <div class="containerTitulo">
+                    <h1 class="nomeArtistaGrande text-[#EFD38D] font-black text-[1.31rem] leading-7">Análise de
+                        Compatibilidade Artística</h1>
+                    <p>Recorte temporal: Último trimestre (01/04/2026 a 15/05/2026) <br>
+                        Resultados dos cinco artistas mais compatíveis com os filtros selecionados</p>
+                </div>
+                <div class="containerSeletores flex justify-between w-[46%]">
+                    <div class="seletor flex flex-col w-[24%]">
+                        <label>Perfil Sonoro</label>
+                        <select id="selectPerfilSonoro">
+                            <option value="">selecionar</option>
+                        </select>
+                    </div>
+                    <div class="seletor flex flex-col w-[24%]">
+                        <label>Gênero</label>
+                        <select id="selectGenero">
+                            <option value="">selecionar</option>
+                        </select>
+                    </div>
+                    <div class="seletor flex flex-col w-[24%]">
+                        <label>Popularidade</label>
+                        <select id="selectPopularidade">
+                            <option value="">selecionar</option>
+                            <option value="0-25">0-25</option>
+                            <option value="26-50">26-50</option>
+                            <option value="51-75">51-75</option>
+                            <option value="76-100">76-100</option>
+                        </select>
+                    </div>
+                    <div class="seletor flex flex-col w-[24%]">
+                        <label>País</label>
+                        <select id="selectPais">
+                            <option value="">selecionar</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="containersInternos flex justify-between h-[90%]">
+                <div class="containerInterno1 flex flex-col w-[35%] gap-[2%]">
+                    <div class="box1 bg-[#272727] p-[3%] rounded-xl h-[43%] flex flex-col justify-between">
+                        <h2>Popularidade/ Streams</h2>
+                        <div class="graficoBarras">
+                            <canvas id="graficoBarras"></canvas>
+                        </div>
+                    </div>
+                    <div class="box2 bg-[#272727] p-[3%] rounded-xl h-[62%] flex flex-col justify-between">
+                        <h2>Streams das cinco músicas mais <br>escutadas de cada artista</h2>
+                        <div class="graficoMusicas">
+                            <canvas id="graficoMusicas"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="containerInterno2 flex flex-col gap-[2%] w-[64%]">
+                    <div class="box3 bg-[#272727] p-[1.4%] rounded-xl h-full flex flex-col justify-between flex-col">
+                        <p>Selecione um artista para ver insights relacionados</p>
+                        <div class="artistaSelecionado flex flex-row h-[92%] gap-[1.8%]">
+                            <div class="listaArtistas flex flex-col rounded-2xl bg-[#313030] w-[20%]">
+                                <div class="top5Titulo text-[#EFD38D] text-center mt-4 font-bold h-[7%]">
+                                    <h1>Top 5 artistas</h1>
+                                </div>
+                                <label class="linha">
+                                    <input type="radio" name="artista">
+                                    <div class="radio-custom"></div>
+                                    <span>Artista Muito pinposo</span>
+                                </label>
+                                <label class="linha">
+                                    <input type="radio" name="artista">
+                                    <div class="radio-custom"></div>
+                                    <span>Artista Muito pinposo</span>
+                                </label>
+                                <label class="linha">
+                                    <input type="radio" name="artista">
+                                    <div class="radio-custom"></div>
+                                    <span>Artista Muito pinposo</span>
+                                </label>
+                                <label class="linha">
+                                    <input type="radio" name="artista">
+                                    <div class="radio-custom"></div>
+                                    <span>Artista Muito pinposo</span>
+                                </label>
+                                <label class="linhaDiferente">
+                                    <input type="radio" name="artista">
+                                    <div class="radio-custom"></div>
+                                    <span>Artista Muito pinposo</span>
+                                </label>
+                            </div>
+                            <div class="kpiArtistaSelecionado flex flex-col w-[78%] gap-[1.8%]">
+                                <h1 class="nomeArtistaGrande text-[#EFD38D] font-black text-[1.31rem] leading-5">Artista
+                                    selecionado</h1>
+                                <div class="artistaSelecionadoColuna2 flex flex-col gap-[1.8%]">
+                                    <div class="informacoesKPI flex flex-row justify-center m-3">
+                                        <div class="info">
+                                            <p>Gênero <br> dominante</p>
+                                            <h1>Rock</h1>
+                                        </div>
+                                        <div class="info">
+                                            <p>Média de <br> streams</p>
+                                            <h1>609.000.888</h1>
+                                        </div>
+                                        <div class="info">
+                                            <p>Média de <br> popularidade</p>
+                                            <h1>78</h1>
+                                        </div>
+                                        <div class="infoDiferente">
+                                            <p>Lançamentos do <br> último ano</p>
+                                            <h1>10</h1>
+                                        </div>
+                                    </div>
+                                    <div class="containerInternoAS flex flex-col gap-[10px]">
+                                        <div
+                                            class="KPIsCrescimento bg-[#313030] pt-4 pr-4  pb-4  pl-4 rounded-xl h-[100%] flex flex-col justify-between">
+                                            <div class="crescimentoContainer flex flex-row">
+                                                <div class="crescimento border-r border-solid border-[#F0D48D]">
+                                                    <h1>Crescimento de streams</h1>
+                                                    <div class="setaCrescimento">
+                                                        <img class="seta w-[10%]" src="./assets/icon/seta.png"
+                                                            alt="seta para cima">
+                                                        <p>20%</p>
+                                                    </div>
+                                                </div>
+                                                <div class="crescimento">
+                                                    <h1>Crescimento de popularidade</h1>
+                                                    <div class="setaCrescimento">
+                                                        <img class="seta w-[10%]" src="./assets/icon/seta.png"
+                                                            alt="seta para cima">
+                                                        <p>2%</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="legenda">
+                                                <p>
+                                                    **Variação em relação ao último trimestre</p>
+                                            </div>
+                                        </div>
+                                        <div class="graficosArtistaSelecionado">
+                                            <div
+                                                class="graficoContainer flex flex-col bg-[#313030] p-[3%] rounded-xl w-[49%]">
+                                                <h1>Distribuição de popularidade das músicas</h1>
+                                                <div class="graficoHistograma">
+                                                    <canvas id="graficoHistograma"></canvas>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="graficoContainer flex flex-col bg-[#313030] p-[3%] rounded-xl w-[49%]">
+                                                <h1>Relação do perfil da casa com o artista</h1>
+                                                <div class="graficoRadarContainer">
+                                                    <canvas id="graficoRadar"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+<script src="./js/elementosPadrao.js"></script>
+<script src="./js/navbar.js"></script>
+<script>
+    function iniciarDashboard() {
+        validarSessao();
+        carregarGeneros();
+        carregarPaises();
+        filtrarDashboard();
+    }
+
+    new Chart(document.getElementById('graficoBarras'), {
+        type: 'bar',
+
+        data: {
+            labels: [
+                'Artista 1',
+                'Artista 2',
+                'Artista 3',
+                'Artista 4',
+                'Artista 5'
+            ],
+
+            datasets: [
+                {
+                    label: 'Streams',
+                    data: [78, 82, 100, 59, 59],
+
+                    backgroundColor: '#FF7300',
+
+                    borderRadius: 5,
+
+                    barPercentage: 1,
+                    categoryPercentage: 0.7
+                },
+
+                {
+                    label: 'Popularidade',
+                    data: [67, 67, 91, 35, 75],
+
+                    backgroundColor: '#FF00B8',
+
+                    borderRadius: 5,
+
+                    barPercentage: 1,
+                    categoryPercentage: 0.7
+                }
+            ]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    align: 'start',
+                    labels: {
+                        color: '#DA9EF7',
+                        boxWidth: 14,
+                        boxHeight: 14,
+                        padding: 20,
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        color: '#DA9EF7',
+                        stepSize: 20,
+                        font: {
+                            size: 14
+                        }
+                    },
+                    grid: {
+                        color: '#413F3F',
+                        borderDash: [5, 5]
+                    }
+                }
+            }
+        }
+    });
+
+    new Chart(document.getElementById('graficoMusicas'), {
+        type: 'bar',
+        data: {
+            labels: [
+                'Artista 1',
+                'Artista 2',
+                'Artista 3',
+                'Artista 4',
+                'Artista 5'
+            ],
+            datasets: [
+                {
+                    label: 'Top 1',
+                    data: [100, 100, 100, 100, 100],
+                    backgroundColor: '#FF6D03',
+                    borderRadius: 0,
+                    barThickness: 7
+                },
+                {
+                    label: 'Top 2',
+                    data: [80, 80, 80, 80, 80],
+                    backgroundColor: '#8E8E8E',
+                    borderRadius: 0,
+                    barThickness: 7
+                },
+                {
+                    label: 'Top 3',
+                    data: [70, 70, 70, 70, 70],
+                    backgroundColor: '#FF16B9',
+                    borderRadius: 0,
+                    barThickness: 7
+                },
+                {
+                    label: 'Top 4',
+                    data: [60, 60, 60, 60, 60],
+                    backgroundColor: '#9BB9A6',
+                    borderRadius: 0,
+                    barThickness: 7
+                },
+                {
+                    label: 'Top 5',
+                    data: [60, 60, 60, 60, 60],
+                    backgroundColor: '#B888CF',
+                    borderRadius: 0,
+                    barThickness: 7
+                }
+            ]
+        },
+        options: {
+            indexAxis: 'y',
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    enabled: true
+                }
+            },
+            scales: {
+                x: {
+                    display: false,
+                    max: 100,
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#D9A8FF',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+    new Chart(document.getElementById('graficoRadar'), {
+        type: 'radar',
+
+        data: {
+            labels: [
+                'Danceabilidade',
+                'Energia',
+                'Valence',
+                'Acousticness'
+            ],
+
+            datasets: [
+                {
+                    label: 'Artista Selecionado',
+                    data: [60, 80, 75, 50, 90, 65],
+                    borderColor: '#FF6D03',
+                    backgroundColor: 'rgba(255, 109, 3, 0.2)',
+                    pointBackgroundColor: '#FF6D03',
+                    pointBorderColor: '#FF6D03',
+                    pointRadius: 4,
+                    borderWidth: 2
+                },
+                {
+                    label: 'Perfil musical da casa',
+                    data: [70, 85, 60, 80, 50, 75],
+                    borderColor: '#FF16B9',
+                    backgroundColor: 'rgba(255, 22, 185, 0.2)',
+                    pointBackgroundColor: '#FF16B9',
+                    pointBorderColor: '#FF16B9',
+                    pointRadius: 4,
+                    borderWidth: 2
+                }
+            ]
+        },
+
+        options: {
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    position: 'top',
+                    align: 'start',
+                    labels: {
+                        color: '#D8B4FE',
+                        boxWidth: 12,
+                        boxHeight: 12,
+                        padding: 15,
+                        font: {
+                            size: 12
+                        }
+                    }
+                }
+            },
+
+            scales: {
+                r: {
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        display: false
+                    },
+                    grid: {
+                        color: '#6D5A7E'
+                    },
+                    angleLines: {
+                        color: '#6D5A7E'
+                    },
+                    pointLabels: {
+                        color: '#D8B4FE',
+                        font: {
+                            size: 12
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    new Chart(document.getElementById('graficoHistograma'), {
+        type: 'bar',
+        data: {
+            labels: ['0-25', '26-50', '51-75', '76-100'],
+            datasets: [
+                {
+                    type: 'line',
+                    label: 'Distribuição Normalizada',
+                    data: [35, 40, 28, 14],
+                    borderColor: '#D8B4FE',
+                    backgroundColor: '#D8B4FE',
+                    tension: 0.4, fill: false,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#D8B4FE'
+                },
+                {
+                    type: 'bar',
+                    label: 'Frequência',
+                    data: [42, 30, 22, 78],
+                    backgroundColor: ['#FF00B8', '#FF6D03', '#97B7A2', '#B587D1'],
+                    borderRadius: 4,
+                    barPercentage: 1,
+                    categoryPercentage: 0.9
+                }
+            ]
+        },
+        options:
+        {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins:
+            {
+                legend: {
+                    display: false
+                }
+            },
+            scales:
+            {
+                x:
+                {
+                    ticks:
+                    {
+                        color: '#D8B4FE',
+                        font: { size: 11 }
+                    },
+                    grid: { display: false }
+                },
+                y:
+                {
+                    beginAtZero: true,
+                    ticks: { color: '#D8B4FE' },
+                    grid: {
+                        color: '#413F3F',
+                        borderDash: [5, 5]
+                    }
+                }
+            }
+        }
+    }
+    );
+</script>
+
+</html>

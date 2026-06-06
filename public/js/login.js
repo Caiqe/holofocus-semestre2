@@ -26,10 +26,16 @@ async function login() {
             sessionStorage.ID_USUARIO = resp.id;
             sessionStorage.NIVEL_ACESSO = resp.nivelAcesso;
             sessionStorage.EMPRESA = resp.empresaId;
+            sessionStorage.PERFIL = resp.perfilId;
+            sessionStorage.CONTRATO = resp.contratoAtivo;
 
             setTimeout(() => {
 
-                if (resp.nivelAcesso == 1) {
+                if (resp.contratoAtivo == 0) {
+                    window.location = "./dashboard/aguarde-contato.html";
+                } else if (resp.perfilId == null) {
+                    window.location = "./dashboard/questionario.html";
+                } else if (resp.nivelAcesso == 1) {
                     window.location = "./dashmarketing.html";
                 } else if (resp.nivelAcesso == 2) {
                     window.location = "./dashboard.html";

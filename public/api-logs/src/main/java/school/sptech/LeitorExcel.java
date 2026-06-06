@@ -17,20 +17,35 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import school.sptech.model.Artista;
 import school.sptech.model.Log;
 import school.sptech.model.Musica;
+import software.amazon.awssdk.core.ResponseInputStream;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 
 public class LeitorExcel {
 
     private static final org.apache.commons.logging.Log log = LogFactory.getLog(LeitorExcel.class);
+    private final S3Client s3 = S3Client.builder()
+            .region(Region.US_EAST_1)
+            .build();
+
+
     private List<Log> logs = new ArrayList<>();
     private Long tempoDecorrido;
 
-    public List<Artista> extrairDados(String nomeArquivo) {
-        List<Artista> artistas = new ArrayList<Artista>();
+    public List<Artista> extrairDados(String bucketName, String keyName) {
+        List<Artista> artistas = new ArrayList<>();
         Log log;
 
+        GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+                .bucket(bucketName)
+                .key(keyName)
+                .build();
+
         try (
-                InputStream arquivo = new FileInputStream(nomeArquivo);
-                Workbook workbook = new XSSFWorkbook(arquivo) // caso seja .xls troque para HSSFWorkbook
+                ResponseInputStream<GetObjectResponse> s3Stream = s3.getObject(getObjectRequest);
+                Workbook workbook = new XSSFWorkbook(s3Stream)
         ) {
             log = new Log("INICIANDO LEITURA BASE DE DADOS", "INFO", "BASE DE DADOS");
             logs.add(log);

@@ -1,3 +1,4 @@
+
 var database = require("../database/config");
 
 
@@ -20,7 +21,7 @@ function buscarEndereco(cep, numero, complemento) {
 }
 
 function cadastrar(razaoSocial, cnpj, idEndereco) {
-  var instrucaoSql = `INSERT INTO empresa (razao_social, cnpj, fk_endereco) VALUES ('${razaoSocial}', '${cnpj}', '${idEndereco}')`;
+  var instrucaoSql = `INSERT INTO empresa (razao_social, cnpj, fk_endereco, contrato_ativo) VALUES ('${razaoSocial}', '${cnpj}', '${idEndereco}', 0)`;
 
   return database.executar(instrucaoSql);
 }

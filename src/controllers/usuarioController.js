@@ -14,7 +14,9 @@ function autenticar(req, res) {
                         nome: resultadoAutenticar[0].nome,
                         email: resultadoAutenticar[0].email,
                         empresaId: resultadoAutenticar[0].empresaId,
-                        nivelAcesso: resultadoAutenticar[0].nivelAcesso
+                        nivelAcesso: resultadoAutenticar[0].nivelAcesso,
+                        contratoAtivo: resultadoAutenticar[0].contratoAtivo,
+                        perfilId: resultadoAutenticar[0].perfilId
                     })
                 } else if (resultadoAutenticar.length == 0) {
                     res.status(403).send("Email e/ou senha inválido(s)");
@@ -67,7 +69,29 @@ function cadastrar(req, res) {
     }
 }
 
+function listar(req, res) {
+
+    usuarioModel.listar()
+        .then(function(resultado) {
+
+            res.status(200).json(resultado);
+
+        }).catch(function(erro) {
+
+            console.log(erro);
+
+            console.log(
+                "\nHouve um erro ao listar os usuários! Erro: ",
+                erro.sqlMessage
+            );
+
+            res.status(500).json(erro.sqlMessage);
+
+        });
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    listar
 }

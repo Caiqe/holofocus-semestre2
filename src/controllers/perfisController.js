@@ -8,9 +8,42 @@ function cadastrar(req, res) {
     let scoreE4 = req.body.finalScores.E4
     let perfil = req.body.perfil
 
-    perfisModel.cadastrar(id,scoreE1,scoreE2,scoreE3,scoreE4,perfil).then((resultado) => {
+    perfisModel.cadastrar(id, scoreE1, scoreE2, scoreE3, scoreE4, perfil).then((resultado) => {
         res.status(201).json(resultado);
     })
 }
 
-module.exports = {cadastrar}
+function atualizarPerfilCad(req, res) {
+    let id = req.params.id
+
+    perfisModel.atualizarPerfilCad(id).then((resul) => {
+        res.status(200).json(resul)
+    })
+}
+
+function editarPerfil(req, res) {
+    let usuario = req.body.usuario
+    let nome = req.body.nome
+    let email = req.body.email
+    let celular = req.body.celular
+    let senha = req.body.senha
+    let permissao = req.body.permissao
+
+    perfisModel.editarPerfil(usuario, nome, email, celular, senha, permissao).then((resul) => {
+        res.status(200).json(resul);
+    }).catch((erro) => {
+        res.status(500).json({ mensagem: "Erro ao atualizar perfil", erro });
+    });
+}
+
+function buscarPerfilAtual(req, res) {
+    let usuario = req.params.usuario
+
+    perfisModel.buscarPerfilAtual(usuario).then((resul) => {
+        res.status(200).json(resul)
+    }).catch((erro) => {
+        res.status(500).json({ mensagem: "Erro ao buscar perfil", erro })
+    })
+}
+
+module.exports = { cadastrar, atualizarPerfilCad, editarPerfil, buscarPerfilAtual}

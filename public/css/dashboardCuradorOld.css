@@ -1,0 +1,143 @@
+body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+    background-color: #2A2A2A;
+    font-family: "Archivo", sans-serif;
+    gap: 1%;
+    height: 100vh;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 91%;
+    height: 95vh;
+    background-color: #000000;
+    border-radius: 16px;
+    padding: 1%;
+}
+
+.container1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container1 h2 {
+    color: #F0D48D;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: start;
+    padding: 0% 0% 2% 0%;
+}
+
+/* CONTAINER APRESENTAÇÃO ---------------------------------------------------------------------------------------------- */
+.containerApresentacao {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1%;
+}
+
+.containerTitulo {
+    display: flex;
+    flex-direction: column;
+}
+
+.containerTitulo h1 {
+    font-size: 25px;
+    color: var(--texto-amarelo);
+}
+
+.containerTitulo p {
+    font-size: 11px;
+    color: #959596;
+}
+
+.containerSeletores {
+    display: flex;
+    justify-content: space-between;
+    width: 46%;
+}
+
+.seletor {
+    display: flex;
+    flex-direction: column;
+    width: 24%;
+}
+
+.seletor select {
+    appearance: auto;
+
+    border-radius: 6.43px;
+    background-color: #E4AFFF;
+    font-size: 15px;
+    color: #7D7D7D;
+    padding: 3% 5%;
+}
+
+.seletor label {
+    font-family: "Archivo", sans-serif;
+    color: #F0D48D;
+    font-size: 15px;
+    margin: 0% 0% 0% 6%;
+    font-weight: 300;
+}
+
+
+/* CONTAINER INTERNO 1 ---------------------------------------------------------------------------------------------- */
+.containersInternos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 90%;
+}
+
+.containerInterno1 {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: 2%;
+}
+
+.box1 {
+    background: #272727;
+    padding: 3%;
+    border-radius: 12px;
+    height: 43%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.box2 {
+    background: #272727;
+    padding: 3%;
+    border-radius: 12px;
+    height: 62%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* CONTAINER INTERNO 2 ---------------------------------------------------------------------------------------------- */
+.containerInterno2 {
+    display: flex;
+    gap: 2%;
+    flex-direction: column;
+    width: 59%;
+}
+
+.box3 {
+    background: #272727;
+    padding: 3%;
+    border-radius: 12px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
