@@ -151,8 +151,16 @@ public class Main {
                                 if (user instanceof Suporte) {
                                     try {
                                         user.enviarMensagem();
+                                        String msgLog = "SLACK ENVIADO PARA "+user.getEmail();
+                                        log = new Log(msgLog, "SUCESSO", "SLACK");
+                                        System.out.println(log);
+                                        logsBD.add(log);
                                     } catch (Exception er) {
+                                        String msgLog = "ERRO AO ENVIAR SLACK PARA "+user.getEmail();
                                         System.out.println("Ocorreu um erro no slack:" + er);
+                                        log = new Log(msgLog, "SUCESSO", "SLACK");
+                                        System.out.println(log);
+                                        logsBD.add(log);
                                     }
                                 }
                             }
@@ -163,6 +171,9 @@ public class Main {
                          */
                         try (Connection conexao = DriverManager.getConnection(url, usuario, senha); PreparedStatement stmt = conexao.prepareStatement(sqlArtista)) {
                             conexao.setAutoCommit(false);
+                            log = new Log("INICIANDO INSERÇÃO DE ARTISTAS", "INFO", "BANCO DE DADOS");
+                            System.out.println(log);
+                            logsBD.add(log);
                             for (int i = 0; i < dadosExtraidos.size(); i++) {
                                 Artista artista = dadosExtraidos.get(i);
                                 stmt.setString(1, dadosExtraidos.get(i).getNome());
@@ -185,8 +196,16 @@ public class Main {
                                 if (user instanceof Suporte) {
                                     try {
                                         user.enviarMensagem();
+                                        String msgLog = "SLACK ENVIADO PARA "+user.getEmail();
+                                        log = new Log(msgLog, "SUCESSO", "SLACK");
+                                        System.out.println(log);
+                                        logsBD.add(log);
                                     } catch (Exception er) {
+                                        String msgLog = "ERRO AO ENVIAR SLACK PARA "+user.getEmail();
                                         System.out.println("Ocorreu um erro no slack:" + er);
+                                        log = new Log(msgLog, "SUCESSO", "SLACK");
+                                        System.out.println(log);
+                                        logsBD.add(log);
                                     }
                                 }
                             }
@@ -227,8 +246,16 @@ public class Main {
                                 if (user instanceof Suporte) {
                                     try {
                                         user.enviarMensagem();
+                                        String msgLog = "SLACK ENVIADO PARA "+user.getEmail();
+                                        log = new Log(msgLog, "SUCESSO", "SLACK");
+                                        System.out.println(log);
+                                        logsBD.add(log);
                                     } catch (Exception er) {
+                                        String msgLog = "ERRO AO ENVIAR SLACK PARA "+user.getEmail();
                                         System.out.println("Ocorreu um erro no slack:" + er);
+                                        log = new Log(msgLog, "SUCESSO", "SLACK");
+                                        System.out.println(log);
+                                        logsBD.add(log);
                                     }
                                 }
                             }
@@ -275,8 +302,16 @@ public class Main {
                                     if (user instanceof Cliente) {
                                         try {
                                             user.enviarMensagem();
+                                            String msgLog = "SLACK ENVIADO PARA "+user.getEmail();
+                                            log = new Log(msgLog, "SUCESSO", "SLACK");
+                                            System.out.println(log);
+                                            logsBD.add(log);
                                         } catch (Exception er) {
+                                            String msgLog = "ERRO AO ENVIAR SLACK PARA "+user.getEmail();
                                             System.out.println("Ocorreu um erro no slack:" + er);
+                                            log = new Log(msgLog, "SUCESSO", "SLACK");
+                                            System.out.println(log);
+                                            logsBD.add(log);
                                         }
                                     }
                                 }
@@ -291,8 +326,16 @@ public class Main {
                                 if (user instanceof Suporte) {
                                     try {
                                         user.enviarMensagem();
+                                        String msgLog = "SLACK ENVIADO PARA "+user.getEmail();
+                                        log = new Log(msgLog, "SUCESSO", "SLACK");
+                                        System.out.println(log);
+                                        logsBD.add(log);
                                     } catch (Exception er) {
+                                        String msgLog = "ERRO AO ENVIAR SLACK PARA "+user.getEmail();
                                         System.out.println("Ocorreu um erro no slack:" + er);
+                                        log = new Log(msgLog, "SUCESSO", "SLACK");
+                                        System.out.println(log);
+                                        logsBD.add(log);
                                     }
                                 }
                             }
@@ -303,7 +346,7 @@ public class Main {
                         queryLogs = "INSERT INTO log (data_hora, titulo, fk_tipo, fk_artefato) VALUES ";
                         for (int i = 0; i < logsBD.size(); i++) {
                             int tipo = logsBD.get(i).getTipo().equals("INFO") ? 1 : logsBD.get(i).getTipo().equals("SUCESSO") ? 2 : 3;
-                            int artefato = logsBD.get(i).getArtefato().equals("BASE DE DADOS") ? 1 : 2;
+                            int artefato = logsBD.get(i).getArtefato().equals("BASE DE DADOS") ? 1 : logsBD.get(i).getArtefato().equals("BANCO DE DADOS") ? 2 : 3;
 
                             if (i != 0) {
                                 queryLogs += ",\n('" + logsBD.get(i).getDataHora() + "', '" + logsBD.get(i).getTitulo() + "', " + tipo + ", " + artefato + ")";

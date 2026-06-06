@@ -46,15 +46,6 @@ CREATE TABLE IF NOT EXISTS usuario (
     FOREIGN KEY (fk_empresa) REFERENCES empresa(id_empresa)
 );
 
-CREATE TABLE IF NOT EXISTS slack (
-	id_mensagem INT PRIMARY KEY auto_increment,
-    mensagem VARCHAR(150),
-    hora DATETIME, 
-    fk_usuario INT,
-    FOREIGN KEY (fk_usuario)
-    REFERENCES usuario(id_usuario)
-);
-
 -- Seção Base de dados
 CREATE TABLE IF NOT EXISTS genero (
     id_genero INT PRIMARY KEY AUTO_INCREMENT,
@@ -634,6 +625,8 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON holofocus.vw_oportunidade_investimento T
 GRANT SELECT, INSERT, UPDATE, DELETE ON holofocus.vw_top3_musicas_por_genero TO 'web_user'@'%';
 GRANT SELECT, INSERT, UPDATE, DELETE ON holofocus.vw_top5_generos TO 'web_user'@'%';
 GRANT SELECT, INSERT, UPDATE, DELETE ON holofocus.vw_ultima_atualizacao TO 'web_user'@'%';
+GRANT SELECT ON holofocus.vw_match_artista_perfil TO 'web_user'@'%';
+GRANT SELECT ON holofocus.vw_dashboard_artista TO 'web_user'@'%';
 
 -- =====================================================
 -- PERMISSÕES JAVA_USER
@@ -649,10 +642,54 @@ GRANT INSERT, UPDATE ON holofocus.genero TO 'java_user'@'%';
 GRANT INSERT, UPDATE ON holofocus.log TO 'java_user'@'%';
 GRANT INSERT, UPDATE ON holofocus.musica TO 'java_user'@'%';
 GRANT INSERT, UPDATE ON holofocus.pais TO 'java_user'@'%';
-GRANT INSERT, UPDATE ON holofocus.slack TO 'java_user'@'%';
 
 -- Aplicar alterações
 FLUSH PRIVILEGES;
 
-
+INSERT INTO evento (nome_evento, data_evento, investimento_evento, retorno_evento, total_pessoas, fk_empresa, fk_artista, fk_genero) VALUES
+('Festival Pop Verão',        '2025-06-15', 85000.00,  142000.00, 3200, 1, 1547,  1),
+('Pop Hits Night',            '2025-07-08', 40000.00,   67500.00, 1800, 1, 3821,  1),
+('Pop Stars ao Vivo',         '2025-08-20', 62000.00,   98000.00, 2500, 1, 7203,  1),
+('Noite das Estrelas Pop',    '2026-02-20', 91000.00,  155000.00, 4200, 1, 2033,  1),
+('Grande Festival Vibra SP',  '2026-06-04', 200000.00, 380000.00, 5000, 1, 8899,  1),
+('Metal Inferno',             '2025-08-05', 72000.00,  110000.00, 2900, 1, 2178,  2),
+('Heavy Metal Festival',      '2025-10-13', 88000.00,  135000.00, 3500, 1, 9041,  2),
+('EDM vs Metal Showdown',     '2026-05-29', 115000.00, 195000.00, 4900, 1, 4521,  2),
+('Rock in Vibra',             '2025-07-22', 95000.00,  158000.00, 4100, 1,  892,  3),
+('Classic Rock Night',        '2025-09-10', 55000.00,   89000.00, 2200, 1, 5634,  3),
+('Rock Revolution',           '2025-06-28', 98000.00,  163000.00, 4300, 1, 4477,  3),
+('Hard Rock Night',           '2025-08-09', 87000.00,  145000.00, 3900, 1, 2265,  3),
+('Rock Garage Festival',      '2025-10-04', 76000.00,  128000.00, 3400, 1, 8830,  3),
+('Vibra Rock Open Air',       '2026-01-25', 105000.00, 178000.00, 4600, 1,  619,  3),
+('Rock Legends Vibra',        '2026-03-03', 102000.00, 170000.00, 4500, 1, 6789,  3),
+('Rock Anthem Show',          '2026-04-12', 92000.00,  154000.00, 4100, 1, 7356,  3),
+('R&B Soul Night',            '2025-09-07', 48000.00,   79000.00, 2000, 1, 1093,  4),
+('Ritmo & Blues ao Vivo',     '2025-12-03', 53000.00,   87000.00, 2100, 1, 8456,  4),
+('Jazz & Blues Evening',      '2025-06-18', 30000.00,   52000.00, 1200, 1, 4367,  5),
+('Noite de Jazz Clássico',    '2025-11-25', 25000.00,   44000.00,  950, 1, 6812,  5),
+('Indie Vibes Festival',      '2025-07-01', 44000.00,   71000.00, 1750, 1, 3309,  6),
+('Indie Underground Night',   '2025-10-19', 38000.00,   60000.00, 1500, 1, 7621,  6),
+('Country Roads Show',        '2025-08-26', 35000.00,   58000.00, 1400, 1, 2984,  7),
+('Nashville Vibra Night',     '2025-11-06', 42000.00,   69000.00, 1650, 1, 5117,  7),
+('Classical Gala Concert',    '2025-06-30', 28000.00,   47000.00,  800, 1, 9832,  8),
+('Sinfonia ao Vivo',          '2025-12-08', 32000.00,   51000.00,  900, 1, 1276,  8),
+('Hip-Hop Summit',            '2025-07-22', 67000.00,  115000.00, 3000, 1, 6543,  9),
+('Rap Battle Vibra',          '2025-09-30', 74000.00,  122000.00, 3300, 1, 4890,  9),
+('Hip-Hop & R&B Fusion',      '2026-04-16', 79000.00,  130000.00, 3400, 1, 1864,  9),
+('EDM Explosion',             '2025-06-25', 110000.00, 190000.00, 4800, 1,  731, 10),
+('Electric Night Festival',   '2025-10-21', 120000.00, 205000.00, 5000, 1, 8274, 10),
+('EDM Rave Vibra',            '2025-07-05', 125000.00, 215000.00, 4950, 1, 3082, 10),
+('Bass Drop Festival',        '2025-08-23', 118000.00, 202000.00, 4800, 1, 6741, 10),
+('Neon EDM Night',            '2025-10-31', 132000.00, 225000.00, 5000, 1, 1398, 10),
+('Electronic Pulse Show',     '2026-02-14', 109000.00, 188000.00, 4700, 1, 9503, 10),
+('Vibra EDM Closing Party',   '2026-05-23', 145000.00, 248000.00, 5000, 1, 4867, 10),
+('Reggaeton Fuego',           '2025-08-14', 58000.00,   96000.00, 2700, 1, 3658, 11),
+('Latin Vibes Night',         '2026-01-11', 63000.00,  104000.00, 2900, 1, 7145, 11),
+('Folk Stories Concert',      '2025-09-19', 22000.00,   38000.00,  700, 1, 5402, 12),
+('Folk Roots Festival',       '2025-11-05', 27000.00,   45000.00,  850, 1, 9267, 12),
+('Folk Tales Night',          '2025-06-20', 24000.00,   41000.00,  780, 1, 3341, 12),
+('Acoustic Folk Session',     '2025-07-14', 19000.00,   33000.00,  620, 1, 7892, 12),
+('Folk & Roots Festival',     '2025-09-02', 31000.00,   52000.00,  910, 1, 1654, 12),
+('Folk Unplugged Vibra',      '2025-11-18', 26000.00,   44000.00,  760, 1, 5523, 12),
+('Heartland Folk Show',       '2026-02-07', 22000.00,   38000.00,  690, 1, 9114, 12);
 
