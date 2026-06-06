@@ -1,11 +1,15 @@
- var ambiente_processo = 'producao';
-// var ambiente_processo = 'desenvolvimento';
+var ambiente_processo = 'producao';
+//var ambiente_processo = 'desenvolvimento';
 
 var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
 // Acima, temos o uso do operador ternário para definir o caminho do arquivo .env
 // A sintaxe do operador ternário é: condição ? valor_se_verdadeiro : valor_se_falso
 
 require("dotenv").config({ path: caminho_env });
+console.log("AMBIENTE:", process.env.AMBIENTE_PROCESSO);
+console.log("HOST:", process.env.DB_HOST);
+console.log("DATABASE:", process.env.DB_DATABASE);
+console.log("USER:", process.env.DB_USER);
 
 var express = require("express");
 var cors = require("cors");
@@ -59,3 +63,20 @@ app.listen(PORTA_APP, function () {
     \tSe .:producao:. você está se conectando ao banco remoto. \n\n
     \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
 });
+
+var mysql = require("mysql2");
+
+var conexao = mysql.createConnection({
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT
+});
+
+conexao.query(
+    "SELECT @@hostname AS servidor",
+    function(err, result){
+        console.log(result);
+    }
+);

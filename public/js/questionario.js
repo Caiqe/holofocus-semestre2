@@ -396,7 +396,7 @@ formResultado.addEventListener("submit", async function (e) {
         // A consulta retorna uma lista; o primeiro item contém o ID recém-criado.
         sessionStorage.PERFIL = r[0]?.id_perfil || null
 
-        window.location = "../dashboard.html";
+        window.location = "../dashboard-curador.html";
 
     } catch (error) {
         console.error("Erro:", error)
