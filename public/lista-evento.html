@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/lista-evento.css">
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(); listarEventos();">
 
   <div class="container">
 
@@ -79,17 +79,17 @@
         <thead>
           <tr>
             <th>Identificação</th>
-            <th>Publico</th>
+            <th>Genero</th>
             <th>Data</th>
             <th></th>
           </tr>
         </thead>
 
-        <tbody>
+        <tbody id="tbody_eventos">
 <!--
           <tr>
             <td id="Identificação"></td>
-            <td id="publico"></td>
+            <td id="genero"></td>
             <td id="data"></td>
 
             <td id="btn_editar">
@@ -144,14 +144,20 @@
 
           <!-- FORM COM FETCH -->
 
-          <form onsubmit="cadastrarEvento(event)">
+          <form >
 
             <label>Nome do evento</label>
             <input type="text" id="input_nomeEvento">
 
             <label>Artitas contratado</label>
-            <input type="text" id="input_artista">
-
+                <select id="select_artista">
+              <option value="*">selecionar</option>
+              <option value="1">Anitta</option>
+              <option value="2">Drake</option>
+              <option value="3">Coldplay</option>
+              <option value="4">Alok</option>
+              <option value="5">Jorge & Mateus</option>
+            </select>
             <label>Data do evento</label>
             <input type="date" id="input_data">
 
@@ -167,10 +173,10 @@
             </select>
 
             <div class="linha2">
-            <button class="buttonP">
+            <button class="buttonP" onclick="cadastrarEvento(event)">
               SALVAR
             </button>
-
+</div>
           </form>
 
         </div>
@@ -207,25 +213,32 @@
             </button>
 
           </div>
-
-          <form>
+        </div>
+        
+          <form >
 
             <label>Nome do evento</label>
 
             <input type="text"
-              value="">
+              value="" id="input_nome">
 
             <label>Artitas contratado</label>
 
-            <input type="text"
-              value="">
+             <select id="select_artista">
+              <option value="*">selecionar</option>
+              <option value="1">Anitta</option>
+              <option value="2">Drake</option>
+              <option value="3">Coldplay</option>
+              <option value="4">Alok</option>
+              <option value="5">Jorge & Mateus</option>
+            </select>
               
             <label>Data do evento</label>
             <input type="date" id="input_data">
 
             <label>Principal genero musical do evento</label>
 
-            <select>
+            <select id="select_genero">
               <option value="*">selecionar</option>
               <option value="1">Pop</option>
               <option value="2">Rock</option>
@@ -260,13 +273,8 @@
 
     function abrirModal(id) {
 
-      document
-        .getElementById('overlay-' + id)
-        .classList.add('open');
-
-      document
-        .getElementById('desfoque-' + id)
-        .classList.add('open');
+      document.getElementById('overlay-' + id).classList.add('open');
+      document.getElementById('desfoque-' + id).classList.add('open');
 
     }
 
@@ -304,34 +312,20 @@
     });
 
     function cadastrarEvento() {
+      event.preventDefault();
+
 
       const nomeEvento =
         document.getElementById("input_nomeEvento").value;
 
       const artista =
-        document.getElementById("input_artista").value;
+        document.getElementById("select_artista").value;
 
       const data =
        document.getElementById("input_data").value;
 
       const genero =
         document.getElementById("select_genero").value;
-
-      const investimento =
-        document.getElementById("input_investimento").value;
-
-      const lucroEsperado =
-        document.getElementById("input_lucroEsperado").value;
-
-      const lucro =
-        document.getElementById("input_lucro").value;
-
-      const lotacaoCasa =
-        document.getElementById("input_lotacaoCasa").value;
-
-      const lotacaoEvento =
-        document.getElementById("input_lotacaoEvento").value;
-
 
         const resposta = fetch(
           "/eventos/criar",
@@ -356,6 +350,7 @@
 
           alert("Evento cadastrado com sucesso!");
 
+          listarEventos()
           fecharModal('cadastrar');
 
         } else {
@@ -373,12 +368,15 @@
 
        })
       
+
     
   }
 
   
 
 function listarEventos() {
+
+  
 
     fetch("/eventos/listar")
         .then(function(resposta) {
@@ -392,11 +390,12 @@ function listarEventos() {
 
             for (let i = 0; i < eventos.length; i++) {
 
+              const dataObj = new Date(eventos[i].data);
                 tbody.innerHTML += `
                     <tr>
                         <td>${eventos[i].nomeEvento}</td>
-                        <td>${eventos[i].publico}</td>
-                        <td>${eventos[i].data}</td>
+                        <td>${eventos[i].genero}</td>
+                        <td>${dataObj.toLocaleDateString('pt-BR')}</td>
 
                       <td>
               <button class="edit"
@@ -418,9 +417,30 @@ function listarEventos() {
         });
 }
 
-window.onload = listarEventos;
 
+function editarEvento(id) {
 
+    fetch("/eventos/editar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            id: id,
+            nome: input_nome.value,
+            data: input_data.value,
+            artista: select_artista.value,
+            genero: select_genero.value
+        })
+    })
+    .then(res => {
+        if(res.ok){
+            alert("Perfil atualizado com sucesso!");
+        } else {
+            alert("Erro ao atualizar perfil.");
+        }
+    });
+}
   </script>
 
   <script src="./js/elementosPadrao.js"></script>
