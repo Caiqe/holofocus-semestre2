@@ -1,241 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Usuários - Holofocus</title>
-    <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
-  <link rel="stylesheet" href="css/lista-usuario.css">
-</head>
-
+<head><meta charset="UTF-8"><title>Usuários - Holofocus</title><link rel="stylesheet" href="css/lista-usuario.css"></head>
 <body onload="isAdm()">
-
-  <div class="container">
-
-    <aside class="sidebar" id="__header">
-      <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
-      <ul id="ul_navbar"></ul>
-
-      <div class="user">
-        <div class="usuario-info">
-          <p id="nome_usuario"></p>
-          <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
-        </div>
-        <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img src="./assets/icon/icon-configuracoes.svg"
-            alt="Icone de configurações"> Configurações</a>
-        <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png" alt=""><strong>
-            Sair</strong></button>
-      </div>
-    </aside>
-
-    <!-- Main -->
-    <main class="main">
-      <div class="header">
-        <h1>Todos Usuários</h1>
-
-        <div class="actions">
-          <input type="text" placeholder="pesquisar">
-          <button><img src="assets/imgs/IconFiltro.png" alt=""></button>
-          <button class="btn-yellow" onclick="abrirModal('cadastrar')" title="Cadastrar usuário">
-            <img src="assets/imgs/iconMais.png" alt="">
-          </button>
-        </div>
-      </div>
-
-
-
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>Email</th>
-            <th></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Jane Cooper</td>
-            <td>11 7195-9023</td>
-            <td>jane@microsoft.com</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar usuário"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Floyd Miles</td>
-            <td>11 5826-6852</td>
-            <td>floyd@yahoo.com</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar usuário"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Ronald Richards</td>
-            <td>11 5896-5630</td>
-            <td>ronald@adobe.com</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar usuário"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Marvin McKinney</td>
-            <td>11 5987-2356</td>
-            <td>marvin@tesla.com</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar usuário"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Jerome Bell</td>
-            <td>11 6975-3014</td>
-            <td>jerome@google.com</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar usuário"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Kathryn Murphy</td>
-            <td>11 2987-2365</td>
-            <td>kathryn@microsoft.com</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar usuário"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Jacob Jones</td>
-            <td>11 9875-6015</td>
-            <td>jacob@yahoo.com</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar usuário"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="pagination">
-        <button>&lt;</button>
-        <button class="current">1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-        <button>&gt;</button>
-      </div>
-
-    </main>
-
-  </div>
-
-
-
-
-
-  <!---->
-  <div class="desfoque" id="desfoque-cadastrar">
-    <div class="overlay" id="overlay-cadastrar" onclick="fecharOverlay(event,'cadastrar')">
-      <div class="modal">
-
-
-        <div class="cardP">
-          <div class="topo">
-            <h2><strong>Cadastrar Usuario </strong></h2>
-            <button class="btx" class="modal-close" onclick="fecharModal('cadastrar')"><img src="assets/imgs/iconX.png"
-                alt=""></button>
-          </div>
-
-          <form>
-            <label>Nome</label>
-            <input type="text">
-
-            <div class="linha">
-              <div class="campo">
-                <label>E-mail</label>
-                <input type="email">
-              </div>
-
-              <div class="campo">
-                <label>Celular</label>
-                <input type="text" placeholder="(99) 99999-9999">
-              </div>
-            </div>
-
-            <label>Senha</label>
-            <input type="password">
-
-            <label>Confirma senha</label>
-            <input type="password">
-
-            <label>Nível de permissão</label>
-            <select>
-              <option>selecionar</option>
-            </select>
-
-
-
-            <button class="buttonP">SALVAR</button>
-        </div>
-      </div>
-    </div>
+<div class="container">
+  <aside class="sidebar" id="__header"><img id="logo__header" src="assets/imgs/holofocus-06.svg" alt=""><ul id="ul_navbar"></ul>
+    <div class="user"><div class="usuario-info"><p id="nome_usuario"></p><img id="icon__admin" src="./assets/icon/icon-admin.png" alt=""></div>
+      <a class="conf" href="editarPerfil.html">Configurações</a><button class="logout" onclick="logout()">Sair</button></div>
+  </aside>
+  <main class="main"><div class="header"><h1>Todos Usuários</h1><div class="actions">
+    <input id="pesquisa-usuario" placeholder="Pesquisar"><button class="btn-yellow" onclick="abrirModal('cadastrar')"><img src="assets/imgs/iconMais.png" alt=""></button>
+  </div></div>
+  <!-- usuario.js preenche a tabela somente com usuários da empresa logada. -->
+  <table><thead><tr><th>Nome</th><th>Telefone</th><th>Email</th><th>Nível</th><th></th></tr></thead><tbody id="corpo-usuarios"></tbody></table>
+  </main>
 </div>
-    <div class="desfoque" id="desfoque-editar">
-      <div class="overlay tamanho" id="overlay-editar" onclick="fecharOverlay(event,'editar')">
-        <div class="modal">
-
-
-          <div class="cardE">
-            <div class="topo">
-              <h2 class="h2"><strong>Editar Usuario</strong></h2>
-              <button class="btx2" class="modal-close" onclick="fecharModal('editar')"><img src="assets/imgs/iconX.png"
-                  alt=""></button>
-            </div>
-
-            <form>
-              <label>Nome</label>
-              <input type="text" value="Jane Cooper">
-
-              <div class="linha">
-                <div class="campo">
-                  <label>E-mail</label>
-                  <input type="email" value="	jane@microsoft.com">
-                </div>
-
-                <div class="campo">
-                  <label>Celular</label>
-                  <input type="text" placeholder="(99) 99999-9999" value="	11 7195-9023">
-                </div>
-              </div>
-
-              <label>Nível de permissão</label>
-              <select>
-                <option>selecionar</option>
-              </select>
-
-
-
-              <button class="buttonS">SALVAR</button>
-              <button class="buttonE">EXCLUIR</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <script>
-        function abrirModal(id) {
-          document.getElementById('overlay-' + id).classList.add('open');
-          document.getElementById('desfoque-' + id).classList.add('open');
-        }
-        function fecharModal(id) {
-          document.getElementById('overlay-' + id).classList.remove('open');
-          document.getElementById('desfoque-' + id).classList.remove('open');
-        }
-        function fecharOverlay(e, id) {
-          if (e.target === document.getElementById('overlay-' + id)) fecharModal(id);
-          if (e.target === document.getElementById('desfoque-' + id)) fecharModal(id);
-        }
-
-      </script>
-  <script src="./js/elementosPadrao.js"></script>
-  <script src="./js/navbar.js"></script>
-
-</body>
-
-</html>
+<div class="desfoque" id="desfoque-cadastrar"><div class="overlay" id="overlay-cadastrar" onclick="fecharOverlay(event,'cadastrar')"><div class="modal"><div class="cardP">
+  <div class="topo"><h2>Cadastrar Usuário</h2><button type="button" class="btx" onclick="fecharModal('cadastrar')">X</button></div>
+  <form id="form-cadastrar-usuario"><label>Nome</label><input id="usuario-nome" required>
+    <div class="linha"><div class="campo"><label>E-mail</label><input id="usuario-email" type="email" required></div><div class="campo"><label>Celular</label><input id="usuario-telefone" required></div></div>
+    <label>Senha</label><input id="usuario-senha" type="password" required><label>Confirmar senha</label><input id="usuario-confirmar" type="password" required>
+    <label>Nível de permissão</label><select id="usuario-nivel" required></select><button class="buttonP">SALVAR</button>
+  </form>
+</div></div></div></div>
+<div class="desfoque" id="desfoque-editar"><div class="overlay" id="overlay-editar" onclick="fecharOverlay(event,'editar')"><div class="modal"><div class="cardE">
+  <div class="topo"><h2>Editar Usuário</h2><button type="button" class="btx2" onclick="fecharModal('editar')">X</button></div>
+  <form id="form-editar-usuario"><label>Nome</label><input id="editar-usuario-nome" required>
+    <div class="linha"><div class="campo"><label>E-mail</label><input id="editar-usuario-email" type="email" required></div><div class="campo"><label>Celular</label><input id="editar-usuario-telefone" required></div></div>
+    <label>Nível de permissão</label><select id="editar-usuario-nivel" required></select>
+    <button class="buttonS">SALVAR</button><button id="excluir-usuario" type="button" class="buttonE">EXCLUIR</button>
+  </form>
+</div></div></div></div>
+<script>
+function abrirModal(id){document.getElementById('overlay-'+id).classList.add('open');document.getElementById('desfoque-'+id).classList.add('open')}
+function fecharModal(id){document.getElementById('overlay-'+id).classList.remove('open');document.getElementById('desfoque-'+id).classList.remove('open')}
+function fecharOverlay(e,id){if(e.target===document.getElementById('overlay-'+id))fecharModal(id)}
+</script>
+<script src="./js/elementosPadrao.js"></script><script src="./js/navbar.js"></script><script src="./js/usuario.js"></script>
+</body></html>

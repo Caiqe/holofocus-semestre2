@@ -393,7 +393,8 @@ formResultado.addEventListener("submit", async function (e) {
         const resp = await fetch(`/perfis/atualizarPerfilCad/${idEmpresa}`)
         const r = await resp.json()
 
-        sessionStorage.PERFIL = r.id_perfil
+        // A consulta retorna uma lista; o primeiro item contém o ID recém-criado.
+        sessionStorage.PERFIL = r[0]?.id_perfil || null
 
         window.location = "../dashboard.html";
 

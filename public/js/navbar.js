@@ -1,71 +1,40 @@
+// Recupera o nível salvo depois da autenticação.
 const nivelAcesso = sessionStorage.NIVEL_ACESSO;
+// Localiza o espaço em que os links serão montados.
 const ul = document.getElementById("ul_navbar");
+// Localiza o ícone administrativo quando ele existir na página.
 const iconAdmin = document.getElementById("icon__admin");
 
-if (iconAdmin && nivelAcesso != 1) {
-  iconAdmin.style.display = "none";
-}
+// O ícone administrativo aparece somente para GESTOR.
+if (iconAdmin && nivelAcesso !== "1") iconAdmin.style.display = "none";
+
+// Evita repetir a mesma estrutura HTML para cada item do menu.
+const itemMenu = (href, icone, texto) =>
+  `<li><a href="${href}"><img src="${icone}" alt="${texto}"><p>${texto}</p></a></li>`;
 
 if (ul) {
-  if (nivelAcesso == 1) {
-    ul.innerHTML = `
-    
-        <li>
-              <a href="dashmarketing.html"
-                ><img src="./assets/icon/icon-gerencia.png" alt="Icône gerência" />
-                <p>Resultados</p></a
-              >
-        </li>
-        <li>
-              <a href="meu-estabelecimento.html"
-                ><img src="./assets/icon/icon-estabelecimento.svg" alt="Icône estabelecimento" />
-                <p>Estabelecimento</p></a
-              >
-        </li>
-        <li>
-          <a href="dashboard.html"
-            ><img
-              src="./assets/icon/icon-dashboard.png"
-              alt="Icône dashboard"
-            />
-            <p>Artistas</p></a
-          >
-        </li>
-        <li>
-          <a href="lista-usuario.html"
-            ><img src="./assets/icon/icon-usuarios.png" alt="Icône usuários" />
-            <p>Usuários</p></a
-          >
-        </li>
-        <li>
-          <a href="lista-evento.html"
-            ><img
-              src="./assets/icon/icon-favoritos.png"
-              alt="Icône favoritos"
-            />
-            <p>Eventos</p></a
-          >
-        </li>`;
-  } else if (nivelAcesso == 2) {
-    ul.innerHTML = `<li>
-          <a href="dashboard/dashboard.html"
-            ><img
-              src="./assets/icon/icon-dashboard.png"
-              alt="Icône dashboard"
-            />
-            <p>Artistas</p></a
-          >
-        </li>
-        <li>
-          <a href="lista-evento.html"
-            ><img
-              src="./assets/icon/icon-favoritos.png"
-              alt="Icône favoritos"
-            />
-            <p>Eventos</p></a
-          >
-        </li>`;
+  // Cada nível recebe apenas os links relacionados às suas funções.
+  if (nivelAcesso === "1") {
+    // GESTOR pode acessar administração, cadastros, eventos e chamados.
+    ul.innerHTML =
+      itemMenu("dashmarketing.html", "./assets/icon/icon-gerencia.png", "Resultados") +
+      itemMenu("meu-estabelecimento.html", "./assets/icon/icon-estabelecimento.svg", "Estabelecimento") +
+      itemMenu("dashboard.html", "./assets/icon/icon-dashboard.png", "Artistas") +
+      itemMenu("lista-usuario.html", "./assets/icon/icon-usuarios.png", "Usuários") +
+      itemMenu("lista-evento.html", "./assets/icon/icon-favoritos.png", "Eventos") +
+      itemMenu("lista-chamados.html", "./assets/icon/icon-suporte.png", "Chamados");
+  } else if (nivelAcesso === "2") {
+    // SUPORTE visualiza apenas a área necessária para tratar chamados.
+    ul.innerHTML = itemMenu(
+      "lista-chamados.html",
+      "./assets/icon/icon-suporte.png",
+      "Chamados"
+    );
   } else {
-    ul.innerHTML = "";
+    // USER mantém os acessos operacionais a artistas, eventos e chamados.
+    ul.innerHTML =
+      itemMenu("dashboard.html", "./assets/icon/icon-dashboard.png", "Artistas") +
+      itemMenu("lista-evento.html", "./assets/icon/icon-favoritos.png", "Eventos") +
+      itemMenu("lista-chamados.html", "./assets/icon/icon-suporte.png", "Chamados");
   }
 }

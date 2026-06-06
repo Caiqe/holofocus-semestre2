@@ -1,277 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <title>Eventos - Holofocus</title>
-  <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
+  <link rel="icon" href="./assets/icon/holofocus-06 1.png">
   <link rel="stylesheet" href="css/lista-evento.css">
 </head>
-
 <body onload="validarSessao()">
-
   <div class="container">
-
     <aside class="sidebar" id="__header">
-      <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
+      <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="Holofocus">
       <ul id="ul_navbar"></ul>
       <div class="user">
-        <div class="usuario-info">
-          <p id="nome_usuario"></p>
-          <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
-        </div>
-        <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img src="./assets/icon/icon-configuracoes.svg"
-            alt="Icone de configurações"> Configurações</a>
-        <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png" alt=""><strong>
-            Sair</strong></button>
+        <div class="usuario-info"><p id="nome_usuario"></p><img id="icon__admin" src="./assets/icon/icon-admin.png" alt=""></div>
+        <a class="conf" href="editarPerfil.html"><img src="./assets/icon/icon-configuracoes.svg" alt=""> Configurações</a>
+        <button class="logout" onclick="logout()"><img src="assets/imgs/iconSaida.png" alt=""><strong>Sair</strong></button>
       </div>
     </aside>
-
-
     <main class="main">
       <div class="header">
         <h1>Eventos</h1>
-
         <div class="actions">
-          <input type="text" placeholder="pesquisar">
-          <button><img src="assets/imgs/IconFiltro.png" alt=""></button>
-          <button class="btn-yellow" onclick="abrirModal('cadastrar')" title="Cadastrar usuário">
-            <img src="assets/imgs/iconMais.png" alt="">
-          </button>
+          <input id="pesquisa-evento" type="text" placeholder="Pesquisar">
+          <button class="btn-yellow" onclick="abrirModal('cadastrar')" title="Cadastrar evento"><img src="assets/imgs/iconMais.png" alt=""></button>
         </div>
       </div>
-
-
-
       <table>
-        <thead>
-          <tr>
-            <th>Identificação</th>
-            <th>Publico</th>
-            <th>Data</th>
-            <th></th>
-          </tr>
-        </thead>
-
-
-        <tbody>
-          <tr>
-            <td>Casa de Show Alemão LTDA</td>
-            <td>20</td>
-            <td>26/11/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Soberana Casa de Show</td>
-            <td>12</td>
-            <td>30/01/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Casa Show Bar LTDA EPP</td>
-            <td>5</td>
-            <td>08/10/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td> Áudio SP (Audio Club)</td>
-            <td>2</td>
-            <td>25/03/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Blue Note São Paulo</td>
-            <td>12</td>
-            <td>03/05/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Bourbon Street Music Club</td>
-            <td>10</td>
-            <td>03/03/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-
-          <tr>
-            <td>Tokio Marine Hall</td>
-            <td>23</td>
-            <td>31/12/2026</td>
-            <td><button class="edit" onclick="abrirModal('editar')" title="editar evento"><img
-                  src="assets/imgs/IconLapis.png" alt=""> Editar</button></td>
-          </tr>
-        </tbody>
+        <thead><tr><th>Identificação</th><th>Público</th><th>Data</th><th></th></tr></thead>
+        <!-- evento.js cria as linhas com os registros retornados pelo banco. -->
+        <tbody id="corpo-eventos"></tbody>
       </table>
-
-      <div class="pagination">
-        <button>&lt;</button>
-        <button class="current">1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-        <button>&gt;</button>
-      </div>
-
     </main>
-
   </div>
 
-
-
-
-
-  <!-- -->
   <div class="desfoque" id="desfoque-cadastrar">
     <div class="overlay" id="overlay-cadastrar" onclick="fecharOverlay(event,'cadastrar')">
-      <div class="modal">
-
-
-        <div class="cardP">
-          <div class="topo">
-            <h2><strong>Cadastrar Evento </strong></h2>
-            <button class="btx" class="modal-close" onclick="fecharModal('cadastrar')"><img src="assets/imgs/iconX.png"
-                alt=""></button>
+      <div class="modal"><div class="cardP">
+        <div class="topo"><h2>Cadastrar Evento</h2><button type="button" class="btx" onclick="fecharModal('cadastrar')"><img src="assets/imgs/iconX.png" alt=""></button></div>
+        <form id="form-cadastrar-evento">
+          <label>Nome do evento</label><input id="evento-nome" required>
+          <label>Artista contratado</label><select id="evento-artista" required></select>
+          <label>Principal gênero musical</label><select id="evento-genero" required></select>
+          <label>Data</label><input id="evento-data" type="date" required>
+          <div class="linha2">
+            <div class="campo"><label>Investimento</label><input id="evento-investimento" type="number" min="0"></div>
+            <div class="campo"><label>Retorno</label><input id="evento-retorno" type="number" min="0"></div>
+            <div class="campo"><label>Público</label><input id="evento-publico" type="number" min="0"></div>
           </div>
-
-          <form>
-            <label>Nome do evento</label>
-            <input type="text">
-
-            <label>Artitas contratado</label>
-            <input type="text">
-
-
-            <label>Principal genero musical do evento</label>
-            <select>
-              <option>selecionar</option>
-            </select>
-
-
-            <div class="linha2">
-              <div class="campo">
-                <label>Valor investimento</label>
-                <input type="number">
-              </div>
-
-              <div class="campo">
-                <label>Lucro esperado</label>
-                <input type="number">
-              </div>
-              <div class="campo">
-                <label>Lucro</label>
-                <input type="number">
-              </div>
-            </div>
-            <div class="linha">
-              <div class="campo">
-                <label>Lotação da casa</label>
-                <input type="number">
-              </div>
-
-              <div class="campo">
-                <label>Lotação do evento</label>
-                <input type="number">
-              </div>
-            </div>
-
-
-            <button class="buttonP">SALVAR</button>
-        </div>
-      </div>
+          <button class="buttonP">SALVAR</button>
+        </form>
+      </div></div>
     </div>
   </div>
 
   <div class="desfoque" id="desfoque-editar">
     <div class="overlay" id="overlay-editar" onclick="fecharOverlay(event,'editar')">
-      <div class="modal">
-
-
-        <div class="cardE">
-          <div class="topo">
-            <h2><strong>Editar evento </strong></h2>
-            <button class="btx2" class="modal-close" onclick="fecharModal('editar')"><img src="assets/imgs/iconX.png"
-                alt=""></button>
+      <div class="modal"><div class="cardE">
+        <div class="topo"><h2>Editar Evento</h2><button type="button" class="btx2" onclick="fecharModal('editar')"><img src="assets/imgs/iconX.png" alt=""></button></div>
+        <form id="form-editar-evento">
+          <label>Nome do evento</label><input id="editar-evento-nome" required>
+          <label>Artista contratado</label><select id="editar-evento-artista" required></select>
+          <label>Principal gênero musical</label><select id="editar-evento-genero" required></select>
+          <label>Data</label><input id="editar-evento-data" type="date" required>
+          <div class="linha3">
+            <div class="campo"><label>Investimento</label><input id="editar-evento-investimento" type="number" min="0"></div>
+            <div class="campo"><label>Retorno</label><input id="editar-evento-retorno" type="number" min="0"></div>
+            <div class="campo"><label>Público</label><input id="editar-evento-publico" type="number" min="0"></div>
           </div>
-
-          <form>
-            <label>Nome do evento</label>
-            <input type="text" value="Casa de Show Alemão LTDA">
-
-            <label>Artitas contratado</label>
-            <input type="text" value="Maneskim">
-
-            <label>Principal genero musical do evento</label>
-            <select>
-              <option>selecionar</option>
-            </select>
-
-
-            <div class="linha3">
-              <div class="campo">
-                <label>Valor investimento</label>
-                <input type="number" value="7.000">
-              </div>
-
-              <div class="campo">
-                <label>Lucro esperado</label>
-                <input type="number" value="15.000">
-              </div>
-              <div class="campo">
-                <label>Lucro</label>
-                <input type="number" value="13.000">
-              </div>
-            </div>
-
-            <div class="linha4">
-              <div class="campo">
-                <label>Lotação da casa</label>
-                <input type="number" value="6.000">
-              </div>
-
-              <div class="campo">
-                <label>Lotação do evento</label>
-                <input type="number" value="5.787">
-              </div>
-            </div>
-
-            <div class="linhaB">
-              <button class="buttonS">SALVAR</button>
-              <button class="buttonE">EXCLUIR</button>
-            </div>
-          </form>
-        </div>
-      </div>
+          <div class="linhaB"><button class="buttonS">SALVAR</button><button id="excluir-evento" type="button" class="buttonE">EXCLUIR</button></div>
+        </form>
+      </div></div>
     </div>
   </div>
+
   <script>
-    function abrirModal(id) {
-      document.getElementById('overlay-' + id).classList.add('open');
-      document.getElementById('desfoque-' + id).classList.add('open');
-    }
-    function fecharModal(id) {
-      document.getElementById('overlay-' + id).classList.remove('open');
-      document.getElementById('desfoque-' + id).classList.remove('open');
-    }
-    function fecharOverlay(e, id) {
-      if (e.target === document.getElementById('overlay-' + id)) fecharModal(id);
-      if (e.target === document.getElementById('desfoque-' + id)) fecharModal(id);
-    }
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { fecharModal('cadastrar'); fecharModal('editar'); }
-    });
+    function abrirModal(id) { document.getElementById('overlay-' + id).classList.add('open'); document.getElementById('desfoque-' + id).classList.add('open'); }
+    function fecharModal(id) { document.getElementById('overlay-' + id).classList.remove('open'); document.getElementById('desfoque-' + id).classList.remove('open'); }
+    function fecharOverlay(event, id) { if (event.target === document.getElementById('overlay-' + id)) fecharModal(id); }
   </script>
   <script src="./js/elementosPadrao.js"></script>
   <script src="./js/navbar.js"></script>
+  <script src="./js/evento.js"></script>
 </body>
-
 </html>

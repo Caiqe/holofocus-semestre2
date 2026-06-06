@@ -22,6 +22,9 @@ var empresasRouter = require("./src/routes/empresas");
 var suportesRouter = require("./src/routes/suportes");
 var perfisRouter = require("./src/routes/perfis");
 var PFRouter = require("./src/routes/PF");
+// Rotas adicionadas para conectar as telas de eventos e chamados ao banco.
+var eventosRouter = require("./src/routes/eventos");
+var chamadosRouter = require("./src/routes/chamados");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,6 +39,9 @@ app.use("/empresas", empresasRouter);
 app.use("/suportes", suportesRouter);
 app.use("/perfis", perfisRouter);
 app.use("/PF", PFRouter);
+// Define os prefixos usados pelos fetches de evento.js e chamado.js.
+app.use("/eventos", eventosRouter);
+app.use("/chamados", chamadosRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
