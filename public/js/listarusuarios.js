@@ -26,7 +26,7 @@ if (email.trim() != "" && email != null && senha.trim() != "" && senha != null) 
             sessionStorage.ID_USUARIO = resp.id;
 
             setTimeout(() => {
-                window.location = "./dashboard/dashboard.html";
+                window.location = "./dashboard/dashboard-curador.html";
             }, "2000");
             return
         }

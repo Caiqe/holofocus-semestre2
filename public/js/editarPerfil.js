@@ -7,7 +7,7 @@ const voltar = () => {
     } else if (nivelAcesso == 1) {
         window.location.href = "/dashmarketing.html"
     } else if (nivelAcesso == 2) {
-        window.location.href = "/dashboard.html"
+        window.location.href = "/dashboard-curador.html"
     }
 }
 

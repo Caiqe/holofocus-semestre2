@@ -23,7 +23,7 @@ if (ul) {
               >
         </li>
         <li>
-          <a href="dashboard.html"
+          <a href="dashboard-curador.html"
             ><img
               src="./assets/icon/icon-dashboard.png"
               alt="Icône dashboard"
@@ -48,7 +48,7 @@ if (ul) {
         </li>`;
   } else if (nivelAcesso == 2) {
     ul.innerHTML = `<li>
-          <a href="dashboard/dashboard.html"
+          <a href="dashboard/dashboard-curador.html"
             ><img
               src="./assets/icon/icon-dashboard.png"
               alt="Icône dashboard"
