@@ -95,6 +95,8 @@ function editar(req, res) {
     avisoModel.editar(novaDescricao, idAviso)
         .then(
             function (resultado) {
+                // affectedRows evita informar sucesso quando o ID não existe.
+                if (!resultado.affectedRows) return res.status(404).json({ mensagem: "Aviso não encontrado" });
                 res.json(resultado);
             }
         )
@@ -114,6 +116,8 @@ function deletar(req, res) {
     avisoModel.deletar(idAviso)
         .then(
             function (resultado) {
+                // A mesma validação é aplicada à exclusão.
+                if (!resultado.affectedRows) return res.status(404).json({ mensagem: "Aviso não encontrado" });
                 res.json(resultado);
             }
         )

@@ -1,190 +1,98 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estabelecimento - HoloFocus</title>
-    <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
-
-    <link rel="stylesheet" href="./css/meu-estabelecimento.css" />
-    <link rel="stylesheet" href="./css/output.css" />
+    <link rel="icon" href="./assets/icon/holofocus-06 1.png">
+    <link rel="stylesheet" href="./css/meu-estabelecimento.css">
+    <link rel="stylesheet" href="./css/output.css">
     <link rel="stylesheet" href="./css/modal.css">
     <script src="./js/elementosPadrao.js"></script>
-  </head>
-  <body onload="isAdm()" class="!bg-[#1a1a1a]">
+</head>
+<!-- Ao abrir a página, empresa, eventos, gêneros e perfis são consultados no backend. -->
+<body onload="iniciarEstabelecimento()" class="!bg-[#1a1a1a]">
     <header id="__header">
-      <img
-        id="logo__header"
-        src="./assets/imgs/holofocus-06.svg"
-        alt="logo holofocus"
-        class="self-center "
-      />
-      <ul id="ul_navbar" class="flex flex-col items-start gap-6">
-        
-      </ul>
-      <div class="flex flex-col self-start w-full">
-        <div class="flex items-center gap-3.5">
-          <p id="nome_usuario" class="text-white self-start !text-[14px]"></p>
-          <img id="icon__admin" class="h-4" src="./assets/icon/icon-admin.png" alt="Icone de admin">
+        <img id="logo__header" src="./assets/imgs/holofocus-06.svg" alt="Logo HoloFocus" class="self-center">
+        <ul id="ul_navbar" class="flex flex-col items-start gap-6"></ul>
+        <div class="flex flex-col self-start w-full">
+            <div class="flex items-center gap-3.5">
+                <p id="nome_usuario" class="text-white self-start !text-[14px]"></p>
+                <img id="icon__admin" class="h-4" src="./assets/icon/icon-admin.png" alt="Ícone de administrador">
+            </div>
+            <a id="btt___configuracoes" href="./editarPerfil.html" class="self-start">
+                <img class="w-6" src="./assets/icon/icon-configuracoes.svg" alt="Configurações">
+                <p class="!text-[15px]">Configurações</p>
+            </a>
+            <button class="flex justify-center cursor-pointer !w-[100px] bg-[#E4AFFF] rounded-[15px] !p-1.5 !text-[13px] font-bold"
+                id="btt__sair" onclick="logout()">
+                <img src="./assets/imgs/iconSaida.png" alt="Sair" class="h-4">Sair
+            </button>
         </div>
-        <a id="btt___configuracoes" href="./editarPerfil.html" class="self-start"
-          ><img
-            class="w-6"
-            src="./assets/icon/icon-configuracoes.svg"
-            alt="Icone de configurações"
-          />
-          <p class="!text-[15px]">Configurações</p>
-        </a
-        >
-        <button class=" flex 
-        justify-center
-        cursor-pointer 
-        !w-[100px] 
-        bg-[#E4AFFF] 
-        rounded-[15px] 
-        !p-1.5
-        !text-[13px]  font-bold" 
-        id="btt__sair" onclick="logout()"
-          ><img src="./assets/imgs/iconSaida.png" alt="Icone de sair" class="h-4"/>Sair</button
-        >
-      </div>
     </header>
-    <main class="flex bg-black rouded-16 !w-[86%] !h-[98vh] !ml-2 !rounded-2xl items-center bg-black justify-center !p-5 gap-5">
-      <div class="flex items-start w-1/1 gap-[20px]">
-        <section id="section__1" class="w-3/12 flex flex-col gap-8 font-black">
-          <div
-            id="perfil__principal"
-            class="bg-[#F0D48D] flex flex-col items-center justify-around rounded-[16px] h-[8rem]"
-          >
-            <span id="span__perfil_principal" class="text-3xl">Dançante</span>
-            <label class="text-sm">Perfil principal</label>
-          </div>
-          <div
-            class="bg-[#F0D48D] flex flex-col items-center justify-around rounded-[16px] h-[8rem]"
-          >
-            <span id="span__tipo_estabelecimento" class="text-3xl font-black"
-              >Casa de show</span
-            >
-            <label class="text-sm"> Tipo estabelecimento</label>
-          </div>
-          <div
-            class="bg-[#F0D48D] flex flex-col items-center justify-around rounded-[16px] h-[8rem]"
-          >
-            <span id="span__eventos-realizados" class="text-6xl font-black"
-              >10</span
-            >
-            <label class="text-sm">Eventos realizados</label>
-          </div>
-        </section>
-        <section
-          id="section__2"
-          class="w-2/5 flex flex-col gap-16 font-black bg-[#F0D48D] rounded-[16px] items-center"
-        >
-          <h2>Preferência de resultados</h2>
-          <div class="flex flex-col w-4/5">
-            <label for="perfil__sonoro">Perfil Sonoro</label>
-            <select
-              name="perfil__sonoro"
-              id="select__perfil-sonoro"
-              class="font-normal"
-            >
-              <option value="#" selected disabled class="">
-                Selecione o perfil
-              </option>
-              <option value="">Intimista</option>
-              <option value="">Energético</option>
-              <option value="">Positivo</option>
-            </select>
-            <hr class="w-1/1" />
-          </div>
-          <div class="flex flex-col w-4/5">
-            <label for="local">Local</label>
-            <select name="local" id="select__local" class="font-normal">
-              <option value="#" selected disabled class="">
-                Selecione o local
-              </option>
-              <option value="">Brasil</option>
-              <option value="">EUA</option>
-              <option value="">França</option>
-              <option value="">Inglaterra</option>
-              <option value="">Espanha</option>
-            </select>
-            <hr class="w-1/1" />
-          </div>
-          <div class="flex flex-col w-4/5">
-            <label for="genero">Genêro</label>
-            <select name="genero" id="select__genero" class="font-normal">
-              <option value="#" selected disabled class="">
-                Selecione o genêro
-              </option>
-              <option value="1">Sertanejo</option>
-              <option value="2">Rock</option>
-              <option value="3">Punk</option>
-              <option value="4">Pop</option>
-              <option value="5">Eletrônica</option>
-            </select>
-            <hr class="w-1/1" />
-          </div>
-          <div class="flex flex-col w-4/5">
-            <label for="indece_popularidade">Índice de popularidade</label>
-            <select
-              name="indece_popularidade"
-              id="select__indice_popularidade"
-              class="font-normal"
-            >
-              <option value="#" selected disabled class="">
-                Selecione o índice de popularidade
-              </option>
-              <option value="25">0%-25%</option>
-              <option value="25">25%-50%</option>
-              <option value="25">50%-75%</option>
-              <option value="25">75%-100%</option>
-            </select>
-            <hr class="w-1/1" />
-          </div>
-        </section>
-        <section
-          id="section__3"
-          class="w-2/5 flex flex-col gap-12 font-black bg-[#F0D48D] rounded-[16px] items-center"
-        >
-          <h2>Perfis Sonoros</h2>
-          <div onclick="modal()" class="flex gap-1 hover:scale-105 justify-center hover:cursor-pointer items-center">
-            <h2>Adicionar</h2>
-            <img class="h-5" src="./assets/icon/icon-mais.svg" alt="Icone de mais">
-          </div>
-          <div id="div__lista_perfis" class="flex flex-col w-5/6 gap-12">
-            <div class="flex flex-col gap-1">
-              <div class="flex justify-between">
-                <h3 class="font-light">Intimista</h3>
-                <button onclick="modal()" class="button__editar bg-black text-white font-light hover:cursor-pointer">
-                  Editar
-                </button>
-              </div>
-              <hr class="w-1/1" />
-            </div>
-            <div class="flex flex-col gap-1">
-              <div class="flex justify-between">
-                <h3 class="font-light">Energético</h3>
-                <button onclick="modal()" class="button__editar bg-black text-white font-light hover:cursor-pointer">
-                  Editar
-                </button>
-              </div>
-              <hr class="w-1/1" />
-            </div>
-            <div class="flex flex-col gap-1">
-              <div class="flex justify-between">
-                <h3 class="font-light">Positivo</h3>
-                <button onclick="modal()" class="button__editar bg-black text-white font-light hover:cursor-pointer">
-                  Editar
-                </button>
-              </div>
-              <hr class="w-1/1" />
-            </div>
-          </div>
-        </section>
-      </div>
+
+    <main class="flex bg-black !w-[86%] !h-[98vh] !ml-2 !rounded-2xl items-center justify-center !p-5 gap-5">
+        <div class="flex items-start w-1/1 gap-[20px]">
+            <section id="section__1" class="w-3/12 flex flex-col gap-8 font-black">
+                <div id="perfil__principal" class="bg-[#F0D48D] flex flex-col items-center justify-around rounded-[16px] h-[8rem]">
+                    <span id="span__perfil_principal" class="text-3xl">Carregando...</span>
+                    <label class="text-sm">Perfil principal</label>
+                </div>
+                <div class="bg-[#F0D48D] flex flex-col items-center justify-around rounded-[16px] h-[8rem]">
+                    <span id="span__tipo_estabelecimento" class="text-3xl font-black">Carregando...</span>
+                    <label class="text-sm">Estabelecimento</label>
+                </div>
+                <div class="bg-[#F0D48D] flex flex-col items-center justify-around rounded-[16px] h-[8rem]">
+                    <span id="span__eventos-realizados" class="text-6xl font-black">0</span>
+                    <label class="text-sm">Eventos realizados</label>
+                </div>
+            </section>
+
+            <section id="section__2" class="w-2/5 flex flex-col gap-16 font-black bg-[#F0D48D] rounded-[16px] items-center">
+                <h2>Preferência de resultados</h2>
+                <div class="flex flex-col w-4/5">
+                    <label for="select__perfil-sonoro">Perfil Sonoro</label>
+                    <select id="select__perfil-sonoro" class="font-normal">
+                        <option value="">Selecione o perfil</option>
+                    </select>
+                    <hr class="w-1/1">
+                </div>
+                <div class="flex flex-col w-4/5">
+                    <label for="select__local">Local</label>
+                    <select id="select__local" class="font-normal">
+                        <option value="">Não cadastrado no banco</option>
+                    </select>
+                    <hr class="w-1/1">
+                </div>
+                <div class="flex flex-col w-4/5">
+                    <label for="select__genero">Gênero</label>
+                    <select id="select__genero" class="font-normal">
+                        <option value="">Selecione o gênero</option>
+                    </select>
+                    <hr class="w-1/1">
+                </div>
+                <div class="flex flex-col w-4/5">
+                    <label for="select__indice_popularidade">Índice de popularidade</label>
+                    <select id="select__indice_popularidade" class="font-normal">
+                        <option value="">Selecione um perfil</option>
+                    </select>
+                    <hr class="w-1/1">
+                </div>
+            </section>
+
+            <section id="section__3" class="w-2/5 flex flex-col gap-12 font-black bg-[#F0D48D] rounded-[16px] items-center">
+                <h2>Perfis Sonoros</h2>
+                <div onclick="modal()" class="flex gap-1 hover:scale-105 justify-center hover:cursor-pointer items-center">
+                    <h2>Adicionar</h2>
+                    <img class="h-5" src="./assets/icon/icon-mais.svg" alt="Adicionar">
+                </div>
+                <!-- A lista é preenchida com os perfis da empresa logada. -->
+                <div id="div__lista_perfis" class="flex flex-col w-5/6 gap-12"></div>
+            </section>
+        </div>
     </main>
-  </body>
-  <script src="./js/modal.js"></script>
-  <script src="./js/navbar.js"></script>
+
+    <script src="./js/modal.js"></script>
+    <script src="./js/navbar.js"></script>
+</body>
 </html>

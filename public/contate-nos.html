@@ -75,14 +75,15 @@
     <div class="box amarelo">
       <h2>Envie sua mensagem</h2>
 
-      <form>
+      <!-- O submit é tratado por contateNos.js e salvo em lead_contato. -->
+      <form id="form-contato">
         <input id="inptNome" type="text" placeholder="Nome Completo:" required>
         <input id="inptEmail" type="email" placeholder="Email:" required>
         <input id="inptTelefone" type="tel" placeholder="Telefone:">
         <input id="inptAssunto" type="text" placeholder="Assunto:">
         <textarea id="inptMensagem" placeholder="Mensagem:" rows="5"></textarea>
 
-        <button onclick="enviar()" type="submit">ENVIAR</button>
+        <button type="submit">ENVIAR</button>
       </form>
     </div>
 
