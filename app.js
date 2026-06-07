@@ -1,5 +1,5 @@
 var ambiente_processo = 'producao';
-//var ambiente_processo = 'desenvolvimento';
+// var ambiente_processo = 'desenvolvimento';
 
 var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
 // Acima, temos o uso do operador ternário para definir o caminho do arquivo .env
@@ -28,6 +28,9 @@ var perfisRouter = require("./src/routes/perfis");
 var PFRouter = require("./src/routes/PF");
 var dashboardMarketingRouter = require("./src/routes/dashboard-marketing");
 var dashboardCuradorRouter = require("./src/routes/dashboardCurador");
+// Rotas adicionadas para conectar as telas de eventos e chamados ao banco.
+var eventosRouter = require("./src/routes/eventos");
+var chamadosRouter = require("./src/routes/chamados");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -44,6 +47,9 @@ app.use("/perfis", perfisRouter);
 app.use("/PF", PFRouter);
 app.use("/dashboard-marketing", dashboardMarketingRouter);
 app.use("/dashboard", dashboardCuradorRouter);
+// Define os prefixos usados pelos fetches de evento.js e chamado.js.
+app.use("/eventos", eventosRouter);
+app.use("/chamados", chamadosRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

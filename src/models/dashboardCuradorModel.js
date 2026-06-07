@@ -116,17 +116,19 @@ function buscarFiltros(filtros) {
             id_perfil,
             fk_empresa,
             nome,
-            perfil
-        FROM perfil
+            perfil,
+            dancabilidade_alvo,
+            energia_alvo,
+            valence_alvo,
+            acousticness_alvo
+        FROM vw_perfil_sonoro
         WHERE 1 = 1
     `;
-
     if (filtros.empresa) {
         instrucaoSqlPerfil += `
             AND fk_empresa = ${Number(filtros.empresa)}
         `;
     }
-
     instrucaoSqlPerfil += `
         ORDER BY nome;
     `;
