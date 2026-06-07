@@ -57,7 +57,7 @@ async function login() {
                     window.location = "./lista-chamados.html";
                 } else {
                     // USER entra no dashboard comum.
-                    window.location = "./dashboard.html";
+                    window.location = "./dashboard-curador.html";
                 }
             }, 2000);
             return

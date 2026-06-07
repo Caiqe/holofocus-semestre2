@@ -5,17 +5,25 @@
   <title>Eventos - Holofocus</title>
   <link rel="icon" href="./assets/icon/holofocus-06 1.png">
   <link rel="stylesheet" href="css/lista-evento.css">
+  <script src="./js/elementosPadrao.js"></script>
 </head>
 <body onload="validarSessao()">
   <div class="container">
     <aside class="sidebar" id="__header">
-      <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="Holofocus">
-      <ul id="ul_navbar"></ul>
-      <div class="user">
-        <div class="usuario-info"><p id="nome_usuario"></p><img id="icon__admin" src="./assets/icon/icon-admin.png" alt=""></div>
-        <a class="conf" href="editarPerfil.html"><img src="./assets/icon/icon-configuracoes.svg" alt=""> Configurações</a>
-        <button class="logout" onclick="logout()"><img src="assets/imgs/iconSaida.png" alt=""><strong>Sair</strong></button>
-      </div>
+        <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
+        <ul id="ul_navbar"></ul>
+
+        <div class="user">
+            <div class="usuario-info">
+                <p id="nome_usuario"></p>
+                <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
+            </div>
+            <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img
+                    src="./assets/icon/icon-configuracoes.svg" alt="Icone de configurações"> Configurações</a>
+            <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png"
+                    alt=""><strong>
+                    Sair</strong></button>
+        </div>
     </aside>
     <main class="main">
       <div class="header">
@@ -82,4 +90,5 @@
   <script src="./js/navbar.js"></script>
   <script src="./js/evento.js"></script>
 </body>
+<script src="./js/navbar.js"></script>
 </html>

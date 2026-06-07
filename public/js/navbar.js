@@ -19,21 +19,13 @@ if (ul) {
     ul.innerHTML =
       itemMenu("dashmarketing.html", "./assets/icon/icon-gerencia.png", "Resultados") +
       itemMenu("meu-estabelecimento.html", "./assets/icon/icon-estabelecimento.svg", "Estabelecimento") +
-      itemMenu("dashboard.html", "./assets/icon/icon-dashboard.png", "Artistas") +
+      itemMenu("dashboard-curador.html", "./assets/icon/icon-dashboard.png", "Artistas") +
       itemMenu("lista-usuario.html", "./assets/icon/icon-usuarios.png", "Usuários") +
-      itemMenu("lista-evento.html", "./assets/icon/icon-favoritos.png", "Eventos") +
-      itemMenu("lista-chamados.html", "./assets/icon/icon-suporte.png", "Chamados");
-  } else if (nivelAcesso === "2") {
-    // SUPORTE visualiza apenas a área necessária para tratar chamados.
-    ul.innerHTML = itemMenu(
-      "lista-chamados.html",
-      "./assets/icon/icon-suporte.png",
-      "Chamados"
-    );
+      itemMenu("lista-evento.html", "./assets/icon/icon-favoritos.png", "Eventos")
   } else {
     // USER mantém os acessos operacionais a artistas, eventos e chamados.
     ul.innerHTML =
-      itemMenu("dashboard.html", "./assets/icon/icon-dashboard.png", "Artistas") +
+      itemMenu("dashboard-curador.html", "./assets/icon/icon-dashboard.png", "Artistas") +
       itemMenu("lista-evento.html", "./assets/icon/icon-favoritos.png", "Eventos") +
       itemMenu("lista-chamados.html", "./assets/icon/icon-suporte.png", "Chamados");
   }

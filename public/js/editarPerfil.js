@@ -117,7 +117,7 @@ function voltar() {
         window.location.href = "/lista-chamados.html";
     // USER retorna ao dashboard comum.
     } else {
-        window.location.href = "/dashboard.html";
+        window.location.href = "/dashboard-curador.html";
     }
 }
 
