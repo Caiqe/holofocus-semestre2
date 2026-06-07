@@ -410,9 +410,11 @@ async function atualizarGraficoMusicas() {
         graficoMusicas.update();
         return;
     }
+
     const ids = artistasFiltrados
         .map(artista => artista.id_artista)
         .join(',');
+
     const resposta = await fetch(
         `/dashboard/top-musicas-artistas?ids=${ids}`
     );
@@ -430,6 +432,11 @@ async function atualizarGraficoMusicas() {
         '#B587D1',
         '#EFD38D'
     ];
+    const maiorStreamGeral = Math.max(
+        ...musicas.map(
+            musica => Number(musica.contagem_streams)
+        )
+    );
 
     let datasets = [];
 
@@ -448,11 +455,6 @@ async function atualizarGraficoMusicas() {
                         Number(b.contagem_streams) -
                         Number(a.contagem_streams)
                 );
-            const maiorStreamArtista = Math.max(
-                ...musicasArtista.map(
-                    musica => Number(musica.contagem_streams)
-                )
-            );
             const musica = musicasArtista[posicao];
             if (musica) {
                 const streamMusica =
@@ -461,7 +463,7 @@ async function atualizarGraficoMusicas() {
                     Math.max(
                         2,
                         Math.round(
-                            (streamMusica / maiorStreamArtista) * 100
+                            (streamMusica / maiorStreamGeral) * 100
                         )
                     )
                 );
