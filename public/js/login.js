@@ -38,7 +38,7 @@ async function login() {
                 } else if (resp.nivelAcesso == 1) {
                     window.location = "./dashmarketing.html";
                 } else if (resp.nivelAcesso == 2) {
-                    window.location = "./dashboard.html";
+                    window.location = "./dashboard-curador.html";
                 } else {
                     window.location = "./lista-chamados.html";
                 }

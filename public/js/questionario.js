@@ -395,7 +395,7 @@ formResultado.addEventListener("submit", async function (e) {
 
         sessionStorage.PERFIL = r.id_perfil
 
-        window.location = "../dashboard.html";
+        window.location = "../dashboard-curador.html";
 
     } catch (error) {
         console.error("Erro:", error)

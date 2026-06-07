@@ -8,8 +8,8 @@ public class Conexao {
     private DataSource conexao;
     public Conexao() {
         DriverManagerDataSource driver = new DriverManagerDataSource();
-        driver.setUsername("root");
-        driver.setPassword("123456");
+        driver.setUsername(System.getenv("USER_JAVA"));
+        driver.setPassword(System.getenv("SENHA_JAVA"));
         driver.setUrl("jdbc:mysql://mysql-container:3306/holofocus");
         driver.setDriverClassName("com.mysql.cj.jdbc.Driver");
         this.conexao = driver;

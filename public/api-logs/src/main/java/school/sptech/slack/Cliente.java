@@ -1,15 +1,25 @@
 package school.sptech.slack;
 
-import io.github.cdimascio.dotenv.Dotenv;
+import java.io.IOException;
 
 public class Cliente extends Usuario {
 
-    private static final String URL = Dotenv.configure()
-            .directory("C:/Users/Lneve/Downloads/githolofocus/holofocus-semestre2")
-            .load()
-            .get("SLACK_CLIENTE_URL");
-
     public Cliente(String nome, String email) {
-        super(nome, email, URL);
+        super(nome, email, getSlackUrl());
+    }
+
+    private static String getSlackUrl() {
+        String url = System.getenv("SLACK_CLIENTE_URL");
+        if (url == null || url.isBlank()) {
+            throw new IllegalArgumentException("ERRO: Variável SLACK_CLIENTE_URL não configurada!");
+        }
+        return url;
+    }
+
+    @Override
+    public void enviarMensagem() throws IOException, InterruptedException {
+        String mensagem = "Olá, " + getNome() + "! Temos novidades por aqui. " +
+                "Acesse a plataforma holofocus e fique por dentro das novas tendências!";
+        Slack.enviarMensagem(mensagem, getSlackUrl());
     }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Editar Perfil</title>
@@ -7,71 +8,58 @@
     <link rel="stylesheet" href="css/editarPerfil.css">
     <script src="./js/elementosPadrao.js"></script>
 </head>
+
 <body onload="validarSessao()">
-<button onclick="voltar()" class="botao-voltar">↩</button>
+    <button onclick="voltar()" class="botao-voltar">↩</button>
 
-   <svg class="svg">
-      <path class="path"></path>
-   </svg>
-   <svg>
-      <path></path>
-   </svg>
+    <svg class="svg">
+        <path class="path"></path>
+    </svg>
+    <svg>
+        <path></path>
+    </svg>
 
 
-<div class="container">
-   
-    <div class="card">
-        <div class="topo">
-            <h2><strong>Editar perfil </strong></h2>
-            <button onclick="voltar()" class="btx"><img src="assets/imgs/IconX.png" alt=""></button>
-        </div>
-
-        <form>
-            <label>Nome</label>
-            <input type="text">
-
-            <div class="linha">
-                <div class="campo">
-                    <label>E-mail</label>
-                    <input type="email">
-                </div>
-
-                <div class="campo">
-                    <label>Celular</label>
-                    <input type="text" placeholder="(99) 99999-9999">
-                </div>
+    <div class="container">
+        <div class="card">
+            <div class="topo">
+                <h2><strong>Editar perfil </strong></h2>
+                <button onclick="voltar()" class="btx"><img src="assets/imgs/IconX.png" alt=""></button>
             </div>
 
-            <label>Senha</label>
-            <input type="password">
+            <form id="formEditarPerfil">
+                <label>Nome</label>
+                <input type="text" id="inputNome">
 
-            <label>Confirma senha</label>
-            <input type="password">
+                <div class="linha">
+                    <div class="campo">
+                        <label>E-mail</label>
+                        <input type="email" id="inputEmail">
+                    </div>
 
-            <label>Nível de permissão</label>
-            <select>
-                <option>selecionar</option>
-            </select>
+                    <div class="campo">
+                        <label>Celular</label>
+                        <input type="text" id="inputCelular" placeholder="(99) 99999-9999">
+                    </div>
+                </div>
 
-            <button type="submit">SALVAR</button>
-        </form>
+                <label>Senha</label>
+                <input type="password" id="inputSenha">
+
+                <label>Confirma senha</label>
+                <input type="password" id="inputConfirmarSenha">
+
+                <label>Nível de permissão</label>
+                <select id="selectPermissao">
+                    <option value="">selecionar</option>
+                </select>
+
+                <button type="submit">SALVAR</button>
+            </form>
+        </div>
     </div>
-</div>
 
 </body>
-<script>
-    
-    const voltar = () => {
-        const nivelAcesso = sessionStorage.NIVEL_ACESSO;
+<script></script>
 
-        if(nivelAcesso == null || nivelAcesso == ""){
-            sessionStorage.clear()
-            window.location.href = "/";
-        }else if( nivelAcesso == 1){
-            window.location.href = "/dashmarketing.html"
-        }else if( nivelAcesso == 2){
-           window.location.href = "/dashboard.html"
-        }
-    }
-</script>
 </html>

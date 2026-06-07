@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="css/lista-evento.css">
+    <link rel="stylesheet" href="./css/dashboardCurador.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="flex flex-row h-screen bg-[#1A1A1A]" onload="iniciarDashboard()">
+    <aside class="sidebar" id="__header">
+        <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
+        <ul id="ul_navbar"></ul>
+
+        <div class="user">
+            <div class="usuario-info">
+                <p id="nome_usuario"></p>
+                <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
+            </div>
+            <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img
+                    src="./assets/icon/icon-configuracoes.svg" alt="Icone de configurações"> Configurações</a>
+            <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png"
+                    alt=""><strong>
+                    Sair</strong></button>
+        </div>
+    </aside>
+
+    <div class="dashboard flex flex-row justify-between w-[82%] h-[96.8vh] m-[10px] bg-black rounded-2xl p-[1%]">
+        <div class="container1 flex flex-col justify-between w-full">
+            <div class="containerApresentacao flex justify-between p-[1%]">
+                <div class="containerTitulo">
+                    <h1 class="nomeArtistaGrande text-[#EFD38D] font-black text-[1.31rem] leading-7">Análise de
+                        Compatibilidade Artística</h1>
+                    <p>Recorte principal: último trimestre disponível na base (01/10/2025 a 31/12/2025) <br>
+                        Compatibilidade calculada no período; top músicas exibidas pelo histórico acumulado de streams.
+                    </p>
+                </div>
+                <div class="containerSeletores flex justify-between w-[46%]">
+                    <div class="seletor flex flex-col w-[24%]">
+                        <label>Perfil Sonoro</label>
+                        <select id="selectPerfilSonoro" onchange="filtrarDashboard()">
+                            <option value="">selecionar</option>
+                        </select>
+                    </div>
+                    <div class="seletor flex flex-col w-[24%]">
+                        <label>Gênero</label>
+                        <select id="selectGenero" onchange="filtrarDashboard()">
+                            <option value="">selecionar</option>
+                        </select>
+                    </div>
+                    <div class="seletor flex flex-col w-[24%]">
+                        <label>Popularidade</label>
+                        <select id="selectPopularidade" onchange="filtrarDashboard()">
+                            <option value="">selecionar</option>
+                            <option value="0-25">0-25</option>
+                            <option value="26-50">26-50</option>
+                            <option value="51-70">51-70</option>
+                            <option value="71-100">71-100</option>
+                        </select>
+                    </div>
+                    <div class="seletor flex flex-col w-[24%]">
+                        <label>País</label>
+                        <select id="selectPais" onchange="filtrarDashboard()">
+                            <option value="">selecionar</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="containersInternos flex justify-between h-[90%]">
+                <div class="containerInterno1 flex flex-col w-[35%] gap-[2%]">
+                    <div class="box1 bg-[#272727] p-[3%] rounded-xl h-[43%] flex flex-col justify-between">
+                        <h2>Popularidade/ Streams</h2>
+                        <div class="graficoBarras">
+                            <canvas id="graficoBarras"></canvas>
+                        </div>
+                    </div>
+                    <div class="box2 bg-[#272727] p-[3%] rounded-xl h-[62%] flex flex-col justify-between">
+                        <h2>Streams das cinco músicas mais <br>escutadas de cada artista</h2>
+                        <div class="graficoMusicas">
+                            <canvas id="graficoMusicas"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="containerInterno2 flex flex-col gap-[2%] w-[64%]">
+                    <div class="box3 bg-[#272727] p-[1.4%] rounded-xl h-full flex flex-col justify-between flex-col">
+                        <p>Selecione um artista para ver insights relacionados</p>
+                        <div class="artistaSelecionado flex flex-row h-[92%] gap-[1.8%]">
+                            <div id="listaArtistas"
+                                class="listaArtistas flex flex-col rounded-2xl bg-[#313030] w-[20%]">
+                                <div class="top5Titulo text-[#EFD38D] text-center mt-4 font-bold h-[7%]">
+                                    <h1>Top 5 artistas</h1>
+                                </div>
+                            </div>
+                            <div class="kpiArtistaSelecionado flex flex-col w-[78%] gap-[1.8%]">
+                                <h1 id="nomeArtistaSelecionado"
+                                    class="nomeArtistaGrande text-[#EFD38D] font-black text-[20px] leading-5">Nenhum
+                                    artista selecionado</h1>
+                                <div class="artistaSelecionadoColuna2 flex flex-col gap-[1.8%] flex-1 min-h-0 overflow-hidden">
+                                    <div class="informacoesKPI flex flex-row justify-center m-3 shrink-0">
+                                        <div class="info">
+                                            <p>Gênero <br> dominante</p>
+                                            <h1 id="kpiGenero">**</h1>
+                                        </div>
+                                        <div class="info">
+                                            <p>Média de <br> streams</p>
+                                            <h1 id="kpiStreams">**</h1>
+                                        </div>
+                                        <div class="info">
+                                            <p>Média de <br> popularidade</p>
+                                            <h1 id="kpiPopularidade">**</h1>
+                                        </div>
+                                        <div class="infoDiferente">
+                                            <p>Lançamentos do <br> último ano</p>
+                                            <h1 id="kpiLancamentos">**</h1>
+                                        </div>
+                                    </div>
+                                    <div class="containerInternoAS flex flex-col gap-[10px] flex-1 min-h-0 overflow-hidden">
+                                        <div
+                                            class="KPIsCrescimento bg-[#313030] pt-4 pr-4 pb-4 pl-4 rounded-xl h-[22%] flex flex-col justify-between">
+                                            <div class="crescimentoContainer flex flex-row">
+                                                <div class="crescimento border-r border-solid border-[#F0D48D]">
+                                                    <h1>Variação de streams</h1>
+                                                    <div class="setaCrescimento">
+                                                        <img class="seta w-[10%]" src="./assets/icon/seta.png"
+                                                            alt="seta para cima">
+                                                        <p id="crescimentoStreams">-</p>
+                                                    </div>
+                                                </div>
+                                                <div class="crescimento">
+                                                    <h1>Variação de popularidade</h1>
+                                                    <div class="setaCrescimento">
+                                                        <img class="seta w-[10%]" src="./assets/icon/seta.png"
+                                                            alt="seta para cima">
+                                                        <p id="crescimentoPopularidade">-</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="legenda">
+                                                <p>
+                                                    **Variação em relação ao último trimestre</p>
+                                            </div>
+                                        </div>
+                                        <div class="graficosArtistaSelecionado flex justify-between flex-1 min-h-0 overflow-hidden">
+                                            <div
+                                                class="graficoContainer flex flex-col bg-[#313030] p-[3%] rounded-xl w-[49%]">
+                                                <h1>Distribuição de popularidade das músicas</h1>
+                                                <div class="graficoHistograma">
+                                                    <canvas id="graficoHistograma"></canvas>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="graficoContainer flex flex-col bg-[#313030] p-[3%] rounded-xl w-[49%]">
+                                                <h1>Relação do perfil da casa com o artista</h1>
+                                                <div class="graficoRadarContainer">
+                                                    <canvas id="graficoRadar"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/elementosPadrao.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script src="./js/dashboard.js"></script>
+</body>
+
+</html>
