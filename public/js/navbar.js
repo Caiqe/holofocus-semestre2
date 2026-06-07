@@ -26,7 +26,6 @@ if (ul) {
     // USER mantém os acessos operacionais a artistas, eventos e chamados.
     ul.innerHTML =
       itemMenu("dashboard-curador.html", "./assets/icon/icon-dashboard.png", "Artistas") +
-      itemMenu("lista-evento.html", "./assets/icon/icon-favoritos.png", "Eventos") +
-      itemMenu("lista-chamados.html", "./assets/icon/icon-suporte.png", "Chamados");
+      itemMenu("lista-evento.html", "./assets/icon/icon-favoritos.png", "Eventos");
   }
 }

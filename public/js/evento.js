@@ -38,15 +38,18 @@ async function carregarOpcoesEvento() {
 }
 
 function renderEventos(lista = eventosState.lista) {
-    // Monta as linhas usando os eventos já carregados.
-    // Obtém o corpo da tabela.
     const corpo = document.getElementById("corpo-eventos");
-    // Exibe linhas quando há eventos ou uma mensagem quando a lista está vazia.
+    const nivelAcesso = sessionStorage.NIVEL_ACESSO;
+
     corpo.innerHTML = lista.length ? lista.map(item => `
-        <!-- Mostra nome, público, data e botão de edição. -->
         <tr><td>${item.nome_evento}</td><td>${item.total_pessoas || 0}</td>
         <td>${new Date(item.data_evento).toLocaleDateString("pt-BR")}</td>
-        <td><button class="edit" onclick="abrirEdicaoEvento(${item.id_evento})"><img src="assets/imgs/IconLapis.png" alt=""> Editar</button></td></tr>
+        <td>
+            ${nivelAcesso === "1"
+                ? `<button class="edit" onclick="abrirEdicaoEvento(${item.id_evento})"><img src="assets/imgs/IconLapis.png" alt=""> Editar</button>`
+                : `<button class="edit" onclick="abrirEdicaoEvento(${item.id_evento})">Visualizar</button>`
+            }
+        </td></tr>
     `).join("") : '<tr><td colspan="4">Nenhum evento cadastrado.</td></tr>';
 }
 
