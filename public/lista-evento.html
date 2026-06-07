@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <title>Eventos - Holofocus</title>
@@ -7,34 +8,42 @@
   <link rel="stylesheet" href="css/lista-evento.css">
   <script src="./js/elementosPadrao.js"></script>
 </head>
+
 <body onload="validarSessao()">
   <div class="container">
     <aside class="sidebar" id="__header">
-        <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
-        <ul id="ul_navbar"></ul>
+      <img id="logo__header" src="assets/imgs/holofocus-06.svg" alt="logo holofocus">
+      <ul id="ul_navbar"></ul>
 
-        <div class="user">
-            <div class="usuario-info">
-                <p id="nome_usuario"></p>
-                <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
-            </div>
-            <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img
-                    src="./assets/icon/icon-configuracoes.svg" alt="Icone de configurações"> Configurações</a>
-            <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png"
-                    alt=""><strong>
-                    Sair</strong></button>
+      <div class="user">
+        <div class="usuario-info">
+          <p id="nome_usuario"></p>
+          <img id="icon__admin" src="./assets/icon/icon-admin.png" alt="Icone de admin">
         </div>
+        <a class="conf" id="btt___configuracoes" href="editarPerfil.html"><img
+            src="./assets/icon/icon-configuracoes.svg" alt="Icone de configurações"> Configurações</a>
+        <button class="logout" id="btt__sair" onclick="logout()"><img src="assets/imgs/iconSaida.png" alt=""><strong>
+            Sair</strong></button>
+      </div>
     </aside>
     <main class="main">
       <div class="header">
         <h1>Eventos</h1>
         <div class="actions">
           <input id="pesquisa-evento" type="text" placeholder="Pesquisar">
-          <button class="btn-yellow" onclick="abrirModal('cadastrar')" title="Cadastrar evento"><img src="assets/imgs/iconMais.png" alt=""></button>
+          <button class="btn-yellow" onclick="abrirModal('cadastrar')" title="Cadastrar evento"><img
+              src="assets/imgs/iconMais.png" alt=""></button>
         </div>
       </div>
       <table>
-        <thead><tr><th>Identificação</th><th>Público</th><th>Data</th><th></th></tr></thead>
+        <thead>
+          <tr>
+            <th>Identificação</th>
+            <th>Público</th>
+            <th>Data</th>
+            <th></th>
+          </tr>
+        </thead>
         <!-- evento.js cria as linhas com os registros retornados pelo banco. -->
         <tbody id="corpo-eventos"></tbody>
       </table>
@@ -43,46 +52,63 @@
 
   <div class="desfoque" id="desfoque-cadastrar">
     <div class="overlay" id="overlay-cadastrar" onclick="fecharOverlay(event,'cadastrar')">
-      <div class="modal"><div class="cardP">
-        <div class="topo"><h2>Cadastrar Evento</h2><button type="button" class="btx" onclick="fecharModal('cadastrar')"><img src="assets/imgs/iconX.png" alt=""></button></div>
-        <form id="form-cadastrar-evento">
-          <label>Nome do evento</label><input id="evento-nome" required>
-          <label>Artista contratado</label><select id="evento-artista" required></select>
-          <label>Principal gênero musical</label><select id="evento-genero" required></select>
-          <label>Data</label><input id="evento-data" type="date" required>
-          <div class="linha2">
-            <div class="campo"><label>Investimento</label><input id="evento-investimento" type="number" min="0"></div>
-            <div class="campo"><label>Retorno</label><input id="evento-retorno" type="number" min="0"></div>
-            <div class="campo"><label>Público</label><input id="evento-publico" type="number" min="0"></div>
+      <div class="modal">
+        <div class="cardP">
+          <div class="topo">
+            <h2>Cadastrar Evento</h2><button type="button" class="btx" onclick="fecharModal('cadastrar')"><img
+                src="assets/imgs/iconX.png" alt=""></button>
           </div>
-          <button class="buttonP">SALVAR</button>
-        </form>
-      </div></div>
+          <form id="form-cadastrar-evento">
+            <label>Nome do evento</label><input id="evento-nome" required>
+            <label>Artista contratado</label><select id="evento-artista" required></select>
+            <label>Principal gênero musical</label><select id="evento-genero" required></select>
+            <label>Data</label><input id="evento-data" type="date" required>
+            <div class="linha2">
+              <div class="campo"><label>Investimento</label><input id="evento-investimento" type="number" min="0"></div>
+              <div class="campo"><label>Retorno</label><input id="evento-retorno" type="number" min="0"></div>
+              <div class="campo"><label>Público</label><input id="evento-publico" type="number" min="0"></div>
+            </div>
+            <button class="buttonP">SALVAR</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="desfoque" id="desfoque-editar">
     <div class="overlay" id="overlay-editar" onclick="fecharOverlay(event,'editar')">
-      <div class="modal"><div class="cardE">
-        <div class="topo"><h2>Editar Evento</h2><button type="button" class="btx2" onclick="fecharModal('editar')"><img src="assets/imgs/iconX.png" alt=""></button></div>
-        <form id="form-editar-evento">
-          <label>Nome do evento</label><input id="editar-evento-nome" required>
-          <label>Artista contratado</label><select id="editar-evento-artista" required></select>
-          <label>Principal gênero musical</label><select id="editar-evento-genero" required></select>
-          <label>Data</label><input id="editar-evento-data" type="date" required>
-          <div class="linha3">
-            <div class="campo"><label>Investimento</label><input id="editar-evento-investimento" type="number" min="0"></div>
-            <div class="campo"><label>Retorno</label><input id="editar-evento-retorno" type="number" min="0"></div>
-            <div class="campo"><label>Público</label><input id="editar-evento-publico" type="number" min="0"></div>
+      <div class="modal">
+        <div class="cardE">
+          <div class="topo">
+            <h2>Editar Evento</h2><button type="button" class="btx2" onclick="fecharModal('editar')"><img
+                src="assets/imgs/iconX.png" alt=""></button>
           </div>
-          <div class="linhaB"><button class="buttonS">SALVAR</button><button id="excluir-evento" type="button" class="buttonE">EXCLUIR</button></div>
-        </form>
-      </div></div>
+          <form id="form-editar-evento">
+            <label>Nome do evento</label><input id="editar-evento-nome" required>
+            <label>Artista contratado</label><select id="editar-evento-artista" required></select>
+            <label>Principal gênero musical</label><select id="editar-evento-genero" required></select>
+            <label>Data</label><input id="editar-evento-data" type="date" required>
+            <div class="linha3">
+              <div class="campo"><label>Investimento</label><input id="editar-evento-investimento" type="number"
+                  min="0"></div>
+              <div class="campo"><label>Retorno</label><input id="editar-evento-retorno" type="number" min="0"></div>
+              <div class="campo"><label>Público</label><input id="editar-evento-publico" type="number" min="0"></div>
+            </div>
+            <div id="options_gerente" class="linhaB"><button class="buttonS">SALVAR</button><button id="excluir-evento"
+                type="button" class="buttonE">EXCLUIR</button></div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    function abrirModal(id) { document.getElementById('overlay-' + id).classList.add('open'); document.getElementById('desfoque-' + id).classList.add('open'); }
+    function abrirModal(id) { 
+      document.getElementById('overlay-' + id).classList.add('open'); 
+      document.getElementById('desfoque-' + id).classList.add('open'); 
+      if (sessionStorage.NIVEL_ACESSO == 3) {
+        document.getElementById("options_gerente").style.display = "none";
+      } }
     function fecharModal(id) { document.getElementById('overlay-' + id).classList.remove('open'); document.getElementById('desfoque-' + id).classList.remove('open'); }
     function fecharOverlay(event, id) { if (event.target === document.getElementById('overlay-' + id)) fecharModal(id); }
   </script>
@@ -91,4 +117,5 @@
   <script src="./js/evento.js"></script>
 </body>
 <script src="./js/navbar.js"></script>
+
 </html>
