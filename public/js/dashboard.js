@@ -514,15 +514,15 @@ function carregarListaArtistas() {
     listaArtistas.innerHTML = `
         <div class="top5Titulo text-[#EFD38D] text-center mt-4 font-bold h-[7%]">
             <h1>Top 5 artistas</h1>
-        </div>
-    `;
-    artistasFiltrados.forEach(artista => {
+        </div>`;
+    artistasFiltrados.forEach((artista, index) => {
         listaArtistas.innerHTML += `
             <label class="linha">
                 <input
                     type="radio"
                     name="artista"
                     onchange="selecionarArtista(${artista.id_artista})"
+                    ${index == 0 ? 'checked' : ''}
                 >
                 <div class="radio-custom"></div>
                 <span>${artista.nome}</span>
