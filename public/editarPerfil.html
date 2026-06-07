@@ -4,62 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Perfil</title>
-    <link rel="icon" href="./assets/icon/holofocus-06 1.png" />
+    <link rel="icon" href="./assets/icon/holofocus-06 1.png">
     <link rel="stylesheet" href="css/editarPerfil.css">
     <script src="./js/elementosPadrao.js"></script>
 </head>
 
 <body onload="validarSessao()">
-    <button onclick="voltar()" class="botao-voltar">↩</button>
+    <button onclick="voltar()" class="botao-voltar">&larr;</button>
 
-    <svg class="svg">
-        <path class="path"></path>
-    </svg>
-    <svg>
-        <path></path>
-    </svg>
-
+    <svg class="svg"><path class="path"></path></svg>
+    <svg><path></path></svg>
 
     <div class="container">
         <div class="card">
             <div class="topo">
-                <h2><strong>Editar perfil </strong></h2>
-                <button onclick="voltar()" class="btx"><img src="assets/imgs/IconX.png" alt=""></button>
+                <h2><strong>Editar perfil</strong></h2>
+                <button onclick="voltar()" class="btx">
+                    <img src="assets/imgs/IconX.png" alt="Fechar">
+                </button>
             </div>
 
-            <form id="formEditarPerfil">
+            <!-- IDs adicionados para carregar e salvar os dados pela rota de usuários. -->
+            <form id="form-editar-perfil">
                 <label>Nome</label>
-                <input type="text" id="inputNome">
+                <input id="perfil-nome" type="text" required>
 
                 <div class="linha">
                     <div class="campo">
                         <label>E-mail</label>
-                        <input type="email" id="inputEmail">
+                        <input id="perfil-email" type="email" required>
                     </div>
-
                     <div class="campo">
                         <label>Celular</label>
-                        <input type="text" id="inputCelular" placeholder="(99) 99999-9999">
+                        <input id="perfil-telefone" type="text" placeholder="(99) 99999-9999" required>
                     </div>
                 </div>
 
                 <label>Senha</label>
-                <input type="password" id="inputSenha">
+                <input id="perfil-senha" type="password" placeholder="Preencha somente para alterar">
 
                 <label>Confirma senha</label>
-                <input type="password" id="inputConfirmarSenha">
+                <input id="perfil-confirmar-senha" type="password">
 
                 <label>Nível de permissão</label>
-                <select id="selectPermissao">
-                    <option value="">selecionar</option>
-                </select>
+                <select id="perfil-nivel" required></select>
 
                 <button type="submit">SALVAR</button>
             </form>
         </div>
     </div>
 
+    <!-- Conecta este formulário ao backend de usuários. -->
+    <script src="./js/editarPerfil.js"></script>
 </body>
-<script></script>
-
 </html>

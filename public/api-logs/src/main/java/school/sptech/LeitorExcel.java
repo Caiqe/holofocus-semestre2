@@ -33,9 +33,9 @@ public class LeitorExcel {
 
     private List<Log> logs = new ArrayList<>();
     private Long tempoDecorrido;
+    private List<Artista> artistas = new ArrayList<>();
 
     public List<Artista> extrairDados(String bucketName, String keyName) {
-        List<Artista> artistas = new ArrayList<>();
         Log log;
 
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()

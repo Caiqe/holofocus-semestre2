@@ -1,99 +1,131 @@
-const voltar = () => {
-    const nivelAcesso = sessionStorage.NIVEL_ACESSO;
+// Carrega os níveis de acesso usados no cadastro de usuários.
+function carregarNiveisPerfil() {
+    // Solicita ao backend os níveis cadastrados na tabela nivel_acesso.
+    return fetch("/usuarios/niveis").then(function (resposta) {
+        // Converte o corpo HTTP em uma lista de níveis utilizável pelo JavaScript.
+        return resposta.json();
+    }).then(function (niveis) {
+        // Mantém uma opção vazia para obrigar uma escolha válida no formulário.
+        var opcoes = '<option value="">Selecionar</option>';
 
-    if (nivelAcesso == null || nivelAcesso == "") {
-        sessionStorage.clear()
-        window.location.href = "/";
-    } else if (nivelAcesso == 1) {
-        window.location.href = "/dashmarketing.html"
-    } else if (nivelAcesso == 2) {
-        window.location.href = "/dashboard-curador.html"
-    }
+        for (var i = 0; i < niveis.length; i++) {
+            // Usa o ID como valor enviado e o tipo de acesso como texto visível.
+            opcoes += '<option value="' + niveis[i].id_nivel_acesso + '">' +
+                niveis[i].tipo_acesso + '</option>';
+        }
+
+        // Coloca no select as opções montadas com os registros do banco.
+        document.getElementById("perfil-nivel").innerHTML = opcoes;
+    });
 }
 
-const formulario = document.getElementById("formEditarPerfil");
+// Busca no banco o usuário salvo na sessão do navegador.
+function carregarPerfilPessoal() {
+    // Recupera o usuário autenticado para montar a URL de consulta.
+    var idUsuario = sessionStorage.ID_USUARIO;
+    // Informa também a empresa para impedir a leitura de usuário de outra empresa.
+    var idEmpresa = sessionStorage.EMPRESA;
 
-formulario.addEventListener("submit", editarPerfil);
+    // Consulta somente o usuário da sessão dentro da empresa da sessão.
+    return fetch("/usuarios/" + idUsuario + "?idEmpresa=" + idEmpresa)
+        .then(function (resposta) {
+            // Interrompe o preenchimento se o backend não encontrar ou rejeitar a consulta.
+            if (!resposta.ok) {
+                throw new Error("Não foi possível carregar o perfil");
+            }
+            // Converte o registro retornado pelo backend em objeto JavaScript.
+            return resposta.json();
+        }).then(function (usuario) {
+            // Preenche cada campo editável com seu valor atual no banco.
+            document.getElementById("perfil-nome").value = usuario.nome;
+            document.getElementById("perfil-email").value = usuario.email;
+            document.getElementById("perfil-telefone").value = usuario.telefone;
+            document.getElementById("perfil-nivel").value = usuario.fk_nivel_acesso;
+        });
+}
 
-async function editarPerfil(event) {
-    event.preventDefault();
+document.getElementById("form-editar-perfil").addEventListener("submit", function (evento) {
+    // Evita que o navegador recarregue a página antes do PUT terminar.
+    evento.preventDefault();
 
-    const usuario = sessionStorage.ID_USUARIO;
-    const nome = document.getElementById("inputNome").value;
-    const email = document.getElementById("inputEmail").value;
-    const celular = document.getElementById("inputCelular").value;
-    const senha = document.getElementById("inputSenha").value;
-    const confirmarSenha = document.getElementById("inputConfirmarSenha").value;
-    const permissao = document.getElementById("selectPermissao").value;
+    // Lê separadamente as senhas para conferir a confirmação antes do envio.
+    var senha = document.getElementById("perfil-senha").value;
+    var confirmarSenha = document.getElementById("perfil-confirmar-senha").value;
 
-    if (senha !== confirmarSenha) {
-        alert("As senhas não coincidem");
+    // Não permite enviar duas senhas diferentes ao backend.
+    if (senha != confirmarSenha) {
+        alert("As senhas não conferem");
         return;
     }
 
-    const dadosPerfil = {
-        usuario,
-        nome,
-        email,
-        celular,
-        senha,
-        permissao
+    // Monta o mesmo formato esperado pelo PUT /usuarios/:idUsuario.
+    var dados = {
+        // Os nomes correspondem aos campos esperados pelo usuarioController.
+        nome: document.getElementById("perfil-nome").value,
+        email: document.getElementById("perfil-email").value,
+        // Remove máscara e envia apenas os dígitos do telefone.
+        telefone: document.getElementById("perfil-telefone").value.replace(/\D/g, ""),
+        // Converte IDs vindos do HTML e da sessão para números.
+        nivelAcesso: Number(document.getElementById("perfil-nivel").value),
+        idEmpresa: Number(sessionStorage.EMPRESA),
+        // Uma string vazia sinaliza ao model que a senha atual deve ser preservada.
+        senha: senha
     };
 
-    try {
-        const resposta = await fetch("/perfis/editarPerfil", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(dadosPerfil)
-        });
-
-        const resultado = await resposta.json();
-
-        if (resposta.ok) {
-            alert("Perfil atualizado com sucesso!");
-            console.log(resultado);
-        } else {
-            alert(resultado.mensagem || "Erro ao atualizar perfil");
+    // Atualiza a tabela usuario; senha vazia mantém a senha atual.
+    fetch("/usuarios/" + sessionStorage.ID_USUARIO, {
+        // PUT representa a alteração do registro já existente.
+        method: "PUT",
+        // Avisa ao Express que o corpo está em JSON.
+        headers: { "Content-Type": "application/json" },
+        // Converte o objeto para o texto enviado no corpo HTTP.
+        body: JSON.stringify(dados)
+    }).then(function (resposta) {
+        // Tenta aproveitar a mensagem de validação enviada pelo backend.
+        if (!resposta.ok) {
+            return resposta.json().then(function (erro) {
+                throw new Error(erro.mensagem || "Erro ao editar perfil");
+            });
         }
 
-    } catch (erro) {
-        console.error("Erro na requisição:", erro);
-        alert("Erro ao conectar com o servidor");
-    }
-} 
+        // Atualiza a sessão para navbar e redirecionamentos refletirem os novos dados.
+        sessionStorage.NOME_USUARIO = dados.nome;
+        sessionStorage.EMAIL_USUARIO = dados.email;
+        sessionStorage.NIVEL_ACESSO = dados.nivelAcesso;
+        // Só informa sucesso depois que o backend confirmou a atualização.
+        alert("Perfil atualizado com sucesso");
+        voltar();
+    }).catch(function (erro) {
+        // Exibe falhas HTTP, validações do backend ou problemas de conexão.
+        alert(erro.message);
+    });
+});
 
-async function carregarDadosPerfil() {
-    const usuario = sessionStorage.ID_USUARIO;
-    try {
-        const resposta = await fetch(`/perfis/buscarPerfilAtual/${usuario}`);
-        const resultado = await resposta.json();
+function voltar() {
+    // Retorna cada nível para sua página principal.
+    var nivelAcesso = sessionStorage.NIVEL_ACESSO;
 
-        if (resposta.ok && resultado.length > 0) {
-            const perfil = resultado[0];
-
-            document.getElementById("inputNome").value = perfil.nome;
-            document.getElementById("inputEmail").value = perfil.email;
-            document.getElementById("inputCelular").value = perfil.celular;
-            document.getElementById("inputSenha").value = perfil.senha;
-            document.getElementById("inputConfirmarSenha").value = perfil.senha;
-
-            const select = document.getElementById("selectPermissao");
-            for (let option of select.options) {
-                if (option.value === perfil.permissao) {
-                    option.selected = true;
-                    break;
-                }
-            }
-        } else {
-            alert("Erro ao carregar dados do perfil");
-        }
-
-    } catch (erro) {
-        console.error("Erro ao buscar perfil:", erro);
-        alert("Erro ao conectar com o servidor");
+    // Sem nível válido, limpa uma possível sessão incompleta e volta ao início.
+    if (!nivelAcesso) {
+        sessionStorage.clear();
+        window.location.href = "/";
+    // GESTOR acessa a área administrativa.
+    } else if (nivelAcesso == 1) {
+        window.location.href = "/dashmarketing.html";
+    // SUPORTE retorna à lista usada para atender chamados.
+    } else if (nivelAcesso == 2) {
+        window.location.href = "/lista-chamados.html";
+    // USER retorna ao dashboard comum.
+    } else {
+        window.location.href = "/dashboard-curador.html";
     }
 }
 
-window.addEventListener("DOMContentLoaded", carregarDadosPerfil);
+// Os níveis devem ser carregados antes para que o valor atual possa ser selecionado.
+carregarNiveisPerfil()
+    // Aguarda o select existir para conseguir selecionar o nível atual do usuário.
+    .then(carregarPerfilPessoal)
+    .catch(function (erro) {
+        // Centraliza o erro de qualquer uma das duas consultas iniciais.
+        alert(erro.message);
+    });
