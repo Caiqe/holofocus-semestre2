@@ -4,6 +4,7 @@ let graficoRadar;
 let graficoHistograma;
 
 let artistasFiltrados = [];
+let perfilRadarPadrao = null;
 
 async function iniciarDashboard() {
     validarSessao();
@@ -18,7 +19,10 @@ async function carregarFiltros() {
         empresa
     });
 
-    const resposta = await fetch(`/dashboard/filtros?${parametros.toString()}`);
+    const resposta = await fetch(
+        `/dashboard/filtros?${parametros.toString()}`
+    );
+
     const dados = await resposta.json();
 
     selectGenero.innerHTML =
@@ -44,41 +48,28 @@ async function carregarFiltros() {
     });
 
     selectPerfilSonoro.innerHTML =
-        '<option value="">Selecionar</option>';
+        `<option value="">Selecionar</option>`;
 
-    dados.perfis.forEach(item => {
+    dados.perfis.forEach(perfil => {
         selectPerfilSonoro.innerHTML += `
-            <option value="${item.id_perfil}">
-                ${item.nome}
-                (${item.perfil})
+            <option value="${perfil.id_perfil}">
+                ${perfil.nome}
+                (${perfil.perfil})
             </option>
         `;
     });
+    perfilRadarPadrao = dados.perfis.length > 0
+        ? dados.perfis[0]
+        : null;
 
-    const perfilRegistrado = sessionStorage.PERFIL || "";
-
-    const perfilRegistradoExiste = dados.perfis.some(
-        item => String(item.id_perfil) === String(perfilRegistrado)
-    );
-
-    if (perfilRegistradoExiste) {
-        selectPerfilSonoro.value = perfilRegistrado;
-    } else if (dados.perfis.length > 0) {
-        selectPerfilSonoro.value = dados.perfis[0].id_perfil;
-    }
+    selectPerfilSonoro.value = "";
 }
 
 async function filtrarDashboard() {
     const genero = selectGenero.value;
     const pais = selectPais.value;
     const popularidade = selectPopularidade.value;
-    let perfilSonoro = selectPerfilSonoro.value;
-
-    if (perfilSonoro == "" && selectPerfilSonoro.options.length > 1) {
-        perfilSonoro = selectPerfilSonoro.options[1].value;
-        selectPerfilSonoro.value = perfilSonoro;
-    }
-
+    const perfilSonoro = selectPerfilSonoro.value;
     const empresa = sessionStorage.EMPRESA || "";
 
     const parametros = new URLSearchParams({
@@ -100,8 +91,7 @@ async function filtrarDashboard() {
     carregarListaArtistas();
 
     if (artistasFiltrados.length > 0) {
-        const primeiroArtista =
-            artistasFiltrados[0];
+        const primeiroArtista = artistasFiltrados[0];
         await selecionarArtista(
             primeiroArtista.id_artista
         );
@@ -410,9 +400,11 @@ async function atualizarGraficoMusicas() {
         graficoMusicas.update();
         return;
     }
+
     const ids = artistasFiltrados
         .map(artista => artista.id_artista)
         .join(',');
+
     const resposta = await fetch(
         `/dashboard/top-musicas-artistas?ids=${ids}`
     );
@@ -430,6 +422,11 @@ async function atualizarGraficoMusicas() {
         '#B587D1',
         '#EFD38D'
     ];
+    const maiorStreamGeral = Math.max(
+        ...musicas.map(
+            musica => Number(musica.contagem_streams)
+        )
+    );
 
     let datasets = [];
 
@@ -448,11 +445,6 @@ async function atualizarGraficoMusicas() {
                         Number(b.contagem_streams) -
                         Number(a.contagem_streams)
                 );
-            const maiorStreamArtista = Math.max(
-                ...musicasArtista.map(
-                    musica => Number(musica.contagem_streams)
-                )
-            );
             const musica = musicasArtista[posicao];
             if (musica) {
                 const streamMusica =
@@ -461,7 +453,7 @@ async function atualizarGraficoMusicas() {
                     Math.max(
                         2,
                         Math.round(
-                            (streamMusica / maiorStreamArtista) * 100
+                            (streamMusica / maiorStreamGeral) * 100
                         )
                     )
                 );
@@ -512,15 +504,15 @@ function carregarListaArtistas() {
     listaArtistas.innerHTML = `
         <div class="top5Titulo text-[#EFD38D] text-center mt-4 font-bold h-[7%]">
             <h1>Top 5 artistas</h1>
-        </div>
-    `;
-    artistasFiltrados.forEach(artista => {
+        </div>`;
+    artistasFiltrados.forEach((artista, index) => {
         listaArtistas.innerHTML += `
             <label class="linha">
                 <input
                     type="radio"
                     name="artista"
                     onchange="selecionarArtista(${artista.id_artista})"
+                    ${index == 0 ? 'checked' : ''}
                 >
                 <div class="radio-custom"></div>
                 <span>${artista.nome}</span>
@@ -557,6 +549,22 @@ async function selecionarArtista(idArtista) {
 }
 
 function atualizarRadar(artista) {
+    let perfilRadar = {
+        nome: artista.nome_perfil,
+        dancabilidade_alvo: artista.dancabilidade_alvo,
+        energia_alvo: artista.energia_alvo,
+        valence_alvo: artista.valence_alvo,
+        acousticness_alvo: artista.acousticness_alvo
+    };
+    if (selectPerfilSonoro.value == "" && perfilRadarPadrao) {
+        perfilRadar = {
+            nome: perfilRadarPadrao.nome,
+            dancabilidade_alvo: perfilRadarPadrao.dancabilidade_alvo,
+            energia_alvo: perfilRadarPadrao.energia_alvo,
+            valence_alvo: perfilRadarPadrao.valence_alvo,
+            acousticness_alvo: perfilRadarPadrao.acousticness_alvo
+        };
+    }
     let datasets = [
         {
             label: artista.nome,
@@ -574,20 +582,19 @@ function atualizarRadar(artista) {
             borderWidth: 2
         }
     ];
-
     if (
-        artista.dancabilidade_alvo != null &&
-        artista.energia_alvo != null &&
-        artista.valence_alvo != null &&
-        artista.acousticness_alvo != null
+        perfilRadar.dancabilidade_alvo != null &&
+        perfilRadar.energia_alvo != null &&
+        perfilRadar.valence_alvo != null &&
+        perfilRadar.acousticness_alvo != null
     ) {
         datasets.push({
-            label: artista.nome_perfil || 'Perfil musical da casa',
+            label: perfilRadar.nome || 'Perfil musical da casa',
             data: [
-                artista.dancabilidade_alvo,
-                artista.energia_alvo,
-                artista.valence_alvo,
-                artista.acousticness_alvo
+                perfilRadar.dancabilidade_alvo,
+                perfilRadar.energia_alvo,
+                perfilRadar.valence_alvo,
+                perfilRadar.acousticness_alvo
             ],
             borderColor: '#FF16B9',
             backgroundColor: 'rgba(255,22,185,0.2)',
@@ -597,7 +604,6 @@ function atualizarRadar(artista) {
             borderWidth: 2
         });
     }
-
     graficoRadar.data.datasets = datasets;
     graficoRadar.update();
 }
