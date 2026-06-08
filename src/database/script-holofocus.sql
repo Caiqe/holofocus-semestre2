@@ -54,15 +54,7 @@ CREATE TABLE IF NOT EXISTS lead_contato (
     data_contato DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS aviso (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    titulo VARCHAR(100) NOT NULL,
-    descricao TEXT NOT NULL,
-    fk_usuario INT NOT NULL,
-    data_publicacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_aviso_usuario
-        FOREIGN KEY (fk_usuario) REFERENCES usuario(id_usuario)
-);
+
 
 CREATE TABLE IF NOT EXISTS chamado (
     id_chamado INT PRIMARY KEY AUTO_INCREMENT,
